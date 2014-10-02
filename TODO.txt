@@ -1,6 +1,5 @@
 TODO
 ====
-- Ad typescript versions of files.
 
 DONE
 ====
@@ -8,3 +7,5 @@ DONE
 - Download original source and put in a extra project.
 - Install Chutzpah and create test project.
 - Test original bot and document it.
+- Add typescript versions of files.
+- Add spec files.

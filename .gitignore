@@ -167,3 +167,13 @@ $RECYCLE.BIN/
 /TSWarLightBot/map/WarMap.js.map
 /TSWarLightBot/Bot.js
 /TSWarLightBot/Bot.js.map
+/TSWarLightBot.Tests/Tests/map/PossibleOwnersSpec.js
+/TSWarLightBot.Tests/Tests/map/PossibleOwnersSpec.js.map
+/TSWarLightBot.Tests/Tests/map/RegionSpec.js
+/TSWarLightBot.Tests/Tests/map/RegionSpec.js.map
+/TSWarLightBot.Tests/Tests/map/SuperRegionSpec.js
+/TSWarLightBot.Tests/Tests/map/SuperRegionSpec.js.map
+/TSWarLightBot.Tests/Tests/map/WarMapSpec.js
+/TSWarLightBot.Tests/Tests/map/WarMapSpec.js.map
+/TSWarLightBot.Tests/Tests/BotSpec.js
+/TSWarLightBot.Tests/Tests/BotSpec.js.map

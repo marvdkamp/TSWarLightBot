@@ -63,8 +63,13 @@
   <ItemGroup>
     <Content Include="Chutzpah.json" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Tests\" />
+    <TypeScriptCompile Include="Tests\BotSpec.ts" />
+    <TypeScriptCompile Include="Tests\map\PossibleOwnersSpec.ts" />
+    <TypeScriptCompile Include="Tests\map\RegionSpec.ts" />
+    <TypeScriptCompile Include="Tests\map\SuperRegionSpec.ts" />
+    <TypeScriptCompile Include="Tests\map\WarMapSpec.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" />
 </Project>
