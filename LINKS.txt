@@ -1,0 +1,19 @@
+LINKS
+=====
+The Game
+http://theaigames.com/competitions/warlight-ai-challenge
+
+Node JS
+http://nodejs.org/
+
+Node JS Tools voor visual studio
+https://nodejstools.codeplex.com/
+
+GitHub en visual studio
+http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-by-step
+
+Ghutzpah
+https://github.com/mmanela/chutzpah
+
+Typescript Jasmine Project template
+http://visualstudiogallery.msdn.microsoft.com/80e09b78-e24f-4094-9c41-7459e3414238

@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBot", "TSWarLightBot\TSWarLightBot.njsproj", "{5319890E-90E7-4A4F-BB0A-76A90BDE8306}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOC", "DOC", "{7CE26B10-CAC7-4F25-975D-65F672C95307}"
+	ProjectSection(SolutionItems) = preProject
+		LINKS.txt = LINKS.txt
+		TODO.txt = TODO.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,9 @@
+TODO
+====
+- Download original source and put in a extra project.
+- Install Chutzpah and create test project.
+- Test original bot and document it.
+
+DONE
+====
+- Add documents TODO en LINKS.
