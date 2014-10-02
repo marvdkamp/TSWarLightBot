@@ -1,5 +1,6 @@
 TODO
 ====
+- Ad typescript versions of files.
 
 DONE
 ====

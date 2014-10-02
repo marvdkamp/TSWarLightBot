@@ -36,9 +36,15 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="Bot.ts" />
+    <TypeScriptCompile Include="map\PossibleOwners.ts" />
+    <TypeScriptCompile Include="map\Region.ts" />
+    <TypeScriptCompile Include="map\SuperRegion.ts" />
+    <TypeScriptCompile Include="map\WarMap.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="map\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />

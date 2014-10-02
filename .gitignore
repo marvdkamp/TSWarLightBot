@@ -156,3 +156,14 @@ $RECYCLE.BIN/
 .DS_Store
 /OriginalJSWarLightBot/.ntvs_analysis.dat
 /TSWarLightBot/.ntvs_analysis.dat
+/TSWarLightBot/map/PossibleOwners.js
+/TSWarLightBot/map/PossibleOwners.js.map
+/TSWarLightBot/map/Region.js
+/TSWarLightBot/map/Region.js.map
+/TSWarLightBot/map/Region.ts
+/TSWarLightBot/map/SuperRegion.js
+/TSWarLightBot/map/SuperRegion.js.map
+/TSWarLightBot/map/WarMap.js
+/TSWarLightBot/map/WarMap.js.map
+/TSWarLightBot/Bot.js
+/TSWarLightBot/Bot.js.map
