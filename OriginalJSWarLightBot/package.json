@@ -1,0 +1,10 @@
+{
+  "name": "OriginalJSWarLightBot",
+  "version": "1.0",
+  "description": "OriginalJSWarLightBot",
+  "main": "Bot.js",
+  "author": {
+    "name": "Niko van Meurs",
+    "email": ""
+  }
+}

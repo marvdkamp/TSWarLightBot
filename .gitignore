@@ -154,3 +154,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/OriginalJSWarLightBot/.ntvs_analysis.dat
+/TSWarLightBot/.ntvs_analysis.dat
