@@ -1,0 +1,10 @@
+{
+  "name": "TSWarLightBot",
+  "version": "0.0.0",
+  "description": "TSWarLightBot",
+  "main": "app.js",
+  "author": {
+    "name": "Taeke",
+    "email": ""
+  }
+}
