@@ -1,0 +1,3 @@
+When you add https://github.com/mhevery/jasmine-node code to your project and in de project properties define the 
+node_modules/jasmine-node/lib/jasmine-node/cli.js
+as youre startup file and in the properties set spec/ as script parameter you can debug de spec file
