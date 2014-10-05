@@ -1,9 +1,6 @@
 TODO
 ====
-- Romove current Tests project because it is based on Chutzpah.
-- Find out correct way of adding jasmine-node npm pacakage to project.
-- Add new test project, set it to run and debug tests and create spec files.
-- Create a simple hello world function in Bot.ts and create a running spec for it.
+- Create a simple console application for reading and echoing commands on de commandline in javascript.
 
 DONE
 ====
@@ -14,3 +11,6 @@ DONE
 - Add typescript versions of files.
 - Add spec files.
 - Add TS lint.
+- Romove current Tests project because it is based on Chutzpah.
+- Find out correct way of adding jasmine-node npm pacakage to project.
+- Add new test project, set it to run and debug tests and create spec files.

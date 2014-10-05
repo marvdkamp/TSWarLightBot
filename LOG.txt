@@ -1,3 +1,25 @@
-When you add https://github.com/mhevery/jasmine-node code to your project and in de project properties define the 
-node_modules/jasmine-node/lib/jasmine-node/cli.js
-as youre startup file and in the properties set spec/ as script parameter you can debug de spec file
+LOG
+===
+Ik probeer alle overige teksten in het engels te doen, maar hier wil ik snel dingen kunnen noteren en dat gaat nog altijd vlotter in het nederlands.
+
+DOEL: Origele code kunnen starten en debuggen vanuit visual studio
+
+- De originele code blijkt een commandline app in Node JS te zijn.
+- In de commandline app kun je op de commandline commandos voor de app in toetsen.
+- Als de App gedraait wordt door de game engine neemt hij dit over en voert op dezelfde wijze commando's in.
+- De app antwoord desgewenst ook weer op de commandline.
+- Node JS dus installeren (zie LINKS.txt).
+- Er blijkt een extentions voor visual studio te zijn om met Node JS te werken (zie LINKS.txt).
+- Nu blijkt er een javascript Node JS commandline project tempate geinstalleerd te zijn.
+- Template gebruikt en hierin de originele code gekopieerd.
+- App.js die door de template aangemaakt wordt weg gegooid.
+- Applicatie blijkt niet te starten maar zou nu Bot.js moeten starten.
+- Je blijkt door met de rechtermuistoets op een Bot.js te klikken deze als node js startup file in te kunnne stellen.
+- Op de website van de game de commandos op gezocht. 
+- De eerste serie commandos voor het starten van de game in COMMANDS EXAMPLE.txt gezet.
+- Nu kun je de app starten in de commando's invoeren op de console app die starten.
+- Je kunt nu ook breakpoints in Bot.js in visual studio zetten.
+
+Doel bereikt
+
+DOEL: Node JS code kunnen testen en de specs kunnen debuggen

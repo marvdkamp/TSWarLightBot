@@ -1,7 +1,8 @@
 To run the original bot open a command prompt in de OriginalJSWarLightBot folder and type 
 node Bot.js
 
-Then line by line feed it these commands
+Then line by line feed it these commands:
+
 settings your_bot player1
 settings opponent_bot player2
 setup_map super_regions 1 2 2 5
