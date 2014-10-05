@@ -8,6 +8,34 @@
  * @authors Marcel van der Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+/// <reference path="Scripts/typings/node/node.d.ts" />
+
+import readline = require('readline');
 
 class Bot {
+    public run() {
+        var readLineOptions: readline.ReadLineOptions = {
+            input: process.stdin,
+            output: process.stdout
+        };
+
+        var io: readline.ReadLine = readline.createInterface(readLineOptions);
+
+        io.on('line', (data: string) => {
+            // stop if line doesn't contain anything
+            if (data.length === 0) {
+                return;
+            }
+
+            process.stdout.write(data + '\n');
+        });
+
+        io.on('close', () => {
+            process.exit(0);
+        });
+
+    }
 }
+
+var bot = new Bot();
+bot.run();
