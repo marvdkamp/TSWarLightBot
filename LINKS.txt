@@ -26,3 +26,9 @@ https://github.com/mhevery/jasmine-node
 
 jasmine node debugging
 http://stackoverflow.com/questions/6162920/debugging-jasmine-node-tests-with-node-inspector
+
+Information about npm package install in Node JS tools for visual studio
+http://www.hanselman.com/blog/introducingnodejstoolsforvisualstudio.aspx
+
+Typescript information for node js tools
+https://nodejstools.codeplex.com/wikipage?title=TypeScript
