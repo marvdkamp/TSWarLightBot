@@ -1,0 +1,13 @@
+{
+  "name": "TSWarLightBot.specs",
+  "version": "0.0.0",
+  "description": "TSWarLightBot.specs",
+  "main": "app.js",
+  "author": {
+    "name": "Taeke",
+    "email": ""
+  },
+  "dependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
