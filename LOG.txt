@@ -23,3 +23,22 @@ DOEL: Origele code kunnen starten en debuggen vanuit visual studio
 Doel bereikt
 
 DOEL: Node JS code kunnen testen en de specs kunnen debuggen
+
+- Een blog gevonden die het testen van Node JS beschrijft (zie LINKS.txt).
+- Buiten deze solution klein testproject opgezet met de code uit de blog.
+- Blijkt een zogenaamde npm voor de combinatie jasmine node te zijn.
+- npm is de nuget voor node js.
+- Ik heb een site gevonden die het gebruik van npm binnen visual studio beschrijft (zie LINKS.txt).
+- Nu kan ik op de commandline in de juiste map de spec runnen met node jasmine-node spec/
+- Nu het nodige experimenteren ontdekt dat je de spec niet kunnen runnen met Chutzpah (zie LINKS.txt).
+- Wil de test in ieder geval kunnen starten vanuit visual studio.
+- Ontdekt dat jasmine-node een wrapper is om de echte code (zie LINKS.txt):
+node_modules/jasmine-node/lib/jasmine-node/cli.js
+- Deze file als node js startup file gezet.
+- In de project properties een . als script arguments gezet zodat hij weet waar hij de spec files moet vinden.
+- Nu kan ik vanuit visual studio de tests starten en kun je ook een breakpoint in een spec zetten.
+- De resultaten van de test zie je in het commandline venster wat opent en niet in de test explorer.
+
+Doel bereikt
+
+DOEL: Uitzoeken hoe je Node JS code schrijft in typescript
