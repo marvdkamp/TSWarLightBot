@@ -24,8 +24,11 @@ https://chutzpah.codeplex.com/workitem/142
 jasmine node debugging
 http://stackoverflow.com/questions/6162920/debugging-jasmine-node-tests-with-node-inspector
 
-Typescript information for node js tools
+Typescript information for node js tools onder anderen definitely typed
 https://nodejstools.codeplex.com/wikipage?title=TypeScript
+
+Definitely typed definities
+https://github.com/borisyankov/DefinitelyTyped
 
 GitHub en visual studio
 http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-by-step

@@ -32,7 +32,7 @@ DOEL: Node JS code kunnen testen en de specs kunnen debuggen
 - Nu kan ik op de commandline in de juiste map de spec runnen met node jasmine-node spec/
 - Nu het nodige experimenteren ontdekt dat je de spec niet kunnen runnen met Chutzpah (zie LINKS.txt).
 - Wil de test in ieder geval kunnen starten vanuit visual studio.
-- Ontdekt dat jasmine-node een wrapper is om de echte code (zie LINKS.txt):
+- Ontdekt dat jasmine-node een wrapper is om de echte code (zie LINKS.txt).
 node_modules/jasmine-node/lib/jasmine-node/cli.js
 - Deze file als node js startup file gezet.
 - In de project properties een . als script arguments gezet zodat hij weet waar hij de spec files moet vinden.
@@ -42,3 +42,7 @@ node_modules/jasmine-node/lib/jasmine-node/cli.js
 Doel bereikt
 
 DOEL: Uitzoeken hoe je Node JS code schrijft in typescript
+- In een WebProject kun je via NuGet definitly type definities toevoegen.
+- Voor een Node JS project kun je daarom TypeScript Definition manager (TSD) gebruiken.
+- Installatie van TSD geeft een foutmelding bij mij.
+- Handmatig type definitie toevoegen vanaf github (zie LINKS.txt).
