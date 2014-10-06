@@ -11,6 +11,10 @@
 /// <reference path="Scripts/typings/node/node.d.ts" />
 import readline = require('readline');
 
+
+/**
+ * Main class of the app. Handles reading from and writing to the console.
+ */
 class Bot {
     private io: readline.ReadLine;
 
@@ -18,6 +22,9 @@ class Bot {
         this.io = io;
     }
 
+    /**
+     * Main entry point of the app.
+     */
     public run() {
         this.io.on('line', (data: string) => {
         });

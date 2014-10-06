@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class Region {
+class BotCommands {
 }
 
-export = Region;
+export = BotCommands;

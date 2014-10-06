@@ -11,3 +11,5 @@
 
 class WarMap {
 }
+
+export = WarMap;

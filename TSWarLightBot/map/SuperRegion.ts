@@ -11,3 +11,5 @@
 
 class SuperRegion {
 }
+
+export = SuperRegion;
