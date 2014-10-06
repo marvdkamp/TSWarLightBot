@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5319890e-90e7-4a4f-bb0a-76a90bde8306</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Bot.js</StartupFile>
+    <StartupFile>Runner.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -40,6 +40,7 @@
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
     <TypeScriptCompile Include="map\WarMap.ts" />
+    <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
   </ItemGroup>
   <ItemGroup>

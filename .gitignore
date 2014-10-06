@@ -180,3 +180,7 @@ $RECYCLE.BIN/
 /TSWarLightBot.specs/node_modules
 /TSWarLightBot.specs/.ntvs_analysis.dat
 /TSWarLightBot.specs/BotSpec.js.map
+/TSWarLightBot/Runner.js
+/TSWarLightBot/Runner.js.map
+/TSWarLightBot.specs/specs/BotSpec.js
+/TSWarLightBot.specs/specs/BotSpec.js.map
