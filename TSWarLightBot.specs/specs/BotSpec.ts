@@ -31,6 +31,11 @@ describe("bot.test", () => {
         bot = new Bot(io, botCommands);
     });
 
+    afterEach(() => {
+        botCommands.callCommand.reset();
+        io.on.reset();
+    });
+
     it("Should call on on io with specific arguments.", () => {
         // arange
 
@@ -43,7 +48,7 @@ describe("bot.test", () => {
         expect(io.on.callCount).toBe(2);
     });
 
-    it("Should call method on botCommands if commandName matches for calling on line listener", () => {
+    it("Should call callCommand on botCommands if commandName matches", () => {
         // arange
         botCommands.isACommand.andReturn(true);
 
@@ -51,8 +56,32 @@ describe("bot.test", () => {
         bot.run();
 
         // assert
-        lineListener('callCommand');
+        lineListener('settings');
         expect(botCommands.callCommand).toHaveBeenCalled();
         expect(botCommands.callCommand.callCount).toBe(1);
+    });
+
+    it("Should NOT call callCommand on botCommands if commandName NOT matches", () => {
+        // arange
+        botCommands.isACommand.andReturn(false);
+
+        // act
+        bot.run();
+
+        // assert
+        lineListener('nocommand');
+        expect(botCommands.callCommand).not.toHaveBeenCalled();
+    });
+
+    it("Should call process.stderr.write on botCommands if commandName NOT matches", () => {
+        // arange
+        botCommands.isACommand.andReturn(false);
+
+        // act
+        bot.run();
+
+        // assert
+        lineListener('nocommand');
+        expect(botCommands.callCommand).not.toHaveBeenCalled();
     });
 });   
