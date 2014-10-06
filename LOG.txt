@@ -4,12 +4,12 @@ Ik probeer alle overige teksten in het engels te doen, maar hier wil ik snel din
 
 DOEL: Origele code kunnen starten en debuggen vanuit visual studio
 
-- De originele code blijkt een commandline app in Node JS te zijn.
+- De originele code blijkt een commandline app in Node JS te zijn (zie LINKS.txt 1).
 - In de commandline app kun je op de commandline commandos voor de app in toetsen.
 - Als de App gedraait wordt door de game engine neemt hij dit over en voert op dezelfde wijze commando's in.
 - De app antwoord desgewenst ook weer op de commandline.
-- Node JS dus installeren (zie LINKS.txt).
-- Er blijkt een extentions voor visual studio te zijn om met Node JS te werken (zie LINKS.txt).
+- Node JS dus installeren (zie LINKS.txt 2).
+- Er blijkt een extentions voor visual studio te zijn om met Node JS te werken (zie LINKS.txt 3).
 - Nu blijkt er een javascript Node JS commandline project tempate geinstalleerd te zijn.
 - Template gebruikt en hierin de originele code gekopieerd.
 - App.js die door de template aangemaakt wordt weg gegooid.
@@ -24,25 +24,31 @@ Doel bereikt
 
 DOEL: Node JS code kunnen testen en de specs kunnen debuggen
 
-- Een blog gevonden die het testen van Node JS beschrijft (zie LINKS.txt).
+- Een blog gevonden die het testen van Node JS beschrijft (zie LINKS.txt 4).
 - Buiten deze solution klein testproject opgezet met de code uit de blog.
-- Blijkt een zogenaamde npm voor de combinatie jasmine node te zijn.
+- Blijkt een zogenaamde npm voor de combinatie jasmine node te zijn (zie LINKS.txt 5).
 - npm is de nuget voor node js.
-- Ik heb een site gevonden die het gebruik van npm binnen visual studio beschrijft (zie LINKS.txt).
+- Ik heb een site gevonden die het gebruik van npm binnen visual studio beschrijft (zie LINKS.txt 6).
 - Nu kan ik op de commandline in de juiste map de spec runnen met node jasmine-node spec/
-- Nu het nodige experimenteren ontdekt dat je de spec niet kunnen runnen met Chutzpah (zie LINKS.txt).
+- Nu het nodige experimenteren ontdekt dat je de spec niet kunnen runnen met Chutzpah (zie LINKS.txt 7).
 - Wil de test in ieder geval kunnen starten vanuit visual studio.
-- Ontdekt dat jasmine-node een wrapper is om de echte code (zie LINKS.txt).
+- Ontdekt dat jasmine-node een wrapper is om de echte code (zie LINKS.txt 8).
 node_modules/jasmine-node/lib/jasmine-node/cli.js
 - Deze file als node js startup file gezet.
 - In de project properties een . als script arguments gezet zodat hij weet waar hij de spec files moet vinden.
 - Nu kan ik vanuit visual studio de tests starten en kun je ook een breakpoint in een spec zetten.
 - De resultaten van de test zie je in het commandline venster wat opent en niet in de test explorer.
+- Met het laden van de Bot.js wordt de bot ook meteen geinstantieerd en run hierop aangeroepen dat is lastig bij testen.
+- Ik daarom heb het construeren van de bot en het aanroepen van run buiten de Bot geplaatst in Runner.js.
+- Ik wil de Readline interface kunnen mocken.
+- Ik daarom heb de aanroep van createInstance op readline ook buiten de Bot geplaatst en geinjecteerd.
 
 Doel bereikt
 
 DOEL: Uitzoeken hoe je Node JS code schrijft in typescript
+- Het was even een puzzel waarom alleen een reference naar node.d.ts niet voldoende is om bij de Readline interface te komen.
+- De readline module is als external module gedefinieerd (zie LINKS.txt 9).
 - In een WebProject kun je via NuGet definitly type definities toevoegen.
 - Voor een Node JS project kun je daarom TypeScript Definition manager (TSD) gebruiken.
 - Installatie van TSD geeft een foutmelding bij mij.
-- Handmatig type definitie toevoegen vanaf github (zie LINKS.txt).
+- Handmatig type definitie toevoegen vanaf github (zie LINKS.txt 10 en 11).

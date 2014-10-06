@@ -1,34 +1,40 @@
 LINKS
 =====
-The Game
+1 The Game
 http://theaigames.com/competitions/warlight-ai-challenge
 
-Node JS
+2 Node JS
 http://nodejs.org/
 
-Node JS Tools voor visual studio
+3 Node JS Tools voor visual studio
 https://nodejstools.codeplex.com/
 
-Jasmine testing Node-js code
+4 Jasmine testing Node-js code
 http://blog.codeship.io/2013/08/20/testing-tuesday-19-how-to-test-node-js-applications-with-jasmine.html
 
-Testing Node js code with Jasmine
+5 Testing Node js code with Jasmine
 https://github.com/mhevery/jasmine-node
 
-Information about npm package install in Node JS tools for visual studio
+6 Information about npm package install in Node JS tools for visual studio
 http://www.hanselman.com/blog/introducingnodejstoolsforvisualstudio.aspx
 
-No support for node js testing in Chutzpah
+7 No support for node js testing in Chutzpah
 https://chutzpah.codeplex.com/workitem/142
 
-jasmine node debugging
+8 jasmine-node js file to run
 http://stackoverflow.com/questions/6162920/debugging-jasmine-node-tests-with-node-inspector
 
-Typescript information for node js tools onder anderen definitely typed
+9 Waarom kan ik niet bij de interface readline.Readline?
+http://stackoverflow.com/questions/22164864/how-to-export-and-import-type-definitions
+
+10 Typescript information for node js tools onder anderen definitely typed
 https://nodejstools.codeplex.com/wikipage?title=TypeScript
 
-Definitely typed definities
+11 Definitely typed definities
 https://github.com/borisyankov/DefinitelyTyped
+
+Jasmine
+http://jasmine.github.io/2.0/introduction.html
 
 GitHub en visual studio
 http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-by-step
