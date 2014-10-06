@@ -9,13 +9,15 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 /// <reference path="Scripts/typings/node/node.d.ts" />
-import readline = require('readline');
+/// <reference path="IBot.ts" />
 
+import readline = require('readline');
+import IBot = require('IBot');
 
 /**
  * Main class of the app. Handles reading from and writing to the console.
  */
-class Bot {
+class Bot implements IBot {
     private io: readline.ReadLine;
 
     constructor(io: readline.ReadLine) {

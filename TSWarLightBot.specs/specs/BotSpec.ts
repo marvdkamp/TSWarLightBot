@@ -10,13 +10,15 @@
  */
 /// <reference path="../Scripts/typings/node/node.d.ts" />
 /// <reference path="../Scripts/typings/jasmine/jasmine.d.ts" />
+/// <reference path="../../TSWarLightBot/IBot.ts" />
 
 import readline = require('readline');
+import IBot = require('../../TSWarLightBot/IBot');
 
 describe("bot.run", () => {
     var io: any = jasmine.createSpyObj('io', ['on']);
     var Bot = require("../../TSWarLightBot/Bot");
-    var bot: any;
+    var bot: IBot;
 
     beforeEach(() => {
         bot = new Bot(io);
