@@ -9,16 +9,10 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-/**
- * interface for the main class of the app. Handles reading from and writing to the console.
- */
-
-interface IBot {
-
-   /**
-     * Main entry point of the app.
-     */
-    run: () => void;
+interface IBotCommands {
+    settings(data: string): void;
+    isACommand(command: string): boolean;
+    callCommand(command: string): void;
 }
 
-export = IBot;
+export = IBotCommands;

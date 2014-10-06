@@ -1,6 +1,5 @@
 TODO
 ====
-- Create a simple console application for reading and echoing commands on de commandline in javascript.
 
 DONE
 ====
@@ -14,3 +13,4 @@ DONE
 - Romove current Tests project because it is based on Chutzpah.
 - Find out correct way of adding jasmine-node npm pacakage to project.
 - Add new test project, set it to run and debug tests and create spec files.
+- Create a simple console application for reading and echoing commands on de commandline in javascript.

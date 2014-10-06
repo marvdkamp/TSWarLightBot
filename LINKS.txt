@@ -33,6 +33,9 @@ https://nodejstools.codeplex.com/wikipage?title=TypeScript
 11 Definitely typed definities
 https://github.com/borisyankov/DefinitelyTyped
 
+12 Dictionary in typescript
+https://typescript.codeplex.com/discussions/398359
+
 Jasmine
 http://jasmine.github.io/2.0/introduction.html
 

@@ -8,27 +8,32 @@
  * @authors Marcel van der Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-/// <reference path="Scripts/typings/node/node.d.ts" />
-/// <reference path="IBot.ts" />
 
 import readline = require('readline');
 import IBot = require('IBot');
+import IBotCommands = require('IBotCommands');
 
 /**
  * Main class of the app. Handles reading from and writing to the console.
  */
 class Bot implements IBot {
     private io: readline.ReadLine;
+    private botCommands: IBotCommands;
 
-    constructor(io: readline.ReadLine) {
+    constructor(io: readline.ReadLine, botCommands: IBotCommands) {
         this.io = io;
+        this.botCommands = botCommands;
     }
 
     /**
      * Main entry point of the app.
      */
     public run() {
+        var that: Bot = this;
         this.io.on('line', (data: string) => {
+            if (that.botCommands.isACommand(data)) {
+                that.botCommands.callCommand(data);
+            }
         });
 
         this.io.on('close', () => {

@@ -65,3 +65,4 @@ DOEL: Uitzoeken hoe we de app opknippen in testbare delen.
 - In Bot zit alleen de run method nog (en helper functions indien nodig).
 - In Bot wordt een instantie van BotCommands geinjecteerd in Runner.js
 - BotCommands bevat alle verschillende commando's als public methodes zodat we deze los kunnen testen.
+- Het is handig om strings (of enum waardes) aan de commands van de BotCommands te koppelen (zie LINKS.txt 12)

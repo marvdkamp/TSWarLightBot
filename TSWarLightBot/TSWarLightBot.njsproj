@@ -38,6 +38,7 @@
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="BotCommands.ts" />
     <TypeScriptCompile Include="IBot.ts" />
+    <TypeScriptCompile Include="IBotCommands.ts" />
     <TypeScriptCompile Include="map\PossibleOwners.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />

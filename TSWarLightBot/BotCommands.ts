@@ -9,7 +9,18 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class BotCommands {
+import IBotCommands = require('IBotCommands');
+
+class BotCommands implements IBotCommands {
+    public settings(data: string): void {
+    }
+
+    public isACommand(command: string): boolean {
+        return true;
+    }
+
+    public callCommand(command: string): void {
+    }
 }
 
 export = BotCommands;
