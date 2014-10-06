@@ -40,6 +40,9 @@
     <TypeScriptCompile Include="Commands.ts" />
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommands.ts" />
+    <TypeScriptCompile Include="map\I\IRegion.ts" />
+    <TypeScriptCompile Include="map\I\ISuperRegion.ts" />
+    <TypeScriptCompile Include="map\I\IWarMap.ts" />
     <TypeScriptCompile Include="map\PossibleOwners.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
@@ -49,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="map\" />
+    <Folder Include="map\I\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />

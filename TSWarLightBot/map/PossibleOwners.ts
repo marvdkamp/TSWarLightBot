@@ -9,7 +9,10 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class PossibleOwners {
+enum PossibleOwners {
+     NEUTRAL,
+     OPPONENT,
+     PLAYER
 }
 
 export = PossibleOwners;
