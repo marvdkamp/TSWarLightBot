@@ -19,18 +19,10 @@ class Bot {
     }
 
     public run() {
-
         this.io.on('line', (data: string) => {
-            // stop if line doesn't contain anything
-            if (data.length === 0) {
-                return;
-            }
-
-            process.stdout.write(data + '\n');
         });
 
         this.io.on('close', () => {
-            process.exit(0);
         });
     }
 }

@@ -13,7 +13,7 @@
 
 import readline = require('readline');
 
-describe("bot", () => {
+describe("bot.run", () => {
     var io: any = jasmine.createSpyObj('io', ['on']);
     var Bot = require("../../TSWarLightBot/Bot");
     var bot: any;
@@ -22,8 +22,10 @@ describe("bot", () => {
         bot = new Bot(io);
     });
 
-    it("should do something", () => {
+    it("Should call on on io with specific arguments.", () => {
         bot.run();
-        expect(io.on).toHaveBeenCalled();
+        expect(io.on).toHaveBeenCalledWith('line', jasmine.any(Function));
+        expect(io.on).toHaveBeenCalledWith('close', jasmine.any(Function));
+        expect(io.on.callCount).toBe(2);
     });
 });   

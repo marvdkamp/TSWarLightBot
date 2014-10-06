@@ -42,6 +42,8 @@ node_modules/jasmine-node/lib/jasmine-node/cli.js
 - Ik daarom heb het construeren van de bot en het aanroepen van run buiten de Bot geplaatst in Runner.js.
 - Ik wil de Readline interface kunnen mocken.
 - Ik daarom heb de aanroep van createInstance op readline ook buiten de Bot geplaatst en geinjecteerd.
+- Als je met F5 het specs project start en alle test slagen wordt de app meteen weer gesloten.
+- Via TOOLS => Options => Node.js tools => Wait for input when proccess exits normally aanvinken blijft hij wel open.
 
 Doel bereikt
 

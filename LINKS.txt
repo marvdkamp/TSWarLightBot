@@ -36,6 +36,9 @@ https://github.com/borisyankov/DefinitelyTyped
 Jasmine
 http://jasmine.github.io/2.0/introduction.html
 
+Jasmine spy on sheat sheet
+http://tobyho.com/2011/12/15/jasmine-spy-cheatsheet/
+
 GitHub en visual studio
 http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-by-step
 
