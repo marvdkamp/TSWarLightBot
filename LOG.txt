@@ -2,7 +2,7 @@ LOG
 ===
 Ik probeer alle overige teksten in het engels te doen, maar hier wil ik snel dingen kunnen noteren en dat gaat nog altijd vlotter in het nederlands.
 
-DOEL: Origele code kunnen starten en debuggen vanuit visual studio
+DOEL: Origele code kunnen starten en debuggen vanuit visual studio.
 
 - De originele code blijkt een commandline app in Node JS te zijn (zie LINKS.txt 1).
 - In de commandline app kun je op de commandline commandos voor de app in toetsen.
@@ -22,7 +22,7 @@ DOEL: Origele code kunnen starten en debuggen vanuit visual studio
 
 Doel bereikt
 
-DOEL: Node JS code kunnen testen en de specs kunnen debuggen
+DOEL: Node JS code kunnen testen en de specs kunnen debuggen.
 
 - Een blog gevonden die het testen van Node JS beschrijft (zie LINKS.txt 4).
 - Buiten deze solution klein testproject opgezet met de code uit de blog.
@@ -40,6 +40,8 @@ node_modules/jasmine-node/lib/jasmine-node/cli.js
 - De resultaten van de test zie je in het commandline venster wat opent en niet in de test explorer.
 - Met het laden van de Bot.js wordt de bot ook meteen geinstantieerd en run hierop aangeroepen dat is lastig bij testen.
 - Ik daarom heb het construeren van de bot en het aanroepen van run buiten de Bot geplaatst in Runner.js.
+- Ik begreep eerst niet waarom de oorspronkelijke app bleef draaien terwijl er geen while lus of zo in zit.
+- Blijkt dat Node js de app in leven houdt als er eventlisteners gekoppeld zijn en dat doet readline.createiIstance.
 - Ik wil de Readline interface kunnen mocken.
 - Ik daarom heb de aanroep van createInstance op readline ook buiten de Bot geplaatst en geinjecteerd.
 - Als je met F5 het specs project start en alle test slagen wordt de app meteen weer gesloten.
@@ -47,10 +49,19 @@ node_modules/jasmine-node/lib/jasmine-node/cli.js
 
 Doel bereikt
 
-DOEL: Uitzoeken hoe je Node JS code schrijft in typescript
+DOEL: Uitzoeken hoe je Node JS code schrijft in typescript.
 - Het was even een puzzel waarom alleen een reference naar node.d.ts niet voldoende is om bij de Readline interface te komen.
 - De readline module is als external module gedefinieerd (zie LINKS.txt 9).
 - In een WebProject kun je via NuGet definitly type definities toevoegen.
 - Voor een Node JS project kun je daarom TypeScript Definition manager (TSD) gebruiken.
 - Installatie van TSD geeft een foutmelding bij mij.
-- Handmatig type definitie toevoegen vanaf github (zie LINKS.txt 10 en 11).
+- Handmatig type definitie toevoegen vanaf github als dit nodig is (zie LINKS.txt 10 en 11).
+
+Doel bereikt
+
+DOEL: Uitzoeken hoe we de app opknippen in testbare delen.
+- Er wordt slechts 1 methode aangeroepen op Bot.js en daar zit bijna alle code in.
+- Lijkt me handig Bot op te knippen in Bot en BotCommands.
+- In Bot zit alleen de run method nog (en helper functions indien nodig).
+- In Bot wordt een instantie van BotCommands geinjecteerd in Runner.js
+- BotCommands bevat alle verschillende commando's als public methodes zodat we deze los kunnen testen.
