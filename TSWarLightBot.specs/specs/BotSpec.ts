@@ -20,9 +20,15 @@ describe("bot.test", () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
-    io.on.andCallFake(function (event: string, listener: (data: string) => void) {
+    var lineListener: (data: string) => void;
+    var closeListener: () => void;
+    io.on.andCallFake(function (event: string, listener: (data?: string) => void) {
         if (event === 'line') {
             lineListener = listener;
+        };
+
+        if (event === 'close') {
+            closeListener = listener;
         }
     });
 
@@ -30,10 +36,10 @@ describe("bot.test", () => {
 
     var botProcess = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
-        stderr: jasmine.createSpyObj('stderr', ['write'])
+        stderr: jasmine.createSpyObj('stderr', ['write']),
+        exit: jasmine.createSpy('exit')
     }
 
-    var lineListener: (data: string) => void;
 
     beforeEach(() => {
         bot = new Bot(io, commands, botProcess);
@@ -46,7 +52,7 @@ describe("bot.test", () => {
         botProcess.stderr.write.reset();
     });
 
-    it("Should call on on io with specific arguments.", () => {
+    it("Should call on on io with specific arguments to attach events.", () => {
         // arange
 
         // act
@@ -76,10 +82,9 @@ describe("bot.test", () => {
         commands.callCommand.andReturn(new CommandResult(true, 'test'));
 
         // act
-        bot.run();
+        bot.handleLine('settings');
 
         // assert
-        lineListener('settings');
         expect(botProcess.stdout.write).toHaveBeenCalled();
         expect(botProcess.stdout.write.callCount).toBe(1);
         expect(botProcess.stderr.write.callCount).toBe(0);
@@ -90,12 +95,20 @@ describe("bot.test", () => {
         commands.callCommand.andReturn(new CommandResult(false, 'test'));
 
         // act
-        bot.run();
+        bot.handleLine('settings');
 
         // assert
-        lineListener('nocommand');
         expect(botProcess.stderr.write).toHaveBeenCalled();
         expect(botProcess.stderr.write.callCount).toBe(1);
         expect(botProcess.stdout.write.callCount).toBe(0);
+    });
+
+    it("Should call process.exit(0) if handleClose is called.", () => {
+        // act
+        bot.handleClose();
+
+        // assert
+        expect(botProcess.exit).toHaveBeenCalled();
+        expect(botProcess.exit.callCount).toBe(1);
     });
 });   

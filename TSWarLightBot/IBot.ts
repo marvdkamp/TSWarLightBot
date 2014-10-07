@@ -14,11 +14,20 @@
  */
 
 interface IBot {
-
-   /**
-     * Main entry point of the app.
-     */
+    /**
+      * Main entry point of the app.
+      */
     run: () => void;
+
+    /**
+     * Handle a incoming command from the game engine.
+     */
+    handleLine: (data: string) => void;
+
+    /**
+     * Handle a close command from the game engine.
+     */
+    handleClose: () => void;
 }
 
 export = IBot;

@@ -28,21 +28,36 @@ class Bot implements IBot {
     }
 
     /**
-     * Main entry point of the app.
+     * Main entry point of the app. Attaching events to the ReadLine instance.
      */
     public run() {
         var that: Bot = this;
         this.io.on('line', (data: string) => {
-            var result = that.commands.callCommand(data);
-            if (result.succes) {
-                that.botProcess.stdout.write(result.value);
-            } else {
-                that.botProcess.stderr.write(result.value);
-            }
+            that.handleLine(data);
         });
 
         this.io.on('close', () => {
+            that.handleClose();
         });
+    }
+
+    /**
+     * Handle a incoming command from the game engine.
+     */
+    public handleLine(data: string): void {
+        var result = this.commands.callCommand(data);
+        if (result.succes) {
+            this.botProcess.stdout.write(result.value);
+        } else {
+            this.botProcess.stderr.write(result.value);
+        }
+    }
+
+    /**
+     * Handle a close command from the game engine.
+     */
+    public handleClose(): void {
+        this.botProcess.exit(0);
     }
 }
 
