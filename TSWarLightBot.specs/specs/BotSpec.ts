@@ -27,9 +27,6 @@ describe("bot.test", () => {
     });
 
     var commands: any = jasmine.createSpyObj('commands', ['callCommand']);
-    //var stdout: any = jasmine.createSpyObj('stdout', ['write']);
-    //var stderr: any = jasmine.createSpyObj('stderr', ['write']);
-    //var botProcess: any = jasmine.createSpyObj('botProcess', ['stdout', 'stderr']);
 
     var botProcess = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
