@@ -19,10 +19,12 @@ import ICommands = require('ICommands');
 class Bot implements IBot {
     private io: readline.ReadLine;
     private commands: ICommands;
+    private botProcess: NodeProcess;
 
-    constructor(io: readline.ReadLine, commands: ICommands) {
+    constructor(io: readline.ReadLine, commands: ICommands, botProcess: NodeProcess) {
         this.io = io;
         this.commands = commands;
+        this.botProcess = botProcess;
     }
 
     /**
@@ -31,8 +33,11 @@ class Bot implements IBot {
     public run() {
         var that: Bot = this;
         this.io.on('line', (data: string) => {
-            if (that.commands.isACommand(data)) {
-                that.commands.callCommand(data);
+            var result = that.commands.callCommand(data);
+            if (result.succes) {
+                that.botProcess.stdout.write(result.value);
+            } else {
+                that.botProcess.stderr.write(result.value);
             }
         });
 

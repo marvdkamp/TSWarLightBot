@@ -36,6 +36,7 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="Bot.ts" />
+    <TypeScriptCompile Include="CommandResult.ts" />
     <TypeScriptCompile Include="Commands.ts" />
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommands.ts" />

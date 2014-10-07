@@ -10,16 +10,14 @@
  */
 
 import ICommands = require('ICommands');
+import CommandResult = require('CommandResult');
 
 class Commands implements ICommands {
     public settings(data: string): void {
     }
 
-    public isACommand(command: string): boolean {
-        return true;
-    }
-
-    public callCommand(command: string): void {
+    public callCommand(command: string): CommandResult {
+        return new CommandResult(true, 'test');
     }
 }
 

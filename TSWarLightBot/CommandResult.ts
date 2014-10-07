@@ -9,11 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import CommandResult = require('CommandResult');
+class CommandResult {
+    constructor(public succes: boolean, public value: string) {
+    }
+};
 
-interface ICommands {
-    settings(data: string): void;
-    callCommand(command: string): CommandResult;
-}
-
-export = ICommands;
+export = CommandResult;

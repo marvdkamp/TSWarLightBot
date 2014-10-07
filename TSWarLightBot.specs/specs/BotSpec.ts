@@ -13,27 +13,40 @@
 
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/IBot');
+import ICommands = require('../../TSWarLightBot/ICommands');
+import CommandResult = require('../../TSWarLightBot/CommandResult');
 
 describe("bot.test", () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
-    var commands: any = jasmine.createSpyObj('commands', ['isACommand', 'callCommand']);
-    var lineListener: (data: string) => void;
-
     io.on.andCallFake(function (event: string, listener: (data: string) => void) {
         if (event === 'line') {
             lineListener = listener;
         }
     });
 
+    var commands: any = jasmine.createSpyObj('commands', ['callCommand']);
+    //var stdout: any = jasmine.createSpyObj('stdout', ['write']);
+    //var stderr: any = jasmine.createSpyObj('stderr', ['write']);
+    //var botProcess: any = jasmine.createSpyObj('botProcess', ['stdout', 'stderr']);
+
+    var botProcess = {
+        stdout: jasmine.createSpyObj('stdout', ['write']),
+        stderr: jasmine.createSpyObj('stderr', ['write'])
+    }
+
+    var lineListener: (data: string) => void;
+
     beforeEach(() => {
-        bot = new Bot(io, commands);
+        bot = new Bot(io, commands, botProcess);
     });
 
     afterEach(() => {
         commands.callCommand.reset();
         io.on.reset();
+        botProcess.stdout.write.reset();
+        botProcess.stderr.write.reset();
     });
 
     it("Should call on on io with specific arguments.", () => {
@@ -48,9 +61,9 @@ describe("bot.test", () => {
         expect(io.on.callCount).toBe(2);
     });
 
-    it("Should call callCommand on commands if commandName matches", () => {
+    it("Should call callCommand on commands", () => {
         // arange
-        commands.isACommand.andReturn(true);
+        commands.callCommand.andReturn(new CommandResult(true, 'test'));
 
         // act
         bot.run();
@@ -61,27 +74,31 @@ describe("bot.test", () => {
         expect(commands.callCommand.callCount).toBe(1);
     });
 
-    it("Should NOT call callCommand on commands if commandName NOT matches", () => {
+    it("Should call process.stdout.write on commands if commandName matches", () => {
         // arange
-        commands.isACommand.andReturn(false);
+        commands.callCommand.andReturn(new CommandResult(true, 'test'));
 
         // act
         bot.run();
 
         // assert
-        lineListener('nocommand');
-        expect(commands.callCommand).not.toHaveBeenCalled();
+        lineListener('settings');
+        expect(botProcess.stdout.write).toHaveBeenCalled();
+        expect(botProcess.stdout.write.callCount).toBe(1);
+        expect(botProcess.stderr.write.callCount).toBe(0);
     });
 
     it("Should call process.stderr.write on commands if commandName NOT matches", () => {
         // arange
-        commands.isACommand.andReturn(false);
+        commands.callCommand.andReturn(new CommandResult(false, 'test'));
 
         // act
         bot.run();
 
         // assert
         lineListener('nocommand');
-        expect(commands.callCommand).not.toHaveBeenCalled();
+        expect(botProcess.stderr.write).toHaveBeenCalled();
+        expect(botProcess.stderr.write.callCount).toBe(1);
+        expect(botProcess.stdout.write.callCount).toBe(0);
     });
 });   
