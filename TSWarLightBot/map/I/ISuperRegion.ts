@@ -9,11 +9,14 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class WarMap {
-    private regions 
-    constructor() {
+/**
+ * interface of a SuperRegion Object.
+ */
 
-    }
+interface ISuperRegion {
+    id: number;
+    bonus: number;
+    regions: {}; //TODO: waar is deze voor?
 }
 
-export = WarMap;
+export = ISuperRegion;

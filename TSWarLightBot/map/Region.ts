@@ -8,8 +8,29 @@
  * @authors Marcel van der Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+import IRegion = require('I/IRegion');
+import ISuperRegion = require('I/ISuperRegion');
+import PossibleOwners = require('PossibleOwners');
 
-class Region {
+class Region implements IRegion {
+    id: number;
+    superRegion: ISuperRegion;
+    owner: PossibleOwners;
+    neighbors: IRegion[];
+    troopCount: number;
+    isOnEmpireBorder: boolean;
+    isOnSuperRegionBorder: boolean;
+
+
+    constructor(id: number, superRegion: ISuperRegion) {
+        this.id = id;
+        this.superRegion = superRegion;
+        this.owner = PossibleOwners.NEUTRAL;
+        this.neighbors = [];
+        this.troopCount = 2;
+        this.isOnEmpireBorder = false;
+        this.isOnSuperRegionBorder = false;
+    }
 }
 
 export = Region;
