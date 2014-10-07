@@ -66,3 +66,7 @@ DOEL: Uitzoeken hoe we de app opknippen in testbare delen.
 - In Bot wordt een instantie van BotCommands geinjecteerd in Runner.js
 - BotCommands bevat alle verschillende commando's als public methodes zodat we deze los kunnen testen.
 - Het is handig om strings (of enum waardes) aan de commands van de BotCommands te koppelen (zie LINKS.txt 12)
+- Misschien is het handig de logica van het opknippen van de data voor het commando ook in BotCommands te plaatsen.
+- isACommand verwijderen en gewoon altijd callCommand aanroepen en deze een result laten geven wat dus ook de fout string kan zijn.
+- Misschien is het handig niet meer met lambda's de events te koppelen maar losse methods van te maken zodat ze los getest kunnen worden.
+- run is dan alleen nog een method om events te koppelen.
