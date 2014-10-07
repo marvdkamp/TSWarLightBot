@@ -11,18 +11,18 @@
 
 import readline = require('readline');
 import IBot = require('IBot');
-import IBotCommands = require('IBotCommands');
+import ICommands = require('ICommands');
 
 /**
  * Main class of the app. Handles reading from and writing to the console.
  */
 class Bot implements IBot {
     private io: readline.ReadLine;
-    private botCommands: IBotCommands;
+    private commands: ICommands;
 
-    constructor(io: readline.ReadLine, botCommands: IBotCommands) {
+    constructor(io: readline.ReadLine, commands: ICommands) {
         this.io = io;
-        this.botCommands = botCommands;
+        this.commands = commands;
     }
 
     /**
@@ -31,8 +31,8 @@ class Bot implements IBot {
     public run() {
         var that: Bot = this;
         this.io.on('line', (data: string) => {
-            if (that.botCommands.isACommand(data)) {
-                that.botCommands.callCommand(data);
+            if (that.commands.isACommand(data)) {
+                that.commands.callCommand(data);
             }
         });
 

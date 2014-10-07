@@ -18,7 +18,7 @@ describe("bot.test", () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
-    var botCommands: any = jasmine.createSpyObj('botCommands', ['isACommand', 'callCommand']);
+    var commands: any = jasmine.createSpyObj('commands', ['isACommand', 'callCommand']);
     var lineListener: (data: string) => void;
 
     io.on.andCallFake(function (event: string, listener: (data: string) => void) {
@@ -28,11 +28,11 @@ describe("bot.test", () => {
     });
 
     beforeEach(() => {
-        bot = new Bot(io, botCommands);
+        bot = new Bot(io, commands);
     });
 
     afterEach(() => {
-        botCommands.callCommand.reset();
+        commands.callCommand.reset();
         io.on.reset();
     });
 
@@ -48,40 +48,40 @@ describe("bot.test", () => {
         expect(io.on.callCount).toBe(2);
     });
 
-    it("Should call callCommand on botCommands if commandName matches", () => {
+    it("Should call callCommand on commands if commandName matches", () => {
         // arange
-        botCommands.isACommand.andReturn(true);
+        commands.isACommand.andReturn(true);
 
         // act
         bot.run();
 
         // assert
         lineListener('settings');
-        expect(botCommands.callCommand).toHaveBeenCalled();
-        expect(botCommands.callCommand.callCount).toBe(1);
+        expect(commands.callCommand).toHaveBeenCalled();
+        expect(commands.callCommand.callCount).toBe(1);
     });
 
-    it("Should NOT call callCommand on botCommands if commandName NOT matches", () => {
+    it("Should NOT call callCommand on commands if commandName NOT matches", () => {
         // arange
-        botCommands.isACommand.andReturn(false);
+        commands.isACommand.andReturn(false);
 
         // act
         bot.run();
 
         // assert
         lineListener('nocommand');
-        expect(botCommands.callCommand).not.toHaveBeenCalled();
+        expect(commands.callCommand).not.toHaveBeenCalled();
     });
 
-    it("Should call process.stderr.write on botCommands if commandName NOT matches", () => {
+    it("Should call process.stderr.write on commands if commandName NOT matches", () => {
         // arange
-        botCommands.isACommand.andReturn(false);
+        commands.isACommand.andReturn(false);
 
         // act
         bot.run();
 
         // assert
         lineListener('nocommand');
-        expect(botCommands.callCommand).not.toHaveBeenCalled();
+        expect(commands.callCommand).not.toHaveBeenCalled();
     });
 });   

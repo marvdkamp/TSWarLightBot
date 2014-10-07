@@ -10,7 +10,7 @@
  */
 import Bot = require('./Bot');
 import readline = require('readline');
-import BotCommands = require('BotCommands');
+import Commands = require('Commands');
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,
@@ -18,7 +18,7 @@ var readLineOptions: readline.ReadLineOptions = {
 };
 
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
-var botCommands = new BotCommands();
+var commands = new Commands();
 
-var bot = new Bot(io, botCommands);
+var bot = new Bot(io, commands);
 bot.run();

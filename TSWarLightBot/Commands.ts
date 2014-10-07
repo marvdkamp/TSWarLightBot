@@ -9,10 +9,18 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-interface IBotCommands {
-    settings(data: string): void;
-    isACommand(command: string): boolean;
-    callCommand(command: string): void;
+import ICommands = require('ICommands');
+
+class Commands implements ICommands {
+    public settings(data: string): void {
+    }
+
+    public isACommand(command: string): boolean {
+        return true;
+    }
+
+    public callCommand(command: string): void {
+    }
 }
 
-export = IBotCommands;
+export = Commands;

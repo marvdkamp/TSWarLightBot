@@ -36,9 +36,9 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="Bot.ts" />
-    <TypeScriptCompile Include="BotCommands.ts" />
+    <TypeScriptCompile Include="Commands.ts" />
     <TypeScriptCompile Include="IBot.ts" />
-    <TypeScriptCompile Include="IBotCommands.ts" />
+    <TypeScriptCompile Include="ICommands.ts" />
     <TypeScriptCompile Include="map\PossibleOwners.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
