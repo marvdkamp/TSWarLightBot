@@ -10,14 +10,17 @@
  */
 
 import ICommands = require('ICommands');
-import CommandResult = require('CommandResult');
+import ICommandResult = require('ICommandResult');
 
 class Commands implements ICommands {
+    constructor(private commandResultFactory: (succes: boolean, value: string) => ICommandResult) {
+    } 
+
     public settings(data: string): void {
     }
 
-    public callCommand(command: string): CommandResult {
-        return new CommandResult(true, 'test');
+    public callCommand(command: string): ICommandResult {
+        return this.commandResultFactory(true, 'test');
     }
 }
 

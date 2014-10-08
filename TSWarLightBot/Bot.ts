@@ -17,14 +17,8 @@ import ICommands = require('ICommands');
  * Main class of the app. Handles reading from and writing to the console.
  */
 class Bot implements IBot {
-    private io: readline.ReadLine;
-    private commands: ICommands;
-    private botProcess: NodeProcess;
 
-    constructor(io: readline.ReadLine, commands: ICommands, botProcess: NodeProcess) {
-        this.io = io;
-        this.commands = commands;
-        this.botProcess = botProcess;
+    constructor(private io: readline.ReadLine, private commands: ICommands, private botProcess: NodeProcess) {
     }
 
     /**

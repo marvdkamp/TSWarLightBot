@@ -10,11 +10,8 @@
  */
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
-
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/IBot');
-import ICommands = require('../../TSWarLightBot/ICommands');
-import CommandResult = require('../../TSWarLightBot/CommandResult');
 
 describe("bot.test", () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
@@ -33,13 +30,14 @@ describe("bot.test", () => {
     });
 
     var commands: any = jasmine.createSpyObj('commands', ['callCommand']);
+    var commandResult: any = jasmine.createSpy('commandResult');
+    commands.callCommand.andReturn(commandResult);
 
     var botProcess = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
         stderr: jasmine.createSpyObj('stderr', ['write']),
         exit: jasmine.createSpy('exit')
     }
-
 
     beforeEach(() => {
         bot = new Bot(io, commands, botProcess);
@@ -50,6 +48,7 @@ describe("bot.test", () => {
         io.on.reset();
         botProcess.stdout.write.reset();
         botProcess.stderr.write.reset();
+        commands.callCommand.reset();
     });
 
     it("Should call on on io with specific arguments to attach events.", () => {
@@ -66,20 +65,19 @@ describe("bot.test", () => {
 
     it("Should call callCommand on commands", () => {
         // arange
-        commands.callCommand.andReturn(new CommandResult(true, 'test'));
 
         // act
-        bot.run();
+        bot.handleLine('settings');
 
         // assert
-        lineListener('settings');
         expect(commands.callCommand).toHaveBeenCalled();
         expect(commands.callCommand.callCount).toBe(1);
     });
 
     it("Should call process.stdout.write on commands if commandName matches", () => {
         // arange
-        commands.callCommand.andReturn(new CommandResult(true, 'test'));
+        commandResult.succes = true;
+        commandResult.value = 'test';
 
         // act
         bot.handleLine('settings');
@@ -92,7 +90,8 @@ describe("bot.test", () => {
 
     it("Should call process.stderr.write on commands if commandName NOT matches", () => {
         // arange
-        commands.callCommand.andReturn(new CommandResult(false, 'test'));
+        commandResult.succes = false;
+        commandResult.value = 'test';
 
         // act
         bot.handleLine('settings');

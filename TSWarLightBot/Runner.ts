@@ -8,9 +8,10 @@
  * @authors Marcel van der Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-import Bot = require('./Bot');
+import Bot = require('Bot');
 import readline = require('readline');
 import Commands = require('Commands');
+import CommandResult = require('CommandResult');
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,
@@ -18,7 +19,7 @@ var readLineOptions: readline.ReadLineOptions = {
 };
 
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
-var commands = new Commands();
+var commands = new Commands((succes: boolean, value: string) => { return new CommandResult(succes, value); });
 
 var bot = new Bot(io, commands, process);
 bot.run();

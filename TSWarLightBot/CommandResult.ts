@@ -9,7 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class CommandResult {
+import ICommandResult = require('ICommandResult');
+
+class CommandResult implements ICommandResult {
     constructor(public succes: boolean, public value: string) {
     }
 };

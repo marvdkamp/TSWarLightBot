@@ -39,6 +39,7 @@
     <TypeScriptCompile Include="CommandResult.ts" />
     <TypeScriptCompile Include="Commands.ts" />
     <TypeScriptCompile Include="IBot.ts" />
+    <TypeScriptCompile Include="ICommandResult.ts" />
     <TypeScriptCompile Include="ICommands.ts" />
     <TypeScriptCompile Include="map\I\IRegion.ts" />
     <TypeScriptCompile Include="map\I\ISuperRegion.ts" />

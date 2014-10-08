@@ -2,7 +2,7 @@
   "name": "TSWarLightBot.specs",
   "version": "0.0.0",
   "description": "TSWarLightBot.specs",
-  "main": "app.js",
+  "main": "node_modules/jasmine-node/lib/jasmine-node/cli.js",
   "author": {
     "name": "Taeke",
     "email": ""
