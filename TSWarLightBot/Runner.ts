@@ -10,7 +10,7 @@
  */
 import Bot = require('Bot');
 import readline = require('readline');
-import Commands = require('Lines');
+import Lines = require('Lines');
 import CommandResult = require('CommandResult');
 
 var readLineOptions: readline.ReadLineOptions = {
@@ -19,7 +19,7 @@ var readLineOptions: readline.ReadLineOptions = {
 };
 
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
-var commands = new Commands([]);
+var lines = new Lines([]);
 
-var bot = new Bot(io, commands, process);
+var bot = new Bot(io, lines, process);
 bot.run();

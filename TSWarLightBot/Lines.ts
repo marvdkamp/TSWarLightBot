@@ -9,12 +9,12 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommands = require('ILines');
+import ILines = require('ILines');
 import ICommandResult = require('ICommandResult');
 import ICommandAction = require('ICommandAction');
 import _ = require('underscore');
 
-class Commands implements ICommands {
+class Lines implements ILines {
     constructor(private commandActions: ICommandAction[]) {
     } 
 
@@ -27,4 +27,4 @@ class Commands implements ICommands {
     }
 }
 
-export = Commands;
+export = Lines;

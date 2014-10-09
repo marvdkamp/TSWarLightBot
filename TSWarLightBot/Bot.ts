@@ -11,14 +11,14 @@
 
 import readline = require('readline');
 import IBot = require('IBot');
-import ICommands = require('ILines');
+import ILines = require('ILines');
 
 /**
  * Main class of the app. Handles reading from and writing to the console.
  */
 class Bot implements IBot {
 
-    constructor(private io: readline.ReadLine, private commands: ICommands, private botProcess: NodeProcess) {
+    constructor(private io: readline.ReadLine, private lines: ILines, private botProcess: NodeProcess) {
     }
 
     /**
@@ -43,7 +43,7 @@ class Bot implements IBot {
             return;
         }
 
-        var result = this.commands.callCommand(data);
+        var result = this.lines.callCommand(data);
         if (result.succes) {
             this.botProcess.stdout.write(result.value);
         } else {

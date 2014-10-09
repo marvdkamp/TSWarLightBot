@@ -11,8 +11,8 @@
 
 import ICommandResult = require('ICommandResult');
 
-interface ICommands {
+interface ILines {
     callCommand(data: string): ICommandResult;
 }
 
-export = ICommands;
+export = ILines;
