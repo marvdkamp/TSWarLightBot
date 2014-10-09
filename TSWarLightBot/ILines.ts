@@ -12,7 +12,7 @@
 import ICommandResult = require('ICommandResult');
 
 interface ILines {
-    callCommand(data: string): ICommandResult;
+    getCommandResult(data: string): ICommandResult;
 }
 
 export = ILines;

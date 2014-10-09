@@ -29,7 +29,7 @@ describe("lines.test", () => {
         // arange
 
         // act
-        lines.callCommand('setting');
+        lines.getCommandResult('setting');
 
         // assert
         expect(commandAction).toHaveBeenCalled();

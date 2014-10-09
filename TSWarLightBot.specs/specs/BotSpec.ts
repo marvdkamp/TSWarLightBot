@@ -29,9 +29,9 @@ describe("bot.test", () => {
         }
     });
 
-    var lines: any = jasmine.createSpyObj('lines', ['callCommand']);
+    var lines: any = jasmine.createSpyObj('lines', ['getCommandResult']);
     var commandResult: any = jasmine.createSpy('commandResult');
-    lines.callCommand.andReturn(commandResult);
+    lines.getCommandResult.andReturn(commandResult);
 
     var botProcess: any = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
@@ -44,11 +44,10 @@ describe("bot.test", () => {
     });
 
     afterEach(() => {
-        lines.callCommand.reset();
+        lines.getCommandResult.reset();
         io.on.reset();
         botProcess.stdout.write.reset();
         botProcess.stderr.write.reset();
-        lines.callCommand.reset();
     });
 
     it("Should call on on io with line and close arguments to attach events.", () => {
@@ -78,26 +77,26 @@ describe("bot.test", () => {
         expect(bot.handleClose).toHaveBeenCalled();
     });
 
-    it("Should call callCommand on lines.", () => {
+    it("Should call getCommandResult on lines.", () => {
         // arange
 
         // act
         bot.handleLine('settings');
 
         // assert
-        expect(lines.callCommand).toHaveBeenCalled();
-        expect(lines.callCommand.callCount).toBe(1);
+        expect(lines.getCommandResult).toHaveBeenCalled();
+        expect(lines.getCommandResult.callCount).toBe(1);
     });
 
-    it("Should NOT call callCommand on lines if string is empty.", () => {
+    it("Should NOT call getCommandResult on lines if string is empty.", () => {
         // arange
 
         // act
         bot.handleLine('');
 
         // assert
-        expect(lines.callCommand).not.toHaveBeenCalled();
-        expect(lines.callCommand.callCount).toBe(0);
+        expect(lines.getCommandResult).not.toHaveBeenCalled();
+        expect(lines.getCommandResult.callCount).toBe(0);
     });
 
     it("Should call process.stdout.write on lines if result is succesfull.", () => {

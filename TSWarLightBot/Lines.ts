@@ -18,7 +18,7 @@ class Lines implements ILines {
     constructor(private commandActions: ICommandAction[]) {
     } 
 
-    public callCommand(data: string): ICommandResult {
+    public getCommandResult(data: string): ICommandResult {
         var commandAction: ICommandAction = _.find(this.commandActions, (commandAction: ICommandAction) => { 
             return commandAction.command === data;
         });
