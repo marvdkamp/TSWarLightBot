@@ -40,7 +40,7 @@
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommandAction.ts" />
     <TypeScriptCompile Include="ICommandResult.ts" />
-    <TypeScriptCompile Include="ICommands.ts" />
+    <TypeScriptCompile Include="ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />
     <TypeScriptCompile Include="map\I\IRegion.ts" />
     <TypeScriptCompile Include="map\I\ISuperRegion.ts" />

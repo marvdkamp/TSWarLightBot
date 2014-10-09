@@ -11,7 +11,7 @@
 
 import readline = require('readline');
 import IBot = require('IBot');
-import ICommands = require('ICommands');
+import ICommands = require('ILines');
 
 /**
  * Main class of the app. Handles reading from and writing to the console.

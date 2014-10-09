@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommands = require('ICommands');
+import ICommands = require('ILines');
 import ICommandResult = require('ICommandResult');
 import ICommandAction = require('ICommandAction');
 import _ = require('underscore');

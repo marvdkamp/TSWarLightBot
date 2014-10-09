@@ -10,7 +10,7 @@
  */
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
-import ICommands = require('../../TSWarLightBot/ICommands');
+import ICommands = require('../../TSWarLightBot/ILines');
 import ICommandAction = require('../../TSWarLightBot/ICommandAction');
 
 describe("commands.test", () => {
