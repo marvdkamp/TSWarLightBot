@@ -33,7 +33,7 @@ describe("bot.test", () => {
     var commandResult: any = jasmine.createSpy('commandResult');
     commands.callCommand.andReturn(commandResult);
 
-    var botProcess = {
+    var botProcess: any = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
         stderr: jasmine.createSpyObj('stderr', ['write']),
         exit: jasmine.createSpy('exit')

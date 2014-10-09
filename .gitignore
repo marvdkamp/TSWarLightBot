@@ -197,3 +197,14 @@ $RECYCLE.BIN/
 /TSWarLightBot/CommandResult.js.map
 /TSWarLightBot.specs/specs/CommandsSpec.js
 /TSWarLightBot.specs/specs/CommandsSpec.js.map
+/TSWarLightBot/map/I/IRegion.js.map
+/TSWarLightBot/map/I/ISuperRegion.js
+/TSWarLightBot/map/I/ISuperRegion.js.map
+/TSWarLightBot/map/I/IWarMap.js
+/TSWarLightBot/map/I/IWarMap.js.map
+/TSWarLightBot/ICommandAction.js
+/TSWarLightBot/ICommandAction.js.map
+/TSWarLightBot/ICommandResult.js
+/TSWarLightBot/ICommandResult.js.map
+/TSWarLightBot/ICommandResultFactory.js
+/TSWarLightBot/ICommandResultFactory.js.map
