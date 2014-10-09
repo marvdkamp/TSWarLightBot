@@ -19,7 +19,7 @@ var readLineOptions: readline.ReadLineOptions = {
 };
 
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
-var commands = new Commands((succes: boolean, value: string) => { return new CommandResult(succes, value); });
+var commands = new Commands([]);
 
 var bot = new Bot(io, commands, process);
 bot.run();

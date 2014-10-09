@@ -11,13 +11,19 @@
 
 import ICommands = require('ICommands');
 import ICommandResult = require('ICommandResult');
+import ICommandAction = require('ICommandAction');
+import _ = require('underscore');
 
 class Commands implements ICommands {
-    constructor(private commandResultFactory: (succes: boolean, value: string) => ICommandResult) {
+    constructor(private commandActions: ICommandAction[]) {
     } 
 
-    public callCommand(command: string): ICommandResult {
-        return this.commandResultFactory(true, 'test');
+    public callCommand(data: string): ICommandResult {
+        var commandAction: ICommandAction = _.find(this.commandActions, (commandAction: ICommandAction) => { 
+            return commandAction.command === data;
+        });
+
+        return commandAction.action([data]);
     }
 }
 

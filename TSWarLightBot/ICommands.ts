@@ -12,7 +12,7 @@
 import ICommandResult = require('ICommandResult');
 
 interface ICommands {
-    callCommand(command: string): ICommandResult;
+    callCommand(data: string): ICommandResult;
 }
 
 export = ICommands;
