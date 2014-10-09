@@ -10,7 +10,7 @@
  */
 import Bot = require('Bot');
 import readline = require('readline');
-import Commands = require('Commands');
+import Commands = require('Lines');
 import CommandResult = require('CommandResult');
 
 var readLineOptions: readline.ReadLineOptions = {
