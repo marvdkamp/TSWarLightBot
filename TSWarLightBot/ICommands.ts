@@ -12,7 +12,6 @@
 import ICommandResult = require('ICommandResult');
 
 interface ICommands {
-    settings(data: string): void;
     callCommand(command: string): ICommandResult;
 }
 

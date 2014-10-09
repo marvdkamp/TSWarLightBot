@@ -51,7 +51,7 @@ describe("bot.test", () => {
         commands.callCommand.reset();
     });
 
-    it("Should call on on io with specific arguments to attach events.", () => {
+    it("Should call on on io with line and close arguments to attach events.", () => {
         // arange
 
         // act
@@ -63,7 +63,22 @@ describe("bot.test", () => {
         expect(io.on.callCount).toBe(2);
     });
 
-    it("Should call callCommand on commands", () => {
+    it("Should attach the right methodes to the events.", () => {
+        // arange
+        spyOn(bot, 'handleLine');
+        spyOn(bot, 'handleClose');
+
+        // act
+        bot.run();
+        lineListener('test');
+        closeListener();
+
+        // assert
+        expect(bot.handleLine).toHaveBeenCalled();
+        expect(bot.handleClose).toHaveBeenCalled();
+    });
+
+    it("Should call callCommand on commands.", () => {
         // arange
 
         // act
@@ -74,7 +89,18 @@ describe("bot.test", () => {
         expect(commands.callCommand.callCount).toBe(1);
     });
 
-    it("Should call process.stdout.write on commands if commandName matches", () => {
+    it("Should NOT call callCommand on commands if string is empty.", () => {
+        // arange
+
+        // act
+        bot.handleLine('');
+
+        // assert
+        expect(commands.callCommand).not.toHaveBeenCalled();
+        expect(commands.callCommand.callCount).toBe(0);
+    });
+
+    it("Should call process.stdout.write on commands if result is succesfull.", () => {
         // arange
         commandResult.succes = true;
         commandResult.value = 'test';
@@ -88,7 +114,7 @@ describe("bot.test", () => {
         expect(botProcess.stderr.write.callCount).toBe(0);
     });
 
-    it("Should call process.stderr.write on commands if commandName NOT matches", () => {
+    it("Should call process.stderr.write on commands if commandName is NOT succesfull.", () => {
         // arange
         commandResult.succes = false;
         commandResult.value = 'test';

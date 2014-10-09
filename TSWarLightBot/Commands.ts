@@ -16,9 +16,6 @@ class Commands implements ICommands {
     constructor(private commandResultFactory: (succes: boolean, value: string) => ICommandResult) {
     } 
 
-    public settings(data: string): void {
-    }
-
     public callCommand(command: string): ICommandResult {
         return this.commandResultFactory(true, 'test');
     }

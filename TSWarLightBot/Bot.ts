@@ -39,6 +39,10 @@ class Bot implements IBot {
      * Handle a incoming command from the game engine.
      */
     public handleLine(data: string): void {
+        if (data.length === 0) {
+            return;
+        }
+
         var result = this.commands.callCommand(data);
         if (result.succes) {
             this.botProcess.stdout.write(result.value);
