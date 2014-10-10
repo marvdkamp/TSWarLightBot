@@ -38,7 +38,7 @@
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="CommandResult.ts" />
     <TypeScriptCompile Include="IBot.ts" />
-    <TypeScriptCompile Include="ICommandAction.ts" />
+    <TypeScriptCompile Include="ICommandNameMethod.ts" />
     <TypeScriptCompile Include="ICommandResult.ts" />
     <TypeScriptCompile Include="ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />

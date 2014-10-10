@@ -11,7 +11,7 @@
 
 import ILines = require('ILines');
 import ICommandResult = require('ICommandResult');
-import ICommandAction = require('ICommandAction');
+import ICommandAction = require('ICommandNameMethod');
 import _ = require('underscore');
 
 class Lines implements ILines {

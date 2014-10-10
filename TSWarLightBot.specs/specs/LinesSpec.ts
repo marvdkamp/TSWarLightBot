@@ -11,7 +11,7 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
 import ILines = require('../../TSWarLightBot/ILines');
-import ICommandAction = require('../../TSWarLightBot/ICommandAction');
+import ICommandAction = require('../../TSWarLightBot/ICommandNameMethod');
 
 describe("lines.test", () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
