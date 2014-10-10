@@ -20,10 +20,10 @@ class Lines implements ILines {
 
     public getCommandResult(data: string): ICommandResult {
         var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethod, (commandNameMethodItem: ICommandNameMethod) => { 
-            return commandNameMethodItem.command === data;
+            return commandNameMethodItem.commandName === data;
         });
 
-        return commandNameMethod.action([data]);
+        return commandNameMethod.method([data]);
     }
 }
 

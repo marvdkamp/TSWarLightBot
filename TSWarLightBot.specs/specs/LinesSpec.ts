@@ -18,8 +18,8 @@ describe("lines.test", () => {
     var lines: ILines;
     var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
     var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
-    settingCommandNameMethod.command = 'setting';
-    settingCommandNameMethod.action = settingCommandMethod;
+    settingCommandNameMethod.commandName = 'setting';
+    settingCommandNameMethod.method = settingCommandMethod;
 
     beforeEach(() => {
         lines = new Lines([settingCommandNameMethod]);
