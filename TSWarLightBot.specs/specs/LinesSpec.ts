@@ -11,18 +11,18 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
 import ILines = require('../../TSWarLightBot/ILines');
-import ICommandAction = require('../../TSWarLightBot/ICommandNameMethod');
+import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
 
 describe("lines.test", () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
-    var settingCommandAction: any = jasmine.createSpy('settingCommandAction');
-    var commandAction: any = jasmine.createSpy('commandAction');
-    settingCommandAction.command = 'setting';
-    settingCommandAction.action = commandAction;
+    var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
+    var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
+    settingCommandNameMethod.command = 'setting';
+    settingCommandNameMethod.action = settingCommandMethod;
 
     beforeEach(() => {
-        lines = new Lines([settingCommandAction]);
+        lines = new Lines([settingCommandNameMethod]);
     });
 
     it("Should call the right action if data string mathches.", () => {
@@ -32,6 +32,6 @@ describe("lines.test", () => {
         lines.getCommandResult('setting');
 
         // assert
-        expect(commandAction).toHaveBeenCalled();
+        expect(settingCommandMethod).toHaveBeenCalled();
     });
 });

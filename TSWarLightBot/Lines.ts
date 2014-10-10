@@ -11,19 +11,19 @@
 
 import ILines = require('ILines');
 import ICommandResult = require('ICommandResult');
-import ICommandAction = require('ICommandNameMethod');
+import ICommandNameMethod = require('ICommandNameMethod');
 import _ = require('underscore');
 
 class Lines implements ILines {
-    constructor(private commandActions: ICommandAction[]) {
+    constructor(private commandNameMethod: ICommandNameMethod[]) {
     } 
 
     public getCommandResult(data: string): ICommandResult {
-        var commandAction: ICommandAction = _.find(this.commandActions, (commandAction: ICommandAction) => { 
-            return commandAction.command === data;
+        var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethod, (commandNameMethodItem: ICommandNameMethod) => { 
+            return commandNameMethodItem.command === data;
         });
 
-        return commandAction.action([data]);
+        return commandNameMethod.action([data]);
     }
 }
 

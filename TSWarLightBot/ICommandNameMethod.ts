@@ -11,9 +11,9 @@
 
 import ICommandResult = require('ICommandResult');
 
-interface ICommandAction {
+interface ICommandNameMethod {
     command: string;
     action: (data: string[]) => ICommandResult;
 }
 
-export = ICommandAction;
+export = ICommandNameMethod;
