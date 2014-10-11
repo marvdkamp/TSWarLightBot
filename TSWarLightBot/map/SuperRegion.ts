@@ -9,7 +9,18 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-class SuperRegion {
+import ISuperRegion = require('I/ISuperRegion');
+
+class SuperRegion implements ISuperRegion {
+    id: number;
+    bonus: number;
+    regions: {};
+
+    constructor(id: number, bonus: number) {
+        this.id = id;
+        this.bonus = bonus;
+        this.regions = {};
+    }
 }
 
 export = SuperRegion;

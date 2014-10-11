@@ -86,3 +86,9 @@ var botProcess: any = {
 - De localisation bibliotheek lijkt vooral bedoeld te zijn in combinatie met express in Node JS
 - Heb niet echt localisation nodig maar wil geen magic strings gebruiken.
 - Besloten string constantes te gebruiken (zie LINKS.txt 14).
+
+DOEL: Statistieken kunnen bijhouden van de geschreven unittests
+- Proberen tools te vinden of anders zelf schrijven/handmatig tellen.
+- Via tools de code coverage kunnen berekenen, per geteste file of module.
+- TS lint meldingen per file of module bijhouden. Volgorde van impact bedenken voor de een aantal meldingen.
+- het aantal code regels en unittests regels tellen.
