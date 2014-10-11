@@ -41,6 +41,7 @@
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="specs\BotSpec.ts" />
     <TypeScriptCompile Include="specs\LinesSpec.ts" />
+    <TypeScriptCompile Include="specs\map\WarMapSpec.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\typings\jasmine\" />
@@ -49,6 +50,7 @@
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />
+    <Folder Include="specs\map\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

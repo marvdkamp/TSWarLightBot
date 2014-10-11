@@ -12,7 +12,7 @@
 /**
  * interface of a Region Object.
  */
-import ISuperRegion = require('ISuperRegion');
+import ISuperRegion = require('./ISuperRegion');
 import PossibleOwners = require('../PossibleOwners');
 
 interface IRegion {

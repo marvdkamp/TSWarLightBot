@@ -12,26 +12,38 @@
 /**
  * interface for WarMap. Gives access to the mapregions.
  */
-import IRegion = require('IRegion');
-import ISuperRegion = require('ISuperRegion');
+import IRegion = require('./IRegion');
+import ISuperRegion = require('./ISuperRegion');
 import PossibleOwners = require('../PossibleOwners');
 
 interface IWarMap {
-    /*
+    /**
     * returns null if region is not found
     */
     getRegionById: (id: number) => IRegion;
 
-    /*
+    /**
     * returns null if superregion is not found
     */
     getSuperRegionById: (id: number) => ISuperRegion;
 
-    /*
+    /**
     * Get all the regions owned by @owner
     * @param owner 
     */
     getOwnedRegions: (owner: PossibleOwners) => IRegion[];
+
+    /**
+    * Add a new region.
+    * Overwrites existing region if a region with same the id exists. 
+    */
+    addRegion: (region: IRegion) => void;
+    
+    /**
+    * Add a new superregion.
+    * Overwrites existing region if a region with same the id exists. 
+    */
+    addSuperRegion: (region: ISuperRegion) => void;
 }
 
 export = IWarMap;

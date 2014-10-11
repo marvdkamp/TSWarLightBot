@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ISuperRegion = require('I/ISuperRegion');
+import ISuperRegion = require('./I/ISuperRegion');
 
 class SuperRegion implements ISuperRegion {
     id: number;

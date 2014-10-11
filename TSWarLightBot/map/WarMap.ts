@@ -8,12 +8,11 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-import _ = require('underscore');
 
-import IWarMap = require('I/IWarMap');
-import IRegion = require('I/IRegion');
+import IWarMap = require('./I/IWarMap');
+import IRegion = require('./I/IRegion');
 import ISuperRegion = require('I/ISuperRegion');
-import PossibleOwners = require('PossibleOwners');
+import PossibleOwners = require('./PossibleOwners');
 
 
 interface IRegions {
@@ -26,11 +25,11 @@ interface ISuperRegions {
 
 class WarMap implements IWarMap {
     private regions: IRegions;
-    private superregions: ISuperRegions;
+    private superRegions: ISuperRegions;
 
     constructor() {
         this.regions = {};
-        this.superregions = {};
+        this.superRegions = {};
     }
 
     public getRegionById(id: number): IRegion {
@@ -41,10 +40,20 @@ class WarMap implements IWarMap {
     }
 
     public getSuperRegionById(id: number): ISuperRegion {
-        if (typeof (this.superregions[id]) !== 'undefined')
-            return this.superregions[id];
+        if (typeof (this.superRegions[id]) !== 'undefined')
+            return this.superRegions[id];
 
         return null;
+    }
+
+    public addRegion(region: IRegion): void {
+        if(typeof(region) !== 'undefined')
+            this.regions[region.id] = region;
+    }
+
+    public addSuperRegion(region: ISuperRegion): void {
+        if (typeof (region) !== 'undefined')
+            this.superRegions[region.id] = region;
     }
 
     public getOwnedRegions(owner: PossibleOwners): IRegion[] {

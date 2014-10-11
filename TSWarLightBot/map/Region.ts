@@ -8,9 +8,9 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-import IRegion = require('I/IRegion');
-import ISuperRegion = require('I/ISuperRegion');
-import PossibleOwners = require('PossibleOwners');
+import IRegion = require('./I/IRegion');
+import ISuperRegion = require('./I/ISuperRegion');
+import PossibleOwners = require('./PossibleOwners');
 
 class Region implements IRegion {
     id: number;
