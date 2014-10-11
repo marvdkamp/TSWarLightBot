@@ -1,4 +1,6 @@
 LOG
+- = TAEKE
+-- = MARCEL
 ===
 Ik probeer alle overige teksten in het engels te doen, maar hier wil ik snel dingen kunnen noteren en dat gaat nog altijd vlotter in het nederlands.
 
@@ -86,3 +88,12 @@ var botProcess: any = {
 - De localisation bibliotheek lijkt vooral bedoeld te zijn in combinatie met express in Node JS
 - Heb niet echt localisation nodig maar wil geen magic strings gebruiken.
 - Besloten string constantes te gebruiken (zie LINKS.txt 14).
+-- Regions en superRegions krijgen in de WarMap ook een 'add' functie ipv direct de property te kunnen aanroepen. region en superregion zelf zijn POJO's (alleen properties)'.
+-- Imports in de code files gaan niet goed vanuit de unittests context (PossibleOwners). Kijken of dit mogelijk is door basepath te veranderen en anders full path gebruiken.
+-- Heb het werkend gekregen door ./ te gebruiken.
+
+DOEL: Statistieken kunnen bijhouden van de geschreven unittests
+-- Proberen tools te vinden of anders zelf schrijven/handmatig tellen.
+-- Via tools de code coverage kunnen berekenen, per geteste file of module.
+-- TS lint meldingen per file of module bijhouden. Volgorde van impact bedenken voor de een aantal meldingen.
+-- het aantal code regels en unittests regels tellen.

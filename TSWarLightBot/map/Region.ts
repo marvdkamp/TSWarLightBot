@@ -5,12 +5,12 @@
  *
  * Based on Niko van Meurs javascript bot from http://theaigames.com/competitions/warlight-ai-challenge/getting-started
  *
- * @authors Marcel van der Kamp and Taeke van der Veen
+ * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-import IRegion = require('I/IRegion');
-import ISuperRegion = require('I/ISuperRegion');
-import PossibleOwners = require('PossibleOwners');
+import IRegion = require('./I/IRegion');
+import ISuperRegion = require('./I/ISuperRegion');
+import PossibleOwners = require('./PossibleOwners');
 
 class Region implements IRegion {
     id: number;
