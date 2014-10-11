@@ -13,7 +13,7 @@
 import ILines = require('../../TSWarLightBot/ILines');
 import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
 
-describe("lines.test", () => {
+describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
     var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
@@ -25,13 +25,30 @@ describe("lines.test", () => {
         lines = new Lines([settingCommandNameMethod]);
     });
 
-    it("Should call the right action if data string mathches.", () => {
+    it('Should call the right action if data string mathches.', () => {
         // arange
+        spyOn(lines, 'getCommandData').andReturn({
+            commandName: 'setting'
+        });
 
         // act
         lines.getCommandResult('setting');
 
         // assert
         expect(settingCommandMethod).toHaveBeenCalled();
+    });
+
+    it('Should call getCommandData on lines.', () => {
+        // arange
+        spyOn(lines, 'getCommandData').andReturn({
+            commandName: 'setting'
+        });
+
+        // act
+        lines.getCommandResult('setting');
+
+        // assert
+        expect(lines.getCommandData).toHaveBeenCalledWith('setting');
+        expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
     });
 });

@@ -9,12 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommandResult = require('ICommandResult');
-import ICommandData = require('ICommandData');
-
-interface ILines {
-    getCommandResult(data: string): ICommandResult;
-    getCommandData(data: string): ICommandData;
+interface ICommandData {
+    commandName: string;
+    data: string[];
 }
 
-export = ILines;
+export = ICommandData;

@@ -13,7 +13,7 @@
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/IBot');
 
-describe("bot.test", () => {
+describe('bot.test', () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
@@ -50,7 +50,7 @@ describe("bot.test", () => {
         botProcess.stderr.write.reset();
     });
 
-    it("Should call on on io with line and close arguments to attach events.", () => {
+    it('Should call on on io with line and close arguments to attach events.', () => {
         // arange
 
         // act
@@ -62,7 +62,7 @@ describe("bot.test", () => {
         expect(io.on.callCount).toBe(2);
     });
 
-    it("Should attach the right methodes to the events.", () => {
+    it('Should attach the right methodes to the events.', () => {
         // arange
         spyOn(bot, 'handleLine');
         spyOn(bot, 'handleClose');
@@ -77,7 +77,7 @@ describe("bot.test", () => {
         expect(bot.handleClose).toHaveBeenCalled();
     });
 
-    it("Should call getCommandResult on lines.", () => {
+    it('Should call getCommandResult on lines.', () => {
         // arange
 
         // act
@@ -88,7 +88,7 @@ describe("bot.test", () => {
         expect(lines.getCommandResult.callCount).toBe(1);
     });
 
-    it("Should NOT call getCommandResult on lines if string is empty.", () => {
+    it('Should NOT call getCommandResult on lines if string is empty.', () => {
         // arange
 
         // act
@@ -99,7 +99,7 @@ describe("bot.test", () => {
         expect(lines.getCommandResult.callCount).toBe(0);
     });
 
-    it("Should call process.stdout.write on lines if result is succesfull.", () => {
+    it('Should call process.stdout.write on lines if result is succesfull.', () => {
         // arange
         commandResult.succes = true;
         commandResult.value = 'test';
@@ -113,7 +113,7 @@ describe("bot.test", () => {
         expect(botProcess.stderr.write.callCount).toBe(0);
     });
 
-    it("Should call process.stderr.write on lines if commandName is NOT succesfull.", () => {
+    it('Should call process.stderr.write on lines if commandName is NOT succesfull.', () => {
         // arange
         commandResult.succes = false;
         commandResult.value = 'test';
@@ -127,7 +127,7 @@ describe("bot.test", () => {
         expect(botProcess.stdout.write.callCount).toBe(0);
     });
 
-    it("Should call process.exit(0) if handleClose is called.", () => {
+    it('Should call process.exit(0) if handleClose is called.', () => {
         // act
         bot.handleClose();
 
