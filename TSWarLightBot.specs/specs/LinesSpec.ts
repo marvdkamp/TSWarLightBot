@@ -113,5 +113,22 @@ describe('lines.test', () => {
     });
 
     it('getCommandData should return command is undefined when string contains only spaces', () => {
+        // arange
+
+        // act
+        var result: ICommandData = lines.getCommandData(' ');
+
+        // assert
+        expect(result.command).toBe(undefined);
+    });
+
+    it('getCommandData should return command is undefined when string contains an invalid command', () => {
+        // arange
+
+        // act
+        var result: ICommandData = lines.getCommandData('doesnotexcist');
+
+        // assert
+        expect(result.command).toBe(undefined);
     });
 });
