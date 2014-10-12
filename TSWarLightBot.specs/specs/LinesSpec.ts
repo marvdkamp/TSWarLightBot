@@ -15,13 +15,15 @@ import ICommandResult = require('../../TSWarLightBot/ICommandResult');
 import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
 import Messages = require('../../TSWarLightBot/Messages');
 import util = require('util');
+import CommandEnum = require('../../TSWarLightBot/CommandEnum');
+import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
 
 describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
     var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
     var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
-    settingCommandNameMethod.commandName = 'setting';
+    settingCommandNameMethod.commandName = 'settings';
     settingCommandNameMethod.method = settingCommandMethod;
 
     beforeEach(() => {
@@ -31,12 +33,12 @@ describe('lines.test', () => {
     it('Should call the right action if data string mathches.', () => {
         // arange
         spyOn(lines, 'getCommandData').andReturn({
-            commandName: 'setting',
+            commandName: 'settings',
             data: ['']
         });
 
         // act
-        lines.getCommandResult('setting');
+        lines.getCommandResult('settings your_bot player1');
 
         // assert
         expect(settingCommandMethod).toHaveBeenCalled();
@@ -59,15 +61,16 @@ describe('lines.test', () => {
 
     it('Should call getCommandData on lines.', () => {
         // arange
+        var commandString: string = CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1';
         spyOn(lines, 'getCommandData').andReturn({
-            commandName: 'setting'
+            commandName: CommandEnum[CommandEnum.settings]
         });
 
         // act
-        lines.getCommandResult('setting');
+        lines.getCommandResult(commandString);
 
         // assert
-        expect(lines.getCommandData).toHaveBeenCalledWith('setting');
+        expect(lines.getCommandData).toHaveBeenCalledWith(commandString);
         expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
     });
 });

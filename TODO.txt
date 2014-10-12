@@ -1,5 +1,6 @@
 TODO
 ====
+- Change command string to real commands.
 
 DONE
 ====

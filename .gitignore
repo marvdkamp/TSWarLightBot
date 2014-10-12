@@ -207,3 +207,7 @@ $RECYCLE.BIN/
 /TSWarLightBot/ICommandData.js.map
 /TSWarLightBot/Messages.js
 /TSWarLightBot/Messages.js.map
+/TSWarLightBot/CommandEnum.js
+/TSWarLightBot/CommandEnum.js.map
+/TSWarLightBot/SubCommandEnum.js
+/TSWarLightBot/SubCommandEnum.js.map

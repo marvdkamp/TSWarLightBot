@@ -36,6 +36,7 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="Bot.ts" />
+    <TypeScriptCompile Include="CommandEnum.ts" />
     <TypeScriptCompile Include="CommandResult.ts" />
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommandData.ts" />
@@ -54,6 +55,7 @@
     <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
+    <TypeScriptCompile Include="SubCommandEnum.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="map\" />

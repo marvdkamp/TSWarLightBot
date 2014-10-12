@@ -12,6 +12,8 @@
 
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/IBot');
+import CommandEnum = require('../../TSWarLightBot/CommandEnum');
+import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
 
 describe('bot.test', () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
@@ -69,7 +71,7 @@ describe('bot.test', () => {
 
         // act
         bot.run();
-        lineListener('test');
+        lineListener(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + ' player1');
         closeListener();
 
         // assert
@@ -81,7 +83,7 @@ describe('bot.test', () => {
         // arange
 
         // act
-        bot.handleLine('settings');
+        bot.handleLine(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1');
 
         // assert
         expect(lines.getCommandResult).toHaveBeenCalled();
@@ -105,7 +107,7 @@ describe('bot.test', () => {
         commandResult.value = 'test';
 
         // act
-        bot.handleLine('settings');
+        bot.handleLine(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1');
 
         // assert
         expect(botProcess.stdout.write).toHaveBeenCalled();
@@ -119,7 +121,7 @@ describe('bot.test', () => {
         commandResult.value = 'test';
 
         // act
-        bot.handleLine('settings');
+        bot.handleLine('doesnotexcist');
 
         // assert
         expect(botProcess.stderr.write).toHaveBeenCalled();
