@@ -22,23 +22,26 @@ describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
     var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
+    var commandString: string;
+    var commandData = {
+        command: CommandEnum.settings,
+        data: ['']
+    };
     var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
-    settingCommandNameMethod.commandName = 'settings';
-    settingCommandNameMethod.method = settingCommandMethod;
 
     beforeEach(() => {
+        settingCommandNameMethod.command = CommandEnum.settings;
+        settingCommandNameMethod.method = settingCommandMethod;
+        commandString = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
         lines = new Lines([settingCommandNameMethod]);
     });
 
-    it('Should call the right action if data string mathches.', () => {
+    it('Should call the right action if data command mathches.', () => {
         // arange
-        spyOn(lines, 'getCommandData').andReturn({
-            commandName: 'settings',
-            data: ['']
-        });
+        spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act
-        lines.getCommandResult('settings your_bot player1');
+        lines.getCommandResult(commandString);
 
         // assert
         expect(settingCommandMethod).toHaveBeenCalled();
@@ -46,25 +49,49 @@ describe('lines.test', () => {
 
     it('Should return succes = false when the data string NOT matches.', () => {
         // arange
+        commandString = 'doesnotexcist';
         spyOn(lines, 'getCommandData').andReturn({
-            commandName: 'doesnotexcist',
-            data: ['']
+            command: undefined,
+            data: []
         });
 
         // act
-        var result: ICommandResult = lines.getCommandResult('doesnotexcist');
+        var result: ICommandResult = lines.getCommandResult(commandString);
 
         // assert
         expect(result.succes).toBeFalsy(); 
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, 'doesnotexcist', ''));
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
+    });
+
+    it('Should return succes = false when the CommandNameMethod.method is null.', () => {
+        // arange
+        settingCommandNameMethod.method = null;
+        spyOn(lines, 'getCommandData').andReturn(commandData);
+
+        // act
+        var result: ICommandResult = lines.getCommandResult(commandString);
+
+        // assert
+        expect(result.succes).toBeFalsy();
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
+    });
+
+    it('Should return succes = false when the CommandNameMethod.method is undefined.', () => {
+        // arange
+        settingCommandNameMethod.method = undefined;
+        spyOn(lines, 'getCommandData').andReturn(commandData);
+
+        // act
+        var result: ICommandResult = lines.getCommandResult(commandString);
+
+        // assert
+        expect(result.succes).toBeFalsy();
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
     it('Should call getCommandData on lines.', () => {
         // arange
-        var commandString: string = CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1';
-        spyOn(lines, 'getCommandData').andReturn({
-            commandName: CommandEnum[CommandEnum.settings]
-        });
+        spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act
         lines.getCommandResult(commandString);

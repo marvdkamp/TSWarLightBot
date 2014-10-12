@@ -41,6 +41,8 @@ describe('bot.test', () => {
         exit: jasmine.createSpy('exit')
     }
 
+    var commandString: string = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
+
     beforeEach(() => {
         bot = new Bot(io, lines, botProcess);
     });
@@ -71,7 +73,7 @@ describe('bot.test', () => {
 
         // act
         bot.run();
-        lineListener(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + ' player1');
+        lineListener(commandString);
         closeListener();
 
         // assert
@@ -83,7 +85,7 @@ describe('bot.test', () => {
         // arange
 
         // act
-        bot.handleLine(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1');
+        bot.handleLine(commandString);
 
         // assert
         expect(lines.getCommandResult).toHaveBeenCalled();
@@ -107,7 +109,7 @@ describe('bot.test', () => {
         commandResult.value = 'test';
 
         // act
-        bot.handleLine(CommandEnum[CommandEnum.settings] + ' ' + SubCommandEnum[SubCommandEnum.your_bot] + 'player1');
+        bot.handleLine(commandString);
 
         // assert
         expect(botProcess.stdout.write).toHaveBeenCalled();

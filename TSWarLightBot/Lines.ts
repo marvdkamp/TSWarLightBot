@@ -18,21 +18,21 @@ import util = require('util');
 import _ = require('underscore');
 
 class Lines implements ILines {
-    constructor(private commandNameMethod: ICommandNameMethod[]) {
+    constructor(private commandNameMethodList: ICommandNameMethod[]) {
     } 
 
     public getCommandResult(data: string): ICommandResult {
         var commandData: ICommandData = this.getCommandData(data);
-        var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethod, (commandNameMethodItem: ICommandNameMethod) => { 
-            return commandNameMethodItem.commandName === commandData.commandName;
+        var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethodList, (commandNameMethod: ICommandNameMethod) => { 
+            return commandNameMethod.command === commandData.command;
         });
 
-        if (commandNameMethod) {
+        if (commandNameMethod && !(commandNameMethod.method == null)) {
             return commandNameMethod.method([data]);
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, commandData.commandName, commandData.data.join(' '))
+                value: util.format(Messages.UNABLE_TO_EXECUTE, data)
             }
         }
     }

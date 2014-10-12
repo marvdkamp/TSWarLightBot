@@ -10,7 +10,7 @@
  */
 
 class Messages {
-    public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s, with data: %s\n'; }
+    public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s\n'; }
 }
 
 export = Messages;

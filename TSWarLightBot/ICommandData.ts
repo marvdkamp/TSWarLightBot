@@ -8,9 +8,12 @@
  * @authors Marcel van der Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+import CommandEnum = require('./CommandEnum');
+import SubCommandEnum = require('./SubCommandEnum');
 
 interface ICommandData {
-    commandName: string;
+    command: CommandEnum;
+    subcommand?: SubCommandEnum;
     data: string[];
 }
 

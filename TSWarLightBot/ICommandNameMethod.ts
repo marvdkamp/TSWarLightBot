@@ -10,9 +10,10 @@
  */
 
 import ICommandResult = require('ICommandResult');
+import CommandEnum = require('./CommandEnum');
 
 interface ICommandNameMethod {
-    commandName: string;
+    command: CommandEnum;
     method: (data: string[]) => ICommandResult;
 }
 
