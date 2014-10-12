@@ -14,6 +14,7 @@ import ICommandResult = require('ICommandResult');
 import ICommandData = require('ICommandData');
 import ICommandNameMethod = require('ICommandNameMethod');
 import Messages = require('./Messages');
+import CommandEnum = require('./CommandEnum');
 import util = require('util');
 import _ = require('underscore');
 
@@ -21,24 +22,28 @@ class Lines implements ILines {
     constructor(private commandNameMethodList: ICommandNameMethod[]) {
     } 
 
-    public getCommandResult(data: string): ICommandResult {
-        var commandData: ICommandData = this.getCommandData(data);
+    public getCommandResult(line: string): ICommandResult {
+        var commandData: ICommandData = this.getCommandData(line);
         var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethodList, (commandNameMethod: ICommandNameMethod) => { 
             return commandNameMethod.command === commandData.command;
         });
 
         if (commandNameMethod && !(commandNameMethod.method == null)) {
-            return commandNameMethod.method([data]);
+            return commandNameMethod.method([line]);
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, data)
+                value: util.format(Messages.UNABLE_TO_EXECUTE, line)
             }
         }
     }
 
-    public getCommandData(data: string): ICommandData {
-        return null;
+    public getCommandData(line: string): ICommandData {
+        var lineParts: string[] = line.split(' ');
+        return {
+            command: CommandEnum[lineParts[0]],
+            data: []
+        }
     }
 }
 

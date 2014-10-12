@@ -13,6 +13,7 @@
 import ILines = require('../../TSWarLightBot/ILines');
 import ICommandResult = require('../../TSWarLightBot/ICommandResult');
 import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
+import ICommandData = require('../../TSWarLightBot/ICommandData');
 import Messages = require('../../TSWarLightBot/Messages');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/CommandEnum');
@@ -36,7 +37,7 @@ describe('lines.test', () => {
         lines = new Lines([settingCommandNameMethod]);
     });
 
-    it('Should call the right action if data command mathches.', () => {
+    it('getCommandResult should call the right action if data command mathches.', () => {
         // arange
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
@@ -47,7 +48,7 @@ describe('lines.test', () => {
         expect(settingCommandMethod).toHaveBeenCalled();
     });
 
-    it('Should return succes = false when the data string NOT matches.', () => {
+    it('getCommandResult should return succes = false when the data string NOT matches.', () => {
         // arange
         commandString = 'doesnotexcist';
         spyOn(lines, 'getCommandData').andReturn({
@@ -63,7 +64,7 @@ describe('lines.test', () => {
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
-    it('Should return succes = false when the CommandNameMethod.method is null.', () => {
+    it('getCommandResult should return succes = false when the CommandNameMethod.method is null.', () => {
         // arange
         settingCommandNameMethod.method = null;
         spyOn(lines, 'getCommandData').andReturn(commandData);
@@ -76,7 +77,7 @@ describe('lines.test', () => {
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
-    it('Should return succes = false when the CommandNameMethod.method is undefined.', () => {
+    it('getCommandResult should return succes = false when the CommandNameMethod.method is undefined.', () => {
         // arange
         settingCommandNameMethod.method = undefined;
         spyOn(lines, 'getCommandData').andReturn(commandData);
@@ -89,7 +90,7 @@ describe('lines.test', () => {
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
-    it('Should call getCommandData on lines.', () => {
+    it('getCommandResult should call getCommandData on lines.', () => {
         // arange
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
@@ -99,5 +100,18 @@ describe('lines.test', () => {
         // assert
         expect(lines.getCommandData).toHaveBeenCalledWith(commandString);
         expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
+    });
+
+    it('getCommandData should return command if string matches', () => {
+        // arange
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.command).toBe(CommandEnum.settings);
+    });
+
+    it('getCommandData should return command is undefined when string contains only spaces', () => {
     });
 });
