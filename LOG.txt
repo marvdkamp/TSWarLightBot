@@ -82,3 +82,7 @@ commandResult.succes = true;
 var botProcess: any = {
     stdout: jasmine.createSpyObj('stdout', ['write']),
 }
+- Een poging gedaan om localisation in te voegen zien (zie LINKS.txt 13).
+- De localisation bibliotheek lijkt vooral bedoeld te zijn in combinatie met express in Node JS
+- Heb niet echt localisation nodig maar wil geen magic strings gebruiken.
+- Besloten string constantes te gebruiken (zie LINKS.txt 14).

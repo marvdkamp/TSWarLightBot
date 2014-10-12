@@ -11,7 +11,10 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
 import ILines = require('../../TSWarLightBot/ILines');
+import ICommandResult = require('../../TSWarLightBot/ICommandResult');
 import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
+import Messages = require('../../TSWarLightBot/Messages');
+import util = require('util');
 
 describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
@@ -28,7 +31,8 @@ describe('lines.test', () => {
     it('Should call the right action if data string mathches.', () => {
         // arange
         spyOn(lines, 'getCommandData').andReturn({
-            commandName: 'setting'
+            commandName: 'setting',
+            data: ['']
         });
 
         // act
@@ -36,6 +40,21 @@ describe('lines.test', () => {
 
         // assert
         expect(settingCommandMethod).toHaveBeenCalled();
+    });
+
+    it('Should return succes = false when the data string NOT matches.', () => {
+        // arange
+        spyOn(lines, 'getCommandData').andReturn({
+            commandName: 'doesnotexcist',
+            data: ['']
+        });
+
+        // act
+        var result: ICommandResult = lines.getCommandResult('doesnotexcist');
+
+        // assert
+        expect(result.succes).toBeFalsy(); 
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, 'doesnotexcist', ''));
     });
 
     it('Should call getCommandData on lines.', () => {

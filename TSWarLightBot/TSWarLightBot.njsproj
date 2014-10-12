@@ -50,6 +50,7 @@
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
     <TypeScriptCompile Include="map\WarMap.ts" />
+    <TypeScriptCompile Include="Messages.ts" />
     <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />

@@ -36,8 +36,14 @@ https://github.com/borisyankov/DefinitelyTyped
 12 Dictionary in typescript
 https://typescript.codeplex.com/discussions/398359
 
+13 Localisation
+https://github.com/mashpie/i18n-node
+
+14 Constantes in typescript
+http://stackoverflow.com/questions/22991968/public-static-const-in-typescript
+
 Jasmine
-http://jasmine.github.io/2.0/introduction.html
+http://jasmine.github.io/1.3/introduction.html
 
 Jasmine spy on sheat sheet
 http://tobyho.com/2011/12/15/jasmine-spy-cheatsheet/

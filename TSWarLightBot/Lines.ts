@@ -13,6 +13,8 @@ import ILines = require('ILines');
 import ICommandResult = require('ICommandResult');
 import ICommandData = require('ICommandData');
 import ICommandNameMethod = require('ICommandNameMethod');
+import Messages = require('./Messages');
+import util = require('util');
 import _ = require('underscore');
 
 class Lines implements ILines {
@@ -25,7 +27,14 @@ class Lines implements ILines {
             return commandNameMethodItem.commandName === commandData.commandName;
         });
 
-        return commandNameMethod.method([data]);
+        if (commandNameMethod) {
+            return commandNameMethod.method([data]);
+        } else {
+            return {
+                succes: false,
+                value: util.format(Messages.UNABLE_TO_EXECUTE, commandData.commandName, commandData.data.join(' '))
+            }
+        }
     }
 
     public getCommandData(data: string): ICommandData {

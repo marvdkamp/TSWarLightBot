@@ -2,7 +2,7 @@
   "name": "TSWarLightBot",
   "version": "0.0.0",
   "description": "TSWarLightBot",
-  "main": "app.js",
+  "main": "Runner.js",
   "author": {
     "name": "Taeke",
     "email": ""
