@@ -9,13 +9,14 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
+import ICommand = require('ICommand');
 import ICommandResult = require('ICommandResult');
-import CommandEnum = require('./CommandEnum');
-import ICommandData = require('./ICommandData'); 
+import ICommandData = require('ICommandData');
 
-interface ICommandNameMethod {
-    command: CommandEnum;
-    method: (data: ICommandData) => ICommandResult;
+class Opponent_moves implements ICommand {
+    public getCommandResult(data: ICommandData): ICommandResult {
+        return null;
+    }
 }
 
-export = ICommandNameMethod;
+export = Opponent_moves;

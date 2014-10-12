@@ -29,7 +29,7 @@ class Lines implements ILines {
         });
 
         if (commandNameMethod && !(commandNameMethod.method == null)) {
-            return commandNameMethod.method([line]);
+            return commandNameMethod.method(commandData);
         } else {
             return {
                 succes: false,

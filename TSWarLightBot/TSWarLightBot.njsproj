@@ -38,6 +38,13 @@
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="CommandEnum.ts" />
     <TypeScriptCompile Include="CommandResult.ts" />
+    <TypeScriptCompile Include="command\Go.ts" />
+    <TypeScriptCompile Include="command\ICommand.ts" />
+    <TypeScriptCompile Include="command\Opponent_moves.ts" />
+    <TypeScriptCompile Include="command\Pick_starting_regions.ts" />
+    <TypeScriptCompile Include="command\Settings.ts" />
+    <TypeScriptCompile Include="command\Setup_map.ts" />
+    <TypeScriptCompile Include="command\Update_map.ts" />
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommandData.ts" />
     <TypeScriptCompile Include="ICommandNameMethod.ts" />
@@ -60,6 +67,7 @@
   <ItemGroup>
     <Folder Include="map\" />
     <Folder Include="map\I\" />
+    <Folder Include="command\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />
