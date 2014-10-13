@@ -1,8 +1,6 @@
 TODO
 ====
-- Renamed ICommandNameMethod to CommandMethod.
-- Rename subcommand to subCommand.
-- check of we subCommand undefined of null laten wanneer er geen subcommand is.
+- check of we subCommand undefined of null laten wanneer er geen subCommand is.
 
 DONE
 ====
@@ -21,3 +19,5 @@ DONE
 - Place an example string in each command class.
 - Place a discription above each class and method.
 - Rename CommandResult to CommandAnswer and value to answer and introduce extra errormessage.
+- Renamed ICommandNameMethod to CommandMethod.
+- Renamed subCommand to subCommand.

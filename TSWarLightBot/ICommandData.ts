@@ -24,7 +24,7 @@ interface ICommandData {
     /**
      * Which sub command.
      */
-    subcommand?: SubCommandEnum;
+    subCommand?: SubCommandEnum;
 
     /**
      * Arguments given by the command.
