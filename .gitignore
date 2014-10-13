@@ -193,15 +193,11 @@ $RECYCLE.BIN/
 /TSWarLightBot/map/I/ISuperRegion.js.map
 /TSWarLightBot/map/I/IWarMap.js
 /TSWarLightBot/map/I/IWarMap.js.map
-/TSWarLightBot/ICommandResult.js
-/TSWarLightBot/ICommandResult.js.map
 /TSWarLightBot/node_modules/underscore
 /TSWarLightBot/Lines.js
 /TSWarLightBot/Lines.js.map
 /TSWarLightBot/ILines.js
 /TSWarLightBot/ILines.js.map
-/TSWarLightBot/ICommandNameMethod.js
-/TSWarLightBot/ICommandNameMethod.js.map
 /TSWarLightBot.specs/specs/LinesSpec.js
 /TSWarLightBot.specs/specs/LinesSpec.js.map
 /TSWarLightBot/ICommandData.js
@@ -229,3 +225,9 @@ $RECYCLE.BIN/
 /TSWarLightBot.specs/specs/map/WarMapSpec.js
 /TSWarLightBot.specs/specs/map/WarMapSpec.js.map
 /TSWarLightBot/map/I/IRegion.js
+/TSWarLightBot/CommandAnswer.js
+/TSWarLightBot/CommandAnswer.js.map
+/TSWarLightBot/ICommandAnswer.js
+/TSWarLightBot/ICommandAnswer.js.map
+/TSWarLightBot/ICommandMethod.js
+/TSWarLightBot/ICommandMethod.js.map
