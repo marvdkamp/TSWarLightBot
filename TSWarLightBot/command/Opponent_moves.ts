@@ -9,9 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
 
 /**
  * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
@@ -31,7 +31,7 @@ class Opponent_moves implements ICommand {
      *     data: []
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

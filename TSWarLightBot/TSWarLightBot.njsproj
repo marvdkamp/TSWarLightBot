@@ -40,6 +40,7 @@
     <TypeScriptCompile Include="CommandAnswer.ts" />
     <TypeScriptCompile Include="command\Go.ts" />
     <TypeScriptCompile Include="command\ICommand.ts" />
+    <TypeScriptCompile Include="command\ISubCommandMethod.ts" />
     <TypeScriptCompile Include="command\Opponent_moves.ts" />
     <TypeScriptCompile Include="command\Pick_starting_regions.ts" />
     <TypeScriptCompile Include="command\Settings.ts" />

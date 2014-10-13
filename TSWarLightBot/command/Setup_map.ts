@@ -9,9 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
 
 /**
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
@@ -30,7 +30,7 @@ class Setup_map implements ICommand {
      *     data: ['1', '2', '2', '5']
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

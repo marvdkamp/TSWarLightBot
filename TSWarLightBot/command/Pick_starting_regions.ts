@@ -9,9 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
 
 /**
  * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and request for the bot to 
@@ -29,7 +29,7 @@ class Pick_starting_regions implements ICommand {
      *     data: ['2000']
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

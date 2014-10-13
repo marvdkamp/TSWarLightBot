@@ -9,9 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
 
 /**
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
@@ -30,7 +30,7 @@ class Update_map implements ICommand {
      *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

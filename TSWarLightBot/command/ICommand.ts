@@ -13,7 +13,7 @@ import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
 
 interface ICommand {
-    getCommandAnswer(data: ICommandData): ICommandAnswer;
+    getCommandAnswer(commandData: ICommandData): ICommandAnswer;
 }
 
 export = ICommand;

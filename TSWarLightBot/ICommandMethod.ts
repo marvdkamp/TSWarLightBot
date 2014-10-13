@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommandAnswer = require('ICommandAnswer');
+import ICommandAnswer = require('./ICommandAnswer');
 import CommandEnum = require('./CommandEnum');
 import ICommandData = require('./ICommandData'); 
 

@@ -22,17 +22,17 @@ import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
 describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
+    var settingMethod: any = jasmine.createSpy('settingMethod');
     var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
     var commandString: string;
     var commandData = {
         command: CommandEnum.settings,
         data: ['']
     };
-    var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
-
+    
     beforeEach(() => {
         settingCommandMethod.command = CommandEnum.settings;
-        settingCommandMethod.method = settingCommandMethod;
+        settingCommandMethod.method = settingMethod;
         commandString = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
         lines = new Lines([settingCommandMethod]);
     });
@@ -45,7 +45,7 @@ describe('lines.test', () => {
         lines.getCommandAnswer(commandString);
 
         // assert
-        expect(settingCommandMethod).toHaveBeenCalled();
+        expect(settingMethod).toHaveBeenCalled();
     });
 
     it('getCommandAnswer should return succes = false when the data string NOT matches.', () => {

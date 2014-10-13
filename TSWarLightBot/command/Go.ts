@@ -8,15 +8,20 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ISubCommandMethod = require('./ISubCommandMethod');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
+import _ = require('underscore');
 
 /**
  * Handles go command from the game engine. Request for the bot to return his place armies moves  and request for the bot 
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
+    constructor(private subCommandMethodList: ISubCommandMethod[]) {
+    } 
+
 
     /**
      * Gets the answer from the bot for the go command.
@@ -29,7 +34,15 @@ class Go implements ICommand {
      *     data: ['2000']
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+        var subCommandMethod: ISubCommandMethod = _.find(this.subCommandMethodList, (subCommandMethod: ISubCommandMethod) => {
+            return subCommandMethod.command === commandData.subCommand;
+        });
+
+        return subCommandMethod.method(commandData);
+    }
+
+    public Place_armies(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

@@ -9,9 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommand = require('ICommand');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
+import ICommand = require('./ICommand');
+import ICommandAnswer = require('./../ICommandAnswer');
+import ICommandData = require('./../ICommandData');
 
 /**
  * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 
@@ -30,7 +30,7 @@ class Settings implements ICommand {
      *     data: ['player1']
      * });
      */
-    public getCommandAnswer(data: ICommandData): ICommandAnswer {
+    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

@@ -9,10 +9,10 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ILines = require('ILines');
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
-import ICommandMethod = require('ICommandMethod');
+import ILines = require('./ILines');
+import ICommandAnswer = require('./ICommandAnswer');
+import ICommandData = require('./ICommandData');
+import ICommandMethod = require('./ICommandMethod');
 import Messages = require('./Messages');
 import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');
