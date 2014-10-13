@@ -163,4 +163,26 @@ describe('lines.test', () => {
         // assert
         expect(result.subCommand).toBe(undefined);
     });
+
+    it('getCommandData should return the right data for a command with subcommand', () => {
+        // arange
+        commandString = [CommandEnum[CommandEnum.setup_map], SubCommandEnum[SubCommandEnum.super_regions], '1 2 2 5'].join(' ');
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.data).toEqual(['1', '2', '2', '5']);
+    });
+
+    it('getCommandData should return the right data for a command which has no subcommand', () => {
+        // arange
+        commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.data).toEqual(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']);
+    });
 });

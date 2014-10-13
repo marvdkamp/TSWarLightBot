@@ -10,7 +10,8 @@
  */
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 
-//TODO: Splite lines!!!!
+//TODO: Split lines!!!!
+//TODO: Trim lines!!!!
 
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/IBot');

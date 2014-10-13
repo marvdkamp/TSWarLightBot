@@ -56,15 +56,22 @@ class Lines implements ILines {
      */
     public getCommandData(line: string): ICommandData {
         var lineParts: string[] = line.split(' ');
+        var command: CommandEnum = this.getEnum(lineParts.shift(), CommandEnum);
+        var part = lineParts.shift();
+        var subCommand: SubCommandEnum = this.getEnum(part, SubCommandEnum);
+        if (subCommand === undefined) {
+            lineParts.unshift(part);
+        }
+
         return {
-            command: this.getEnum(lineParts, CommandEnum, 0),
-            subCommand: this.getEnum(lineParts, SubCommandEnum, 1),
-            data: []
+            command: command,
+            subCommand: subCommand,
+            data: lineParts
         }
     }
 
-    private getEnum(lineParts: string[], enumType: any, position: any): any {
-        if (lineParts.length <= position) {
+    private getEnum(value: string, enumType: any): any {
+        if (!value) {
             return undefined;
         }
 
@@ -74,11 +81,11 @@ class Lines implements ILines {
         // }
         // We want "0" to return undefined and not "super_regions"
         // "super_regions" will return 0 and pass this test.
-        if (typeof enumType[lineParts[position]] === 'string') {
+        if (typeof enumType[value] === 'string') {
             return undefined;
         }
 
-        return enumType[lineParts[position]];
+        return enumType[value];
     }
 }
 
