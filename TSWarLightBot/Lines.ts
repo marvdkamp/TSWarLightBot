@@ -15,6 +15,7 @@ import ICommandData = require('ICommandData');
 import ICommandMethod = require('ICommandMethod');
 import Messages = require('./Messages');
 import CommandEnum = require('./CommandEnum');
+import SubCommandEnum = require('./SubCommandEnum');
 import util = require('util');
 import _ = require('underscore');
 
@@ -56,9 +57,28 @@ class Lines implements ILines {
     public getCommandData(line: string): ICommandData {
         var lineParts: string[] = line.split(' ');
         return {
-            command: CommandEnum[lineParts[0]],
+            command: this.getEnum(lineParts, CommandEnum, 0),
+            subCommand: this.getEnum(lineParts, SubCommandEnum, 1),
             data: []
         }
+    }
+
+    private getEnum(lineParts: string[], enumType: any, position: any): any {
+        if (lineParts.length <= position) {
+            return undefined;
+        }
+
+        // Example
+        // enum SubCommandEnum {
+        //    super_regions
+        // }
+        // We want "0" to return undefined and not "super_regions"
+        // "super_regions" will return 0 and pass this test.
+        if (typeof enumType[lineParts[position]] === 'string') {
+            return undefined;
+        }
+
+        return enumType[lineParts[position]];
     }
 }
 

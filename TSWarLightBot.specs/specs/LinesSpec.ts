@@ -131,4 +131,36 @@ describe('lines.test', () => {
         // assert
         expect(result.command).toBe(undefined);
     });
+
+    it('getCommandData should return subCommand if string matches', () => {
+        // arange
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.subCommand).toBe(SubCommandEnum.your_bot);
+    });
+
+    it('getCommandData should return subCommand undefined if string contains only 1 linepart and should not crash', () => {
+        // arange
+        commandString = CommandEnum[CommandEnum.settings];
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.subCommand).toBe(undefined);
+    });
+
+    it('getCommandData should return subCommand undefined for a command which has no subCommand', () => {
+        // arange
+        commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
+
+        // act
+        var result: ICommandData = lines.getCommandData(commandString);
+
+        // assert
+        expect(result.subCommand).toBe(undefined);
+    });
 });
