@@ -9,11 +9,11 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
 
 interface ICommand {
-    getCommandResult(data: ICommandData): ICommandResult;
+    getCommandAnswer(data: ICommandData): ICommandAnswer;
 }
 
 export = ICommand;

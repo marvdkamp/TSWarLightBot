@@ -9,15 +9,15 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 
 /**
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
  */
-class CommandResult implements ICommandResult {
+class CommandAnswer implements ICommandAnswer {
 
     /**
-     * Create an instance of the Bot CommandResult.
+     * Create an instance of the Bot CommandAnswer.
      * @constructor
      * @param succes {boolean} - Could the command succesfully be handled by the bot.
      * @param answer {string} - The answer from the bot to the command.
@@ -26,4 +26,4 @@ class CommandResult implements ICommandResult {
     }
 };
 
-export = CommandResult;
+export = CommandAnswer;

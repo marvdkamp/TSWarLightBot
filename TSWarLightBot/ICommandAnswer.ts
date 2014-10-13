@@ -12,7 +12,7 @@
 /**
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
  */
-interface ICommandResult {
+interface ICommandAnswer {
 
     /**
      * Could the command succesfully be handled by the bot. 
@@ -25,4 +25,4 @@ interface ICommandResult {
     value: string;
 }
 
-export = ICommandResult;
+export = ICommandAnswer;

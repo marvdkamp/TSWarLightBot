@@ -37,7 +37,7 @@
     <Content Include="README.md" />
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="CommandEnum.ts" />
-    <TypeScriptCompile Include="CommandResult.ts" />
+    <TypeScriptCompile Include="CommandAnswer.ts" />
     <TypeScriptCompile Include="command\Go.ts" />
     <TypeScriptCompile Include="command\ICommand.ts" />
     <TypeScriptCompile Include="command\Opponent_moves.ts" />
@@ -48,7 +48,7 @@
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommandData.ts" />
     <TypeScriptCompile Include="ICommandNameMethod.ts" />
-    <TypeScriptCompile Include="ICommandResult.ts" />
+    <TypeScriptCompile Include="ICommandAnswer.ts" />
     <TypeScriptCompile Include="ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />
     <TypeScriptCompile Include="map\I\IRegion.ts" />

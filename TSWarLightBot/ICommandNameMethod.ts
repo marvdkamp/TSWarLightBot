@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 import CommandEnum = require('./CommandEnum');
 import ICommandData = require('./ICommandData'); 
 
@@ -26,7 +26,7 @@ interface ICommandNameMethod {
     /**
      * The method which will handle the command.
      */
-    method: (data: ICommandData) => ICommandResult;
+    method: (data: ICommandData) => ICommandAnswer;
 }
 
 export = ICommandNameMethod;

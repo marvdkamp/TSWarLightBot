@@ -33,9 +33,9 @@ describe('bot.test', () => {
         }
     });
 
-    var lines: any = jasmine.createSpyObj('lines', ['getCommandResult']);
-    var commandResult: any = jasmine.createSpy('commandResult');
-    lines.getCommandResult.andReturn(commandResult);
+    var lines: any = jasmine.createSpyObj('lines', ['getCommandAnswer']);
+    var commandAnswer: any = jasmine.createSpy('commandAnswer');
+    lines.getCommandAnswer.andReturn(commandAnswer);
 
     var botProcess: any = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
@@ -50,7 +50,7 @@ describe('bot.test', () => {
     });
 
     afterEach(() => {
-        lines.getCommandResult.reset();
+        lines.getCommandAnswer.reset();
         io.on.reset();
         botProcess.stdout.write.reset();
         botProcess.stderr.write.reset();
@@ -83,32 +83,32 @@ describe('bot.test', () => {
         expect(bot.handleClose).toHaveBeenCalled();
     });
 
-    it('Should call getCommandResult on lines.', () => {
+    it('Should call getCommandAnswer on lines.', () => {
         // arange
 
         // act
         bot.handleLine(commandString);
 
         // assert
-        expect(lines.getCommandResult).toHaveBeenCalled();
-        expect(lines.getCommandResult.callCount).toBe(1);
+        expect(lines.getCommandAnswer).toHaveBeenCalled();
+        expect(lines.getCommandAnswer.callCount).toBe(1);
     });
 
-    it('Should NOT call getCommandResult on lines if string is empty.', () => {
+    it('Should NOT call getCommandAnswer on lines if string is empty.', () => {
         // arange
 
         // act
         bot.handleLine('');
 
         // assert
-        expect(lines.getCommandResult).not.toHaveBeenCalled();
-        expect(lines.getCommandResult.callCount).toBe(0);
+        expect(lines.getCommandAnswer).not.toHaveBeenCalled();
+        expect(lines.getCommandAnswer.callCount).toBe(0);
     });
 
     it('Should call process.stdout.write on lines if result is succesfull.', () => {
         // arange
-        commandResult.succes = true;
-        commandResult.value = 'test';
+        commandAnswer.succes = true;
+        commandAnswer.value = 'test';
 
         // act
         bot.handleLine(commandString);
@@ -121,8 +121,8 @@ describe('bot.test', () => {
 
     it('Should call process.stderr.write on lines if commandName is NOT succesfull.', () => {
         // arange
-        commandResult.succes = false;
-        commandResult.value = 'test';
+        commandAnswer.succes = false;
+        commandAnswer.value = 'test';
 
         // act
         bot.handleLine('doesnotexcist');

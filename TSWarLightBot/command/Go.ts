@@ -9,7 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 import ICommand = require('ICommand');
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
 
 /**
@@ -23,13 +23,13 @@ class Go implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandResult({ 
+     * getCommandAnswer({ 
      *     command: CommandEnum.go,
      *     subCommand: SubCommandEnum.place_armies,
      *     data: ['2000']
      * });
      */
-    public getCommandResult(data: ICommandData): ICommandResult {
+    public getCommandAnswer(data: ICommandData): ICommandAnswer {
         return null;
     }
 }

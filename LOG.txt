@@ -69,17 +69,17 @@ DOEL: Uitzoeken hoe we de app opknippen in testbare delen.
 - Commands bevat alle verschillende commando's als public methodes zodat we deze los kunnen testen.
 - Het is handig om strings (of enum waardes) aan de commands van de Commands te koppelen (zie LINKS.txt 12)
 - Misschien is het handig de logica van het opknippen van de data voor het commando ook in Commands te plaatsen.
-- isACommand verwijderen en gewoon altijd getCommandResult aanroepen en deze een result laten geven wat dus ook de fout string kan zijn.
+- isACommand verwijderen en gewoon altijd getCommandAnswer aanroepen en deze een result laten geven wat dus ook de fout string kan zijn.
 - Misschien is het handig niet meer met lambda's de events te koppelen maar losse methods van te maken zodat ze los getest kunnen worden.
 - run is dan alleen nog een method om events te koppelen.
 
 DOEL: Schrijven van alle testen
 - Wannneer je in een class een instanties van een andere class wilt kunnen maken, maar deze ook wilt kunnen mocken heb je een factory nodig.
 - Dit is een truc voor het injecteren van een factory in typescript:
-private commandResultFactory: (succes: boolean, value: string) => ICommandResult
+private commandAnswerFactory: (succes: boolean, value: string) => ICommandAnswer
 - Ik heb ontdekt dat je geen andReturn op een property van een spy kunt schrijven maar gewoon de properties kunt aanmaken op de spy:
-var commandResult: any = jasmine.createSpy('commandResult');
-commandResult.succes = true;
+var commandAnswer: any = jasmine.createSpy('commandAnswer');
+commandAnswer.succes = true;
 - Wanneer je een class wilt mocken waarbinnen weer een instantie van een class zit waarop je dan een methode wilt aanroepen botProcess.stdout.write:
 var botProcess: any = {
     stdout: jasmine.createSpyObj('stdout', ['write']),

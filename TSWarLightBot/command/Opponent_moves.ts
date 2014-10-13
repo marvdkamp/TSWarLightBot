@@ -10,7 +10,7 @@
  */
 
 import ICommand = require('ICommand');
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
 
 /**
@@ -25,13 +25,13 @@ class Opponent_moves implements ICommand {
      * Isn't used in the starter bot. 
      * TODO: Find out what the data looks like.
      * Example: 
-     * getCommandResult({ 
+     * getCommandAnswer({ 
      *     command: CommandEnum.opponent_moves,
      *     subCommand: undefined,
      *     data: []
      * });
      */
-    public getCommandResult(data: ICommandData): ICommandResult {
+    public getCommandAnswer(data: ICommandData): ICommandAnswer {
         return null;
     }
 }

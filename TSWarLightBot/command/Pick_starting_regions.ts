@@ -10,7 +10,7 @@
  */
 
 import ICommand = require('ICommand');
-import ICommandResult = require('ICommandResult');
+import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
 
 /**
@@ -23,13 +23,13 @@ class Pick_starting_regions implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandResult({ 
+     * getCommandAnswer({ 
      *     command: CommandEnum.pick_starting_regions,
      *     subCommand: undefined,
      *     data: ['2000']
      * });
      */
-    public getCommandResult(data: ICommandData): ICommandResult {
+    public getCommandAnswer(data: ICommandData): ICommandAnswer {
         return null;
     }
 }

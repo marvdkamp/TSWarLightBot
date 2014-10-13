@@ -52,7 +52,7 @@ class Bot implements IBot {
             return;
         }
 
-        var result = this.lines.getCommandResult(data);
+        var result = this.lines.getCommandAnswer(data);
         if (result.succes) {
             this.botProcess.stdout.write(result.value);
         } else {
