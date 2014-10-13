@@ -11,7 +11,17 @@
 
 import ICommandResult = require('ICommandResult');
 
+/**
+ * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
+ */
 class CommandResult implements ICommandResult {
+
+    /**
+     * Create an instance of the Bot CommandResult.
+     * @constructor
+     * @param succes {boolean} - Could the command succesfully be handled by the bot.
+     * @param answer {string} - The answer from the bot to the command.
+     */
     constructor(public succes: boolean, public value: string) {
     }
 };

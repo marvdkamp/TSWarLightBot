@@ -11,9 +11,24 @@
 import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');
 
+/**
+ * Information about the command from the game engine.
+ */
 interface ICommandData {
+
+    /**
+     * Which command.
+     */
     command: CommandEnum;
+
+    /**
+     * Which sub command.
+     */
     subcommand?: SubCommandEnum;
+
+    /**
+     * Arguments given by the command.
+     */
     data: string[];
 }
 

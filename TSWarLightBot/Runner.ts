@@ -9,6 +9,10 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
+/**
+ * Instantiates the main class (Bot) injects all the dependencies and starts the bot.
+ */
+
 import Bot = require('./Bot');
 import readline = require('readline');
 import Lines = require('./Lines');

@@ -15,17 +15,19 @@
 
 interface IBot {
     /**
-      * Main entry point of the app.
-      */
+     * Main entry point of the app. Attaching events to the ReadLine instance.
+     */
     run: () => void;
 
     /**
      * Handle a incoming command from the game engine.
+     * @param data {string} - a string containing a command send from the console.
+     * Example handleLine('setup_map regions 1 1 2 1 3 2 4 2 5 2');
      */
     handleLine: (data: string) => void;
 
     /**
-     * Handle a close command from the game engine.
+     * Handle a close command from the process.
      */
     handleClose: () => void;
 }

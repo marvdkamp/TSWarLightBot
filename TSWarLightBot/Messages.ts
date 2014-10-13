@@ -9,6 +9,9 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
+/**
+ * Holds message's prevents retyping it everywhere.
+ */
 class Messages {
     public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s\n'; }
 }

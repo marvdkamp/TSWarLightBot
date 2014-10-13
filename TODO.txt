@@ -1,6 +1,9 @@
 TODO
 ====
-- Change command string to real commands.
+- Place an example string in each command class.
+- Place a discription above each class and method.
+- Rename CommandResult to CommandAnswer and value to answer and introduce extra errormessage.
+- Rename ICommandNameMethod to CommandMethod.
 
 DONE
 ====
@@ -15,3 +18,4 @@ DONE
 - Find out correct way of adding jasmine-node npm pacakage to project.
 - Add new test project, set it to run and debug tests and create spec files.
 - Create a simple console application for reading and echoing commands on de commandline in javascript.
+- Change command string to command enums.

@@ -13,8 +13,19 @@ import ICommandResult = require('ICommandResult');
 import CommandEnum = require('./CommandEnum');
 import ICommandData = require('./ICommandData'); 
 
+/**
+ * Couples a command to a method which will handle the command.
+ */
 interface ICommandNameMethod {
+
+    /**
+     * The given command fromm the game engine.
+     */
     command: CommandEnum;
+
+    /**
+     * The method which will handle the command.
+     */
     method: (data: ICommandData) => ICommandResult;
 }
 
