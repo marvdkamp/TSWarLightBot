@@ -1,9 +1,9 @@
 TODO
 ====
-- Place an example string in each command class.
-- Place a discription above each class and method.
 - Rename CommandResult to CommandAnswer and value to answer and introduce extra errormessage.
 - Rename ICommandNameMethod to CommandMethod.
+- Rename subcommand to subCommand.
+- check of we subCommand undefined of null laten wanneer er geen subcommand is.
 
 DONE
 ====
@@ -19,3 +19,5 @@ DONE
 - Add new test project, set it to run and debug tests and create spec files.
 - Create a simple console application for reading and echoing commands on de commandline in javascript.
 - Change command string to command enums.
+- Place an example string in each command class.
+- Place a discription above each class and method.

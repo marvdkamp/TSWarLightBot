@@ -13,7 +13,23 @@ import ICommand = require('ICommand');
 import ICommandResult = require('ICommandResult');
 import ICommandData = require('ICommandData');
 
+/**
+ * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 
+ * and the amount of armies your bot can place on the map at the start of this round
+ */
 class Settings implements ICommand {
+
+    /**
+     * Gets the answer from the bot for the settings command.
+     * @param data {ICommandData} - Information about the command.
+     * @returns {ICommandData} - The command answer.
+     * Example: 
+     * getCommandResult({ 
+     *     command: CommandEnum.settings,
+     *     subCommand: SubCommandEnum.your_bot,
+     *     data: ['player1']
+     * });
+     */
     public getCommandResult(data: ICommandData): ICommandResult {
         return null;
     }

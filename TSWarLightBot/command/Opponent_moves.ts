@@ -13,7 +13,24 @@ import ICommand = require('ICommand');
 import ICommandResult = require('ICommandResult');
 import ICommandData = require('ICommandData');
 
+/**
+ * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
+ */
 class Opponent_moves implements ICommand {
+
+    /**
+     * Gets the answer from the bot for the go command.
+     * @param data {ICommandData} - Information about the command.
+     * @returns {ICommandData} - The command answer.
+     * Isn't used in the starter bot. 
+     * TODO: Find out what the data looks like.
+     * Example: 
+     * getCommandResult({ 
+     *     command: CommandEnum.opponent_moves,
+     *     subCommand: undefined,
+     *     data: []
+     * });
+     */
     public getCommandResult(data: ICommandData): ICommandResult {
         return null;
     }
