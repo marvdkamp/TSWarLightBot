@@ -1,6 +1,7 @@
 TODO
 ====
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
+- check how we can calculate code coverage.
 
 DONE
 ====

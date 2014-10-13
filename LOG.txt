@@ -97,3 +97,10 @@ DOEL: Statistieken kunnen bijhouden van de geschreven unittests
 -- Via tools de code coverage kunnen berekenen, per geteste file of module.
 -- TS lint meldingen per file of module bijhouden. Volgorde van impact bedenken voor de een aantal meldingen.
 -- het aantal code regels en unittests regels tellen.
+-- Jasmine-node-coverage is een grunt task die boven op een andere task istanbul de jasmine coverage kan rapporteren.
+-- grunt geinstalleerd en als dev afhankelijkheid opgegeven in test project.
+-- grunt-jasmine-node-coverage geinstalleerd en als dev afhankelijkheid opgegeven in test project.
+-- gruntfile.js aangemaakt en configuratie toegevoegd.
+-- werkend gekregen door een copy task te gebruiken om de ts te kopieren naar het spec project, in coverage/_source en coverage/_specs  map.
+-- Nog kijken of de spec files zelf kunnen worden ge-exclude.
+-- De import statements in de gekopieerde files worden veranderd tijdens het kopiëren. 

@@ -53,3 +53,12 @@ http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-b
 
 Webessentials
 http://vswebessentials.com/
+
+Grunt 
+http://gruntjs.com/
+
+Grunt getting started
+http://gruntjs.com/getting-started#the-gruntfile
+
+Jasmine-node-coverage
+https://github.com/jribble/grunt-jasmine-node-coverage
