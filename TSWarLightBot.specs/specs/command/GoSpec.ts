@@ -14,6 +14,9 @@ import CommandEnum = require('../../../TSWarLightBot/CommandEnum');
 import SubCommandEnum = require('../../../TSWarLightBot/SubCommandEnum');
 import ICommand = require('../../../TSWarLightBot/command/ICommand');
 import ICommandData = require('../../../TSWarLightBot/ICommandData');
+import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
+import Messages = require('../../../TSWarLightBot/Messages');
+import util = require('util');
 
 describe('go.test', () => {
     var Go: any = require("../../../TSWarLightBot/command/Go");
@@ -42,4 +45,17 @@ describe('go.test', () => {
         // assert
         expect(place_armiesMethod).toHaveBeenCalled();
     });
+
+    it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
+        // arange
+        place_armiesSubCommandMethod.method = null;
+
+        // act
+        var result: ICommandAnswer = go.getCommandAnswer(commandData);
+
+        // assert
+        expect(result.succes).toBeFalsy();
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, CommandEnum[CommandEnum.go]));
+    });
+
 });

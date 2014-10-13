@@ -12,7 +12,10 @@ import ICommand = require('./ICommand');
 import ISubCommandMethod = require('./ISubCommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
+import CommandEnum = require('../CommandEnum');
 import _ = require('underscore');
+import Messages = require('../Messages');
+import util = require('util');
 
 /**
  * Handles go command from the game engine. Request for the bot to return his place armies moves  and request for the bot 
@@ -39,7 +42,14 @@ class Go implements ICommand {
             return subCommandMethod.command === commandData.subCommand;
         });
 
-        return subCommandMethod.method(commandData);
+        if (subCommandMethod && !(subCommandMethod.method == null)) {
+            return subCommandMethod.method(commandData);
+        } else {
+            return {
+                succes: false,
+                value: util.format(Messages.UNABLE_TO_EXECUTE, CommandEnum[CommandEnum.go])
+            }
+        }
     }
 
     public Place_armies(commandData: ICommandData): ICommandAnswer {
