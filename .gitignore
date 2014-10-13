@@ -243,3 +243,5 @@ $RECYCLE.BIN/
 /TSWarLightBot.specs/specs/command/Setup_mapSpec.js.map
 /TSWarLightBot.specs/specs/command/Update_mapSpec.js
 /TSWarLightBot.specs/specs/command/Update_mapSpec.js.map
+/TSWarLightBot/command/ISubCommandMethod.js.map
+/TSWarLightBot/command/ISubCommandMethod.ts
