@@ -12,7 +12,7 @@
 
 import ILines = require('../../TSWarLightBot/ILines');
 import ICommandAnswer = require('../../TSWarLightBot/ICommandAnswer');
-import ICommandNameMethod = require('../../TSWarLightBot/ICommandNameMethod');
+import ICommandMethod = require('../../TSWarLightBot/ICommandMethod');
 import ICommandData = require('../../TSWarLightBot/ICommandData');
 import Messages = require('../../TSWarLightBot/Messages');
 import util = require('util');
@@ -22,7 +22,7 @@ import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
 describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
-    var settingCommandNameMethod: any = jasmine.createSpy('settingCommandNameMethod');
+    var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
     var commandString: string;
     var commandData = {
         command: CommandEnum.settings,
@@ -31,10 +31,10 @@ describe('lines.test', () => {
     var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
 
     beforeEach(() => {
-        settingCommandNameMethod.command = CommandEnum.settings;
-        settingCommandNameMethod.method = settingCommandMethod;
+        settingCommandMethod.command = CommandEnum.settings;
+        settingCommandMethod.method = settingCommandMethod;
         commandString = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
-        lines = new Lines([settingCommandNameMethod]);
+        lines = new Lines([settingCommandMethod]);
     });
 
     it('getCommandAnswer should call the right action if data command mathches.', () => {
@@ -64,9 +64,9 @@ describe('lines.test', () => {
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
-    it('getCommandAnswer should return succes = false when the CommandNameMethod.method is null.', () => {
+    it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
         // arange
-        settingCommandNameMethod.method = null;
+        settingCommandMethod.method = null;
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act
@@ -77,9 +77,9 @@ describe('lines.test', () => {
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
     });
 
-    it('getCommandAnswer should return succes = false when the CommandNameMethod.method is undefined.', () => {
+    it('getCommandAnswer should return succes = false when the CommandMethod.method is undefined.', () => {
         // arange
-        settingCommandNameMethod.method = undefined;
+        settingCommandMethod.method = undefined;
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act

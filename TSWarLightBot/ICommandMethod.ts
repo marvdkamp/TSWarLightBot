@@ -16,7 +16,7 @@ import ICommandData = require('./ICommandData');
 /**
  * Couples a command to a method which will handle the command.
  */
-interface ICommandNameMethod {
+interface ICommandMethod {
 
     /**
      * The given command fromm the game engine.
@@ -29,4 +29,4 @@ interface ICommandNameMethod {
     method: (data: ICommandData) => ICommandAnswer;
 }
 
-export = ICommandNameMethod;
+export = ICommandMethod;

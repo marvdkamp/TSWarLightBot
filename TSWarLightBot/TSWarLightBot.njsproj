@@ -47,7 +47,7 @@
     <TypeScriptCompile Include="command\Update_map.ts" />
     <TypeScriptCompile Include="IBot.ts" />
     <TypeScriptCompile Include="ICommandData.ts" />
-    <TypeScriptCompile Include="ICommandNameMethod.ts" />
+    <TypeScriptCompile Include="ICommandMethod.ts" />
     <TypeScriptCompile Include="ICommandAnswer.ts" />
     <TypeScriptCompile Include="ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />

@@ -12,7 +12,7 @@
 import ILines = require('ILines');
 import ICommandAnswer = require('ICommandAnswer');
 import ICommandData = require('ICommandData');
-import ICommandNameMethod = require('ICommandNameMethod');
+import ICommandMethod = require('ICommandMethod');
 import Messages = require('./Messages');
 import CommandEnum = require('./CommandEnum');
 import util = require('util');
@@ -22,7 +22,7 @@ import _ = require('underscore');
  * Converts lines to command information and passes it to the right command class and returns the answer.
  */
 class Lines implements ILines {
-    constructor(private commandNameMethodList: ICommandNameMethod[]) {
+    constructor(private commandMethodList: ICommandMethod[]) {
     } 
 
     /**
@@ -33,12 +33,12 @@ class Lines implements ILines {
      */
     public getCommandAnswer(line: string): ICommandAnswer {
         var commandData: ICommandData = this.getCommandData(line);
-        var commandNameMethod: ICommandNameMethod = _.find(this.commandNameMethodList, (commandNameMethod: ICommandNameMethod) => { 
-            return commandNameMethod.command === commandData.command;
+        var commandMethod: ICommandMethod = _.find(this.commandMethodList, (commandMethod: ICommandMethod) => { 
+            return commandMethod.command === commandData.command;
         });
 
-        if (commandNameMethod && !(commandNameMethod.method == null)) {
-            return commandNameMethod.method(commandData);
+        if (commandMethod && !(commandMethod.method == null)) {
+            return commandMethod.method(commandData);
         } else {
             return {
                 succes: false,
