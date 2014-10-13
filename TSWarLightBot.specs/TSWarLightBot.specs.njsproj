@@ -40,6 +40,12 @@
     <TypeScriptCompile Include="Scripts\typings\jasmine\legacy\jasmine-1.3.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="specs\BotSpec.ts" />
+    <TypeScriptCompile Include="specs\command\GoSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Opponent_movesSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Pick_starting_regionsSpec.ts" />
+    <TypeScriptCompile Include="specs\command\SettingsSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Setup_mapSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Update_mapSpec.ts" />
     <TypeScriptCompile Include="specs\LinesSpec.ts" />
     <TypeScriptCompile Include="specs\map\WarMapSpec.ts" />
   </ItemGroup>
@@ -51,6 +57,7 @@
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />
     <Folder Include="specs\map\" />
+    <Folder Include="specs\command\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
