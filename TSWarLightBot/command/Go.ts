@@ -13,6 +13,7 @@ import ISubCommandMethod = require('./ISubCommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
 import CommandEnum = require('../CommandEnum');
+import SubCommandEnum = require('../SubCommandEnum');
 import _ = require('underscore');
 import Messages = require('../Messages');
 import util = require('util');
@@ -22,9 +23,15 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    constructor(private subCommandMethodList: ISubCommandMethod[]) {
+    private subCommandMethodList: ISubCommandMethod[] = [];
+    constructor() {
+        this.subCommandMethodList.push({
+            subCommand: SubCommandEnum.place_armies,
+            method: (commandData: ICommandData) => { 
+                return this.place_armies(commandData)
+            }
+        });
     } 
-
 
     /**
      * Gets the answer from the bot for the go command.
@@ -32,6 +39,7 @@ class Go implements ICommand {
      * @returns {ICommandData} - The command answer.
      * Example: 
      * getCommandAnswer({ 
+     *     line: 'go place_armies 2000'
      *     command: CommandEnum.go,
      *     subCommand: SubCommandEnum.place_armies,
      *     data: ['2000']
@@ -39,7 +47,7 @@ class Go implements ICommand {
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         var subCommandMethod: ISubCommandMethod = _.find(this.subCommandMethodList, (subCommandMethod: ISubCommandMethod) => {
-            return subCommandMethod.command === commandData.subCommand;
+            return subCommandMethod.subCommand === commandData.subCommand;
         });
 
         if (subCommandMethod && !(subCommandMethod.method == null)) {
@@ -47,12 +55,12 @@ class Go implements ICommand {
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, CommandEnum[CommandEnum.go])
+                value: util.format(Messages.UNABLE_TO_EXECUTE, commandData.line)
             }
         }
     }
 
-    public Place_armies(commandData: ICommandData): ICommandAnswer {
+    public place_armies(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

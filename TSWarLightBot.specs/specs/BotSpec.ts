@@ -80,7 +80,7 @@ describe('bot.test', () => {
         closeListener();
 
         // assert
-        expect(bot.handleLine).toHaveBeenCalled();
+        expect(bot.handleLine).toHaveBeenCalledWith(commandString);
         expect(bot.handleClose).toHaveBeenCalled();
     });
 

@@ -24,7 +24,8 @@ class Setup_map implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({ 
+     * getCommandAnswer({
+     *     line: 'setup_map super_regions 1 2 2 5',
      *     command: CommandEnum.setup_map,
      *     subCommand: SubCommandEnum.super_regions,
      *     data: ['1', '2', '2', '5']

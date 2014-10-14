@@ -24,7 +24,8 @@ class Update_map implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({ 
+     * getCommandAnswer({
+     *     line: 'update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5',
      *     command: CommandEnum.update_map,
      *     subCommand: undefined,
      *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']

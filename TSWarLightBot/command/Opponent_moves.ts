@@ -25,7 +25,8 @@ class Opponent_moves implements ICommand {
      * Isn't used in the starter bot. 
      * TODO: Find out what the data looks like.
      * Example: 
-     * getCommandAnswer({ 
+     * getCommandAnswer({
+     *     line: 'opponent_moves',
      *     command: CommandEnum.opponent_moves,
      *     subCommand: undefined,
      *     data: []

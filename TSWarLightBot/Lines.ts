@@ -64,6 +64,7 @@ class Lines implements ILines {
         }
 
         return {
+            line: line,
             command: command,
             subCommand: subCommand,
             data: lineParts

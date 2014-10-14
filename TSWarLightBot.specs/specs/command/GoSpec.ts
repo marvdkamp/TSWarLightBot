@@ -20,42 +20,53 @@ import util = require('util');
 
 describe('go.test', () => {
     var Go: any = require("../../../TSWarLightBot/command/Go");
-    var go: ICommand;
-    var place_armiesMethod: any = jasmine.createSpy('place_armiesMethod');
-    var place_armiesSubCommandMethod: any = jasmine.createSpy('place_armiesSubCommandMethod');
+    var go: any;
     var commandData: ICommandData = {
+        line: 'go place_armies 2000',
         command: CommandEnum.go,
         subCommand: SubCommandEnum.place_armies,
         data: ['2000']
     };
 
-
-    beforeEach(() => {
-        place_armiesSubCommandMethod.command = SubCommandEnum.place_armies;
-        place_armiesSubCommandMethod.method = place_armiesMethod;
-        go = new Go([place_armiesSubCommandMethod]);
+    beforeEach(() => {5
+        go = new Go();
     });
 
-    it('getCommandAnswer should call right subcommand if commandData.command matches.', () => {
+    it('getCommandAnswer should call right subcommand if commandData.subCommand matches.', () => {
         // arange
+        spyOn(go, 'place_armies');
 
         // act
         go.getCommandAnswer(commandData);
 
         // assert
-        expect(place_armiesMethod).toHaveBeenCalled();
+        expect(go.place_armies).toHaveBeenCalledWith(commandData);
+        expect(go.place_armies.callCount).toBe(1);
     });
 
-    it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
+    it('getCommandAnswer should return succes = false and a error string when commandData.subCommand not matches.', () => {
         // arange
-        place_armiesSubCommandMethod.method = null;
+        commandData.subCommand = SubCommandEnum.neighbors;
+        commandData.line = 'go neighbors 2000';
 
         // act
         var result: ICommandAnswer = go.getCommandAnswer(commandData);
 
         // assert
         expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, CommandEnum[CommandEnum.go]));
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandData.line));
     });
 
+    it('getCommandAnswer should return succes = false and a error string when commandData.subCommand is undefined.', () => {
+        // arange
+        commandData.subCommand = undefined;
+        commandData.line = 'go 2000';
+
+        // act
+        var result: ICommandAnswer = go.getCommandAnswer(commandData);
+
+        // assert
+        expect(result.succes).toBeFalsy();
+        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandData.line));
+    });
 });

@@ -45,7 +45,8 @@ describe('lines.test', () => {
         lines.getCommandAnswer(commandString);
 
         // assert
-        expect(settingMethod).toHaveBeenCalled();
+        expect(settingMethod).toHaveBeenCalledWith(commandData);
+        expect(settingMethod.callCount).toBe(1);
     });
 
     it('getCommandAnswer should return succes = false when the data string NOT matches.', () => {

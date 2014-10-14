@@ -17,6 +17,11 @@ import SubCommandEnum = require('./SubCommandEnum');
 interface ICommandData {
 
     /**
+     * Original command string.
+     */
+    line: string;
+
+    /**
      * Which command.
      */
     command: CommandEnum;

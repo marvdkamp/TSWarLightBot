@@ -24,7 +24,8 @@ class Settings implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({ 
+     * getCommandAnswer({
+     *     line: 'settings your_bot player1',
      *     command: CommandEnum.settings,
      *     subCommand: SubCommandEnum.your_bot,
      *     data: ['player1']
