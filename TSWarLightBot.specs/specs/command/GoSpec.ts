@@ -13,9 +13,11 @@
 import CommandEnum = require('../../../TSWarLightBot/CommandEnum');
 import SubCommandEnum = require('../../../TSWarLightBot/SubCommandEnum');
 import ICommand = require('../../../TSWarLightBot/command/ICommand');
+import ISubCommandOption = require('../../../TSWarLightBot/command/ISubCommandOption');
 import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
 import Messages = require('../../../TSWarLightBot/Messages');
+import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
 import util = require('util');
 
 describe('go.test', () => {
@@ -28,8 +30,15 @@ describe('go.test', () => {
         data: ['2000']
     };
 
+    var options: ISubCommandOption[] = [{
+        subCommand: SubCommandEnum.starting_armies,
+        value: '0'
+    }];
+
+    var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']); 
+
     beforeEach(() => {5
-        go = new Go();
+        go = new Go(options, warMap);
     });
 
     it('getCommandAnswer should call right subcommand if commandData.subCommand matches.', () => {
@@ -68,5 +77,16 @@ describe('go.test', () => {
         // assert
         expect(result.succes).toBeFalsy();
         expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandData.line));
+    });
+
+    it('place_armies should call getOwnedRegions on warMap', () => {
+        // arange
+
+        // act
+        go.place_armies(commandData);
+
+        // assert
+        expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwners.PLAYER);
+        expect(warMap.getOwnedRegions.callCount).toBe(1);
     });
 });

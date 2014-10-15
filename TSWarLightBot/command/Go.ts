@@ -9,11 +9,15 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 import ICommand = require('./ICommand');
+import ISubCommandOption = require('./ISubCommandOption');
 import ISubCommandMethod = require('./ISubCommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');
+import IWarMap = require('../map/I/IWarMap');
+import IRegion = require('../map/I/IRegion');
+import PossibleOwners = require('../map/PossibleOwners');
 import _ = require('underscore');
 import Messages = require('../Messages');
 import util = require('util');
@@ -24,7 +28,8 @@ import util = require('util');
  */
 class Go implements ICommand {
     private subCommandMethodList: ISubCommandMethod[] = [];
-    constructor() {
+
+    constructor(private options: ISubCommandOption[], private warMap: IWarMap) {
         this.subCommandMethodList.push({
             subCommand: SubCommandEnum.place_armies,
             method: (commandData: ICommandData) => { 
@@ -61,6 +66,7 @@ class Go implements ICommand {
     }
 
     public place_armies(commandData: ICommandData): ICommandAnswer {
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
         return null;
     }
 }

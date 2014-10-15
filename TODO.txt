@@ -1,5 +1,8 @@
 TODO
 ====
+- add use strict everywhere.
+- create instances of all the commands in Runner.ts.
+- handle all de subcommands and tests in other command classes.
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
 
 DONE
