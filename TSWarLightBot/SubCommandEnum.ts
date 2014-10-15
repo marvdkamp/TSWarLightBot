@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 /**
  * Some commands from the game engie are split up in two parts. These are those second parts.

@@ -9,6 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
+'use strict';
 
 describe('update_map.test', () => {
     var Update_map: any = require("../../../TSWarLightBot/command/Update_map");

@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 /**
  * Instantiates the main class (Bot) injects all the dependencies and starts the bot.

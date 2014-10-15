@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 import ICommand = require('./ICommand');
 import ICommandAnswer = require('./../ICommandAnswer');

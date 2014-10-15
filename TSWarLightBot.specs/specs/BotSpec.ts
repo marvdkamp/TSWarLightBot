@@ -9,6 +9,7 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
+'use strict';
 
 //TODO: Split lines!!!!
 //TODO: Trim lines!!!!

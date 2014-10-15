@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 /**
  * interface for the main class of the app. Handles reading from and writing to the console.
