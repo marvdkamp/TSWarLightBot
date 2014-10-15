@@ -38,6 +38,13 @@ class Go implements ICommand {
                 return this.place_armies(commandData)
             }
         });
+
+        this.subCommandMethodList.push({
+            subCommand: SubCommandEnum.attacktransfer,
+            method: (commandData: ICommandData) => { 
+                return this.attacktransfer(commandData)
+            }
+        });
     } 
 
     /**
@@ -69,6 +76,10 @@ class Go implements ICommand {
 
     public place_armies(commandData: ICommandData): ICommandAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        return null;
+    }
+
+    public attacktransfer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

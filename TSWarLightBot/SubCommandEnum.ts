@@ -52,7 +52,7 @@ enum SubCommandEnum {
     /**
      * Request for the bot to return his attack and/or transfer moves. Will be preceded with go.
      */
-    attackSLASHtransfer
+    attacktransfer
 }
 
 export = SubCommandEnum;
