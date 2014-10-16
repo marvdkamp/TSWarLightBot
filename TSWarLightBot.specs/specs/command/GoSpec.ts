@@ -19,6 +19,7 @@ import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
 import Messages = require('../../../TSWarLightBot/Messages');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
+import IRegion = require('../../../TSWarLightBot/map/I/IRegion');
 import util = require('util');
 
 describe('go.test', () => {
@@ -36,14 +37,27 @@ describe('go.test', () => {
         value: '0'
     }];
 
-    var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']); 
+    var region: IRegion;
 
-    beforeEach(() => {5
+    var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
+
+    beforeEach(() => {
+        region = {
+            id: 1,
+            superRegion: null,
+            owner: null,
+            neighbors: null,
+            troopCount: 0,
+            isOnEmpireBorder: false,
+            isOnSuperRegionBorder: false
+        }; 
+        warMap.getOwnedRegions.andReturn([region]); 
         go = new Go(options, warMap);
     });
 
     it('getCommandAnswer should call right subcommand if commandData.subCommand matches.', () => {
         // arange
+        spyOn(Math, 'floor').andReturn(0);
         spyOn(go, 'place_armies');
 
         // act
@@ -56,6 +70,7 @@ describe('go.test', () => {
 
     it('getCommandAnswer should return succes = false and a error string when commandData.subCommand not matches.', () => {
         // arange
+        spyOn(Math, 'floor').andReturn(0);
         commandData.subCommand = SubCommandEnum.neighbors;
         commandData.line = 'go neighbors 2000';
 
@@ -69,6 +84,7 @@ describe('go.test', () => {
 
     it('getCommandAnswer should return succes = false and a error string when commandData.subCommand is undefined.', () => {
         // arange
+        spyOn(Math, 'floor').andReturn(0);
         commandData.subCommand = undefined;
         commandData.line = 'go 2000';
 
@@ -82,6 +98,7 @@ describe('go.test', () => {
 
     it('place_armies should call getOwnedRegions on warMap', () => {
         // arange
+        spyOn(Math, 'floor').andReturn(0);
 
         // act
         go.place_armies(commandData);
@@ -94,14 +111,25 @@ describe('go.test', () => {
     it('place_armies should call Math.floor for the amount of armies it has to place', () => {
         // arange
         options[0].value = '3';
-        warMap.getOwnedRegions.andReturn([]);
-        spyOn(Math, 'floor');
+        spyOn(Math, 'floor').andReturn(0);
 
         // act
         go.place_armies(commandData);
 
         // assert
-        expect(Math.floor).toHaveBeenCalledWith(0);
+        expect(Math.floor).toHaveBeenCalledWith(1);
         expect((<jasmine.Spy>Math.floor).callCount).toBe(3);
+    });
+
+    it('place_armies should add +1 on troopCount for each armie on region found by index of Math.floor.', () => {
+        // arange
+        spyOn(Math, 'floor').andReturn(0);
+        options[0].value = '3';
+
+        // act
+        go.place_armies(commandData);
+
+        // assert
+        expect(region.troopCount).toBe(3);
     });
 });
