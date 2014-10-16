@@ -90,4 +90,18 @@ describe('go.test', () => {
         expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwners.PLAYER);
         expect(warMap.getOwnedRegions.callCount).toBe(1);
     });
+
+    it('place_armies should call Math.floor for the amount of armies it has to place', () => {
+        // arange
+        options[0].value = '3';
+        warMap.getOwnedRegions.andReturn([]);
+        spyOn(Math, 'floor');
+
+        // act
+        go.place_armies(commandData);
+
+        // assert
+        expect(Math.floor).toHaveBeenCalledWith(0);
+        expect((<jasmine.Spy>Math.floor).callCount).toBe(3);
+    });
 });

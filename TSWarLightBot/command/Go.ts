@@ -76,6 +76,15 @@ class Go implements ICommand {
 
     public place_armies(commandData: ICommandData): ICommandAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var troopsRemaining: number = parseInt(_.find(this.options, (option: ISubCommandOption) => {
+            return option.subCommand === SubCommandEnum.starting_armies;
+        }).value, 10);
+
+        while (0 < troopsRemaining) {
+            var index: Number = Math.floor(ownedRegions.length);
+            troopsRemaining -= 1;
+        }
+
         return null;
     }
 
