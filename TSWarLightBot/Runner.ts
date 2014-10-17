@@ -41,25 +41,13 @@ var settings = new Settings();
 var setup_map = new Setup_map();
 var update_map = new Update_map();
 
-var commandMethods: ICommandMethod[] = [{
-    command: CommandEnum.go,
-    method: go.getCommandAnswer
-}, {
-    command: CommandEnum.opponent_moves,
-    method: opponent_moves.getCommandAnswer
-}, {
-    command: CommandEnum.pick_starting_regions,
-    method: pick_starting_regions.getCommandAnswer
-}, {
-    command: CommandEnum.settings,
-    method: settings.getCommandAnswer
-}, {
-    command: CommandEnum.setup_map,
-    method: setup_map.getCommandAnswer
-}, {
-    command: CommandEnum.update_map,
-    method: update_map.getCommandAnswer
-}];
+var commandMethods: ICommandMethod = {};
+commandMethods[CommandEnum.go] = go.getCommandAnswer;
+commandMethods[CommandEnum.opponent_moves] = opponent_moves.getCommandAnswer;
+commandMethods[CommandEnum.pick_starting_regions] = pick_starting_regions.getCommandAnswer;
+commandMethods[CommandEnum.settings] = settings.getCommandAnswer;
+commandMethods[CommandEnum.setup_map] = setup_map.getCommandAnswer;
+commandMethods[CommandEnum.update_map] = update_map.getCommandAnswer;
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,

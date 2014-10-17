@@ -38,6 +38,7 @@
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="CommandEnum.ts" />
     <TypeScriptCompile Include="CommandAnswer.ts" />
+    <TypeScriptCompile Include="command\Answers.ts" />
     <TypeScriptCompile Include="command\Go.ts" />
     <TypeScriptCompile Include="command\ICommand.ts" />
     <TypeScriptCompile Include="command\ISubCommandMethod.ts" />

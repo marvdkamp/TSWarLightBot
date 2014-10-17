@@ -22,12 +22,7 @@ interface ICommandMethod {
     /**
      * The given command fromm the game engine.
      */
-    command: CommandEnum;
-
-    /**
-     * The method which will handle the command.
-     */
-    method: (data: ICommandData) => ICommandAnswer;
+    [command: number]: (data: ICommandData) => ICommandAnswer;
 }
 
 export = ICommandMethod;

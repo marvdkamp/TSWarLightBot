@@ -35,6 +35,9 @@ describe('go.test', () => {
     var options: ISubCommandOption[] = [{
         subCommand: SubCommandEnum.starting_armies,
         value: '0'
+    }, {
+        subCommand: SubCommandEnum.your_bot,
+        value: 'player1'
     }];
 
     var region: IRegion;
@@ -131,5 +134,19 @@ describe('go.test', () => {
 
         // assert
         expect(region.troopCount).toBe(3);
+    });
+
+    // Example player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1
+    // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.floor returns 0 every time).
+    it('place_armies should return the a placement for every army.', () => {
+        // arange
+        spyOn(Math, 'floor').andReturn(0);
+        options[0].value = '3';
+
+        // act
+        var result: ICommandAnswer = go.place_armies(commandData);
+
+        // assert
+        // expect(result.value).toBe('player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1');
     });
 });

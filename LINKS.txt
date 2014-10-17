@@ -53,3 +53,6 @@ http://michaelcrump.net/setting-up-github-to-work-with-visual-studio-2013-step-b
 
 Webessentials
 http://vswebessentials.com/
+
+Dictionary Typescript
+https://typescript.codeplex.com/discussions/398359
