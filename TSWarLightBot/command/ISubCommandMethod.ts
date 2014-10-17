@@ -20,14 +20,9 @@ import ICommandData = require('./../ICommandData');
 interface ISubCommandMethod {
 
     /**
-     * The given subCommand fromm the game engine.
+     * The given subcommand fromm the game engine and the method to handle it.
      */
-    subCommand: SubCommandEnum;
-
-    /**
-     * The method which will handle the command.
-     */
-    method: (commandData: ICommandData) => ICommandAnswer;
+    [subCommand: number]: (data: ICommandData) => ICommandAnswer;
 }
 
 export = ISubCommandMethod;

@@ -29,22 +29,16 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private subCommandMethodList: ISubCommandMethod[] = [];
+    private subCommandMethodList: ISubCommandMethod = {};
 
     constructor(private options: ISubCommandOption[], private warMap: IWarMap) {
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.place_armies,
-            method: (commandData: ICommandData) => { 
+        this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 
                 return this.place_armies(commandData)
-            }
-        });
+            };
 
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.attacktransfer,
-            method: (commandData: ICommandData) => { 
+        this.subCommandMethodList[SubCommandEnum.attacktransfer] = (commandData: ICommandData) => { 
                 return this.attacktransfer(commandData)
-            }
-        });
+            };
     } 
 
     /**
@@ -60,12 +54,10 @@ class Go implements ICommand {
      * });
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
-        var subCommandMethod: ISubCommandMethod = _.find(this.subCommandMethodList, (subCommandMethod: ISubCommandMethod) => {
-            return subCommandMethod.subCommand === commandData.subCommand;
-        });
+        var subCommandMethod: (data: ICommandData) => ICommandAnswer = this.subCommandMethodList[commandData.subCommand];
 
-        if (subCommandMethod && !(subCommandMethod.method == null)) {
-            return subCommandMethod.method(commandData);
+        if (subCommandMethod) {
+            return subCommandMethod(commandData);
         } else {
             return {
                 succes: false,

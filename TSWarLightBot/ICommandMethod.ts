@@ -20,7 +20,7 @@ import ICommandData = require('./ICommandData');
 interface ICommandMethod {
 
     /**
-     * The given command fromm the game engine.
+     * The given command fromm the game engine and the method to handle it.
      */
     [command: number]: (data: ICommandData) => ICommandAnswer;
 }

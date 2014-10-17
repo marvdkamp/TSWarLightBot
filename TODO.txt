@@ -1,5 +1,7 @@
 TODO
 ====
+- replace all the 'dictionary' implementations and remove underscore.
+- remove checked in js file(s).
 - handle all de subcommands and tests in other command classes.
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
 
