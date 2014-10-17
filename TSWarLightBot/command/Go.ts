@@ -12,7 +12,7 @@
 
 import ICommand = require('./ICommand');
 import ISubCommandOption = require('./ISubCommandOption');
-import ISubCommandMethod = require('./ISubCommandMethod');
+import ICommandMethod = require('./../ICommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
 import CommandEnum = require('../CommandEnum');
@@ -29,7 +29,7 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private subCommandMethodList: ISubCommandMethod = {};
+    private subCommandMethodList: ICommandMethod = {};
 
     constructor(private options: ISubCommandOption[], private warMap: IWarMap) {
         this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 

@@ -16,9 +16,9 @@ import SubCommandEnum = require('./../SubCommandEnum');
  * Couples a subCommand to a value of a Option. The settings command wil send a subcommand which is 
  * actual an option or setting with a value. Een instance of this interface captures these options.
  */
-interface ISubCommandMethod {
+interface ISubCommandOption {
     subCommand: SubCommandEnum;
     value: string;
 }
 
-export = ISubCommandMethod;
+export = ISubCommandOption;

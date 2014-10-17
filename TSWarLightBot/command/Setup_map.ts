@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./ICommand');
-import ISubCommandMethod = require('./ISubCommandMethod');
+import ICommandMethod = require('./../ICommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
 import SubCommandEnum = require('../SubCommandEnum');
@@ -21,29 +21,20 @@ import SubCommandEnum = require('../SubCommandEnum');
  * of the regions are given in different calls
  */
 class Setup_map implements ICommand {
-    private subCommandMethodList: ISubCommandMethod[] = [];
+    private subCommandMethodList: ICommandMethod = {};
 
     constructor() {
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.super_regions,
-            method: (commandData: ICommandData) => { 
-                return this.super_regions(commandData)
-            }
-        });
+        this.subCommandMethodList[SubCommandEnum.super_regions] = (commandData: ICommandData) => { 
+            return this.super_regions(commandData)
+        };
 
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.regions,
-            method: (commandData: ICommandData) => { 
-                return this.regions(commandData)
-            }
-        });
+        this.subCommandMethodList[SubCommandEnum.regions] = (commandData: ICommandData) => { 
+            return this.regions(commandData)
+        };
 
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.neighbors,
-            method: (commandData: ICommandData) => { 
-                return this.neighbors(commandData)
-            }
-        });
+        this.subCommandMethodList[SubCommandEnum.neighbors] = (commandData: ICommandData) => { 
+            return this.neighbors(commandData)
+        };
     } 
 
     /**

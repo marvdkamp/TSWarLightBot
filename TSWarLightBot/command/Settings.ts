@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./ICommand');
-import ISubCommandMethod = require('./ISubCommandMethod');
+import ICommandMethod = require('./../ICommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
 import SubCommandEnum = require('../SubCommandEnum');
@@ -21,22 +21,16 @@ import SubCommandEnum = require('../SubCommandEnum');
  * and the amount of armies your bot can place on the map at the start of this round
  */
 class Settings implements ICommand {
-    private subCommandMethodList: ISubCommandMethod[] = [];
+    private subCommandMethodList: ICommandMethod = {};
 
     constructor() {
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.your_bot,
-            method: (commandData: ICommandData) => { 
+        this.subCommandMethodList[SubCommandEnum.your_bot] = (commandData: ICommandData) => { 
                 return this.your_bot(commandData)
-            }
-        });
+            };
 
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.opponent_bot,
-            method: (commandData: ICommandData) => { 
+        this.subCommandMethodList[SubCommandEnum.opponent_bot] = (commandData: ICommandData) => { 
                 return this.opponent_bot(commandData)
-            }
-        });
+            };
     } 
 
     /**
