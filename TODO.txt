@@ -1,6 +1,9 @@
 TODO
 ====
+- remove checked in js file(s).
+- handle all de subcommands and tests in other command classes.
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
+- DENK om slash in attack transfer.
 - check how we can calculate code coverage.
 
 DONE
@@ -22,3 +25,6 @@ DONE
 - Rename CommandResult to CommandAnswer and value to answer and introduce extra errormessage.
 - Renamed ICommandNameMethod to CommandMethod.
 - Renamed subCommand to subCommand.
+- add use strict everywhere.
+- create instances of all the commands in Runner.ts.
+- replace all the 'dictionary' implementations and remove underscore.

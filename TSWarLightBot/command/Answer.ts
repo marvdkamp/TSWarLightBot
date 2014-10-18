@@ -10,18 +10,13 @@
  */
 'use strict';
 
-import ISuperRegion = require('./I/ISuperRegion');
-
-class SuperRegion implements ISuperRegion {
-    id: number;
-    bonus: number;
-    regions: {};
-
-    constructor(id: number, bonus: number) {
-        this.id = id;
-        this.bonus = bonus;
-        this.regions = {};
-    }
+/**
+ * Holds the fixed parts of the answer's the Bot gives.
+ */
+class Answer {
+    public static get PLACE_ARMIES(): string { return 'place_armies'; }
+    public static get ATTACK_TRANSFER(): string { return 'attack/transfer'; }
+    public static get NO_MOVES(): string { return 'No moves'; }
 }
 
-export = SuperRegion;
+export = Answer;

@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 import ICommandAnswer = require('./ICommandAnswer');
 import CommandEnum = require('./CommandEnum');
@@ -19,14 +20,9 @@ import ICommandData = require('./ICommandData');
 interface ICommandMethod {
 
     /**
-     * The given command fromm the game engine.
+     * The given command fromm the game engine and the method to handle it.
      */
-    command: CommandEnum;
-
-    /**
-     * The method which will handle the command.
-     */
-    method: (data: ICommandData) => ICommandAnswer;
+    [command: number]: (data: ICommandData) => ICommandAnswer;
 }
 
 export = ICommandMethod;

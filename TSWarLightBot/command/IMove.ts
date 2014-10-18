@@ -10,18 +10,11 @@
  */
 'use strict';
 
-import ISuperRegion = require('./I/ISuperRegion');
+import IRegion = require('../map/I/IRegion');
 
-class SuperRegion implements ISuperRegion {
-    id: number;
-    bonus: number;
-    regions: {};
-
-    constructor(id: number, bonus: number) {
-        this.id = id;
-        this.bonus = bonus;
-        this.regions = {};
-    }
+interface IMove {
+    moveTo: IRegion;
+    moveFrom: IRegion;
 }
 
-export = SuperRegion;
+export = IMove;

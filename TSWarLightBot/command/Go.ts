@@ -8,12 +8,20 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
+
 import ICommand = require('./ICommand');
-import ISubCommandMethod = require('./ISubCommandMethod');
+import ISubCommandOption = require('./ISubCommandOption');
+import ICommandMethod = require('./../ICommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
+import IMove = require('./../command/IMove');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');
+import Answer = require('./Answer');
+import IWarMap = require('../map/I/IWarMap');
+import IRegion = require('../map/I/IRegion');
+import PossibleOwners = require('../map/PossibleOwners');
 import _ = require('underscore');
 import Messages = require('../Messages');
 import util = require('util');
@@ -23,14 +31,16 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private subCommandMethodList: ISubCommandMethod[] = [];
-    constructor() {
-        this.subCommandMethodList.push({
-            subCommand: SubCommandEnum.place_armies,
-            method: (commandData: ICommandData) => { 
+    private subCommandMethodList: ICommandMethod = {};
+
+    constructor(private options: ISubCommandOption, private warMap: IWarMap) {
+        this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 
                 return this.place_armies(commandData)
-            }
-        });
+            };
+
+        this.subCommandMethodList[SubCommandEnum.attacktransfer] = (commandData: ICommandData) => { 
+                return this.attacktransfer(commandData)
+            };
     } 
 
     /**
@@ -46,12 +56,10 @@ class Go implements ICommand {
      * });
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
-        var subCommandMethod: ISubCommandMethod = _.find(this.subCommandMethodList, (subCommandMethod: ISubCommandMethod) => {
-            return subCommandMethod.subCommand === commandData.subCommand;
-        });
+        var subCommandMethod: (data: ICommandData) => ICommandAnswer = this.subCommandMethodList[commandData.subCommand];
 
-        if (subCommandMethod && !(subCommandMethod.method == null)) {
-            return subCommandMethod.method(commandData);
+        if (subCommandMethod) {
+            return subCommandMethod(commandData);
         } else {
             return {
                 succes: false,
@@ -61,6 +69,39 @@ class Go implements ICommand {
     }
 
     public place_armies(commandData: ICommandData): ICommandAnswer {
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var troopsRemaining: number = parseInt(this.options[SubCommandEnum.starting_armies], 10);
+        var placements: string[] = [];
+
+        while (0 < troopsRemaining) {
+            var index: number = Math.floor(ownedRegions.length);
+            ownedRegions[index].troopCount += 1;
+            placements.push([this.options[SubCommandEnum.your_bot], Answer.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
+            troopsRemaining -= 1;
+        }
+
+        return {
+            succes: true,
+            value: placements.join(', ').trim()
+        }
+    }
+
+    public attacktransfer(commandData: ICommandData): ICommandAnswer {
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var regionsToAttack: IMove[] = this.getRegionsToAttack(ownedRegions);
+        regionsToAttack.forEach((value: IMove) => {
+            value.moveFrom.troopCount = 1;
+        });
+
+        var regionsToTransferTo: IMove[] = this.getRegionsToTransferTo(ownedRegions);
+        return null;
+    }
+
+    public getRegionsToAttack(ownedRegions: IRegion[]): IMove[]{
+        return null;
+    }
+
+    public getRegionsToTransferTo(ownedRegions: IRegion[]): IMove[] {
         return null;
     }
 }

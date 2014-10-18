@@ -8,6 +8,8 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
+
 import IRegion = require('./I/IRegion');
 import ISuperRegion = require('./I/ISuperRegion');
 import PossibleOwners = require('./PossibleOwners');

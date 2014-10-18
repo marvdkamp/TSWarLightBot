@@ -8,6 +8,7 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+'use strict';
 
 import ILines = require('./ILines');
 import ICommandAnswer = require('./ICommandAnswer');
@@ -23,7 +24,7 @@ import _ = require('underscore');
  * Converts lines to command information and passes it to the right command class and returns the answer.
  */
 class Lines implements ILines {
-    constructor(private commandMethodList: ICommandMethod[]) {
+    constructor(private commandMethodList: ICommandMethod) {
     } 
 
     /**
@@ -34,12 +35,10 @@ class Lines implements ILines {
      */
     public getCommandAnswer(line: string): ICommandAnswer {
         var commandData: ICommandData = this.getCommandData(line);
-        var commandMethod: ICommandMethod = _.find(this.commandMethodList, (commandMethod: ICommandMethod) => { 
-            return commandMethod.command === commandData.command;
-        });
+        var commandMethod: (data: ICommandData) => ICommandAnswer = this.commandMethodList[commandData.command];
 
-        if (commandMethod && !(commandMethod.method == null)) {
-            return commandMethod.method(commandData);
+        if (commandMethod) {
+            return commandMethod(commandData);
         } else {
             return {
                 succes: false,

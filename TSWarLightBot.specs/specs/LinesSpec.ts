@@ -9,11 +9,12 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
+'use strict';
 
 import ILines = require('../../TSWarLightBot/ILines');
 import ICommandAnswer = require('../../TSWarLightBot/ICommandAnswer');
-import ICommandMethod = require('../../TSWarLightBot/ICommandMethod');
 import ICommandData = require('../../TSWarLightBot/ICommandData');
+import ICommandMethod = require('../../TSWarLightBot/ICommandMethod');
 import Messages = require('../../TSWarLightBot/Messages');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/CommandEnum');
@@ -23,7 +24,7 @@ describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
     var settingMethod: any = jasmine.createSpy('settingMethod');
-    var settingCommandMethod: any = jasmine.createSpy('settingCommandMethod');
+    var commandMethods: ICommandMethod = {};
     var commandString: string;
     var commandData = {
         command: CommandEnum.settings,
@@ -31,10 +32,9 @@ describe('lines.test', () => {
     };
     
     beforeEach(() => {
-        settingCommandMethod.command = CommandEnum.settings;
-        settingCommandMethod.method = settingMethod;
+        commandMethods[CommandEnum.settings] = settingMethod;
         commandString = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
-        lines = new Lines([settingCommandMethod]);
+        lines = new Lines(commandMethods);
     });
 
     it('getCommandAnswer should call the right action if data command mathches.', () => {
@@ -67,7 +67,7 @@ describe('lines.test', () => {
 
     it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
         // arange
-        settingCommandMethod.method = null;
+        commandMethods[CommandEnum.settings] = null;
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act
@@ -80,7 +80,7 @@ describe('lines.test', () => {
 
     it('getCommandAnswer should return succes = false when the CommandMethod.method is undefined.', () => {
         // arange
-        settingCommandMethod.method = undefined;
+        commandMethods[CommandEnum.settings] = undefined;
         spyOn(lines, 'getCommandData').andReturn(commandData);
 
         // act
