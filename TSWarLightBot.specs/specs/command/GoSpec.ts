@@ -17,6 +17,7 @@ import ICommand = require('../../../TSWarLightBot/command/ICommand');
 import ISubCommandOption = require('../../../TSWarLightBot/command/ISubCommandOption');
 import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
+import Answer = require('../../../TSWarLightBot/command/Answer');
 import Messages = require('../../../TSWarLightBot/Messages');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
 import IRegion = require('../../../TSWarLightBot/map/I/IRegion');
@@ -37,6 +38,8 @@ describe('go.test', () => {
     var region: IRegion;
 
     var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
+
+    var yourBotName: string = 'player1';
 
     beforeEach(() => {
         region = {
@@ -135,12 +138,14 @@ describe('go.test', () => {
     it('place_armies should return the a placement for every army.', () => {
         // arange
         options[SubCommandEnum.starting_armies] = '3';
+        options[SubCommandEnum.your_bot] = yourBotName;
         spyOn(Math, 'floor').andReturn(0);
+        var resultOneArmie: string = [yourBotName, Answer.PLACE_ARMIES, '1 1'].join(' ');
 
         // act
         var result: ICommandAnswer = go.place_armies(commandData);
 
         // assert
-        expect(result.value).toBe('player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1');
+        expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
     });
 });
