@@ -17,8 +17,7 @@ import SubCommandEnum = require('./../SubCommandEnum');
  * actual an option or setting with a value. Een instance of this interface captures these options.
  */
 interface ISubCommandOption {
-    subCommand: SubCommandEnum;
-    value: string;
+    [command: number]: string;
 }
 
 export = ISubCommandOption;

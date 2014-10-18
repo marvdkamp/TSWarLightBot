@@ -31,7 +31,7 @@ import util = require('util');
 class Go implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
-    constructor(private options: ISubCommandOption[], private warMap: IWarMap) {
+    constructor(private options: ISubCommandOption, private warMap: IWarMap) {
         this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 
                 return this.place_armies(commandData)
             };
@@ -68,10 +68,7 @@ class Go implements ICommand {
 
     public place_armies(commandData: ICommandData): ICommandAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
-        var subCommandOption: ISubCommandOption = _.find(this.options, (option: ISubCommandOption) => {
-            return option.subCommand === SubCommandEnum.starting_armies;
-        })
-        var troopsRemaining: number = parseInt(subCommandOption.value, 10);
+        var troopsRemaining: number = parseInt(this.options[SubCommandEnum.starting_armies], 10);
 
         while (0 < troopsRemaining) {
             var index: number = Math.floor(ownedRegions.length);

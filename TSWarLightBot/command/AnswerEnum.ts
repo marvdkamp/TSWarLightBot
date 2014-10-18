@@ -8,10 +8,10 @@
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
 
-enum Answer {
+enum AnswerEnum {
     place_armies,
     attacktransfer,
     Nomoves
 }
 
-export = Answer;
+export = AnswerEnum;

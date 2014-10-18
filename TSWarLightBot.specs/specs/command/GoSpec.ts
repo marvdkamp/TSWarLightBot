@@ -32,13 +32,7 @@ describe('go.test', () => {
         data: ['2000']
     };
 
-    var options: ISubCommandOption[] = [{
-        subCommand: SubCommandEnum.starting_armies,
-        value: '0'
-    }, {
-        subCommand: SubCommandEnum.your_bot,
-        value: 'player1'
-    }];
+    var options: ISubCommandOption = {};
 
     var region: IRegion;
 
@@ -113,7 +107,7 @@ describe('go.test', () => {
 
     it('place_armies should call Math.floor for the amount of armies it has to place', () => {
         // arange
-        options[0].value = '3';
+        options[SubCommandEnum.starting_armies] = '3';
         spyOn(Math, 'floor').andReturn(0);
 
         // act
@@ -126,8 +120,8 @@ describe('go.test', () => {
 
     it('place_armies should add +1 on troopCount for each armie on region found by index of Math.floor.', () => {
         // arange
+        options[SubCommandEnum.starting_armies] = '3';
         spyOn(Math, 'floor').andReturn(0);
-        options[0].value = '3';
 
         // act
         go.place_armies(commandData);
@@ -140,13 +134,13 @@ describe('go.test', () => {
     // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.floor returns 0 every time).
     it('place_armies should return the a placement for every army.', () => {
         // arange
+        options[SubCommandEnum.starting_armies] = '3';
         spyOn(Math, 'floor').andReturn(0);
-        options[0].value = '3';
 
         // act
         var result: ICommandAnswer = go.place_armies(commandData);
 
         // assert
-        // expect(result.value).toBe('player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1');
+        expect(result.value).toBe('player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1');
     });
 });
