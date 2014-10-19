@@ -27,7 +27,7 @@ class Pick_starting_regionsCommand implements ICommand {
      * getCommandAnswer({
      *     line: 'pick_starting_regions 2000', 
      *     command: CommandEnum.pick_starting_regions,
-     *     subCommand: undefined,
+     *     option: undefined,
      *     data: ['2000']
      * });
      * 

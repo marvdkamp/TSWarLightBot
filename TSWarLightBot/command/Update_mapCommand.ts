@@ -28,7 +28,7 @@ class Update_mapCommand implements ICommand {
      * getCommandAnswer({
      *     line: 'update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5',
      *     command: CommandEnum.update_map,
-     *     subCommand: undefined,
+     *     option: undefined,
      *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
      * });
      *

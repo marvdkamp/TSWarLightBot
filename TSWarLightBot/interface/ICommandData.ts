@@ -11,7 +11,7 @@
 'use strict';
 
 import CommandEnum = require('./../enum/CommandEnum');
-import SubCommandEnum = require('./../enum/SubCommandEnum');
+import OptionEnum = require('./../enum/OptionEnum');
 
 /**
  * Information about the command from the game engine.
@@ -29,9 +29,9 @@ interface ICommandData {
     command: CommandEnum;
 
     /**
-     * Which sub command.
+     * Which option.
      */
-    subCommand?: SubCommandEnum;
+    option?: OptionEnum;
 
     /**
      * Arguments given by the command.

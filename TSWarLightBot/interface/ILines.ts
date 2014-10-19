@@ -33,7 +33,7 @@ interface ILines {
      *           {
      *               line: 'settings opponent_bot player2',
      *               command: CommandEnum.settings,
-     *               subCommand: SubCommandEnum.opponent_bot,
+     *               option: OptionEnum.opponent_bot,
      *               data: ['player2']
      *           }
      */

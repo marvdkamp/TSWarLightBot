@@ -42,7 +42,7 @@
     <TypeScriptCompile Include="command\GoCommand.ts" />
     <TypeScriptCompile Include="command\interface\ICommand.ts" />
     <TypeScriptCompile Include="command\interface\IMoveData.ts" />
-    <TypeScriptCompile Include="command\interface\ISubCommandOption.ts" />
+    <TypeScriptCompile Include="command\interface\IOptionSetting.ts" />
     <TypeScriptCompile Include="command\Opponent_movesCommand.ts" />
     <TypeScriptCompile Include="command\SettingsCommand.ts" />
     <TypeScriptCompile Include="command\Setup_mapCommand.ts" />
@@ -63,7 +63,7 @@
     <TypeScriptCompile Include="map\WarMap.ts" />
     <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="enum\SubCommandEnum.ts" />
+    <TypeScriptCompile Include="enum\OptionEnum.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="command\interface\" />

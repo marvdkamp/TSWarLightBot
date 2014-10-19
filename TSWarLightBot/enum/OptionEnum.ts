@@ -13,7 +13,7 @@
 /**
  * Some commands from the game engie are split up in two parts. These are those second parts.
  */
-enum SubCommandEnum {
+enum OptionEnum {
     /**
      * The superregions are given. Will be preceded with setup_map.
      */
@@ -55,4 +55,4 @@ enum SubCommandEnum {
     attacktransfer
 }
 
-export = SubCommandEnum;
+export = OptionEnum;

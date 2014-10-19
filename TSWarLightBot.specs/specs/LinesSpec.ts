@@ -18,7 +18,7 @@ import ICommandMethod = require('../../TSWarLightBot/interface/ICommandMethod');
 import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
-import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
+import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('lines', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
@@ -33,7 +33,7 @@ describe('lines', () => {
     
     beforeEach(() => {
         commandMethods[CommandEnum.settings] = settingMethod;
-        commandString = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
+        commandString = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
         lines = new Lines(commandMethods);
     });
 
@@ -136,17 +136,17 @@ describe('lines', () => {
             expect(result.command).toBe(undefined);
         });
 
-        it('Should return subCommand if string matches', () => {
+        it('Should return option if string matches', () => {
             // arange
 
             // act
             var result: ICommandData = lines.getCommandData(commandString);
 
             // assert
-            expect(result.subCommand).toBe(SubCommandEnum.your_bot);
+            expect(result.option).toBe(OptionEnum.your_bot);
         });
 
-        it('Should return subCommand if string contains a slash /', () => {
+        it('Should return option if string contains a slash /', () => {
             // arange
             commandString = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
 
@@ -154,10 +154,10 @@ describe('lines', () => {
             var result: ICommandData = lines.getCommandData(commandString);
 
             // assert
-            expect(result.subCommand).toBe(SubCommandEnum.attacktransfer);
+            expect(result.option).toBe(OptionEnum.attacktransfer);
         });
 
-        it('Should return subCommand undefined if string contains only 1 linepart and should not crash', () => {
+        it('Should return option undefined if string contains only 1 linepart and should not crash', () => {
             // arange
             commandString = CommandEnum[CommandEnum.settings];
 
@@ -165,10 +165,10 @@ describe('lines', () => {
             var result: ICommandData = lines.getCommandData(commandString);
 
             // assert
-            expect(result.subCommand).toBe(undefined);
+            expect(result.option).toBe(undefined);
         });
 
-        it('Should return subCommand undefined for a command which has no subCommand', () => {
+        it('Should return option undefined for a command which has no option', () => {
             // arange
             commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
 
@@ -176,12 +176,12 @@ describe('lines', () => {
             var result: ICommandData = lines.getCommandData(commandString);
 
             // assert
-            expect(result.subCommand).toBe(undefined);
+            expect(result.option).toBe(undefined);
         });
 
-        it('Should return the right data for a command with subcommand', () => {
+        it('Should return the right data for a command with option', () => {
             // arange
-            commandString = [CommandEnum[CommandEnum.setup_map], SubCommandEnum[SubCommandEnum.super_regions], '1 2 2 5'].join(' ');
+            commandString = [CommandEnum[CommandEnum.setup_map], OptionEnum[OptionEnum.super_regions], '1 2 2 5'].join(' ');
 
             // act
             var result: ICommandData = lines.getCommandData(commandString);
@@ -190,7 +190,7 @@ describe('lines', () => {
             expect(result.data).toEqual(['1', '2', '2', '5']);
         });
 
-        it('Should return the right data for a command which has no subcommand', () => {
+        it('Should return the right data for a command which has no option', () => {
             // arange
             commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
 

@@ -17,7 +17,7 @@
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/interface/IBot');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
-import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
+import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('bot', () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
@@ -45,7 +45,7 @@ describe('bot', () => {
         exit: jasmine.createSpy('exit')
     }
 
-    var commandString: string = [CommandEnum[CommandEnum.settings], SubCommandEnum[SubCommandEnum.your_bot], 'player1'].join(' ');
+    var commandString: string = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
     beforeEach(() => {
         bot = new Bot(io, lines, botProcess);

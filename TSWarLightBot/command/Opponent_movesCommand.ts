@@ -29,7 +29,7 @@ class Opponent_movesCommand implements ICommand {
      * getCommandAnswer({
      *     line: 'opponent_moves',
      *     command: CommandEnum.opponent_moves,
-     *     subCommand: undefined,
+     *     option: undefined,
      *     data: []
      * });
      * 

@@ -16,7 +16,7 @@ import ICommandData = require('./interface/ICommandData');
 import ICommandMethod = require('./interface/ICommandMethod');
 import Consts = require('./Consts');
 import CommandEnum = require('./enum/CommandEnum');
-import SubCommandEnum = require('./enum/SubCommandEnum');
+import OptionEnum = require('./enum/OptionEnum');
 import util = require('util');
 
 /**
@@ -54,23 +54,23 @@ class Lines implements ILines {
      *           {
      *               line: 'settings opponent_bot player2',
      *               command: CommandEnum.settings,
-     *               subCommand: SubCommandEnum.opponent_bot,
+     *               option: OptionEnum.opponent_bot,
      *               data: ['player2']
      *           }
      */
     public getCommandData(line: string): ICommandData {
         var lineParts: string[] = line.split(' ');
         var command: CommandEnum = this.getEnum(lineParts.shift(), CommandEnum);
-        var part = lineParts.shift();
-        var subCommand: SubCommandEnum = this.getEnum(part, SubCommandEnum);
-        if (subCommand === undefined) {
+        var part: string = lineParts.shift();
+        var option: OptionEnum = this.getEnum(part, OptionEnum);
+        if (option === undefined) {
             lineParts.unshift(part);
         }
 
         return {
             line: line,
             command: command,
-            subCommand: subCommand,
+            option: option,
             data: lineParts
         }
     }
@@ -84,7 +84,7 @@ class Lines implements ILines {
         value = value.replace('/', '');
 
         // Example
-        // enum SubCommandEnum {
+        // enum OptionEnum {
         //    super_regions
         // }
         // We want "0" to return undefined and not "super_regions"
