@@ -4,8 +4,12 @@
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jasmine_node: {
-            coverage: {
+            projectRoot: '../',
+            specFolders: ['specs'],
 
+
+            coverage: {
+                excludes: ['**/TSWarLightBot.specs/**'],
             },
             options: {
                 forceExit: true,
@@ -14,6 +18,7 @@
                 extensions: 'js',
                 specNameMatcher: 'Spec',
                 captureExceptions: true,
+                
                 junitreport: {
                     report: false,
                     savePath : './build/reports/jasmine/',

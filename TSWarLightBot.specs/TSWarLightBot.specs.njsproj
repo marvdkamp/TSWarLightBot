@@ -36,42 +36,6 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <TypeScriptCompile Include="coverage\_source\Bot.ts" />
-    <TypeScriptCompile Include="coverage\_source\CommandAnswer.ts" />
-    <TypeScriptCompile Include="coverage\_source\CommandEnum.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Go.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\ICommand.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\ISubCommandMethod.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Opponent_moves.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Pick_starting_regions.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Settings.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Setup_map.ts" />
-    <TypeScriptCompile Include="coverage\_source\command\Update_map.ts" />
-    <TypeScriptCompile Include="coverage\_source\IBot.ts" />
-    <TypeScriptCompile Include="coverage\_source\ICommandAnswer.ts" />
-    <TypeScriptCompile Include="coverage\_source\ICommandData.ts" />
-    <TypeScriptCompile Include="coverage\_source\ICommandMethod.ts" />
-    <TypeScriptCompile Include="coverage\_source\ILines.ts" />
-    <TypeScriptCompile Include="coverage\_source\Lines.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\I\IRegion.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\I\ISuperRegion.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\I\IWarMap.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\PossibleOwners.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\Region.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\SuperRegion.ts" />
-    <TypeScriptCompile Include="coverage\_source\map\WarMap.ts" />
-    <TypeScriptCompile Include="coverage\_source\Messages.ts" />
-    <TypeScriptCompile Include="coverage\_source\Runner.ts" />
-    <TypeScriptCompile Include="coverage\_source\SubCommandEnum.ts" />
-    <TypeScriptCompile Include="coverage\_specs\BotSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\GoSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\Opponent_movesSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\Pick_starting_regionsSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\SettingsSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\Setup_mapSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\command\Update_mapSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\LinesSpec.ts" />
-    <TypeScriptCompile Include="coverage\_specs\map\WarMapSpec.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\legacy\jasmine-1.3-tests.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\legacy\jasmine-1.3.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
@@ -88,13 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="coverage\" />
-    <Folder Include="coverage\_source\" />
-    <Folder Include="coverage\_source\command\" />
-    <Folder Include="coverage\_source\map\" />
-    <Folder Include="coverage\_source\map\I\" />
-    <Folder Include="coverage\_specs\" />
-    <Folder Include="coverage\_specs\command\" />
-    <Folder Include="coverage\_specs\map\" />
     <Folder Include="Scripts\typings\jasmine\" />
     <Folder Include="Scripts\typings\jasmine\legacy\" />
     <Folder Include="Scripts\typings\underscore\" />
