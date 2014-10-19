@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ICommandAnswer = require('ICommandAnswer');
+import ICommandAnswer = require('./interface/ICommandAnswer');
 
 /**
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
@@ -18,7 +18,7 @@ import ICommandAnswer = require('ICommandAnswer');
 class CommandAnswer implements ICommandAnswer {
 
     /**
-     * Create an instance of the Bot CommandAnswer.
+     * Create an instance of the CommandAnswer class.
      * @constructor
      * @param succes {boolean} - Could the command succesfully be handled by the bot.
      * @param answer {string} - The answer from the bot to the command.

@@ -13,8 +13,13 @@
 /**
  * Holds message's prevents retyping it everywhere.
  */
-class Messages {
+class Consts {
     public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s\n'; }
+    public static get PLACE_ARMIES(): string { return 'place_armies'; }
+    public static get ATTACK_TRANSFER(): string { return 'attack/transfer'; }
+    public static get NO_MOVES(): string { return 'No moves'; }
+    public static get MINIMUM_TROOPS_FOR_ATTACK(): number { return 7; }
+    public static get MINIMUM_TROOPS_FOR_TRANSFER(): number { return 2; }
 }
 
-export = Messages;
+export = Consts;

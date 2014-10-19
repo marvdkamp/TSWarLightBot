@@ -8,9 +8,13 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
-/// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('opponent_moves.test', () => {
-    var Opponent_moves: any = require("../../../TSWarLightBot/command/Opponent_moves");
-});
+import ICommandAnswer = require('./../../interface/ICommandAnswer');
+import ICommandData = require('./../../interface/ICommandData');
+
+interface ICommand {
+    getCommandAnswer(commandData: ICommandData): ICommandAnswer;
+}
+
+export = ICommand;

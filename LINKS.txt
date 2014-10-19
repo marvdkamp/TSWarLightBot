@@ -68,3 +68,6 @@ http://gruntjs.com/getting-started#the-gruntfile
 
 Jasmine-node-coverage
 https://github.com/jribble/grunt-jasmine-node-coverage
+
+Nested descripe
+http://coderdiaries.com/2014/05/30/jasminejs-execution-sequence-whith-nested-describes/

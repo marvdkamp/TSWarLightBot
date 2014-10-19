@@ -8,13 +8,9 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+/// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import ICommandAnswer = require('ICommandAnswer');
-import ICommandData = require('ICommandData');
-
-interface ICommand {
-    getCommandAnswer(commandData: ICommandData): ICommandAnswer;
-}
-
-export = ICommand;
+describe('pick_starting_regionsCommand', () => {
+    var Pick_starting_regionsCommand: any = require("../../../TSWarLightBot/command/Pick_starting_regionsCommand");
+});

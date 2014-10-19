@@ -10,15 +10,15 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommand = require('./interface/ICommand');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and request for the bot to 
  * return his attack and/or transfer moves.
  */
-class Pick_starting_regions implements ICommand {
+class Pick_starting_regionsCommand implements ICommand {
     /**
      * Gets the answer from the bot for the pick_starting_regions command.
      * @param data {ICommandData} - Information about the command.
@@ -30,10 +30,16 @@ class Pick_starting_regions implements ICommand {
      *     subCommand: undefined,
      *     data: ['2000']
      * });
+     * 
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }
 
-export = Pick_starting_regions;
+export = Pick_starting_regionsCommand;

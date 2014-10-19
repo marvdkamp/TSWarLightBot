@@ -4,7 +4,7 @@
   "description": "TSWarLightBot.specs",
   "main": "node_modules/jasmine-node/lib/jasmine-node/cli.js",
   "author": {
-    "name": "Marcel",
+    "name": "Marcel van de Kamp and Taeke van der Veen",
     "email": ""
   },
   "dependencies": {

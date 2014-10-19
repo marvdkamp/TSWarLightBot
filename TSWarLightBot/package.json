@@ -4,11 +4,8 @@
   "description": "TSWarLightBot",
   "main": "Runner.js",
   "author": {
-    "name": "Taeke",
+    "name": "Marcel van de Kamp and Taeke van der Veen",
     "email": ""
   },
-  "dependencies": {
-    "underscore": "^1.7.0"
-  },
-  "devDependencies": {}
+  "dependencies": {}
 }

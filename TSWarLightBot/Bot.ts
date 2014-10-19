@@ -11,8 +11,8 @@
 'use strict';
 
 import readline = require('readline');
-import IBot = require('IBot');
-import ILines = require('ILines');
+import IBot = require('./interface/IBot');
+import ILines = require('./interface/ILines');
 
 /**
  * Main class of the app. Handles reading from and writing to the console. Will be instantiated and run from Runner.ts.
@@ -45,7 +45,7 @@ class Bot implements IBot {
 
     /**
      * Handle a incoming command from the game engine.
-     * @param data {string} - a string containing a command send from the console.
+     * @param data {string} - a string containing a command send to the console.
      * Example handleLine('setup_map regions 1 1 2 1 3 2 4 2 5 2');
      */
     public handleLine(data: string): void {

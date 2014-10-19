@@ -26,10 +26,16 @@ interface ILines {
     getCommandAnswer(line: string): ICommandAnswer;
 
     /**
-     * Gets a ICommandData by converting a string containing the information.
+     * Gets a ICommandData instance by converting a string containing the information.
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command information.
      * Example : getCommandData('settings opponent_bot player2');
+     *           {
+     *               line: 'settings opponent_bot player2',
+     *               command: CommandEnum.settings,
+     *               subCommand: SubCommandEnum.opponent_bot,
+     *               data: ['player2']
+     *           }
      */
     getCommandData(line: string): ICommandData;
 }

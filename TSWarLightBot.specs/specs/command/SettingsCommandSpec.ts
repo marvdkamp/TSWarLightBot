@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('setup_map.test', () => {
-    var Setup_map: any = require("../../../TSWarLightBot/command/Setup_map");
+describe('settingsCommand', () => {
+    var SettingsCommand: any = require("../../../TSWarLightBot/command/SettingsCommand");
 });

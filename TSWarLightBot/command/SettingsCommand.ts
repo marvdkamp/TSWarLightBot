@@ -10,19 +10,23 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ICommandMethod = require('./../ICommandMethod');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
-import SubCommandEnum = require('../SubCommandEnum');
+import ICommand = require('./interface/ICommand');
+import ICommandMethod = require('./../interface/ICommandMethod');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
+import SubCommandEnum = require('../enum/SubCommandEnum');
 
 /**
  * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 
  * and the amount of armies your bot can place on the map at the start of this round
  */
-class Settings implements ICommand {
+class SettingsCommand implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
+    /**
+     * Create an instance of the Settings class.
+     * @constructor
+     */
     constructor() {
         this.subCommandMethodList[SubCommandEnum.your_bot] = (commandData: ICommandData) => { 
                 return this.your_bot(commandData)
@@ -44,6 +48,12 @@ class Settings implements ICommand {
      *     subCommand: SubCommandEnum.your_bot,
      *     data: ['player1']
      * });
+     *
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
@@ -58,4 +68,4 @@ class Settings implements ICommand {
     }
 }
 
-export = Settings;
+export = SettingsCommand;

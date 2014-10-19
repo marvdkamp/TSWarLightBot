@@ -15,11 +15,11 @@
 //TODO: Trim lines!!!!
 
 import readline = require('readline');
-import IBot = require('../../TSWarLightBot/IBot');
-import CommandEnum = require('../../TSWarLightBot/CommandEnum');
-import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
+import IBot = require('../../TSWarLightBot/interface/IBot');
+import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
+import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
 
-describe('bot.test', () => {
+describe('bot', () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
@@ -58,89 +58,95 @@ describe('bot.test', () => {
         botProcess.stderr.write.reset();
     });
 
-    it('Should call on on io with line and close arguments to attach events.', () => {
-        // arange
+    describe('run', () => {
+        it('Should call on on io with line and close arguments to attach events.', () => {
+            // arange
 
-        // act
-        bot.run();
+            // act
+            bot.run();
 
-        // assert
-        expect(io.on).toHaveBeenCalledWith('line', jasmine.any(Function));
-        expect(io.on).toHaveBeenCalledWith('close', jasmine.any(Function));
-        expect(io.on.callCount).toBe(2);
+            // assert
+            expect(io.on).toHaveBeenCalledWith('line', jasmine.any(Function));
+            expect(io.on).toHaveBeenCalledWith('close', jasmine.any(Function));
+            expect(io.on.callCount).toBe(2);
+        });
+
+        it('Should attach the right methodes to the events.', () => {
+            // arange
+            spyOn(bot, 'handleLine');
+            spyOn(bot, 'handleClose');
+
+            // act
+            bot.run();
+            lineListener(commandString);
+            closeListener();
+
+            // assert
+            expect(bot.handleLine).toHaveBeenCalledWith(commandString);
+            expect(bot.handleClose).toHaveBeenCalled();
+        });
     });
 
-    it('Should attach the right methodes to the events.', () => {
-        // arange
-        spyOn(bot, 'handleLine');
-        spyOn(bot, 'handleClose');
+    describe('handleLine', () => {
+        it('Should call getCommandAnswer on lines.', () => {
+            // arange
 
-        // act
-        bot.run();
-        lineListener(commandString);
-        closeListener();
+            // act
+            bot.handleLine(commandString);
 
-        // assert
-        expect(bot.handleLine).toHaveBeenCalledWith(commandString);
-        expect(bot.handleClose).toHaveBeenCalled();
+            // assert
+            expect(lines.getCommandAnswer).toHaveBeenCalled();
+            expect(lines.getCommandAnswer.callCount).toBe(1);
+        });
+
+        it('Should NOT call getCommandAnswer on lines if string is empty.', () => {
+            // arange
+
+            // act
+            bot.handleLine('');
+
+            // assert
+            expect(lines.getCommandAnswer).not.toHaveBeenCalled();
+            expect(lines.getCommandAnswer.callCount).toBe(0);
+        });
+
+        it('Should call process.stdout.write on lines if result is succesfull.', () => {
+            // arange
+            commandAnswer.succes = true;
+            commandAnswer.value = 'test';
+
+            // act
+            bot.handleLine(commandString);
+
+            // assert
+            expect(botProcess.stdout.write).toHaveBeenCalled();
+            expect(botProcess.stdout.write.callCount).toBe(1);
+            expect(botProcess.stderr.write.callCount).toBe(0);
+        });
+
+        it('Should call process.stderr.write on lines if commandName is NOT succesfull.', () => {
+            // arange
+            commandAnswer.succes = false;
+            commandAnswer.value = 'test';
+
+            // act
+            bot.handleLine('doesnotexcist');
+
+            // assert
+            expect(botProcess.stderr.write).toHaveBeenCalled();
+            expect(botProcess.stderr.write.callCount).toBe(1);
+            expect(botProcess.stdout.write.callCount).toBe(0);
+        });
     });
 
-    it('Should call getCommandAnswer on lines.', () => {
-        // arange
+    describe('handleClose', () => {
+        it('Should call process.exit(0) if handleClose is called.', () => {
+            // act
+            bot.handleClose();
 
-        // act
-        bot.handleLine(commandString);
-
-        // assert
-        expect(lines.getCommandAnswer).toHaveBeenCalled();
-        expect(lines.getCommandAnswer.callCount).toBe(1);
-    });
-
-    it('Should NOT call getCommandAnswer on lines if string is empty.', () => {
-        // arange
-
-        // act
-        bot.handleLine('');
-
-        // assert
-        expect(lines.getCommandAnswer).not.toHaveBeenCalled();
-        expect(lines.getCommandAnswer.callCount).toBe(0);
-    });
-
-    it('Should call process.stdout.write on lines if result is succesfull.', () => {
-        // arange
-        commandAnswer.succes = true;
-        commandAnswer.value = 'test';
-
-        // act
-        bot.handleLine(commandString);
-
-        // assert
-        expect(botProcess.stdout.write).toHaveBeenCalled();
-        expect(botProcess.stdout.write.callCount).toBe(1);
-        expect(botProcess.stderr.write.callCount).toBe(0);
-    });
-
-    it('Should call process.stderr.write on lines if commandName is NOT succesfull.', () => {
-        // arange
-        commandAnswer.succes = false;
-        commandAnswer.value = 'test';
-
-        // act
-        bot.handleLine('doesnotexcist');
-
-        // assert
-        expect(botProcess.stderr.write).toHaveBeenCalled();
-        expect(botProcess.stderr.write.callCount).toBe(1);
-        expect(botProcess.stdout.write.callCount).toBe(0);
-    });
-
-    it('Should call process.exit(0) if handleClose is called.', () => {
-        // act
-        bot.handleClose();
-
-        // assert
-        expect(botProcess.exit).toHaveBeenCalled();
-        expect(botProcess.exit.callCount).toBe(1);
+            // assert
+            expect(botProcess.exit).toHaveBeenCalled();
+            expect(botProcess.exit.callCount).toBe(1);
+        });
     });
 });   

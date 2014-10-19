@@ -8,12 +8,9 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+/// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-enum PossibleOwners {
-     NEUTRAL,
-     OPPONENT,
-     PLAYER
-}
-
-export = PossibleOwners;
+describe('setup_mapCommand', () => {
+    var Setup_mapCommand: any = require("../../../TSWarLightBot/command/Setup_mapCommand");
+});

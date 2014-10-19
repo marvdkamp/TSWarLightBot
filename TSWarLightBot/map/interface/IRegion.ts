@@ -14,12 +14,12 @@
  * interface of a Region Object.
  */
 import ISuperRegion = require('./ISuperRegion');
-import PossibleOwners = require('../PossibleOwners');
+import PossibleOwnersEnum = require('../enum/PossibleOwnersEnum');
 
 interface IRegion {
     id: number;
     superRegion: ISuperRegion;
-    owner: PossibleOwners;
+    owner: PossibleOwnersEnum;
     neighbors: IRegion[];
     troopCount: number;
     isOnEmpireBorder: boolean;

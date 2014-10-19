@@ -8,13 +8,9 @@
  * @authors Marcel van de Kamp and Taeke van der Veen
  * @License MIT License (http://opensource.org/Licenses/MIT)
  */
+/// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import IRegion = require('../map/I/IRegion');
-
-interface IMove {
-    moveTo: IRegion;
-    moveFrom: IRegion;
-}
-
-export = IMove;
+describe('opponent_movesCommand', () => {
+    var Opponent_movesCommand: any = require("../../../TSWarLightBot/command/Opponent_movesCommand");
+});

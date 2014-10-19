@@ -10,15 +10,15 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommand = require('./interface/ICommand');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
  * number of armies.
  */
-class Update_map implements ICommand {
+class Update_mapCommand implements ICommand {
 
     /**
      * Gets the answer from the bot for the update_map command.
@@ -31,10 +31,16 @@ class Update_map implements ICommand {
      *     subCommand: undefined,
      *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
      * });
+     *
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }
 
-export = Update_map;
+export = Update_mapCommand;

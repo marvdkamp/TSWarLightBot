@@ -10,13 +10,19 @@
  */
 'use strict';
 
-import ISuperRegion = require('./I/ISuperRegion');
+import ISuperRegion = require('./interface/ISuperRegion');
 
 class SuperRegion implements ISuperRegion {
     id: number;
     bonus: number;
     regions: {};
 
+    /**
+     * Create an instance of the SuperRegion class. 
+     * @constructor
+     * @param id {number} - The unique id for this SuperRegion.
+     * @param bonus {number} - A bot which owns every Region of this Superregion instance gets this amount of bonus troops.
+     */
     constructor(id: number, bonus: number) {
         this.id = id;
         this.bonus = bonus;

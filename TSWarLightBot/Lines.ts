@@ -10,15 +10,14 @@
  */
 'use strict';
 
-import ILines = require('./ILines');
-import ICommandAnswer = require('./ICommandAnswer');
-import ICommandData = require('./ICommandData');
-import ICommandMethod = require('./ICommandMethod');
-import Messages = require('./Messages');
-import CommandEnum = require('./CommandEnum');
-import SubCommandEnum = require('./SubCommandEnum');
+import ILines = require('./interface/ILines');
+import ICommandAnswer = require('./interface/ICommandAnswer');
+import ICommandData = require('./interface/ICommandData');
+import ICommandMethod = require('./interface/ICommandMethod');
+import Consts = require('./Consts');
+import CommandEnum = require('./enum/CommandEnum');
+import SubCommandEnum = require('./enum/SubCommandEnum');
 import util = require('util');
-import _ = require('underscore');
 
 /**
  * Converts lines to command information and passes it to the right command class and returns the answer.
@@ -42,16 +41,22 @@ class Lines implements ILines {
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, line)
+                value: util.format(Consts.UNABLE_TO_EXECUTE, line)
             }
         }
     }
 
     /**
-     * Gets a ICommandData by converting a string containing the information.
+     * Gets a ICommandData instance by converting a string containing the information.
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command information.
      * Example : getCommandData('settings opponent_bot player2');
+     *           {
+     *               line: 'settings opponent_bot player2',
+     *               command: CommandEnum.settings,
+     *               subCommand: SubCommandEnum.opponent_bot,
+     *               data: ['player2']
+     *           }
      */
     public getCommandData(line: string): ICommandData {
         var lineParts: string[] = line.split(' ');
@@ -74,6 +79,9 @@ class Lines implements ILines {
         if (!value) {
             return undefined;
         }
+
+        // attack/transfer is not a valid enum value. We have to remove te slash.
+        value = value.replace('/', '');
 
         // Example
         // enum SubCommandEnum {

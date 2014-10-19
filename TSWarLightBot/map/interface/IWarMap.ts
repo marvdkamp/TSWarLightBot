@@ -15,7 +15,7 @@
  */
 import IRegion = require('./IRegion');
 import ISuperRegion = require('./ISuperRegion');
-import PossibleOwners = require('../PossibleOwners');
+import PossibleOwnersEnum = require('../enum/PossibleOwnersEnum');
 
 interface IWarMap {
     /**
@@ -32,7 +32,7 @@ interface IWarMap {
     * Get all the regions owned by @owner
     * @param owner 
     */
-    getOwnedRegions: (owner: PossibleOwners) => IRegion[];
+    getOwnedRegions: (owner: PossibleOwnersEnum) => IRegion[];
 
     /**
     * Add a new region.

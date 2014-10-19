@@ -10,14 +10,14 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommand = require('./interface/ICommand');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
  */
-class Opponent_moves implements ICommand {
+class Opponent_movesCommand implements ICommand {
 
     /**
      * Gets the answer from the bot for the go command.
@@ -32,10 +32,16 @@ class Opponent_moves implements ICommand {
      *     subCommand: undefined,
      *     data: []
      * });
+     * 
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: ''
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }
 
-export = Opponent_moves;
+export = Opponent_movesCommand;

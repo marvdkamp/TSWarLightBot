@@ -11,15 +11,14 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
-import IWarMap = require('../../../TSWarLightBot/map/I/IWarMap');
-
+import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
+import IWarMap = require('../../../TSWarLightBot/map/interface/IWarMap');
 
 import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');
 import Region = require('../../../TSWarLightBot/map/Region');
 import WarMap = require('../../../TSWarLightBot/map/WarMap');
 
-describe('map.test', () => {
+describe('WarMap', () => {
     //newed
     var warMap: IWarMap;
     //mocked
@@ -39,16 +38,16 @@ describe('map.test', () => {
             opponentRegion1 = new Region(3, superRegion),
             neutralRegion1 = new Region(4, superRegion);
 
-        playerRegion1.owner = PossibleOwners.PLAYER,
-        playerRegion2.owner = PossibleOwners.PLAYER,
-        opponentRegion1.owner = PossibleOwners.OPPONENT;
+        playerRegion1.owner = PossibleOwnersEnum.PLAYER,
+        playerRegion2.owner = PossibleOwnersEnum.PLAYER,
+        opponentRegion1.owner = PossibleOwnersEnum.OPPONENT;
 
         warMap.addRegion(playerRegion1),
         warMap.addRegion(playerRegion2),
         warMap.addRegion(opponentRegion1),
         warMap.addRegion(neutralRegion1);
         //act
-        var owned = warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var owned = warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
 
         //assert
         expect(owned.length).toBe(2);

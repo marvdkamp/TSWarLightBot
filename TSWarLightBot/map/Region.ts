@@ -10,24 +10,30 @@
  */
 'use strict';
 
-import IRegion = require('./I/IRegion');
-import ISuperRegion = require('./I/ISuperRegion');
-import PossibleOwners = require('./PossibleOwners');
+import IRegion = require('./interface/IRegion');
+import ISuperRegion = require('./interface/ISuperRegion');
+import PossibleOwnersEnum = require('./enum/PossibleOwnersEnum');
 
 class Region implements IRegion {
     id: number;
     superRegion: ISuperRegion;
-    owner: PossibleOwners;
+    owner: PossibleOwnersEnum;
     neighbors: IRegion[];
     troopCount: number;
     isOnEmpireBorder: boolean;
     isOnSuperRegionBorder: boolean;
 
 
+    /**
+     * Create an instance of the Region class. Sets properties to a default value.
+     * @constructor
+     * @param id {number} - The unique id for this Region.
+     * @param superRegion {ISuperRegion} - Every Region instance is part of a superRegion.
+     */
     constructor(id: number, superRegion: ISuperRegion) {
         this.id = id;
         this.superRegion = superRegion;
-        this.owner = PossibleOwners.NEUTRAL;
+        this.owner = PossibleOwnersEnum.NEUTRAL;
         this.neighbors = [];
         this.troopCount = 2;
         this.isOnEmpireBorder = false;

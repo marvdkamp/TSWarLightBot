@@ -5,7 +5,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>TSWarLightBot.specs</Name>
     <RootNamespace>TSWarLightBot.specs</RootNamespace>
-    <ScriptArguments>specs/</ScriptArguments>
+    <ScriptArguments>specs/ --verbose</ScriptArguments>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -77,12 +77,12 @@
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
     <TypeScriptCompile Include="specs\BotSpec.ts" />
-    <TypeScriptCompile Include="specs\command\GoSpec.ts" />
-    <TypeScriptCompile Include="specs\command\Opponent_movesSpec.ts" />
-    <TypeScriptCompile Include="specs\command\Pick_starting_regionsSpec.ts" />
-    <TypeScriptCompile Include="specs\command\SettingsSpec.ts" />
-    <TypeScriptCompile Include="specs\command\Setup_mapSpec.ts" />
-    <TypeScriptCompile Include="specs\command\Update_mapSpec.ts" />
+    <TypeScriptCompile Include="specs\command\GoCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Opponent_movesCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Pick_starting_regionsCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\SettingsCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Setup_mapCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\Update_mapCommandSpec.ts" />
     <TypeScriptCompile Include="specs\LinesSpec.ts" />
     <TypeScriptCompile Include="specs\map\WarMapSpec.ts" />
   </ItemGroup>

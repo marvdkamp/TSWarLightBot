@@ -10,19 +10,23 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ICommandMethod = require('./../ICommandMethod');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
-import SubCommandEnum = require('../SubCommandEnum');
+import ICommand = require('./interface/ICommand');
+import ICommandMethod = require('./../interface/ICommandMethod');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
+import SubCommandEnum = require('../enum/SubCommandEnum');
 
 /**
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
  * of the regions are given in different calls
  */
-class Setup_map implements ICommand {
+class Setup_mapCommand implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
+    /**
+     * Create an instance of the Setup_map class.
+     * @constructor
+     */
     constructor() {
         this.subCommandMethodList[SubCommandEnum.super_regions] = (commandData: ICommandData) => { 
             return this.super_regions(commandData)
@@ -48,6 +52,13 @@ class Setup_map implements ICommand {
      *     subCommand: SubCommandEnum.super_regions,
      *     data: ['1', '2', '2', '5']
      * });
+     * 
+     *
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
@@ -66,4 +77,4 @@ class Setup_map implements ICommand {
     }
 }
 
-export = Setup_map;
+export = Setup_mapCommand;
