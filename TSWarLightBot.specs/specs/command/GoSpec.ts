@@ -148,7 +148,9 @@ describe('go.test', () => {
 
     it('attacktransfer should call getRegionsToAttack on this once', () => {
         // arange
-        spyOn(go, 'getRegionsToAttack');
+        spyOn(go, 'getRegionsToAttack').andReturn([{
+            moveFrom: region
+        }]);
 
         // act
         go.attacktransfer(commandData);
@@ -160,6 +162,9 @@ describe('go.test', () => {
 
     it('attacktransfer should call getRegionsToTransferTo on this once', () => {
         // arange
+        spyOn(go, 'getRegionsToAttack').andReturn([{
+            moveFrom: region
+        }]);
         spyOn(go, 'getRegionsToTransferTo');
 
         // act
@@ -168,5 +173,19 @@ describe('go.test', () => {
         // assert
         expect(go.getRegionsToTransferTo).toHaveBeenCalledWith([region]);
         expect(go.getRegionsToTransferTo.callCount).toBe(1);
+    });
+
+    it('attacktransfer should set troopsCount to 1 on moveFrom in each IMove result from getRegionsToAttack', () => {
+        // arange
+        region.troopCount = 4;
+        spyOn(go, 'getRegionsToAttack').andReturn([{
+            moveFrom: region
+        }]);
+
+        // act
+        go.attacktransfer(commandData);
+
+        // assert
+        expect(region.troopCount).toBe(1);
     });
 });
