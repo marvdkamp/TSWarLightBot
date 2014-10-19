@@ -94,7 +94,6 @@ describe('go.test', () => {
         result[0].neighbors.push(result[1]);
         result[0].neighbors.push(result[2]);
         result[0].neighbors.push(result[3]);
-        result[1].neighbors.push(result[1]);
 
         return result;
     }
@@ -192,46 +191,44 @@ describe('go.test', () => {
         expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
     });
 
-    it('attacktransfer should call getRegionsToAttack on this once', () => {
+    it('attacktransfer should call getRegionsToAttackTransfer on this twice', () => {
         // arange
-        spyOn(go, 'getRegionsToAttack').andReturn([{
-            moveFrom: regions[0],
-            moveTo: regions[2]
-        }]);
-        spyOn(go, 'getRegionsToTransferTo').andReturn([]);
+        spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            if (own) {
+                return [{
+                    moveFrom: regions[1],
+                    moveTo: regions[0]
+                }];
+            } else {
+                return [{
+                    moveFrom: regions[0],
+                    moveTo: regions[2]
+                }];
+            }
+        });
 
         // act
         go.attacktransfer(commandAttackTransferData);
 
         // assert
-        expect(go.getRegionsToAttack).toHaveBeenCalledWith(ownRegions);
-        expect(go.getRegionsToAttack.callCount).toBe(1);
+        expect(go.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, false, 6);
+        expect(go.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, true, 2);
+        expect(go.getRegionsToAttackTransfer.callCount).toBe(2);
     });
 
-    it('attacktransfer should call getRegionsToTransferTo on this once', () => {
-        // arange
-        spyOn(go, 'getRegionsToAttack').andReturn([{
-            moveFrom: regions[0],
-            moveTo: regions[2]
-        }]);
-        spyOn(go, 'getRegionsToTransferTo').andReturn([]);
-
-        // act
-        go.attacktransfer(commandAttackTransferData);
-
-        // assert
-        expect(go.getRegionsToTransferTo).toHaveBeenCalledWith(ownRegions);
-        expect(go.getRegionsToTransferTo.callCount).toBe(1);
-    });
-
-    it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttack', () => {
+    it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', () => {
         // arange
         regions[0].troopCount = 2;
-        spyOn(go, 'getRegionsToAttack').andReturn([{
-            moveFrom: regions[0],
-            moveTo: regions[2]
-        }]);
-        spyOn(go, 'getRegionsToTransferTo').andReturn([]);
+        spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            if (own) {
+                return [];
+            } else {
+                return [{
+                    moveFrom: regions[0],
+                    moveTo: regions[2]
+                }];
+            }
+        });
 
         // act
         go.attacktransfer(commandAttackTransferData);
@@ -240,14 +237,19 @@ describe('go.test', () => {
         expect(regions[0].troopCount).toBe(1);
     });
 
-    it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToTransferTo', () => {
+    it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', () => {
         // arange
         regions[1].troopCount = 7;
-        spyOn(go, 'getRegionsToTransferTo').andReturn([{
-            moveFrom: regions[1],
-            moveTo: regions[0]
-        }]);
-        spyOn(go, 'getRegionsToAttack').andReturn([]);
+        spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            if (own) {
+                return [{
+                    moveFrom: regions[1],
+                    moveTo: regions[0]
+                }];
+            } else {
+                return [];
+            }
+        });
 
         // act
         go.attacktransfer(commandAttackTransferData);
@@ -260,15 +262,20 @@ describe('go.test', () => {
     it('attacktransfer should return a move for every IMoveData.', () => {
         // arange
         regions[0].troopCount = 7;
-        spyOn(go, 'getRegionsToAttack').andReturn([{
-            moveFrom: regions[0],
-            moveTo: regions[2]
-        }]);
         regions[1].troopCount = 3;
-        spyOn(go, 'getRegionsToTransferTo').andReturn([{
-            moveFrom: regions[1],
-            moveTo: regions[0]
-        }]);
+        spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            if (own) {
+                return [{
+                    moveFrom: regions[1],
+                    moveTo: regions[0]
+                }];
+            } else {
+                return [{
+                    moveFrom: regions[0],
+                    moveTo: regions[2]
+                }];
+            }
+        });
 
         var resultAttackRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '1 3 6'].join(' ');
         var resultTransferRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '2 1 2'].join(' ');
@@ -283,13 +290,13 @@ describe('go.test', () => {
     // Neigbors which are NOT owned.
     // For regions with a troopcount > 6
     // regions[index] in which index is determind with Math.random.
-    it('getRegionsToAttack should return correct regions from ownRegions.', () => {
+    it('getRegionsToAttackTransfer should return correct regions from ownRegions.', () => {
         // arange
         regions[0].troopCount = 7;
         spyOn(Math, 'random').andReturn(0);
 
         // act
-        var result: IMoveData[] = go.getRegionsToAttack(ownRegions);
+        var result: IMoveData[] = go.getRegionsToAttackTransfer(ownRegions, false, 6);
 
         // assert
         expect(result[0].moveTo).toBe(regions[2]);

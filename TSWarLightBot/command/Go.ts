@@ -89,8 +89,8 @@ class Go implements ICommand {
     public attacktransfer(commandData: ICommandData): ICommandAnswer {
         var moves: string[] = [];
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
-        var moveData: IMoveData[] = this.getRegionsToAttack(ownedRegions);
-        moveData = moveData.concat(this.getRegionsToTransferTo(ownedRegions));
+        var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, 6);
+        moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, 2));
         moveData.forEach((move: IMoveData) => {
             moves.push([this.options[SubCommandEnum.your_bot],
                 Answer.ATTACK_TRANSFER,
@@ -106,22 +106,18 @@ class Go implements ICommand {
         }
     }
 
-    public getRegionsToAttack(ownedRegions: IRegion[]): IMoveData[]{
+    public getRegionsToAttackTransfer(ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]{
         var result: IMoveData[] = [];
         ownedRegions.forEach((region: IRegion) => {
             var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion) => {
-                return (neighbor.owner !== PossibleOwners.PLAYER);
+                return ((neighbor.owner === PossibleOwners.PLAYER && own) || (neighbor.owner !== PossibleOwners.PLAYER && !own));
             });
-            if (region.troopCount > 6 && possibleAttacks.length > 0) {
+            if (region.troopCount > numberOfTroops && possibleAttacks.length > 0) {
                 result.push({ moveTo: possibleAttacks[0], moveFrom: region })
             };
         });
 
         return result;
-    }
-
-    public getRegionsToTransferTo(ownedRegions: IRegion[]): IMoveData[] {
-        return null;
     }
 }
 
