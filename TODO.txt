@@ -1,9 +1,9 @@
 TODO
 ====
-- replace all the 'dictionary' implementations and remove underscore.
 - remove checked in js file(s).
 - handle all de subcommands and tests in other command classes.
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
+- DENK om slash in attack transfer.
 
 DONE
 ====
@@ -26,3 +26,4 @@ DONE
 - Renamed subCommand to subCommand.
 - add use strict everywhere.
 - create instances of all the commands in Runner.ts.
+- replace all the 'dictionary' implementations and remove underscore.
