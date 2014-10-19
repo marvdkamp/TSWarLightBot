@@ -17,6 +17,7 @@ import ICommand = require('../../../TSWarLightBot/command/ICommand');
 import ISubCommandOption = require('../../../TSWarLightBot/command/ISubCommandOption');
 import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
+import IMoveData = require('../../../TSWarLightBot/command/IMoveData');
 import Answer = require('../../../TSWarLightBot/command/Answer');
 import Messages = require('../../../TSWarLightBot/Messages');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
@@ -83,7 +84,7 @@ describe('go.test', () => {
         }, {
             id: 4,
             superRegion: null,
-            owner: PossibleOwners.OPPONENT,
+            owner: PossibleOwners.NEUTRAL,
             neighbors: [],
             troopCount: 1,
             isOnEmpireBorder: false,
@@ -100,7 +101,7 @@ describe('go.test', () => {
 
     it('getCommandAnswer should call right subcommand if commandPlaceArmiesData.subCommand matches.', () => {
         // arange
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
         spyOn(go, 'place_armies');
 
         // act
@@ -113,7 +114,7 @@ describe('go.test', () => {
 
     it('getCommandAnswer should return succes = false and a error string when commandPlaceArmiesData.subCommand not matches.', () => {
         // arange
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
         commandPlaceArmiesData.subCommand = SubCommandEnum.neighbors;
         commandPlaceArmiesData.line = 'go neighbors 2000';
 
@@ -127,7 +128,7 @@ describe('go.test', () => {
 
     it('getCommandAnswer should return succes = false and a error string when commandPlaceArmiesData.subCommand is undefined.', () => {
         // arange
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
         commandPlaceArmiesData.subCommand = undefined;
         commandPlaceArmiesData.line = 'go 2000';
 
@@ -141,7 +142,7 @@ describe('go.test', () => {
 
     it('place_armies should call getOwnedRegions on warMap', () => {
         // arange
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
 
         // act
         go.place_armies(commandPlaceArmiesData);
@@ -151,23 +152,22 @@ describe('go.test', () => {
         expect(warMap.getOwnedRegions.callCount).toBe(1);
     });
 
-    it('place_armies should call Math.floor for the amount of armies it has to place', () => {
+    it('place_armies should call Math.random for the amount of armies it has to place', () => {
         // arange
         options[SubCommandEnum.starting_armies] = '3';
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
 
         // act
         go.place_armies(commandPlaceArmiesData);
 
         // assert
-        expect(Math.floor).toHaveBeenCalledWith(2);
-        expect((<jasmine.Spy>Math.floor).callCount).toBe(3);
+        expect((<jasmine.Spy>Math.random).callCount).toBe(3);
     });
 
-    it('place_armies should add +1 on troopCount for each armie on region found by index of Math.floor.', () => {
+    it('place_armies should add +1 on troopCount for each armie on region found by index of Math.random.', () => {
         // arange
         options[SubCommandEnum.starting_armies] = '3';
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
 
         // act
         go.place_armies(commandPlaceArmiesData);
@@ -177,12 +177,12 @@ describe('go.test', () => {
     });
 
     // Example player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1
-    // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.floor returns 0 every time).
+    // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.random returns 0 every time).
     it('place_armies should return a placement for every army.', () => {
         // arange
         options[SubCommandEnum.starting_armies] = '3';
         options[SubCommandEnum.your_bot] = yourBotName;
-        spyOn(Math, 'floor').andReturn(0);
+        spyOn(Math, 'random').andReturn(0);
         var resultOneArmie: string = [yourBotName, Answer.PLACE_ARMIES, '1 1'].join(' ');
 
         // act
@@ -226,7 +226,7 @@ describe('go.test', () => {
 
     it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttack', () => {
         // arange
-        regions[0].troopCount = 6;
+        regions[0].troopCount = 2;
         spyOn(go, 'getRegionsToAttack').andReturn([{
             moveFrom: regions[0],
             moveTo: regions[2]
@@ -242,7 +242,7 @@ describe('go.test', () => {
 
     it('attacktransfer should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToTransferTo', () => {
         // arange
-        regions[1].troopCount = 6;
+        regions[1].troopCount = 7;
         spyOn(go, 'getRegionsToTransferTo').andReturn([{
             moveFrom: regions[1],
             moveTo: regions[0]
@@ -259,7 +259,7 @@ describe('go.test', () => {
     // Example player1 attack/transfer 1 3 5, player1 attack/transfer 2 1 2
     it('attacktransfer should return a move for every IMoveData.', () => {
         // arange
-        regions[0].troopCount = 6;
+        regions[0].troopCount = 7;
         spyOn(go, 'getRegionsToAttack').andReturn([{
             moveFrom: regions[0],
             moveTo: regions[2]
@@ -270,7 +270,7 @@ describe('go.test', () => {
             moveTo: regions[0]
         }]);
 
-        var resultAttackRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '1 3 5'].join(' ');
+        var resultAttackRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '1 3 6'].join(' ');
         var resultTransferRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '2 1 2'].join(' ');
 
         // act
@@ -278,5 +278,21 @@ describe('go.test', () => {
 
         // assert
         expect(result.value).toBe([resultAttackRegion, resultTransferRegion].join(', '));
+    });
+
+    // Neigbors which are NOT owned.
+    // For regions with a troopcount > 6
+    // regions[index] in which index is determind with Math.random.
+    it('getRegionsToAttack should return correct regions from ownRegions.', () => {
+        // arange
+        regions[0].troopCount = 7;
+        spyOn(Math, 'random').andReturn(0);
+
+        // act
+        var result: IMoveData[] = go.getRegionsToAttack(ownRegions);
+
+        // assert
+        expect(result[0].moveTo).toBe(regions[2]);
+        expect(result[0].moveFrom).toBe(regions[0]);
     });
 });

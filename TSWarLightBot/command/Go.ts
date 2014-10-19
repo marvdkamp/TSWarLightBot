@@ -74,7 +74,7 @@ class Go implements ICommand {
         var placements: string[] = [];
 
         while (0 < troopsRemaining) {
-            var index: number = Math.floor(ownedRegions.length);
+            var index: number = Math.random() * ownedRegions.length;
             ownedRegions[index].troopCount += 1;
             placements.push([this.options[SubCommandEnum.your_bot], Answer.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;
@@ -107,7 +107,17 @@ class Go implements ICommand {
     }
 
     public getRegionsToAttack(ownedRegions: IRegion[]): IMoveData[]{
-        return null;
+        var result: IMoveData[] = [];
+        ownedRegions.forEach((region: IRegion) => {
+            var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion) => {
+                return (neighbor.owner !== PossibleOwners.PLAYER);
+            });
+            if (region.troopCount > 6 && possibleAttacks.length > 0) {
+                result.push({ moveTo: possibleAttacks[0], moveFrom: region })
+            };
+        });
+
+        return result;
     }
 
     public getRegionsToTransferTo(ownedRegions: IRegion[]): IMoveData[] {

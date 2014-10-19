@@ -4,6 +4,7 @@ TODO
 - handle all de subcommands and tests in other command classes.
 - check of we subCommand undefined of null laten wanneer er geen subCommand is.
 - DENK om slash in attack transfer.
+- Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.
 
 DONE
 ====
