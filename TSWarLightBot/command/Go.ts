@@ -86,6 +86,17 @@ class Go implements ICommand {
     }
 
     public attacktransfer(commandData: ICommandData): ICommandAnswer {
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var regionsToAttack: IRegion[] = this.getRegionsToAttack(ownedRegions);
+        var regionsToTransferTo: IRegion[] = this.getRegionsToTransferTo(ownedRegions);
+        return null;
+    }
+
+    public getRegionsToAttack(ownedRegions: IRegion[]): IRegion[]{
+        return null;
+    }
+
+    public getRegionsToTransferTo(ownedRegions: IRegion[]): IRegion[] {
         return null;
     }
 }

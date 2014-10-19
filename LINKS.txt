@@ -56,3 +56,6 @@ http://vswebessentials.com/
 
 Dictionary Typescript
 https://typescript.codeplex.com/discussions/398359
+
+Extend javascript array
+http://stackoverflow.com/questions/14000645/how-to-extend-native-javascipt-array-in-typescript

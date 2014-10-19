@@ -34,11 +34,8 @@ describe('go.test', () => {
     };
 
     var options: ISubCommandOption = {};
-
     var region: IRegion;
-
     var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
-
     var yourBotName: string = 'player1';
 
     beforeEach(() => {
@@ -147,5 +144,29 @@ describe('go.test', () => {
 
         // assert
         expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
+    });
+
+    it('attacktransfer should call getRegionsToAttack on this once', () => {
+        // arange
+        spyOn(go, 'getRegionsToAttack');
+
+        // act
+        go.attacktransfer(commandData);
+
+        // assert
+        expect(go.getRegionsToAttack).toHaveBeenCalledWith([region]);
+        expect(go.getRegionsToAttack.callCount).toBe(1);
+    });
+
+    it('attacktransfer should call getRegionsToTransferTo on this once', () => {
+        // arange
+        spyOn(go, 'getRegionsToTransferTo');
+
+        // act
+        go.attacktransfer(commandData);
+
+        // assert
+        expect(go.getRegionsToTransferTo).toHaveBeenCalledWith([region]);
+        expect(go.getRegionsToTransferTo.callCount).toBe(1);
     });
 });
