@@ -12,9 +12,9 @@
 
 import IRegion = require('../map/I/IRegion');
 
-interface IMove {
+interface IMoveData {
     moveTo: IRegion;
     moveFrom: IRegion;
 }
 
-export = IMove;
+export = IMoveData;

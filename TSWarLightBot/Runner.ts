@@ -29,11 +29,7 @@ import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');
 import WarMap = require('./map/WarMap');
 
-var options: ISubCommandOption[] = [{
-    subCommand: SubCommandEnum.starting_armies,
-    value: '0'
-}];
-
+var options: ISubCommandOption = {};
 var go = new Go(options, new WarMap());
 var opponent_moves = new Opponent_moves();
 var pick_starting_regions = new Pick_starting_regions();

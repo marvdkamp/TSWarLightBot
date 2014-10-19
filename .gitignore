@@ -246,3 +246,7 @@ $RECYCLE.BIN/
 /TSWarLightBot/command/ISubCommandMethod.js.map
 /TSWarLightBot/command/ISubCommandOption.js.map
 /TSWarLightBot/command/ISubCommandOption.js
+/TSWarLightBot/command/Answer.js
+/TSWarLightBot/command/Answer.js.map
+/TSWarLightBot/command/IMoveData.js.map
+/TSWarLightBot/command/IMoveData.js

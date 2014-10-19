@@ -15,7 +15,7 @@ import ISubCommandOption = require('./ISubCommandOption');
 import ICommandMethod = require('./../ICommandMethod');
 import ICommandAnswer = require('./../ICommandAnswer');
 import ICommandData = require('./../ICommandData');
-import IMove = require('./../command/IMove');
+import IMoveData = require('./../command/IMoveData');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');
 import Answer = require('./Answer');
@@ -87,21 +87,30 @@ class Go implements ICommand {
     }
 
     public attacktransfer(commandData: ICommandData): ICommandAnswer {
+        var moves: string[] = [];
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
-        var regionsToAttack: IMove[] = this.getRegionsToAttack(ownedRegions);
-        regionsToAttack.forEach((value: IMove) => {
-            value.moveFrom.troopCount = 1;
+        var moveData: IMoveData[] = this.getRegionsToAttack(ownedRegions);
+        moveData = moveData.concat(this.getRegionsToTransferTo(ownedRegions));
+        moveData.forEach((move: IMoveData) => {
+            moves.push([this.options[SubCommandEnum.your_bot],
+                Answer.ATTACK_TRANSFER,
+                move.moveFrom.id.toString(),
+                move.moveTo.id.toString(),
+                (move.moveFrom.troopCount - 1).toString()].join(' '));
+            move.moveFrom.troopCount = 1;
         });
 
-        var regionsToTransferTo: IMove[] = this.getRegionsToTransferTo(ownedRegions);
+        return {
+            succes: true,
+            value: moves.join(', ').trim()
+        }
+    }
+
+    public getRegionsToAttack(ownedRegions: IRegion[]): IMoveData[]{
         return null;
     }
 
-    public getRegionsToAttack(ownedRegions: IRegion[]): IMove[]{
-        return null;
-    }
-
-    public getRegionsToTransferTo(ownedRegions: IRegion[]): IMove[] {
+    public getRegionsToTransferTo(ownedRegions: IRegion[]): IMoveData[] {
         return null;
     }
 }
