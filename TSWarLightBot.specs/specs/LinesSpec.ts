@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -20,8 +20,8 @@ import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
-describe('lines', () => {
-    var Lines: any = require("../../TSWarLightBot/Lines");
+describe('lines', (): void => {
+    var Lines: any = require('../../TSWarLightBot/Lines');
     var lines: ILines;
     var settingMethod: any = jasmine.createSpy('settingMethod');
     var commandMethods: ICommandMethod = {};
@@ -30,15 +30,15 @@ describe('lines', () => {
         command: CommandEnum.settings,
         data: ['']
     };
-    
-    beforeEach(() => {
+
+    beforeEach((): void => {
         commandMethods[CommandEnum.settings] = settingMethod;
         commandString = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
         lines = new Lines(commandMethods);
     });
 
-    describe('getCommandAnswer', () => {
-        it('Should call the right action if data command mathches.', () => {
+    describe('getCommandAnswer', (): void => {
+        it('Should call the right action if data command mathches.', (): void => {
             // arange
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
@@ -50,7 +50,7 @@ describe('lines', () => {
             expect(settingMethod.callCount).toBe(1);
         });
 
-        it('Should return succes = false when the data string NOT matches.', () => {
+        it('Should return succes = false when the data string NOT matches.', (): void => {
             // arange
             commandString = 'doesnotexcist';
             spyOn(lines, 'getCommandData').andReturn({
@@ -66,7 +66,7 @@ describe('lines', () => {
             expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
         });
 
-        it('Should return succes = false when the CommandMethod.method is null.', () => {
+        it('Should return succes = false when the CommandMethod.method is null.', (): void => {
             // arange
             commandMethods[CommandEnum.settings] = null;
             spyOn(lines, 'getCommandData').andReturn(commandData);
@@ -79,7 +79,7 @@ describe('lines', () => {
             expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
         });
 
-        it('Should return succes = false when the CommandMethod.method is undefined.', () => {
+        it('Should return succes = false when the CommandMethod.method is undefined.', (): void => {
             // arange
             commandMethods[CommandEnum.settings] = undefined;
             spyOn(lines, 'getCommandData').andReturn(commandData);
@@ -92,7 +92,7 @@ describe('lines', () => {
             expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
         });
 
-        it('Should call getCommandData on lines.', () => {
+        it('Should call getCommandData on lines.', (): void => {
             // arange
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
@@ -105,8 +105,8 @@ describe('lines', () => {
         });
     });
 
-    describe('getCommandData', () => {
-        it('Should return command if string matches', () => {
+    describe('getCommandData', (): void => {
+        it('Should return command if string matches', (): void => {
             // arange
 
             // act
@@ -116,7 +116,7 @@ describe('lines', () => {
             expect(result.command).toBe(CommandEnum.settings);
         });
 
-        it('Should return command is undefined when string contains only spaces', () => {
+        it('Should return command is undefined when string contains only spaces', (): void => {
             // arange
 
             // act
@@ -126,7 +126,7 @@ describe('lines', () => {
             expect(result.command).toBe(undefined);
         });
 
-        it('Should return command is undefined when string contains an invalid command', () => {
+        it('Should return command is undefined when string contains an invalid command', (): void => {
             // arange
 
             // act
@@ -136,7 +136,7 @@ describe('lines', () => {
             expect(result.command).toBe(undefined);
         });
 
-        it('Should return option if string matches', () => {
+        it('Should return option if string matches', (): void => {
             // arange
 
             // act
@@ -146,7 +146,7 @@ describe('lines', () => {
             expect(result.option).toBe(OptionEnum.your_bot);
         });
 
-        it('Should return option if string contains a slash /', () => {
+        it('Should return option if string contains a slash /', (): void => {
             // arange
             commandString = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
 
@@ -157,7 +157,7 @@ describe('lines', () => {
             expect(result.option).toBe(OptionEnum.attacktransfer);
         });
 
-        it('Should return option undefined if string contains only 1 linepart and should not crash', () => {
+        it('Should return option undefined if string contains only 1 linepart and should not crash', (): void => {
             // arange
             commandString = CommandEnum[CommandEnum.settings];
 
@@ -168,7 +168,7 @@ describe('lines', () => {
             expect(result.option).toBe(undefined);
         });
 
-        it('Should return option undefined for a command which has no option', () => {
+        it('Should return option undefined for a command which has no option', (): void => {
             // arange
             commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
 
@@ -179,7 +179,7 @@ describe('lines', () => {
             expect(result.option).toBe(undefined);
         });
 
-        it('Should return the right data for a command with option', () => {
+        it('Should return the right data for a command with option', (): void => {
             // arange
             commandString = [CommandEnum[CommandEnum.setup_map], OptionEnum[OptionEnum.super_regions], '1 2 2 5'].join(' ');
 
@@ -190,7 +190,7 @@ describe('lines', () => {
             expect(result.data).toEqual(['1', '2', '2', '5']);
         });
 
-        it('Should return the right data for a command which has no option', () => {
+        it('Should return the right data for a command which has no option', (): void => {
             // arange
             commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
 
