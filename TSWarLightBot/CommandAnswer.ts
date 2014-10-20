@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ICommandAnswer = require('ICommandAnswer');
+import ICommandAnswer = require('./interface/ICommandAnswer');
 
 /**
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.

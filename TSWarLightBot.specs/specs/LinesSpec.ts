@@ -11,10 +11,10 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import ILines = require('../../TSWarLightBot/ILines');
-import ICommandAnswer = require('../../TSWarLightBot/ICommandAnswer');
-import ICommandData = require('../../TSWarLightBot/ICommandData');
-import ICommandMethod = require('../../TSWarLightBot/ICommandMethod');
+import ILines = require('../../TSWarLightBot/interface/ILines');
+import ICommandAnswer = require('../../TSWarLightBot/interface/ICommandAnswer');
+import ICommandData = require('../../TSWarLightBot/interface/ICommandData');
+import ICommandMethod = require('../../TSWarLightBot/interface/ICommandMethod');
 import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/CommandEnum');

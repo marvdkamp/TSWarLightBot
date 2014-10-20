@@ -10,8 +10,8 @@
  */
 'use strict';
 
-import CommandEnum = require('./CommandEnum');
-import SubCommandEnum = require('./SubCommandEnum');
+import CommandEnum = require('./../CommandEnum');
+import SubCommandEnum = require('./../SubCommandEnum');
 
 /**
  * Information about the command from the game engine.

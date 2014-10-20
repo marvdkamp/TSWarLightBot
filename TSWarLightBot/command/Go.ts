@@ -12,9 +12,9 @@
 
 import ICommand = require('./ICommand');
 import ISubCommandOption = require('./ISubCommandOption');
-import ICommandMethod = require('./../ICommandMethod');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommandMethod = require('./../interface/ICommandMethod');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/IMoveData');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');

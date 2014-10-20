@@ -11,8 +11,8 @@
 'use strict';
 
 import readline = require('readline');
-import IBot = require('IBot');
-import ILines = require('ILines');
+import IBot = require('./interface/IBot');
+import ILines = require('./interface/ILines');
 
 /**
  * Main class of the app. Handles reading from and writing to the console. Will be instantiated and run from Runner.ts.

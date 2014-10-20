@@ -11,8 +11,8 @@
 'use strict';
 
 import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 

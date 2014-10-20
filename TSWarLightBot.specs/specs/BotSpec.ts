@@ -15,7 +15,7 @@
 //TODO: Trim lines!!!!
 
 import readline = require('readline');
-import IBot = require('../../TSWarLightBot/IBot');
+import IBot = require('../../TSWarLightBot/interface/IBot');
 import CommandEnum = require('../../TSWarLightBot/CommandEnum');
 import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
 

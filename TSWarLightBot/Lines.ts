@@ -10,10 +10,10 @@
  */
 'use strict';
 
-import ILines = require('./ILines');
-import ICommandAnswer = require('./ICommandAnswer');
-import ICommandData = require('./ICommandData');
-import ICommandMethod = require('./ICommandMethod');
+import ILines = require('./interface/ILines');
+import ICommandAnswer = require('./interface/ICommandAnswer');
+import ICommandData = require('./interface/ICommandData');
+import ICommandMethod = require('./interface/ICommandMethod');
 import Consts = require('./Consts');
 import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');

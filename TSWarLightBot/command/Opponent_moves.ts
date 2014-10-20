@@ -11,8 +11,8 @@
 'use strict';
 
 import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.

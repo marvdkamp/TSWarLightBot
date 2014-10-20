@@ -11,8 +11,8 @@
 'use strict';
 
 import ICommand = require('./ICommand');
-import ICommandAnswer = require('./../ICommandAnswer');
-import ICommandData = require('./../ICommandData');
+import ICommandAnswer = require('./../interface/ICommandAnswer');
+import ICommandData = require('./../interface/ICommandData');
 
 /**
  * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and request for the bot to 
