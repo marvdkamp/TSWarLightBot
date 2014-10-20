@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('pick_starting_regions.test', () => {
-    var Pick_starting_regions: any = require("../../../TSWarLightBot/command/Pick_starting_regions");
+describe('pick_starting_regionsCommand', () => {
+    var Pick_starting_regionsCommand: any = require("../../../TSWarLightBot/command/Pick_starting_regionsCommand");
 });

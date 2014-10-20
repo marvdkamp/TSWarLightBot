@@ -15,23 +15,22 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
 /**
- * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
- * number of armies.
+ * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and request for the bot to 
+ * return his attack and/or transfer moves.
  */
-class Update_map implements ICommand {
-
+class Pick_starting_regionsCommand implements ICommand {
     /**
-     * Gets the answer from the bot for the update_map command.
+     * Gets the answer from the bot for the pick_starting_regions command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
      * getCommandAnswer({
-     *     line: 'update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5',
-     *     command: CommandEnum.update_map,
+     *     line: 'pick_starting_regions 2000', 
+     *     command: CommandEnum.pick_starting_regions,
      *     subCommand: undefined,
-     *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
+     *     data: ['2000']
      * });
-     *
+     * 
      * Example return:
      * {
      *     succes: true,
@@ -43,4 +42,4 @@ class Update_map implements ICommand {
     }
 }
 
-export = Update_map;
+export = Pick_starting_regionsCommand;

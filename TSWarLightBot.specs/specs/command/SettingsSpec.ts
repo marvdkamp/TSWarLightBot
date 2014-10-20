@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('settings.test', () => {
-    var Settings: any = require("../../../TSWarLightBot/command/Settings");
+describe('settingsCommand', () => {
+    var SettingsCommand: any = require("../../../TSWarLightBot/command/SettingsCommand");
 });

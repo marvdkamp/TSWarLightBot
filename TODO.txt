@@ -11,6 +11,7 @@ TODO
 - Write tests for all wrong input paramaters.
 - Handle all de subcommands and tests in other command classes.
 - Sort imports.
+- Check if runner injects the right instances in each contructor.
 - Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.
 - Uitschrijven wat er nog op het werk moet gebeuren.
 

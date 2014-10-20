@@ -20,7 +20,7 @@ import SubCommandEnum = require('../enum/SubCommandEnum');
  * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 
  * and the amount of armies your bot can place on the map at the start of this round
  */
-class Settings implements ICommand {
+class SettingsCommand implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
     /**
@@ -68,4 +68,4 @@ class Settings implements ICommand {
     }
 }
 
-export = Settings;
+export = SettingsCommand;

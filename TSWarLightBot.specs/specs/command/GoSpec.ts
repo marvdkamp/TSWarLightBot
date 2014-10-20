@@ -23,7 +23,7 @@ import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwn
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import util = require('util');
 
-describe('go', () => {
+describe('goCommand', () => {
     var GoCommand: any = require("../../../TSWarLightBot/command/GoCommand");
     var goCommand: any;
     var commandPlaceArmiesData: ICommandData = {

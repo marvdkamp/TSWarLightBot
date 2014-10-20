@@ -20,7 +20,7 @@ import SubCommandEnum = require('../enum/SubCommandEnum');
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
  * of the regions are given in different calls
  */
-class Setup_map implements ICommand {
+class Setup_mapCommand implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
     /**
@@ -77,4 +77,4 @@ class Setup_map implements ICommand {
     }
 }
 
-export = Setup_map;
+export = Setup_mapCommand;

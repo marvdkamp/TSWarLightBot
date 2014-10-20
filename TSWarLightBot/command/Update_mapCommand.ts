@@ -15,28 +15,27 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
 /**
- * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
+ * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
+ * number of armies.
  */
-class Opponent_moves implements ICommand {
+class Update_mapCommand implements ICommand {
 
     /**
-     * Gets the answer from the bot for the go command.
+     * Gets the answer from the bot for the update_map command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
-     * Isn't used in the starter bot. 
-     * TODO: Find out what the data looks like.
      * Example: 
      * getCommandAnswer({
-     *     line: 'opponent_moves',
-     *     command: CommandEnum.opponent_moves,
+     *     line: 'update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5',
+     *     command: CommandEnum.update_map,
      *     subCommand: undefined,
-     *     data: []
+     *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
      * });
-     * 
+     *
      * Example return:
      * {
      *     succes: true,
-     *     value: ''
+     *     value: '1 7 24 25 41 42'
      * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
@@ -44,4 +43,4 @@ class Opponent_moves implements ICommand {
     }
 }
 
-export = Opponent_moves;
+export = Update_mapCommand;
