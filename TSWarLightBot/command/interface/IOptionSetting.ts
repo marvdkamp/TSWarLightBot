@@ -13,11 +13,11 @@
 import SubCommandEnum = require('./../../enum/SubCommandEnum');
 
 /**
- * Couples a subCommand to a value of a Option. The settings command wil send a subcommand which is 
- * actual an option or setting with a value. Een instance of this interface captures these options.
+ * Couples a subCommand to a value of a Setting. The settings command wil have a subcommand which is 
+ * a specific setting with its value. Een array of instances of this interface captures these settings.
  */
-interface ISubCommandOption {
-    [command: number]: string;
+interface IOptionSetting {
+    [subCommand: number]: string;
 }
 
-export = ISubCommandOption;
+export = IOptionSetting;

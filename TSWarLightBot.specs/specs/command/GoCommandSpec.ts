@@ -14,7 +14,7 @@
 import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
 import SubCommandEnum = require('../../../TSWarLightBot/enum/SubCommandEnum');
 import ICommand = require('../../../TSWarLightBot/command/interface/ICommand');
-import ISubCommandOption = require('../../../TSWarLightBot/command/interface/ISubCommandOption');
+import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/interface/ICommandAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/interface/IMoveData');
@@ -40,7 +40,7 @@ describe('goCommand', () => {
         data: ['2000']
     };
 
-    var options: ISubCommandOption = {};
+    var settings: IOptionSetting = {};
     var regions: IRegion[];
     var ownRegions: IRegion[];
     var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
@@ -52,7 +52,7 @@ describe('goCommand', () => {
         ownRegions.push(regions[0]);
         ownRegions.push(regions[1]);
         warMap.getOwnedRegions.andReturn(ownRegions); 
-        goCommand = new GoCommand(options, warMap);
+        goCommand = new GoCommand(settings, warMap);
     });
 
     function createMockRegions(): IRegion[] {
@@ -158,7 +158,7 @@ describe('goCommand', () => {
 
         it('Should call Math.random for the amount of armies it has to place', () => {
             // arange
-            options[SubCommandEnum.starting_armies] = '3';
+            settings[SubCommandEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
 
             // act
@@ -170,7 +170,7 @@ describe('goCommand', () => {
 
         it('Should add +1 on troopCount for each armie on region found by index of Math.random.', () => {
             // arange
-            options[SubCommandEnum.starting_armies] = '3';
+            settings[SubCommandEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
 
             // act
@@ -184,8 +184,8 @@ describe('goCommand', () => {
         // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.random returns 0 every time).
         it('Should return a placement for every army.', () => {
             // arange
-            options[SubCommandEnum.starting_armies] = '3';
-            options[SubCommandEnum.your_bot] = yourBotName;
+            settings[SubCommandEnum.starting_armies] = '3';
+            settings[SubCommandEnum.your_bot] = yourBotName;
             spyOn(Math, 'random').andReturn(0);
             var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
 

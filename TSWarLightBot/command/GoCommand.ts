@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./interface/ICommand');
-import ISubCommandOption = require('./interface/ISubCommandOption');
+import IOptionSetting = require('./interface/IOptionSetting');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
@@ -34,10 +34,10 @@ class Go implements ICommand {
     /**
      * Create an instance of the Go class.
      * @constructor
-     * @param options {ISubCommandOption} - Options with information needed by this command.
+     * @param settings {IOptionSetting} - Settings with information needed by this command.
      * @param warMap {IWarMap} - Information about the map on which the game is played.
      */
-    constructor(private options: ISubCommandOption, private warMap: IWarMap) {
+    constructor(private settings: IOptionSetting, private warMap: IWarMap) {
         this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 
                 return this.place_armies(commandData)
             };
@@ -97,13 +97,13 @@ class Go implements ICommand {
      */
     public place_armies(commandData: ICommandData): ICommandAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
-        var troopsRemaining: number = parseInt(this.options[SubCommandEnum.starting_armies], 10);
+        var troopsRemaining: number = parseInt(this.settings[SubCommandEnum.starting_armies], 10);
         var placements: string[] = [];
 
         while (0 < troopsRemaining) {
             var index: number = Math.random() * ownedRegions.length;
             ownedRegions[index].troopCount += 1;
-            placements.push([this.options[SubCommandEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
+            placements.push([this.settings[SubCommandEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;
         }
 
@@ -136,7 +136,7 @@ class Go implements ICommand {
         var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
         moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
         moveData.forEach((move: IMoveData) => {
-            moves.push([this.options[SubCommandEnum.your_bot],
+            moves.push([this.settings[SubCommandEnum.your_bot],
                 Consts.ATTACK_TRANSFER,
                 move.moveFrom.id.toString(),
                 move.moveTo.id.toString(),

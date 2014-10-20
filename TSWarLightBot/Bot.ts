@@ -13,6 +13,7 @@
 import readline = require('readline');
 import IBot = require('./interface/IBot');
 import ILines = require('./interface/ILines');
+import ICommandAnswer = require('./interface/ICommandAnswer');
 
 /**
  * Main class of the app. Handles reading from and writing to the console. Will be instantiated and run from Runner.ts.
@@ -53,7 +54,7 @@ class Bot implements IBot {
             return;
         }
 
-        var result = this.lines.getCommandAnswer(data);
+        var result: ICommandAnswer = this.lines.getCommandAnswer(data);
         if (result.succes) {
             this.botProcess.stdout.write(result.value);
         } else {
