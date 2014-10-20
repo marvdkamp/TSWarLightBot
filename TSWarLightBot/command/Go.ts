@@ -20,7 +20,7 @@ import CommandEnum = require('../enum/CommandEnum');
 import SubCommandEnum = require('../enum/SubCommandEnum');
 import IWarMap = require('../map/interface/IWarMap');
 import IRegion = require('../map/interface/IRegion');
-import PossibleOwnersEnum = require('../map/PossibleOwnersEnum');
+import PossibleOwnersEnum = require('../map/enum/PossibleOwnersEnum');
 import Consts = require('../Consts');
 import util = require('util');
 

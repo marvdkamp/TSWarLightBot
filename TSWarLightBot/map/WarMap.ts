@@ -13,7 +13,7 @@
 import IWarMap = require('./interface/IWarMap');
 import IRegion = require('./interface/IRegion');
 import ISuperRegion = require('./interface/ISuperRegion');
-import PossibleOwnersEnum = require('./PossibleOwnersEnum');
+import PossibleOwnersEnum = require('./enum/PossibleOwnersEnum');
 
 
 interface IRegions {

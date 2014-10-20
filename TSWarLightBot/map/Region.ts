@@ -12,7 +12,7 @@
 
 import IRegion = require('./interface/IRegion');
 import ISuperRegion = require('./interface/ISuperRegion');
-import PossibleOwnersEnum = require('./PossibleOwnersEnum');
+import PossibleOwnersEnum = require('./enum/PossibleOwnersEnum');
 
 class Region implements IRegion {
     id: number;

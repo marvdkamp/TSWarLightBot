@@ -57,7 +57,7 @@
     <TypeScriptCompile Include="map\interface\IRegion.ts" />
     <TypeScriptCompile Include="map\interface\ISuperRegion.ts" />
     <TypeScriptCompile Include="map\interface\IWarMap.ts" />
-    <TypeScriptCompile Include="map\PossibleOwnersEnum.ts" />
+    <TypeScriptCompile Include="map\enum\PossibleOwnersEnum.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
     <TypeScriptCompile Include="map\WarMap.ts" />
@@ -72,6 +72,7 @@
     <Folder Include="command\" />
     <Folder Include="interface\" />
     <Folder Include="enum\" />
+    <Folder Include="map\enum\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />

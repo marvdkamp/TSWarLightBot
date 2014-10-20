@@ -19,7 +19,7 @@ import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/interface/ICommandAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/interface/IMoveData');
 import Consts = require('../../../TSWarLightBot/Consts');
-import PossibleOwnersEnum = require('../../../TSWarLightBot/map/PossibleOwnersEnum');
+import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import util = require('util');
 

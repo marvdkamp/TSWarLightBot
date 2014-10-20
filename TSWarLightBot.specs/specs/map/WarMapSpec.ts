@@ -11,7 +11,7 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import PossibleOwnersEnum = require('../../../TSWarLightBot/map/PossibleOwnersEnum');
+import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
 import IWarMap = require('../../../TSWarLightBot/map/interface/IWarMap');
 
 import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');

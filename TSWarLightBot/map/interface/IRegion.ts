@@ -14,7 +14,7 @@
  * interface of a Region Object.
  */
 import ISuperRegion = require('./ISuperRegion');
-import PossibleOwnersEnum = require('../PossibleOwnersEnum');
+import PossibleOwnersEnum = require('../enum/PossibleOwnersEnum');
 
 interface IRegion {
     id: number;

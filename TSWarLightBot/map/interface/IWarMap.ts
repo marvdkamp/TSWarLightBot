@@ -15,7 +15,7 @@
  */
 import IRegion = require('./IRegion');
 import ISuperRegion = require('./ISuperRegion');
-import PossibleOwnersEnum = require('../PossibleOwnersEnum');
+import PossibleOwnersEnum = require('../enum/PossibleOwnersEnum');
 
 interface IWarMap {
     /**
