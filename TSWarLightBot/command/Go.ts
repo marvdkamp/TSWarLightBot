@@ -22,7 +22,7 @@ import Answer = require('./Answer');
 import IWarMap = require('../map/I/IWarMap');
 import IRegion = require('../map/I/IRegion');
 import PossibleOwners = require('../map/PossibleOwners');
-import Messages = require('../Messages');
+import Consts = require('../Consts');
 import util = require('util');
 
 /**
@@ -74,7 +74,7 @@ class Go implements ICommand {
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, commandData.line)
+                value: util.format(Consts.UNABLE_TO_EXECUTE, commandData.line)
             }
         }
     }

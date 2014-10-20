@@ -15,7 +15,7 @@ import ILines = require('../../TSWarLightBot/ILines');
 import ICommandAnswer = require('../../TSWarLightBot/ICommandAnswer');
 import ICommandData = require('../../TSWarLightBot/ICommandData');
 import ICommandMethod = require('../../TSWarLightBot/ICommandMethod');
-import Messages = require('../../TSWarLightBot/Messages');
+import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/CommandEnum');
 import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
@@ -62,7 +62,7 @@ describe('lines.test', () => {
 
         // assert
         expect(result.succes).toBeFalsy(); 
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
+        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
     });
 
     it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
@@ -75,7 +75,7 @@ describe('lines.test', () => {
 
         // assert
         expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
+        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
     });
 
     it('getCommandAnswer should return succes = false when the CommandMethod.method is undefined.', () => {
@@ -88,7 +88,7 @@ describe('lines.test', () => {
 
         // assert
         expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandString));
+        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
     });
 
     it('getCommandAnswer should call getCommandData on lines.', () => {

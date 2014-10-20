@@ -14,7 +14,7 @@ import ILines = require('./ILines');
 import ICommandAnswer = require('./ICommandAnswer');
 import ICommandData = require('./ICommandData');
 import ICommandMethod = require('./ICommandMethod');
-import Messages = require('./Messages');
+import Consts = require('./Consts');
 import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');
 import util = require('util');
@@ -41,7 +41,7 @@ class Lines implements ILines {
         } else {
             return {
                 succes: false,
-                value: util.format(Messages.UNABLE_TO_EXECUTE, line)
+                value: util.format(Consts.UNABLE_TO_EXECUTE, line)
             }
         }
     }

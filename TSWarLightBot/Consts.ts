@@ -13,8 +13,8 @@
 /**
  * Holds message's prevents retyping it everywhere.
  */
-class Messages {
+class Consts {
     public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s\n'; }
 }
 
-export = Messages;
+export = Consts;

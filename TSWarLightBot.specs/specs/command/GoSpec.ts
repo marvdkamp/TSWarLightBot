@@ -19,7 +19,7 @@ import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/IMoveData');
 import Answer = require('../../../TSWarLightBot/command/Answer');
-import Messages = require('../../../TSWarLightBot/Messages');
+import Consts = require('../../../TSWarLightBot/Consts');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
 import IRegion = require('../../../TSWarLightBot/map/I/IRegion');
 import util = require('util');
@@ -125,7 +125,7 @@ describe('go.test', () => {
 
         // assert
         expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
+        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
     });
 
     it('getCommandAnswer should return succes = false and a error string when commandPlaceArmiesData.subCommand is undefined.', () => {
@@ -139,7 +139,7 @@ describe('go.test', () => {
 
         // assert
         expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Messages.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
+        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
     });
 
     it('place_armies should call getOwnedRegions on warMap', () => {
