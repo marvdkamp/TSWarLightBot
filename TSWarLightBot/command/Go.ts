@@ -133,8 +133,8 @@ class Go implements ICommand {
     public attacktransfer(commandData: ICommandData): ICommandAnswer {
         var moves: string[] = [];
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
-        var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, 6);
-        moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, 2));
+        var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+        moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
         moveData.forEach((move: IMoveData) => {
             moves.push([this.options[SubCommandEnum.your_bot],
                 Consts.ATTACK_TRANSFER,

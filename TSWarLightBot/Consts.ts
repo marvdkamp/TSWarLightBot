@@ -18,6 +18,8 @@ class Consts {
     public static get PLACE_ARMIES(): string { return 'place_armies'; }
     public static get ATTACK_TRANSFER(): string { return 'attack/transfer'; }
     public static get NO_MOVES(): string { return 'No moves'; }
+    public static get MINIMUM_TROOPS_FOR_ATTACK(): number { return 7; }
+    public static get MINIMUM_TROOPS_FOR_TRANSFER(): number { return 2; }
 }
 
 export = Consts;
