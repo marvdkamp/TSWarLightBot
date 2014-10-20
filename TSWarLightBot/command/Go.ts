@@ -18,7 +18,6 @@ import ICommandData = require('./../ICommandData');
 import IMoveData = require('./../command/IMoveData');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');
-import Answer = require('./Answer');
 import IWarMap = require('../map/I/IWarMap');
 import IRegion = require('../map/I/IRegion');
 import PossibleOwners = require('../map/PossibleOwners');
@@ -104,7 +103,7 @@ class Go implements ICommand {
         while (0 < troopsRemaining) {
             var index: number = Math.random() * ownedRegions.length;
             ownedRegions[index].troopCount += 1;
-            placements.push([this.options[SubCommandEnum.your_bot], Answer.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
+            placements.push([this.options[SubCommandEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;
         }
 
@@ -138,7 +137,7 @@ class Go implements ICommand {
         moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, 2));
         moveData.forEach((move: IMoveData) => {
             moves.push([this.options[SubCommandEnum.your_bot],
-                Answer.ATTACK_TRANSFER,
+                Consts.ATTACK_TRANSFER,
                 move.moveFrom.id.toString(),
                 move.moveTo.id.toString(),
                 (move.moveFrom.troopCount - 1).toString()].join(' '));

@@ -18,7 +18,6 @@ import ISubCommandOption = require('../../../TSWarLightBot/command/ISubCommandOp
 import ICommandData = require('../../../TSWarLightBot/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/IMoveData');
-import Answer = require('../../../TSWarLightBot/command/Answer');
 import Consts = require('../../../TSWarLightBot/Consts');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
 import IRegion = require('../../../TSWarLightBot/map/I/IRegion');
@@ -185,7 +184,7 @@ describe('go.test', () => {
         options[SubCommandEnum.starting_armies] = '3';
         options[SubCommandEnum.your_bot] = yourBotName;
         spyOn(Math, 'random').andReturn(0);
-        var resultOneArmie: string = [yourBotName, Answer.PLACE_ARMIES, '1 1'].join(' ');
+        var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
 
         // act
         var result: ICommandAnswer = go.place_armies(commandPlaceArmiesData);
@@ -280,8 +279,8 @@ describe('go.test', () => {
             }
         });
 
-        var resultAttackRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '1 3 6'].join(' ');
-        var resultTransferRegion: string = [yourBotName, Answer.ATTACK_TRANSFER, '2 1 2'].join(' ');
+        var resultAttackRegion: string = [yourBotName, Consts.ATTACK_TRANSFER, '1 3 6'].join(' ');
+        var resultTransferRegion: string = [yourBotName, Consts.ATTACK_TRANSFER, '2 1 2'].join(' ');
 
         // act
         var result: ICommandAnswer = go.attacktransfer(commandAttackTransferData);
