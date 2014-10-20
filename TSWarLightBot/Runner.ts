@@ -17,7 +17,7 @@
 import Bot = require('./Bot');
 import readline = require('readline');
 import Lines = require('./Lines');
-import Go = require('./command/Go');
+import GoCommand = require('./command/GoCommand');
 import Opponent_moves = require('./command/Opponent_moves');
 import Pick_starting_regions = require('./command/Pick_starting_regions');
 import Settings = require('./command/Settings');
@@ -30,7 +30,7 @@ import SubCommandEnum = require('./enum/SubCommandEnum');
 import WarMap = require('./map/WarMap');
 
 var options: ISubCommandOption = {};
-var go = new Go(options, new WarMap());
+var goCommand = new GoCommand(options, new WarMap());
 var opponent_moves = new Opponent_moves();
 var pick_starting_regions = new Pick_starting_regions();
 var settings = new Settings();
@@ -38,7 +38,7 @@ var setup_map = new Setup_map();
 var update_map = new Update_map();
 
 var commandMethods: ICommandMethod = {};
-commandMethods[CommandEnum.go] = go.getCommandAnswer;
+commandMethods[CommandEnum.go] = goCommand.getCommandAnswer;
 commandMethods[CommandEnum.opponent_moves] = opponent_moves.getCommandAnswer;
 commandMethods[CommandEnum.pick_starting_regions] = pick_starting_regions.getCommandAnswer;
 commandMethods[CommandEnum.settings] = settings.getCommandAnswer;

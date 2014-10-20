@@ -24,8 +24,8 @@ import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import util = require('util');
 
 describe('go', () => {
-    var Go: any = require("../../../TSWarLightBot/command/Go");
-    var go: any;
+    var GoCommand: any = require("../../../TSWarLightBot/command/GoCommand");
+    var goCommand: any;
     var commandPlaceArmiesData: ICommandData = {
         line: 'go place_armies 2000',
         command: CommandEnum.go,
@@ -52,7 +52,7 @@ describe('go', () => {
         ownRegions.push(regions[0]);
         ownRegions.push(regions[1]);
         warMap.getOwnedRegions.andReturn(ownRegions); 
-        go = new Go(options, warMap);
+        goCommand = new GoCommand(options, warMap);
     });
 
     function createMockRegions(): IRegion[] {
@@ -104,14 +104,14 @@ describe('go', () => {
         it('Should call right subcommand if commandPlaceArmiesData.subCommand matches.', () => {
             // arange
             spyOn(Math, 'random').andReturn(0);
-            spyOn(go, 'place_armies');
+            spyOn(goCommand, 'place_armies');
 
             // act
-            go.getCommandAnswer(commandPlaceArmiesData);
+            goCommand.getCommandAnswer(commandPlaceArmiesData);
 
             // assert
-            expect(go.place_armies).toHaveBeenCalledWith(commandPlaceArmiesData);
-            expect(go.place_armies.callCount).toBe(1);
+            expect(goCommand.place_armies).toHaveBeenCalledWith(commandPlaceArmiesData);
+            expect(goCommand.place_armies.callCount).toBe(1);
         });
 
         it('Should return succes = false and a error string when commandPlaceArmiesData.subCommand not matches.', () => {
@@ -121,7 +121,7 @@ describe('go', () => {
             commandPlaceArmiesData.line = 'go neighbors 2000';
 
             // act
-            var result: ICommandAnswer = go.getCommandAnswer(commandPlaceArmiesData);
+            var result: ICommandAnswer = goCommand.getCommandAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -135,7 +135,7 @@ describe('go', () => {
             commandPlaceArmiesData.line = 'go 2000';
 
             // act
-            var result: ICommandAnswer = go.getCommandAnswer(commandPlaceArmiesData);
+            var result: ICommandAnswer = goCommand.getCommandAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -149,7 +149,7 @@ describe('go', () => {
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            go.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
             expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwnersEnum.PLAYER);
@@ -162,7 +162,7 @@ describe('go', () => {
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            go.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
             expect((<jasmine.Spy>Math.random).callCount).toBe(3);
@@ -174,7 +174,7 @@ describe('go', () => {
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            go.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
             expect(regions[0].troopCount).toBe(1 + 3);
@@ -190,7 +190,7 @@ describe('go', () => {
             var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
 
             // act
-            var result: ICommandAnswer = go.place_armies(commandPlaceArmiesData);
+            var result: ICommandAnswer = goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
             expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
@@ -200,7 +200,7 @@ describe('go', () => {
     describe('attacktransfer', () => {
         it('Should call getRegionsToAttackTransfer on this twice', () => {
             // arange
-            spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            spyOn(goCommand, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
                 if (own) {
                     return [{
                         moveFrom: regions[1],
@@ -215,18 +215,18 @@ describe('go', () => {
             });
 
             // act
-            go.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
-            expect(go.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
-            expect(go.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
-            expect(go.getRegionsToAttackTransfer.callCount).toBe(2);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
+            expect(goCommand.getRegionsToAttackTransfer.callCount).toBe(2);
         });
 
         it('Should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', () => {
             // arange
             regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1;
-            spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            spyOn(goCommand, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
                 if (own) {
                     return [];
                 } else {
@@ -238,7 +238,7 @@ describe('go', () => {
             });
 
             // act
-            go.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
             expect(regions[0].troopCount).toBe(1);
@@ -247,7 +247,7 @@ describe('go', () => {
         it('Should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', () => {
             // arange
             regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
-            spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            spyOn(goCommand, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
                 if (own) {
                     return [{
                         moveFrom: regions[1],
@@ -259,7 +259,7 @@ describe('go', () => {
             });
 
             // act
-            go.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
             expect(regions[1].troopCount).toBe(1);
@@ -270,7 +270,7 @@ describe('go', () => {
             // arange
             regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
-            spyOn(go, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
+            spyOn(goCommand, 'getRegionsToAttackTransfer').andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number) => {
                 if (own) {
                     return [{
                         moveFrom: regions[1],
@@ -296,7 +296,7 @@ describe('go', () => {
                 (Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1).toString()].join(' ');
 
             // act
-            var result: ICommandAnswer = go.attacktransfer(commandAttackTransferData);
+            var result: ICommandAnswer = goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
             expect(result.value).toBe([resultAttackRegion, resultTransferRegion].join(', '));
@@ -313,7 +313,7 @@ describe('go', () => {
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            var result: IMoveData[] = go.getRegionsToAttackTransfer(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
 
             // assert
             expect(result[0].moveTo).toBe(regions[2]);
