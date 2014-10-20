@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5BBAC82-700F-4480-A022-B8770AB16FE7}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		tslint.json = tslint.json
 	EndProjectSection
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBot.specs", "TSWarLightBot.specs\TSWarLightBot.specs.njsproj", "{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}"

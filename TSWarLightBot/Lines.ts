@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -19,14 +19,14 @@ import CommandEnum = require('./enum/CommandEnum');
 import OptionEnum = require('./enum/OptionEnum');
 import util = require('util');
 
-/**
+/*
  * Converts lines to command information and passes it to the right command class and returns the answer.
  */
 class Lines implements ILines {
     constructor(private commandMethodList: ICommandMethod) {
-    } 
+    }
 
-    /**
+    /*
      * Gets the answer from the bot by passing a command to the right command class.
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command answer.
@@ -42,11 +42,11 @@ class Lines implements ILines {
             return {
                 succes: false,
                 value: util.format(Consts.UNABLE_TO_EXECUTE, line)
-            }
+            };
         }
     }
 
-    /**
+    /*
      * Gets a ICommandData instance by converting a string containing the information.
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command information.
@@ -72,7 +72,7 @@ class Lines implements ILines {
             command: command,
             option: option,
             data: lineParts
-        }
+        };
     }
 
     private getEnum(value: string, enumType: any): any {
@@ -83,11 +83,11 @@ class Lines implements ILines {
         // attack/transfer is not a valid enum value. We have to remove te slash.
         value = value.replace('/', '');
 
-        // Example
+        // example
         // enum OptionEnum {
         //    super_regions
         // }
-        // We want "0" to return undefined and not "super_regions"
+        // we want "0" to return undefined and not "super_regions"
         // "super_regions" will return 0 and pass this test.
         if (typeof enumType[value] === 'string') {
             return undefined;

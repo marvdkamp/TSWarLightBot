@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -16,7 +16,6 @@ import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/interface/IMoveData');
-import CommandEnum = require('../enum/CommandEnum');
 import OptionEnum = require('../enum/OptionEnum');
 import IWarMap = require('../map/interface/IWarMap');
 import IRegion = require('../map/interface/IRegion');
@@ -24,30 +23,30 @@ import PossibleOwnersEnum = require('../map/enum/PossibleOwnersEnum');
 import Consts = require('../Consts');
 import util = require('util');
 
-/**
+/*
  * Handles go command from the game engine. Request for the bot to return his place armies moves  and request for the bot 
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
     private optionMethodList: ICommandMethod = {};
 
-    /**
+    /*
      * Create an instance of the Go class.
      * @constructor
      * @param settings {IOptionSetting} - Settings with information needed by this command.
      * @param warMap {IWarMap} - Information about the map on which the game is played.
      */
     constructor(private settings: IOptionSetting, private warMap: IWarMap) {
-        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData) => { 
-                return this.place_armies(commandData)
-            };
+        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData): ICommandAnswer => {
+            return this.place_armies(commandData);
+        };
 
-        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData) => { 
-                return this.attacktransfer(commandData)
-            };
-    } 
+        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData): ICommandAnswer => {
+            return this.attacktransfer(commandData);
+        };
+    }
 
-    /**
+    /*
      * Gets the answer from the bot for the go command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
@@ -74,11 +73,11 @@ class Go implements ICommand {
             return {
                 succes: false,
                 value: util.format(Consts.UNABLE_TO_EXECUTE, commandData.line)
-            }
+            };
         }
     }
 
-    /**
+    /*
      * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
@@ -110,10 +109,10 @@ class Go implements ICommand {
         return {
             succes: true,
             value: placements.join(', ').trim()
-        }
+        };
     }
 
-    /**
+    /*
      * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
@@ -135,7 +134,7 @@ class Go implements ICommand {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
         var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
         moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
-        moveData.forEach((move: IMoveData) => {
+        moveData.forEach((move: IMoveData): void => {
             moves.push([this.settings[OptionEnum.your_bot],
                 Consts.ATTACK_TRANSFER,
                 move.moveFrom.id.toString(),
@@ -150,7 +149,7 @@ class Go implements ICommand {
         }
     }
 
-    /**
+    /*
      * Gets the regions which the bot could attack or transfer troops to.
      * @param ownedRegions {IRegion[]} - Regions from which the attack or tranfer starts. The neighbors are the region are potential
      *                                   regions to attack or transfer to.
@@ -175,12 +174,12 @@ class Go implements ICommand {
      */
     public getRegionsToAttackTransfer(ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]{
         var result: IMoveData[] = [];
-        ownedRegions.forEach((region: IRegion) => {
-            var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion) => {
+        ownedRegions.forEach((region: IRegion): void => {
+            var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion): boolean => {
                 return ((neighbor.owner === PossibleOwnersEnum.PLAYER && own) || (neighbor.owner !== PossibleOwnersEnum.PLAYER && !own));
             });
             if (region.troopCount >= numberOfTroops && possibleAttacks.length > 0) {
-                result.push({ moveTo: possibleAttacks[0], moveFrom: region })
+                result.push({ moveTo: possibleAttacks[0], moveFrom: region });
             };
         });
 

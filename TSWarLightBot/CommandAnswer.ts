@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -12,12 +12,12 @@
 
 import ICommandAnswer = require('./interface/ICommandAnswer');
 
-/**
+/*
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
  */
 class CommandAnswer implements ICommandAnswer {
 
-    /**
+    /*
      * Create an instance of the CommandAnswer class.
      * @constructor
      * @param succes {boolean} - Could the command succesfully be handled by the bot.

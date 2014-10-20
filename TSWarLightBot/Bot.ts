@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -15,16 +15,17 @@ import IBot = require('./interface/IBot');
 import ILines = require('./interface/ILines');
 import ICommandAnswer = require('./interface/ICommandAnswer');
 
-/**
+/*
  * Main class of the app. Handles reading from and writing to the console. Will be instantiated and run from Runner.ts.
  */
 class Bot implements IBot {
 
-    /**
+    /*
      * Create an instance of the Bot class.
      * @constructor
      * @param io {readline.ReadLine} - Allows reading of a stream (such as process.stdin) on a line-by-line basis.
-     * @param lines {ILines} - ILine instance which converts lines to command information and passes it to the right command class and returns the answer.
+     * @param lines {ILines} - ILine instance which converts lines to command information and passes it to the right command class and 
+     *                         returns the answer.
      * @param botProcess {NodeProccess} - global object for listening to events. Injected so we can mock it in tests.
      */
     constructor(private io: readline.ReadLine, private lines: ILines, private botProcess: NodeProcess) {
@@ -35,11 +36,11 @@ class Bot implements IBot {
      */
     public run(): void {
         var that: Bot = this;
-        this.io.on('line', (data: string) => {
+        this.io.on('line', (data: string): void => {
             that.handleLine(data);
         });
 
-        this.io.on('close', () => {
+        this.io.on('close', (): void => {
             that.handleClose();
         });
     }
