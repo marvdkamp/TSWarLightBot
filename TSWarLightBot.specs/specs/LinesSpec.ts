@@ -20,7 +20,7 @@ import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
 
-describe('lines.test', () => {
+describe('lines', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");
     var lines: ILines;
     var settingMethod: any = jasmine.createSpy('settingMethod');
@@ -37,153 +37,157 @@ describe('lines.test', () => {
         lines = new Lines(commandMethods);
     });
 
-    it('getCommandAnswer should call the right action if data command mathches.', () => {
-        // arange
-        spyOn(lines, 'getCommandData').andReturn(commandData);
+    describe('getCommandAnswer', () => {
+        it('Should call the right action if data command mathches.', () => {
+            // arange
+            spyOn(lines, 'getCommandData').andReturn(commandData);
 
-        // act
-        lines.getCommandAnswer(commandString);
+            // act
+            lines.getCommandAnswer(commandString);
 
-        // assert
-        expect(settingMethod).toHaveBeenCalledWith(commandData);
-        expect(settingMethod.callCount).toBe(1);
-    });
-
-    it('getCommandAnswer should return succes = false when the data string NOT matches.', () => {
-        // arange
-        commandString = 'doesnotexcist';
-        spyOn(lines, 'getCommandData').andReturn({
-            command: undefined,
-            data: []
+            // assert
+            expect(settingMethod).toHaveBeenCalledWith(commandData);
+            expect(settingMethod.callCount).toBe(1);
         });
 
-        // act
-        var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+        it('Should return succes = false when the data string NOT matches.', () => {
+            // arange
+            commandString = 'doesnotexcist';
+            spyOn(lines, 'getCommandData').andReturn({
+                command: undefined,
+                data: []
+            });
 
-        // assert
-        expect(result.succes).toBeFalsy(); 
-        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+            // act
+            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+
+            // assert
+            expect(result.succes).toBeFalsy();
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+        });
+
+        it('Should return succes = false when the CommandMethod.method is null.', () => {
+            // arange
+            commandMethods[CommandEnum.settings] = null;
+            spyOn(lines, 'getCommandData').andReturn(commandData);
+
+            // act
+            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+
+            // assert
+            expect(result.succes).toBeFalsy();
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+        });
+
+        it('Should return succes = false when the CommandMethod.method is undefined.', () => {
+            // arange
+            commandMethods[CommandEnum.settings] = undefined;
+            spyOn(lines, 'getCommandData').andReturn(commandData);
+
+            // act
+            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+
+            // assert
+            expect(result.succes).toBeFalsy();
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+        });
+
+        it('Should call getCommandData on lines.', () => {
+            // arange
+            spyOn(lines, 'getCommandData').andReturn(commandData);
+
+            // act
+            lines.getCommandAnswer(commandString);
+
+            // assert
+            expect(lines.getCommandData).toHaveBeenCalledWith(commandString);
+            expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
+        });
     });
 
-    it('getCommandAnswer should return succes = false when the CommandMethod.method is null.', () => {
-        // arange
-        commandMethods[CommandEnum.settings] = null;
-        spyOn(lines, 'getCommandData').andReturn(commandData);
+    describe('getCommandData', () => {
+        it('Should return command if string matches', () => {
+            // arange
 
-        // act
-        var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
-    });
+            // assert
+            expect(result.command).toBe(CommandEnum.settings);
+        });
 
-    it('getCommandAnswer should return succes = false when the CommandMethod.method is undefined.', () => {
-        // arange
-        commandMethods[CommandEnum.settings] = undefined;
-        spyOn(lines, 'getCommandData').andReturn(commandData);
+        it('Should return command is undefined when string contains only spaces', () => {
+            // arange
 
-        // act
-        var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData(' ');
 
-        // assert
-        expect(result.succes).toBeFalsy();
-        expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
-    });
+            // assert
+            expect(result.command).toBe(undefined);
+        });
 
-    it('getCommandAnswer should call getCommandData on lines.', () => {
-        // arange
-        spyOn(lines, 'getCommandData').andReturn(commandData);
+        it('Should return command is undefined when string contains an invalid command', () => {
+            // arange
 
-        // act
-        lines.getCommandAnswer(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData('doesnotexcist');
 
-        // assert
-        expect(lines.getCommandData).toHaveBeenCalledWith(commandString);
-        expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
-    });
+            // assert
+            expect(result.command).toBe(undefined);
+        });
 
-    it('getCommandData should return command if string matches', () => {
-        // arange
+        it('Should return subCommand if string matches', () => {
+            // arange
 
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.command).toBe(CommandEnum.settings);
-    });
+            // assert
+            expect(result.subCommand).toBe(SubCommandEnum.your_bot);
+        });
 
-    it('getCommandData should return command is undefined when string contains only spaces', () => {
-        // arange
+        it('Should return subCommand undefined if string contains only 1 linepart and should not crash', () => {
+            // arange
+            commandString = CommandEnum[CommandEnum.settings];
 
-        // act
-        var result: ICommandData = lines.getCommandData(' ');
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.command).toBe(undefined);
-    });
+            // assert
+            expect(result.subCommand).toBe(undefined);
+        });
 
-    it('getCommandData should return command is undefined when string contains an invalid command', () => {
-        // arange
+        it('Should return subCommand undefined for a command which has no subCommand', () => {
+            // arange
+            commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
 
-        // act
-        var result: ICommandData = lines.getCommandData('doesnotexcist');
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.command).toBe(undefined);
-    });
+            // assert
+            expect(result.subCommand).toBe(undefined);
+        });
 
-    it('getCommandData should return subCommand if string matches', () => {
-        // arange
+        it('Should return the right data for a command with subcommand', () => {
+            // arange
+            commandString = [CommandEnum[CommandEnum.setup_map], SubCommandEnum[SubCommandEnum.super_regions], '1 2 2 5'].join(' ');
 
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.subCommand).toBe(SubCommandEnum.your_bot);
-    });
+            // assert
+            expect(result.data).toEqual(['1', '2', '2', '5']);
+        });
 
-    it('getCommandData should return subCommand undefined if string contains only 1 linepart and should not crash', () => {
-        // arange
-        commandString = CommandEnum[CommandEnum.settings];
+        it('Should return the right data for a command which has no subcommand', () => {
+            // arange
+            commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
 
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
 
-        // assert
-        expect(result.subCommand).toBe(undefined);
-    });
-
-    it('getCommandData should return subCommand undefined for a command which has no subCommand', () => {
-        // arange
-        commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
-
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
-
-        // assert
-        expect(result.subCommand).toBe(undefined);
-    });
-
-    it('getCommandData should return the right data for a command with subcommand', () => {
-        // arange
-        commandString = [CommandEnum[CommandEnum.setup_map], SubCommandEnum[SubCommandEnum.super_regions], '1 2 2 5'].join(' ');
-
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
-
-        // assert
-        expect(result.data).toEqual(['1', '2', '2', '5']);
-    });
-
-    it('getCommandData should return the right data for a command which has no subcommand', () => {
-        // arange
-        commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
-
-        // act
-        var result: ICommandData = lines.getCommandData(commandString);
-
-        // assert
-        expect(result.data).toEqual(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']);
+            // assert
+            expect(result.data).toEqual(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']);
+        });
     });
 });
