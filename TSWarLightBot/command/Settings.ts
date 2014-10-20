@@ -23,6 +23,10 @@ import SubCommandEnum = require('../SubCommandEnum');
 class Settings implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
+    /**
+     * Create an instance of the Settings class.
+     * @constructor
+     */
     constructor() {
         this.subCommandMethodList[SubCommandEnum.your_bot] = (commandData: ICommandData) => { 
                 return this.your_bot(commandData)
@@ -44,6 +48,12 @@ class Settings implements ICommand {
      *     subCommand: SubCommandEnum.your_bot,
      *     data: ['player1']
      * });
+     *
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;

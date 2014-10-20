@@ -23,6 +23,10 @@ import SubCommandEnum = require('../SubCommandEnum');
 class Setup_map implements ICommand {
     private subCommandMethodList: ICommandMethod = {};
 
+    /**
+     * Create an instance of the Setup_map class.
+     * @constructor
+     */
     constructor() {
         this.subCommandMethodList[SubCommandEnum.super_regions] = (commandData: ICommandData) => { 
             return this.super_regions(commandData)
@@ -48,6 +52,13 @@ class Setup_map implements ICommand {
      *     subCommand: SubCommandEnum.super_regions,
      *     data: ['1', '2', '2', '5']
      * });
+     * 
+     *
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;

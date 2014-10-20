@@ -1,10 +1,22 @@
 TODO
 ====
-- remove checked in js file(s).
-- handle all de subcommands and tests in other command classes.
-- check of we subCommand undefined of null laten wanneer er geen subCommand is.
-- DENK om slash in attack transfer.
+- Comment above each public method.
+- Check of all files which should be on Github are on github and which should not are not. Find out how gitIgnore works.
+- Merge Messages and Anwser and create a Consts file.
+- Rename I map to interface and place all interfaces in a map with this name.
+- Sort imports.
+- Find out if we can create a describe in a describe and have a describe per method.
+- Write tests for all wrong input paramaters.
+- Rename subCommand to option. All commands subfix with Command. Rename options to settings.
+- Handle all de subcommands and tests in other command classes.
+- Check of we subCommand undefined of null laten wanneer er geen subCommand is.
+- Handle slash in attack transfer.
+- We import proccess but check if we can solve it with a spy on process in the test.
+- Check if every method has a return type and every var a type.
+- moveFrom and moveTo rename to regionFrom and regionTo.
+- Find out wat the problem is with TS-lint.
 - Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.
+- Uitschrijven wat er nog op het werk moet gebeuren.
 
 DONE
 ====

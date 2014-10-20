@@ -24,6 +24,12 @@ class Region implements IRegion {
     isOnSuperRegionBorder: boolean;
 
 
+    /**
+     * Create an instance of the Region class. Sets properties to a default value.
+     * @constructor
+     * @param id {number} - The unique id for this Region.
+     * @param superRegion {ISuperRegion} - Every Region instance is part of a superRegion.
+     */
     constructor(id: number, superRegion: ISuperRegion) {
         this.id = id;
         this.superRegion = superRegion;

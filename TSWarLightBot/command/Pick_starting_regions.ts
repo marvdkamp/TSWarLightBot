@@ -30,6 +30,12 @@ class Pick_starting_regions implements ICommand {
      *     subCommand: undefined,
      *     data: ['2000']
      * });
+     * 
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: '1 7 24 25 41 42'
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;

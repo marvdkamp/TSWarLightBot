@@ -32,6 +32,12 @@ class Opponent_moves implements ICommand {
      *     subCommand: undefined,
      *     data: []
      * });
+     * 
+     * Example return:
+     * {
+     *     succes: true,
+     *     value: ''
+     * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
         return null;

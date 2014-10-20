@@ -95,6 +95,9 @@ describe('go.test', () => {
         result[0].neighbors.push(result[2]);
         result[0].neighbors.push(result[3]);
 
+        // We don't need this => Connectivity is only given in one way: 'region id' < 'neighbour id'.
+        // result[1].neighbors.push(result[0]);
+
         return result;
     }
 
@@ -296,7 +299,7 @@ describe('go.test', () => {
         spyOn(Math, 'random').andReturn(0);
 
         // act
-        var result: IMoveData[] = go.getRegionsToAttackTransfer(ownRegions, false, 6);
+        var result: IMoveData[] = go.getRegionsToAttackTransfer(ownRegions, false, 7);
 
         // assert
         expect(result[0].moveTo).toBe(regions[2]);
