@@ -18,7 +18,6 @@ import Messages = require('./Messages');
 import CommandEnum = require('./CommandEnum');
 import SubCommandEnum = require('./SubCommandEnum');
 import util = require('util');
-import _ = require('underscore');
 
 /**
  * Converts lines to command information and passes it to the right command class and returns the answer.

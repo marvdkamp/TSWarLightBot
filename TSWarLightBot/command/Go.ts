@@ -22,7 +22,6 @@ import Answer = require('./Answer');
 import IWarMap = require('../map/I/IWarMap');
 import IRegion = require('../map/I/IRegion');
 import PossibleOwners = require('../map/PossibleOwners');
-import _ = require('underscore');
 import Messages = require('../Messages');
 import util = require('util');
 
