@@ -10,8 +10,8 @@
  */
 'use strict';
 
-import IRegion = require('./I/IRegion');
-import ISuperRegion = require('./I/ISuperRegion');
+import IRegion = require('./interface/IRegion');
+import ISuperRegion = require('./interface/ISuperRegion');
 import PossibleOwners = require('./PossibleOwners');
 
 class Region implements IRegion {

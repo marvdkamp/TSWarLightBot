@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import IRegion = require('../map/I/IRegion');
+import IRegion = require('../map/interface/IRegion');
 
 interface IMoveData {
     moveTo: IRegion;

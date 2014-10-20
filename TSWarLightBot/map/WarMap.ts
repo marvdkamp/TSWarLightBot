@@ -10,9 +10,9 @@
  */
 'use strict';
 
-import IWarMap = require('./I/IWarMap');
-import IRegion = require('./I/IRegion');
-import ISuperRegion = require('I/ISuperRegion');
+import IWarMap = require('./interface/IWarMap');
+import IRegion = require('./interface/IRegion');
+import ISuperRegion = require('./interface/ISuperRegion');
 import PossibleOwners = require('./PossibleOwners');
 
 

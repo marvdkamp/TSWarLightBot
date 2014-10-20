@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ISuperRegion = require('./I/ISuperRegion');
+import ISuperRegion = require('./interface/ISuperRegion');
 
 class SuperRegion implements ISuperRegion {
     id: number;

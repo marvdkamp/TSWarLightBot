@@ -54,9 +54,9 @@
     <TypeScriptCompile Include="ICommandAnswer.ts" />
     <TypeScriptCompile Include="ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />
-    <TypeScriptCompile Include="map\I\IRegion.ts" />
-    <TypeScriptCompile Include="map\I\ISuperRegion.ts" />
-    <TypeScriptCompile Include="map\I\IWarMap.ts" />
+    <TypeScriptCompile Include="map\interface\IRegion.ts" />
+    <TypeScriptCompile Include="map\interface\ISuperRegion.ts" />
+    <TypeScriptCompile Include="map\interface\IWarMap.ts" />
     <TypeScriptCompile Include="map\PossibleOwners.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="map\" />
-    <Folder Include="map\I\" />
+    <Folder Include="map\interface\" />
     <Folder Include="command\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />

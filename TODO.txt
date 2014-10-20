@@ -1,6 +1,5 @@
 TODO
 ====
-- Merge Messages and Anwser and create a Consts file and create consts for values as 7 for minimum troops for attack.
 - Rename I map to interface and place all interfaces in a map with this name.
 - Sort imports.
 - Find out if we can create a describe in a describe and have a describe per method.

@@ -20,7 +20,7 @@ import ICommandAnswer = require('../../../TSWarLightBot/ICommandAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/IMoveData');
 import Consts = require('../../../TSWarLightBot/Consts');
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
-import IRegion = require('../../../TSWarLightBot/map/I/IRegion');
+import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import util = require('util');
 
 describe('go.test', () => {

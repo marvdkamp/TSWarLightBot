@@ -12,8 +12,7 @@
 'use strict';
 
 import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
-import IWarMap = require('../../../TSWarLightBot/map/I/IWarMap');
-
+import IWarMap = require('../../../TSWarLightBot/map/interface/IWarMap');
 
 import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');
 import Region = require('../../../TSWarLightBot/map/Region');
