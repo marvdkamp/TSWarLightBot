@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -43,9 +43,9 @@ class WarMap implements IWarMap {
      * @returns {IRegion} - The Region instance.
      */
     public getRegionById(id: number): IRegion {
-        if (typeof (this.regions[id]) !== 'undefined')
+        if (typeof (this.regions[id]) !== 'undefined') {
             return this.regions[id];
-
+        }
         return null;
     }
 
@@ -55,9 +55,9 @@ class WarMap implements IWarMap {
      * @returns {ISuperRegion} - The SuperRegion instance.
      */
     public getSuperRegionById(id: number): ISuperRegion {
-        if (typeof (this.superRegions[id]) !== 'undefined')
+        if (typeof (this.superRegions[id]) !== 'undefined') {
             return this.superRegions[id];
-
+        }
         return null;
     }
 
@@ -66,8 +66,9 @@ class WarMap implements IWarMap {
      * @param region {IRegion} - The Region instance.
      */
     public addRegion(region: IRegion): void {
-        if(typeof(region) !== 'undefined')
+        if (typeof (region) !== 'undefined') {
             this.regions[region.id] = region;
+        }
     }
 
     /**
@@ -75,8 +76,9 @@ class WarMap implements IWarMap {
      * @param region {ISuperRegion} - The SuperRegion instance.
      */
     public addSuperRegion(region: ISuperRegion): void {
-        if (typeof (region) !== 'undefined')
+        if (typeof (region) !== 'undefined') {
             this.superRegions[region.id] = region;
+        }
     }
 
     /**
@@ -88,7 +90,7 @@ class WarMap implements IWarMap {
         var ownedRegions = [];
 
         for (var i in this.regions) {
-            var region = this.regions[i];
+            var region = this.regions[i]; // indexer
 
             if (region.owner === owner) {
                 ownedRegions.push(region);

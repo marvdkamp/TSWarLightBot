@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -11,21 +11,21 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-//TODO: Split lines!!!!
-//TODO: Trim lines!!!!
+// TODO: Split lines!!!!
+// TODO: Trim lines!!!!
 
-import readline = require('readline');
+require('readline');
 import IBot = require('../../TSWarLightBot/interface/IBot');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
-describe('bot', () => {
-    var Bot: any = require("../../TSWarLightBot/Bot");
+describe('bot', (): void => {
+    var Bot: any = require('../../TSWarLightBot/Bot');
     var bot: IBot;
     var io: any = jasmine.createSpyObj('io', ['on']);
     var lineListener: (data: string) => void;
     var closeListener: () => void;
-    io.on.andCallFake(function (event: string, listener: (data?: string) => void) {
+    io.on.andCallFake(function (event: string, listener: (data?: string) => void): void {
         if (event === 'line') {
             lineListener = listener;
         };
@@ -43,23 +43,23 @@ describe('bot', () => {
         stdout: jasmine.createSpyObj('stdout', ['write']),
         stderr: jasmine.createSpyObj('stderr', ['write']),
         exit: jasmine.createSpy('exit')
-    }
+    };
 
     var commandString: string = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
-    beforeEach(() => {
+    beforeEach((): void => {
         bot = new Bot(io, lines, botProcess);
     });
 
-    afterEach(() => {
+    afterEach((): void => {
         lines.getCommandAnswer.reset();
         io.on.reset();
         botProcess.stdout.write.reset();
         botProcess.stderr.write.reset();
     });
 
-    describe('run', () => {
-        it('Should call on on io with line and close arguments to attach events.', () => {
+    describe('run', (): void => {
+        it('Should call on on io with line and close arguments to attach events.', (): void => {
             // arange
 
             // act
@@ -71,7 +71,7 @@ describe('bot', () => {
             expect(io.on.callCount).toBe(2);
         });
 
-        it('Should attach the right methodes to the events.', () => {
+        it('Should attach the right methodes to the events.', (): void => {
             // arange
             spyOn(bot, 'handleLine');
             spyOn(bot, 'handleClose');
@@ -87,8 +87,8 @@ describe('bot', () => {
         });
     });
 
-    describe('handleLine', () => {
-        it('Should call getCommandAnswer on lines.', () => {
+    describe('handleLine', (): void => {
+        it('Should call getCommandAnswer on lines.', (): void => {
             // arange
 
             // act
@@ -99,7 +99,7 @@ describe('bot', () => {
             expect(lines.getCommandAnswer.callCount).toBe(1);
         });
 
-        it('Should NOT call getCommandAnswer on lines if string is empty.', () => {
+        it('Should NOT call getCommandAnswer on lines if string is empty.', (): void => {
             // arange
 
             // act
@@ -110,7 +110,7 @@ describe('bot', () => {
             expect(lines.getCommandAnswer.callCount).toBe(0);
         });
 
-        it('Should call process.stdout.write on lines if result is succesfull.', () => {
+        it('Should call process.stdout.write on lines if result is succesfull.', (): void => {
             // arange
             commandAnswer.succes = true;
             commandAnswer.value = 'test';
@@ -124,7 +124,7 @@ describe('bot', () => {
             expect(botProcess.stderr.write.callCount).toBe(0);
         });
 
-        it('Should call process.stderr.write on lines if commandName is NOT succesfull.', () => {
+        it('Should call process.stderr.write on lines if commandName is NOT succesfull.', (): void => {
             // arange
             commandAnswer.succes = false;
             commandAnswer.value = 'test';
@@ -139,8 +139,8 @@ describe('bot', () => {
         });
     });
 
-    describe('handleClose', () => {
-        it('Should call process.exit(0) if handleClose is called.', () => {
+    describe('handleClose', (): void => {
+        it('Should call process.exit(0) if handleClose is called.', (): void => {
             // act
             bot.handleClose();
 

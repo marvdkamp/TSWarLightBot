@@ -60,5 +60,14 @@ https://typescript.codeplex.com/discussions/398359
 Extend javascript array
 http://stackoverflow.com/questions/14000645/how-to-extend-native-javascipt-array-in-typescript
 
+Grunt 
+http://gruntjs.com/
+
+Grunt getting started
+http://gruntjs.com/getting-started#the-gruntfile
+
+Jasmine-node-coverage
+https://github.com/jribble/grunt-jasmine-node-coverage
+
 Nested descripe
 http://coderdiaries.com/2014/05/30/jasminejs-execution-sequence-whith-nested-describes/

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -17,7 +17,7 @@
 interface ISuperRegion {
     id: number;
     bonus: number;
-    regions: {}; //TODO: waar is deze voor?
+    regions: {}; // todo: waar is deze voor?
 }
 
 export = ISuperRegion;
