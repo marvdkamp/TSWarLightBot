@@ -63,7 +63,7 @@
     <TypeScriptCompile Include="map\WarMap.ts" />
     <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="enum\SubCommandEnum.ts" />
+    <TypeScriptCompile Include="enum\OptionEnum.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="command\interface\" />

@@ -4,8 +4,8 @@ TODO
 - moveFrom and moveTo rename to regionFrom and regionTo.
 - Find out wat the problem is with TS-lint.
 - Find out if we can use alias for Paths in NodeJS.
-- Write tests for all wrong input paramaters. Check of we subCommand undefined of null laten wanneer er geen subCommand is.
-- Handle all de subcommands and tests in other command classes.
+- Write tests for all wrong input paramaters. Check of we option undefined of null laten wanneer er geen option is.
+- Handle all de option and tests in other command classes.
 - Sort imports.
 - Check if runner injects the right instances in each contructor.
 - Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.

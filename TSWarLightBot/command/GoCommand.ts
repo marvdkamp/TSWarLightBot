@@ -17,7 +17,7 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/interface/IMoveData');
 import CommandEnum = require('../enum/CommandEnum');
-import SubCommandEnum = require('../enum/SubCommandEnum');
+import OptionEnum = require('../enum/OptionEnum');
 import IWarMap = require('../map/interface/IWarMap');
 import IRegion = require('../map/interface/IRegion');
 import PossibleOwnersEnum = require('../map/enum/PossibleOwnersEnum');
@@ -29,7 +29,7 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private subCommandMethodList: ICommandMethod = {};
+    private optionMethodList: ICommandMethod = {};
 
     /**
      * Create an instance of the Go class.
@@ -38,11 +38,11 @@ class Go implements ICommand {
      * @param warMap {IWarMap} - Information about the map on which the game is played.
      */
     constructor(private settings: IOptionSetting, private warMap: IWarMap) {
-        this.subCommandMethodList[SubCommandEnum.place_armies] = (commandData: ICommandData) => { 
+        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData) => { 
                 return this.place_armies(commandData)
             };
 
-        this.subCommandMethodList[SubCommandEnum.attacktransfer] = (commandData: ICommandData) => { 
+        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData) => { 
                 return this.attacktransfer(commandData)
             };
     } 
@@ -55,7 +55,7 @@ class Go implements ICommand {
      * getCommandAnswer({ 
      *     line: 'go place_armies 2000'
      *     command: CommandEnum.go,
-     *     subCommand: SubCommandEnum.place_armies,
+     *     option: OptionEnum.place_armies,
      *     data: ['2000']
      * });
      * 
@@ -66,10 +66,10 @@ class Go implements ICommand {
      * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
-        var subCommandMethod: (data: ICommandData) => ICommandAnswer = this.subCommandMethodList[commandData.subCommand];
+        var optionMethod: (data: ICommandData) => ICommandAnswer = this.optionMethodList[commandData.option];
 
-        if (subCommandMethod) {
-            return subCommandMethod(commandData);
+        if (optionMethod) {
+            return optionMethod(commandData);
         } else {
             return {
                 succes: false,
@@ -79,13 +79,13 @@ class Go implements ICommand {
     }
 
     /**
-     * Gets the answer from the bot for the go command with the place_armies subCommand.
+     * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: getCommandAnswer({ 
      *             line: 'go place_armies 2000'
      *             command: CommandEnum.go,
-     *             subCommand: SubCommandEnum.place_armies,
+     *             option: OptionEnum.place_armies,
      *             data: ['2000']
      *          });
      * 
@@ -97,13 +97,13 @@ class Go implements ICommand {
      */
     public place_armies(commandData: ICommandData): ICommandAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
-        var troopsRemaining: number = parseInt(this.settings[SubCommandEnum.starting_armies], 10);
+        var troopsRemaining: number = parseInt(this.settings[OptionEnum.starting_armies], 10);
         var placements: string[] = [];
 
         while (0 < troopsRemaining) {
             var index: number = Math.random() * ownedRegions.length;
             ownedRegions[index].troopCount += 1;
-            placements.push([this.settings[SubCommandEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
+            placements.push([this.settings[OptionEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;
         }
 
@@ -114,13 +114,13 @@ class Go implements ICommand {
     }
 
     /**
-     * Gets the answer from the bot for the go command with the place_armies subCommand.
+     * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: getCommandAnswer({ 
      *             line: 'go attack/transfer 2000'
      *             command: CommandEnum.go,
-     *             subCommand: SubCommandEnum.attacktransfer,
+     *             option: OptionEnum.attacktransfer,
      *             data: ['2000']
      *          });
      * 
@@ -136,7 +136,7 @@ class Go implements ICommand {
         var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
         moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
         moveData.forEach((move: IMoveData) => {
-            moves.push([this.settings[SubCommandEnum.your_bot],
+            moves.push([this.settings[OptionEnum.your_bot],
                 Consts.ATTACK_TRANSFER,
                 move.moveFrom.id.toString(),
                 move.moveTo.id.toString(),

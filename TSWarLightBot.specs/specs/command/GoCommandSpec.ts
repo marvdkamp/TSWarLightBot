@@ -12,7 +12,7 @@
 'use strict';
 
 import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
-import SubCommandEnum = require('../../../TSWarLightBot/enum/SubCommandEnum');
+import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
 import ICommand = require('../../../TSWarLightBot/command/interface/ICommand');
 import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
@@ -29,14 +29,14 @@ describe('goCommand', () => {
     var commandPlaceArmiesData: ICommandData = {
         line: 'go place_armies 2000',
         command: CommandEnum.go,
-        subCommand: SubCommandEnum.place_armies,
+        option: OptionEnum.place_armies,
         data: ['2000']
     };
 
     var commandAttackTransferData: ICommandData = {
         line: 'go attack/transfer 2000',
         command: CommandEnum.go,
-        subCommand: SubCommandEnum.attacktransfer,
+        option: OptionEnum.attacktransfer,
         data: ['2000']
     };
 
@@ -101,7 +101,7 @@ describe('goCommand', () => {
     }
 
     describe('getCommandAnswer', () => {
-        it('Should call right subcommand if commandPlaceArmiesData.subCommand matches.', () => {
+        it('Should call right option if commandPlaceArmiesData.option matches.', () => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
@@ -114,10 +114,10 @@ describe('goCommand', () => {
             expect(goCommand.place_armies.callCount).toBe(1);
         });
 
-        it('Should return succes = false and a error string when commandPlaceArmiesData.subCommand not matches.', () => {
+        it('Should return succes = false and a error string when commandPlaceArmiesData.option not matches.', () => {
             // arange
             spyOn(Math, 'random').andReturn(0);
-            commandPlaceArmiesData.subCommand = SubCommandEnum.neighbors;
+            commandPlaceArmiesData.option = OptionEnum.neighbors;
             commandPlaceArmiesData.line = 'go neighbors 2000';
 
             // act
@@ -128,10 +128,10 @@ describe('goCommand', () => {
             expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
         });
 
-        it('Should return succes = false and a error string when commandPlaceArmiesData.subCommand is undefined.', () => {
+        it('Should return succes = false and a error string when commandPlaceArmiesData.option is undefined.', () => {
             // arange
             spyOn(Math, 'random').andReturn(0);
-            commandPlaceArmiesData.subCommand = undefined;
+            commandPlaceArmiesData.option = undefined;
             commandPlaceArmiesData.line = 'go 2000';
 
             // act
@@ -158,7 +158,7 @@ describe('goCommand', () => {
 
         it('Should call Math.random for the amount of armies it has to place', () => {
             // arange
-            settings[SubCommandEnum.starting_armies] = '3';
+            settings[OptionEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
 
             // act
@@ -170,7 +170,7 @@ describe('goCommand', () => {
 
         it('Should add +1 on troopCount for each armie on region found by index of Math.random.', () => {
             // arange
-            settings[SubCommandEnum.starting_armies] = '3';
+            settings[OptionEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
 
             // act
@@ -184,8 +184,8 @@ describe('goCommand', () => {
         // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.random returns 0 every time).
         it('Should return a placement for every army.', () => {
             // arange
-            settings[SubCommandEnum.starting_armies] = '3';
-            settings[SubCommandEnum.your_bot] = yourBotName;
+            settings[OptionEnum.starting_armies] = '3';
+            settings[OptionEnum.your_bot] = yourBotName;
             spyOn(Math, 'random').andReturn(0);
             var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
 

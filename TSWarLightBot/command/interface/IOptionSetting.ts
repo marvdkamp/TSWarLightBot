@@ -10,14 +10,12 @@
  */
 'use strict';
 
-import SubCommandEnum = require('./../../enum/SubCommandEnum');
-
 /**
- * Couples a subCommand to a value of a Setting. The settings command wil have a subcommand which is 
+ * Couples a option to a value of a Setting. The settings command wil have a option which is 
  * a specific setting with its value. Een array of instances of this interface captures these settings.
  */
 interface IOptionSetting {
-    [subCommand: number]: string;
+    [option: number]: string;
 }
 
 export = IOptionSetting;

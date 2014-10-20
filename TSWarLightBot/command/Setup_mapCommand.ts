@@ -14,29 +14,29 @@ import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
-import SubCommandEnum = require('../enum/SubCommandEnum');
+import OptionEnum = require('../enum/OptionEnum');
 
 /**
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
  * of the regions are given in different calls
  */
 class Setup_mapCommand implements ICommand {
-    private subCommandMethodList: ICommandMethod = {};
+    private optionMethodList: ICommandMethod = {};
 
     /**
      * Create an instance of the Setup_map class.
      * @constructor
      */
     constructor() {
-        this.subCommandMethodList[SubCommandEnum.super_regions] = (commandData: ICommandData) => { 
+        this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData) => { 
             return this.super_regions(commandData)
         };
 
-        this.subCommandMethodList[SubCommandEnum.regions] = (commandData: ICommandData) => { 
+        this.optionMethodList[OptionEnum.regions] = (commandData: ICommandData) => { 
             return this.regions(commandData)
         };
 
-        this.subCommandMethodList[SubCommandEnum.neighbors] = (commandData: ICommandData) => { 
+        this.optionMethodList[OptionEnum.neighbors] = (commandData: ICommandData) => { 
             return this.neighbors(commandData)
         };
     } 
@@ -49,7 +49,7 @@ class Setup_mapCommand implements ICommand {
      * getCommandAnswer({
      *     line: 'setup_map super_regions 1 2 2 5',
      *     command: CommandEnum.setup_map,
-     *     subCommand: SubCommandEnum.super_regions,
+     *     option: OptionEnum.super_regions,
      *     data: ['1', '2', '2', '5']
      * });
      * 
