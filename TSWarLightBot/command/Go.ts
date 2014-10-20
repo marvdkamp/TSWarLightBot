@@ -10,17 +10,17 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
-import ISubCommandOption = require('./ISubCommandOption');
+import ICommand = require('./interface/ICommand');
+import ISubCommandOption = require('./interface/ISubCommandOption');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
-import IMoveData = require('./../command/IMoveData');
+import IMoveData = require('./../command/interface/IMoveData');
 import CommandEnum = require('../CommandEnum');
 import SubCommandEnum = require('../SubCommandEnum');
 import IWarMap = require('../map/interface/IWarMap');
 import IRegion = require('../map/interface/IRegion');
-import PossibleOwners = require('../map/PossibleOwners');
+import PossibleOwnersEnum = require('../map/PossibleOwnersEnum');
 import Consts = require('../Consts');
 import util = require('util');
 
@@ -96,7 +96,7 @@ class Go implements ICommand {
      * }
      */
     public place_armies(commandData: ICommandData): ICommandAnswer {
-        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
         var troopsRemaining: number = parseInt(this.options[SubCommandEnum.starting_armies], 10);
         var placements: string[] = [];
 
@@ -132,7 +132,7 @@ class Go implements ICommand {
      */
     public attacktransfer(commandData: ICommandData): ICommandAnswer {
         var moves: string[] = [];
-        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwners.PLAYER);
+        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
         var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
         moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
         moveData.forEach((move: IMoveData) => {
@@ -177,7 +177,7 @@ class Go implements ICommand {
         var result: IMoveData[] = [];
         ownedRegions.forEach((region: IRegion) => {
             var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion) => {
-                return ((neighbor.owner === PossibleOwners.PLAYER && own) || (neighbor.owner !== PossibleOwners.PLAYER && !own));
+                return ((neighbor.owner === PossibleOwnersEnum.PLAYER && own) || (neighbor.owner !== PossibleOwnersEnum.PLAYER && !own));
             });
             if (region.troopCount >= numberOfTroops && possibleAttacks.length > 0) {
                 result.push({ moveTo: possibleAttacks[0], moveFrom: region })

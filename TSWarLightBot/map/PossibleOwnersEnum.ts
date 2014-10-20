@@ -10,11 +10,10 @@
  */
 'use strict';
 
-import IRegion = require('../map/interface/IRegion');
-
-interface IMoveData {
-    moveTo: IRegion;
-    moveFrom: IRegion;
+enum PossibleOwnersEnum {
+     NEUTRAL,
+     OPPONENT,
+     PLAYER
 }
 
-export = IMoveData;
+export = PossibleOwnersEnum;

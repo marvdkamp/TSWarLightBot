@@ -13,13 +13,13 @@
 
 import CommandEnum = require('../../../TSWarLightBot/CommandEnum');
 import SubCommandEnum = require('../../../TSWarLightBot/SubCommandEnum');
-import ICommand = require('../../../TSWarLightBot/command/ICommand');
-import ISubCommandOption = require('../../../TSWarLightBot/command/ISubCommandOption');
+import ICommand = require('../../../TSWarLightBot/command/interface/ICommand');
+import ISubCommandOption = require('../../../TSWarLightBot/command/interface/ISubCommandOption');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import ICommandAnswer = require('../../../TSWarLightBot/interface/ICommandAnswer');
-import IMoveData = require('../../../TSWarLightBot/command/IMoveData');
+import IMoveData = require('../../../TSWarLightBot/command/interface/IMoveData');
 import Consts = require('../../../TSWarLightBot/Consts');
-import PossibleOwners = require('../../../TSWarLightBot/map/PossibleOwners');
+import PossibleOwnersEnum = require('../../../TSWarLightBot/map/PossibleOwnersEnum');
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import util = require('util');
 
@@ -59,7 +59,7 @@ describe('go.test', () => {
         var result: IRegion[] = [{
             id: 1,
             superRegion: null,
-            owner: PossibleOwners.PLAYER,
+            owner: PossibleOwnersEnum.PLAYER,
             neighbors: [],
             troopCount: 1,
             isOnEmpireBorder: false,
@@ -67,7 +67,7 @@ describe('go.test', () => {
         }, {
             id: 2,
             superRegion: null,
-            owner: PossibleOwners.PLAYER,
+            owner: PossibleOwnersEnum.PLAYER,
             neighbors: [],
             troopCount: 1,
             isOnEmpireBorder: false,
@@ -75,7 +75,7 @@ describe('go.test', () => {
         }, {
             id: 3,
             superRegion: null,
-            owner: PossibleOwners.OPPONENT,
+            owner: PossibleOwnersEnum.OPPONENT,
             neighbors: [],
             troopCount: 1,
             isOnEmpireBorder: false,
@@ -83,7 +83,7 @@ describe('go.test', () => {
         }, {
             id: 4,
             superRegion: null,
-            owner: PossibleOwners.NEUTRAL,
+            owner: PossibleOwnersEnum.NEUTRAL,
             neighbors: [],
             troopCount: 1,
             isOnEmpireBorder: false,
@@ -149,7 +149,7 @@ describe('go.test', () => {
         go.place_armies(commandPlaceArmiesData);
 
         // assert
-        expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwners.PLAYER);
+        expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwnersEnum.PLAYER);
         expect(warMap.getOwnedRegions.callCount).toBe(1);
     });
 

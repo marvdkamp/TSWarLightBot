@@ -12,6 +12,7 @@ TODO
 - Check if every method has a return type and every var a type.
 - moveFrom and moveTo rename to regionFrom and regionTo.
 - Find out wat the problem is with TS-lint.
+- find out if we can use alias for Paths in NodeJS.
 - Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.
 - Uitschrijven wat er nog op het werk moet gebeuren.
 

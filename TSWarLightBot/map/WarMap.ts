@@ -13,7 +13,7 @@
 import IWarMap = require('./interface/IWarMap');
 import IRegion = require('./interface/IRegion');
 import ISuperRegion = require('./interface/ISuperRegion');
-import PossibleOwners = require('./PossibleOwners');
+import PossibleOwnersEnum = require('./PossibleOwnersEnum');
 
 
 interface IRegions {
@@ -81,10 +81,10 @@ class WarMap implements IWarMap {
 
     /**
      * Returns a list with all the IRegion instances which are owned by the provided owner type.
-     * @param owner {PossibleOwners} - The owner type.
+     * @param owner {PossibleOwnersEnum} - The owner type.
      * @returns {IRegion[]} - The list of IRegion instances the provided owner type owns.
      */
-    public getOwnedRegions(owner: PossibleOwners): IRegion[] {
+    public getOwnedRegions(owner: PossibleOwnersEnum): IRegion[] {
         var ownedRegions = [];
 
         for (var i in this.regions) {

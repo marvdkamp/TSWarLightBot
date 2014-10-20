@@ -89,7 +89,7 @@ var botProcess: any = {
 - Heb niet echt localisation nodig maar wil geen magic strings gebruiken.
 - Besloten string constantes te gebruiken (zie LINKS.txt 14).
 -- Regions en superRegions krijgen in de WarMap ook een 'add' functie ipv direct de property te kunnen aanroepen. region en superregion zelf zijn POJO's (alleen properties)'.
--- Imports in de code files gaan niet goed vanuit de unittests context (PossibleOwners). Kijken of dit mogelijk is door basepath te veranderen en anders full path gebruiken.
+-- Imports in de code files gaan niet goed vanuit de unittests context (PossibleOwnersEnum). Kijken of dit mogelijk is door basepath te veranderen en anders full path gebruiken.
 -- Heb het werkend gekregen door ./ te gebruiken.
 
 DOEL: Statistieken kunnen bijhouden van de geschreven unittests

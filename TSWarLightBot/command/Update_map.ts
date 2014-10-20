@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ICommand = require('./ICommand');
+import ICommand = require('./interface/ICommand');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 

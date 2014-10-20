@@ -20,7 +20,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <EnableTypeScript>true</EnableTypeScript>
@@ -39,9 +39,9 @@
     <TypeScriptCompile Include="CommandEnum.ts" />
     <TypeScriptCompile Include="CommandAnswer.ts" />
     <TypeScriptCompile Include="command\Go.ts" />
-    <TypeScriptCompile Include="command\ICommand.ts" />
-    <TypeScriptCompile Include="command\IMoveData.ts" />
-    <TypeScriptCompile Include="command\ISubCommandOption.ts" />
+    <TypeScriptCompile Include="command\interface\ICommand.ts" />
+    <TypeScriptCompile Include="command\interface\IMoveData.ts" />
+    <TypeScriptCompile Include="command\interface\ISubCommandOption.ts" />
     <TypeScriptCompile Include="command\Opponent_moves.ts" />
     <TypeScriptCompile Include="command\Pick_starting_regions.ts" />
     <TypeScriptCompile Include="command\Settings.ts" />
@@ -57,7 +57,7 @@
     <TypeScriptCompile Include="map\interface\IRegion.ts" />
     <TypeScriptCompile Include="map\interface\ISuperRegion.ts" />
     <TypeScriptCompile Include="map\interface\IWarMap.ts" />
-    <TypeScriptCompile Include="map\PossibleOwners.ts" />
+    <TypeScriptCompile Include="map\PossibleOwnersEnum.ts" />
     <TypeScriptCompile Include="map\Region.ts" />
     <TypeScriptCompile Include="map\SuperRegion.ts" />
     <TypeScriptCompile Include="map\WarMap.ts" />
@@ -66,6 +66,7 @@
     <TypeScriptCompile Include="SubCommandEnum.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="command\interface\" />
     <Folder Include="map\" />
     <Folder Include="map\interface\" />
     <Folder Include="command\" />

@@ -10,8 +10,8 @@
  */
 'use strict';
 
-import ICommandAnswer = require('./../interface/ICommandAnswer');
-import ICommandData = require('./../interface/ICommandData');
+import ICommandAnswer = require('./../../interface/ICommandAnswer');
+import ICommandData = require('./../../interface/ICommandData');
 
 interface ICommand {
     getCommandAnswer(commandData: ICommandData): ICommandAnswer;
