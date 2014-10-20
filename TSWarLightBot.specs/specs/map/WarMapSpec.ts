@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -18,38 +18,39 @@ import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');
 import Region = require('../../../TSWarLightBot/map/Region');
 import WarMap = require('../../../TSWarLightBot/map/WarMap');
 
-describe('WarMap', () => {
-    //newed
+describe('WarMap', (): void => {
+    // newed
     var warMap: IWarMap;
-    //mocked
-    //global
-    //injected
+    // mocked
+    // global
+    // injected
 
-    beforeEach(() => {
+    beforeEach((): void => {
         warMap = new WarMap();
     });
 
-    //TODO: alleen maar getters en setters in WarMap. zouden gehit moeten worden door andere tests, niet specifieke tests voor geschreven worden.
-    it('Should return every region owned by the player', () => {
-        //arrange
+    // todo: alleen maar getters en setters in WarMap. zouden gehit moeten worden door andere tests,
+    // niet specifieke tests voor geschreven worden.
+    it('Should return every region owned by the player', (): void => {
+        // arrange
         var superRegion = new SuperRegion(0, 1);
         var playerRegion1 = new Region(1, superRegion),
             playerRegion2 = new Region(2, superRegion),
             opponentRegion1 = new Region(3, superRegion),
             neutralRegion1 = new Region(4, superRegion);
 
-        playerRegion1.owner = PossibleOwnersEnum.PLAYER,
-        playerRegion2.owner = PossibleOwnersEnum.PLAYER,
+        playerRegion1.owner = PossibleOwnersEnum.PLAYER;
+        playerRegion2.owner = PossibleOwnersEnum.PLAYER;
         opponentRegion1.owner = PossibleOwnersEnum.OPPONENT;
 
-        warMap.addRegion(playerRegion1),
-        warMap.addRegion(playerRegion2),
-        warMap.addRegion(opponentRegion1),
+        warMap.addRegion(playerRegion1);
+        warMap.addRegion(playerRegion2);
+        warMap.addRegion(opponentRegion1);
         warMap.addRegion(neutralRegion1);
-        //act
+        // act
         var owned = warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
 
-        //assert
+        // assert
         expect(owned.length).toBe(2);
         expect(owned).toContain(playerRegion1);
         expect(owned).toContain(playerRegion2);

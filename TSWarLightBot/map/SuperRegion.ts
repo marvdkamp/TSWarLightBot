@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -17,7 +17,7 @@ class SuperRegion implements ISuperRegion {
     bonus: number;
     regions: {};
 
-    /**
+    /*
      * Create an instance of the SuperRegion class. 
      * @constructor
      * @param id {number} - The unique id for this SuperRegion.
