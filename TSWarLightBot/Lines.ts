@@ -80,6 +80,9 @@ class Lines implements ILines {
             return undefined;
         }
 
+        // attack/transfer is not a valid enum value. We have to remove te slash.
+        value = value.replace('/', '');
+
         // Example
         // enum SubCommandEnum {
         //    super_regions

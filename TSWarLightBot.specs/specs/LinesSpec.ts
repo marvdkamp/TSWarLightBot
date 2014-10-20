@@ -146,6 +146,17 @@ describe('lines', () => {
             expect(result.subCommand).toBe(SubCommandEnum.your_bot);
         });
 
+        it('Should return subCommand if string contains a slash /', () => {
+            // arange
+            commandString = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
+
+            // act
+            var result: ICommandData = lines.getCommandData(commandString);
+
+            // assert
+            expect(result.subCommand).toBe(SubCommandEnum.attacktransfer);
+        });
+
         it('Should return subCommand undefined if string contains only 1 linepart and should not crash', () => {
             // arange
             commandString = CommandEnum[CommandEnum.settings];
