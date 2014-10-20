@@ -1,6 +1,5 @@
 TODO
 ====
-- Comment above each public method.
 - Check of all files which should be on Github are on github and which should not are not. Find out how gitIgnore works.
 - Merge Messages and Anwser and create a Consts file.
 - Rename I map to interface and place all interfaces in a map with this name.
@@ -40,3 +39,4 @@ DONE
 - add use strict everywhere.
 - create instances of all the commands in Runner.ts.
 - replace all the 'dictionary' implementations and remove underscore.
+- Comment above each public method.
