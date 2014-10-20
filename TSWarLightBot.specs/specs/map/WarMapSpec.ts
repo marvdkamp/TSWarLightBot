@@ -18,7 +18,7 @@ import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');
 import Region = require('../../../TSWarLightBot/map/Region');
 import WarMap = require('../../../TSWarLightBot/map/WarMap');
 
-describe('map.test', () => {
+describe('WarMap', () => {
     //newed
     var warMap: IWarMap;
     //mocked
