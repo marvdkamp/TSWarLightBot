@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import SubCommandEnum = require('./../../SubCommandEnum');
+import SubCommandEnum = require('./../../enum/SubCommandEnum');
 
 /**
  * Couples a subCommand to a value of a Option. The settings command wil send a subcommand which is 

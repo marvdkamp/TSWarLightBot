@@ -14,7 +14,7 @@ import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
-import SubCommandEnum = require('../SubCommandEnum');
+import SubCommandEnum = require('../enum/SubCommandEnum');
 
 /**
  * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 

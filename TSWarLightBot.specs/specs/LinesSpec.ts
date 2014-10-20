@@ -17,8 +17,8 @@ import ICommandData = require('../../TSWarLightBot/interface/ICommandData');
 import ICommandMethod = require('../../TSWarLightBot/interface/ICommandMethod');
 import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
-import CommandEnum = require('../../TSWarLightBot/CommandEnum');
-import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
+import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
+import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
 
 describe('lines.test', () => {
     var Lines: any = require("../../TSWarLightBot/Lines");

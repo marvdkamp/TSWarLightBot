@@ -15,8 +15,8 @@ import ICommandAnswer = require('./interface/ICommandAnswer');
 import ICommandData = require('./interface/ICommandData');
 import ICommandMethod = require('./interface/ICommandMethod');
 import Consts = require('./Consts');
-import CommandEnum = require('./CommandEnum');
-import SubCommandEnum = require('./SubCommandEnum');
+import CommandEnum = require('./enum/CommandEnum');
+import SubCommandEnum = require('./enum/SubCommandEnum');
 import util = require('util');
 
 /**

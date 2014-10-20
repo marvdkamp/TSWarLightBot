@@ -14,7 +14,7 @@ import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
-import SubCommandEnum = require('../SubCommandEnum');
+import SubCommandEnum = require('../enum/SubCommandEnum');
 
 /**
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 

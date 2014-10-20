@@ -11,8 +11,8 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import CommandEnum = require('../../../TSWarLightBot/CommandEnum');
-import SubCommandEnum = require('../../../TSWarLightBot/SubCommandEnum');
+import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
+import SubCommandEnum = require('../../../TSWarLightBot/enum/SubCommandEnum');
 import ICommand = require('../../../TSWarLightBot/command/interface/ICommand');
 import ISubCommandOption = require('../../../TSWarLightBot/command/interface/ISubCommandOption');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');

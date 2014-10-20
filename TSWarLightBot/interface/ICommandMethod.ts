@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommandAnswer = require('./ICommandAnswer');
-import CommandEnum = require('./../CommandEnum');
+import CommandEnum = require('./../enum/CommandEnum');
 import ICommandData = require('./ICommandData'); 
 
 /**

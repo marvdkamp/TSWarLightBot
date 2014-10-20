@@ -25,8 +25,8 @@ import Setup_map = require('./command/Setup_map');
 import Update_map = require('./command/Update_map');
 import ISubCommandOption = require('./command/interface/ISubCommandOption');
 import ICommandMethod = require('./interface/ICommandMethod');
-import CommandEnum = require('./CommandEnum');
-import SubCommandEnum = require('./SubCommandEnum');
+import CommandEnum = require('./enum/CommandEnum');
+import SubCommandEnum = require('./enum/SubCommandEnum');
 import WarMap = require('./map/WarMap');
 
 var options: ISubCommandOption = {};

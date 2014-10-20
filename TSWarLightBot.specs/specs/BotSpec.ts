@@ -16,8 +16,8 @@
 
 import readline = require('readline');
 import IBot = require('../../TSWarLightBot/interface/IBot');
-import CommandEnum = require('../../TSWarLightBot/CommandEnum');
-import SubCommandEnum = require('../../TSWarLightBot/SubCommandEnum');
+import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
+import SubCommandEnum = require('../../TSWarLightBot/enum/SubCommandEnum');
 
 describe('bot.test', () => {
     var Bot: any = require("../../TSWarLightBot/Bot");
