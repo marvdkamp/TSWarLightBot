@@ -1,15 +1,14 @@
 TODO
 ====
-- Check if every method has a return type and every var a type.
+- Remove all TSLint messages.
 - moveFrom and moveTo rename to regionFrom and regionTo.
-- Find out wat the problem is with TS-lint.
-- Find out if we can use alias for Paths in NodeJS.
-- Write tests for all wrong input paramaters. Check of we option undefined of null laten wanneer er geen option is.
-- Handle all de option and tests in other command classes.
+- own or owned make it the same everywhere.
 - Sort imports.
 - Check if runner injects the right instances in each contructor.
-- Ik zie ergens ownRegion maar volgens mij ook ergens ownedRegion gelijk trekken.
-- Uitschrijven wat er nog op het werk moet gebeuren.
+- Name all tests correct and provide all information.
+- Write tests for all wrong input paramaters and all other tests we need for the classes we have this far.
+
+- Find out if we can use alias for Paths in NodeJS.
 
 DONE
 ====
@@ -40,3 +39,5 @@ DONE
 - Rename subCommand to option. All commands subfix with Command. Rename options to settings.
 - Handle slash in attack transfer.
 - We import proccess but check if we can solve it with a spy on process in the test.
+- Check if every method has a return type and every var a type.
+- Find out wat the problem is with TS-lint.
