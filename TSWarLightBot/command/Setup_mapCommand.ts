@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -16,32 +16,32 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import OptionEnum = require('../enum/OptionEnum');
 
-/**
+/*
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
  * of the regions are given in different calls
  */
 class Setup_mapCommand implements ICommand {
     private optionMethodList: ICommandMethod = {};
 
-    /**
+    /*
      * Create an instance of the Setup_map class.
      * @constructor
      */
     constructor() {
-        this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData) => { 
-            return this.super_regions(commandData)
+        this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData): ICommandAnswer => {
+            return this.super_regions(commandData);
         };
 
-        this.optionMethodList[OptionEnum.regions] = (commandData: ICommandData) => { 
-            return this.regions(commandData)
+        this.optionMethodList[OptionEnum.regions] = (commandData: ICommandData): ICommandAnswer => {
+            return this.regions(commandData);
         };
 
-        this.optionMethodList[OptionEnum.neighbors] = (commandData: ICommandData) => { 
-            return this.neighbors(commandData)
+        this.optionMethodList[OptionEnum.neighbors] = (commandData: ICommandData): ICommandAnswer => {
+            return this.neighbors(commandData);
         };
-    } 
+    }
 
-    /**
+    /*
      * Gets the answer from the bot for the setup_map command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.

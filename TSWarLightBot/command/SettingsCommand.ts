@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -16,28 +16,28 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import OptionEnum = require('../enum/OptionEnum');
 
-/**
+/*
  * Handles settings command from the game engine. The name of your bot is given, the name of your opponent bot is given 
  * and the amount of armies your bot can place on the map at the start of this round
  */
 class SettingsCommand implements ICommand {
     private optionMethodList: ICommandMethod = {};
 
-    /**
+    /*
      * Create an instance of the Settings class.
      * @constructor
      */
     constructor() {
-        this.optionMethodList[OptionEnum.your_bot] = (commandData: ICommandData) => { 
-                return this.your_bot(commandData)
-            };
+        this.optionMethodList[OptionEnum.your_bot] = (commandData: ICommandData): ICommandAnswer => {
+            return this.your_bot(commandData);
+        };
 
-        this.optionMethodList[OptionEnum.opponent_bot] = (commandData: ICommandData) => { 
-                return this.opponent_bot(commandData)
-            };
-    } 
+        this.optionMethodList[OptionEnum.opponent_bot] = (commandData: ICommandData): ICommandAnswer => {
+            return this.opponent_bot(commandData);
+        };
+    }
 
-    /**
+    /*
      * Gets the answer from the bot for the settings command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.

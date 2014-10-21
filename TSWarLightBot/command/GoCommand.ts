@@ -146,9 +146,10 @@ class Go implements ICommand {
         return {
             succes: true,
             value: moves.join(', ').trim()
-        }
+        };
     }
 
+    /* tslint:disable:max-line-length */
     /*
      * Gets the regions which the bot could attack or transfer troops to.
      * @param ownedRegions {IRegion[]} - Regions from which the attack or tranfer starts. The neighbors are the region are potential
@@ -172,6 +173,7 @@ class Go implements ICommand {
      *                           { id : 4, superRegion : null, owner : 0, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false } ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }
      *           } 
      */
+    /* tslint:enable:max-line-length */
     public getRegionsToAttackTransfer(ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]{
         var result: IMoveData[] = [];
         ownedRegions.forEach((region: IRegion): void => {

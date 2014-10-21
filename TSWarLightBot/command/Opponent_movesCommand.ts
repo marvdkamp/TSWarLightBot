@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -14,12 +14,12 @@ import ICommand = require('./interface/ICommand');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
-/**
+/*
  * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
  */
 class Opponent_movesCommand implements ICommand {
 
-    /**
+    /*
      * Gets the answer from the bot for the go command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.

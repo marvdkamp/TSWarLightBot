@@ -107,5 +107,6 @@ DOEL: Statistieken kunnen bijhouden van de geschreven unittests
 -- Nog kijken of de spec files zelf kunnen worden ge-exclude.
 -- De import statements in de gekopieerde files worden veranderd tijdens het kopiëren. 
 -- Code coverage via jasmine-node-coverage en grunt. config(gruntfile.js) goed zetten zodat er geen copy ofzo meer gebruikt hoeft te worden. lines of code toegevoegd e.d. kan via github.
+- Bleek nog npm install -g grunt-cli op mijn machine te moeten doen om te kunnen runnen. Bleek ook nog de npm's te moeten installeren vanuit visual studio.
 
 Doel bereikt.

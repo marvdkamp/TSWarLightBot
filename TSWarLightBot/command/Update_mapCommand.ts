@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -14,13 +14,13 @@ import ICommand = require('./interface/ICommand');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
-/**
+/*
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
  * number of armies.
  */
 class Update_mapCommand implements ICommand {
 
-    /**
+    /*
      * Gets the answer from the bot for the update_map command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.

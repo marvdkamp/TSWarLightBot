@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -14,12 +14,12 @@ import ICommand = require('./interface/ICommand');
 import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
-/**
- * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and request for the bot to 
- * return his attack and/or transfer moves.
+/*
+ * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and 
+ * request for the bot to return his attack and/or transfer moves.
  */
 class Pick_starting_regionsCommand implements ICommand {
-    /**
+    /*
      * Gets the answer from the bot for the pick_starting_regions command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
