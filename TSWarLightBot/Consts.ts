@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -10,7 +10,7 @@
  */
 'use strict';
 
-/**
+/*
  * Holds message's prevents retyping it everywhere.
  */
 class Consts {
