@@ -15,28 +15,26 @@ import ICommandAnswer = require('./../interface/ICommandAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
 /*
- * Handles opponent_moves command from the game engine. All the visible moves the opponent has done are given in consecutive order.
+ * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and 
+ * request for the bot to return his attack and/or transfer moves.
  */
-class Opponent_movesCommand implements ICommand {
-
+class PickStartingRegionsCommand implements ICommand {
     /*
-     * Gets the answer from the bot for the go command.
+     * Gets the answer from the bot for the pick_starting_regions command.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
-     * Isn't used in the starter bot. 
-     * TODO: Find out what the data looks like.
      * Example: 
      * getCommandAnswer({
-     *     line: 'opponent_moves',
-     *     command: CommandEnum.opponent_moves,
+     *     line: 'pick_starting_regions 2000', 
+     *     command: CommandEnum.pick_starting_regions,
      *     option: undefined,
-     *     data: []
+     *     data: ['2000']
      * });
      * 
      * Example return:
      * {
      *     succes: true,
-     *     value: ''
+     *     value: '1 7 24 25 41 42'
      * }
      */
     public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
@@ -44,4 +42,4 @@ class Opponent_movesCommand implements ICommand {
     }
 }
 
-export = Opponent_movesCommand;
+export = PickStartingRegionsCommand;

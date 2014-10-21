@@ -18,11 +18,11 @@ import Bot = require('./Bot');
 import readline = require('readline');
 import Lines = require('./Lines');
 import GoCommand = require('./command/GoCommand');
-import Opponent_movesCommand = require('./command/Opponent_movesCommand');
-import Pick_starting_regionsCommand = require('./command/Pick_starting_regionsCommand');
+import OpponentMovesCommand = require('./command/OpponentMovesCommand');
+import PickStartingRegionsCommand = require('./command/PickStartingRegionsCommand');
 import SettingsCommand = require('./command/SettingsCommand');
-import Setup_mapCommand = require('./command/Setup_mapCommand');
-import Update_mapCommand = require('./command/Update_mapCommand');
+import SetupMapCommand = require('./command/SetupMapCommand');
+import UpdateMapCommand = require('./command/UpdateMapCommand');
 import IOptionSetting = require('./command/interface/IOptionSetting');
 import ICommandMethod = require('./interface/ICommandMethod');
 import CommandEnum = require('./enum/CommandEnum');
@@ -31,19 +31,19 @@ import WarMap = require('./map/WarMap');
 
 var settings: IOptionSetting = {};
 var goCommand = new GoCommand(settings, new WarMap());
-var opponent_movesCommand = new Opponent_movesCommand();
-var pick_starting_regionsCommand = new Pick_starting_regionsCommand();
+var opponentMovesCommand = new OpponentMovesCommand();
+var pickStartingRegionsCommand = new PickStartingRegionsCommand();
 var settingsCommand = new SettingsCommand();
-var setup_mapCommand = new Setup_mapCommand();
-var update_mapCommand = new Update_mapCommand();
+var setupMapCommand = new SetupMapCommand();
+var updateMapCommand = new UpdateMapCommand();
 
 var commandMethods: ICommandMethod = {};
 commandMethods[CommandEnum.go] = goCommand.getCommandAnswer;
-commandMethods[CommandEnum.opponent_moves] = opponent_movesCommand.getCommandAnswer;
-commandMethods[CommandEnum.pick_starting_regions] = pick_starting_regionsCommand.getCommandAnswer;
+commandMethods[CommandEnum.opponent_moves] = opponentMovesCommand.getCommandAnswer;
+commandMethods[CommandEnum.pick_starting_regions] = pickStartingRegionsCommand.getCommandAnswer;
 commandMethods[CommandEnum.settings] = settingsCommand.getCommandAnswer;
-commandMethods[CommandEnum.setup_map] = setup_mapCommand.getCommandAnswer;
-commandMethods[CommandEnum.update_map] = update_mapCommand.getCommandAnswer;
+commandMethods[CommandEnum.setup_map] = setupMapCommand.getCommandAnswer;
+commandMethods[CommandEnum.update_map] = updateMapCommand.getCommandAnswer;
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,

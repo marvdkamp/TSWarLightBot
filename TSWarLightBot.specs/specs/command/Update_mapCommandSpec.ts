@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('update_mapCommand', () => {
-    var Update_mapCommand: any = require("../../../TSWarLightBot/command/Update_mapCommand");
+describe('updateMapCommand', () => {
+    var UpdateMapCommand: any = require("../../../TSWarLightBot/command/UpdateMapCommand");
 });

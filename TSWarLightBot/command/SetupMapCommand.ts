@@ -20,7 +20,7 @@ import OptionEnum = require('../enum/OptionEnum');
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
  * of the regions are given in different calls
  */
-class Setup_mapCommand implements ICommand {
+class SetupMapCommand implements ICommand {
     private optionMethodList: ICommandMethod = {};
 
     /*
@@ -77,4 +77,4 @@ class Setup_mapCommand implements ICommand {
     }
 }
 
-export = Setup_mapCommand;
+export = SetupMapCommand;

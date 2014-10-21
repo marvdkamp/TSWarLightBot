@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('opponent_movesCommand', () => {
-    var Opponent_movesCommand: any = require("../../../TSWarLightBot/command/Opponent_movesCommand");
+describe('opponentMovesCommand', () => {
+    var OpponentMovesCommand: any = require("../../../TSWarLightBot/command/OpponentMovesCommand");
 });
