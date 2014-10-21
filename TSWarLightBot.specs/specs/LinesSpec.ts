@@ -1,4 +1,4 @@
-﻿/*
+﻿/* 
  * Warlight AI Game Bot
  *
  * Oktober 2014

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('opponentMovesCommand', () => {
-    var OpponentMovesCommand: any = require("../../../TSWarLightBot/command/OpponentMovesCommand");
+describe('opponentMovesCommand', (): void => {
+    var OpponentMovesCommand: any = require('../../../TSWarLightBot/command/OpponentMovesCommand');
 });

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('pickStartingRegionsCommand', () => {
-    var PickStartingRegionsCommand: any = require("../../../TSWarLightBot/command/PickStartingRegionsCommand");
+describe('pickStartingRegionsCommand', (): void => {
+    var PickStartingRegionsCommand: any = require('../../../TSWarLightBot/command/PickStartingRegionsCommand');
 });

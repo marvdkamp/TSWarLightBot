@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -11,6 +11,6 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-describe('setupMapCommand', () => {
-    var SetupMapCommand: any = require("../../../TSWarLightBot/command/SetupMapCommand");
+describe('setupMapCommand', (): void => {
+    var SetupMapCommand: any = require('../../../TSWarLightBot/command/SetupMapCommand');
 });
