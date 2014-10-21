@@ -43,16 +43,16 @@ describe('goCommand', (): void => {
 
     var settings: IOptionSetting = {};
     var regions: IRegion[];
-    var ownRegions: IRegion[];
+    var ownedRegions: IRegion[];
     var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
     var yourBotName: string = 'player1';
 
     beforeEach((): void => {
         regions = createMockRegions();
-        ownRegions = [];
-        ownRegions.push(regions[0]);
-        ownRegions.push(regions[1]);
-        warMap.getOwnedRegions.andReturn(ownRegions);
+        ownedRegions = [];
+        ownedRegions.push(regions[0]);
+        ownedRegions.push(regions[1]);
+        warMap.getOwnedRegions.andReturn(ownedRegions);
         goCommand = new GoCommand(settings, warMap);
     });
 
@@ -220,8 +220,8 @@ describe('goCommand', (): void => {
             goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
-            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
-            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
             expect(goCommand.getRegionsToAttackTransfer.callCount).toBe(2);
         });
 
@@ -318,7 +318,7 @@ describe('goCommand', (): void => {
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
 
             // assert
             expect(result[0].regionTo).toBe(regions[2]);

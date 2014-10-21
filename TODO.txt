@@ -1,6 +1,5 @@
 TODO
 ====
-- moveFrom and moveTo rename to regionFrom and regionTo.
 - own or owned make it the same everywhere.
 - Sort imports.
 - Check if runner injects the right instances in each contructor.
@@ -40,3 +39,4 @@ DONE
 - We import proccess but check if we can solve it with a spy on process in the test.
 - Check if every method has a return type and every var a type.
 - Find out wat the problem is with TS-lint.
+- moveFrom and moveTo rename to regionFrom and regionTo.
