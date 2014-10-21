@@ -137,10 +137,10 @@ class Go implements ICommand {
         moveData.forEach((move: IMoveData): void => {
             moves.push([this.settings[OptionEnum.your_bot],
                 Consts.ATTACK_TRANSFER,
-                move.moveFrom.id.toString(),
-                move.moveTo.id.toString(),
-                (move.moveFrom.troopCount - 1).toString()].join(' '));
-            move.moveFrom.troopCount = 1;
+                move.regionFrom.id.toString(),
+                move.regionTo.id.toString(),
+                (move.regionFrom.troopCount - 1).toString()].join(' '));
+            move.regionFrom.troopCount = 1;
         });
 
         return {
@@ -166,8 +166,8 @@ class Go implements ICommand {
      * 
      * Example return:
      *           {
-     *               moveTo: { id : 3, superRegion : null, owner : 1, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }
-     *               moveFrom: { id : 1, superRegion : null, owner : 2, neighbors : 
+     *               regionTo: { id : 3, superRegion : null, owner : 1, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }
+     *               regionFrom: { id : 1, superRegion : null, owner : 2, neighbors : 
      *                         [ { id : 2, superRegion : null, owner : 2, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }, 
      *                           { id : 3, superRegion : null, owner : 1, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }, 
      *                           { id : 4, superRegion : null, owner : 0, neighbors : [  ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false } ], troopCount : 1, isOnEmpireBorder : false, isOnSuperRegionBorder : false }
@@ -181,7 +181,7 @@ class Go implements ICommand {
                 return ((neighbor.owner === PossibleOwnersEnum.PLAYER && own) || (neighbor.owner !== PossibleOwnersEnum.PLAYER && !own));
             });
             if (region.troopCount >= numberOfTroops && possibleAttacks.length > 0) {
-                result.push({ moveTo: possibleAttacks[0], moveFrom: region });
+                result.push({ regionTo: possibleAttacks[0], regionFrom: region });
             };
         });
 

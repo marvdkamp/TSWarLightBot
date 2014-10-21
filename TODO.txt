@@ -1,6 +1,5 @@
 TODO
 ====
-- Remove all TSLint messages.
 - moveFrom and moveTo rename to regionFrom and regionTo.
 - own or owned make it the same everywhere.
 - Sort imports.

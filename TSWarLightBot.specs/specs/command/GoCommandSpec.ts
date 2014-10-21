@@ -205,13 +205,13 @@ describe('goCommand', (): void => {
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            moveFrom: regions[1],
-                            moveTo: regions[0]
+                            regionFrom: regions[1],
+                            regionTo: regions[0]
                         }];
                     } else {
                         return [{
-                            moveFrom: regions[0],
-                            moveTo: regions[2]
+                            regionFrom: regions[0],
+                            regionTo: regions[2]
                         }];
                     }
                 });
@@ -225,7 +225,7 @@ describe('goCommand', (): void => {
             expect(goCommand.getRegionsToAttackTransfer.callCount).toBe(2);
         });
 
-        it('Should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
+        it('Should set troopsCount to 1 on regionFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
             // arange
             regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
@@ -234,8 +234,8 @@ describe('goCommand', (): void => {
                         return [];
                     } else {
                         return [{
-                            moveFrom: regions[0],
-                            moveTo: regions[2]
+                            regionFrom: regions[0],
+                            regionTo: regions[2]
                         }];
                     }
                 });
@@ -247,15 +247,15 @@ describe('goCommand', (): void => {
             expect(regions[0].troopCount).toBe(1);
         });
 
-        it('Should set troopsCount to 1 on moveFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
+        it('Should set troopsCount to 1 on regionFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
             // arange
             regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            moveFrom: regions[1],
-                            moveTo: regions[0]
+                            regionFrom: regions[1],
+                            regionTo: regions[0]
                         }];
                     } else {
                         return [];
@@ -278,13 +278,13 @@ describe('goCommand', (): void => {
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            moveFrom: regions[1],
-                            moveTo: regions[0]
+                            regionFrom: regions[1],
+                            regionTo: regions[0]
                         }];
                     } else {
                         return [{
-                            moveFrom: regions[0],
-                            moveTo: regions[2]
+                            regionFrom: regions[0],
+                            regionTo: regions[2]
                         }];
                     }
                 });
@@ -321,8 +321,8 @@ describe('goCommand', (): void => {
             var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
 
             // assert
-            expect(result[0].moveTo).toBe(regions[2]);
-            expect(result[0].moveFrom).toBe(regions[0]);
+            expect(result[0].regionTo).toBe(regions[2]);
+            expect(result[0].regionFrom).toBe(regions[0]);
         });
     });
 });
