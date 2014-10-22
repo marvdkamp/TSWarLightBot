@@ -59,7 +59,9 @@ describe('bot', (): void => {
     });
 
     describe('run', (): void => {
-        it('Should call on on io with line and close arguments to attach events.', (): void => {
+        // io.on attaches events for reading from the console and closing the console.
+        // call count should be 2.
+        it('Should call io.on with line and close arguments.', (): void => {
             // arange
 
             // act
@@ -71,7 +73,8 @@ describe('bot', (): void => {
             expect(io.on.callCount).toBe(2);
         });
 
-        it('Should attach the right methodes to the events.', (): void => {
+        // Check if commandString is handed to the handLine method.
+        it('Should attach bot.handleLine and bot.handleClose to the io.on line and io.on close events.', (): void => {
             // arange
             spyOn(bot, 'handleLine');
             spyOn(bot, 'handleClose');
@@ -83,23 +86,26 @@ describe('bot', (): void => {
 
             // assert
             expect(bot.handleLine).toHaveBeenCalledWith(commandString);
-            expect(bot.handleClose).toHaveBeenCalled();
+            expect((<jasmine.Spy>bot.handleLine).callCount).toBe(1);
+            expect((<jasmine.Spy>bot.handleClose).callCount).toBe(1);
         });
     });
 
     describe('handleLine', (): void => {
-        it('Should call getCommandAnswer on lines.', (): void => {
+        // lines get injected in the Bot instances.
+        // should only be called once. 
+        it('Should call getCommandAnswer on lines if called with commandstring.', (): void => {
             // arange
 
             // act
             bot.handleLine(commandString);
 
             // assert
-            expect(lines.getCommandAnswer).toHaveBeenCalled();
             expect(lines.getCommandAnswer.callCount).toBe(1);
         });
 
-        it('Should NOT call getCommandAnswer on lines if string is empty.', (): void => {
+        // lines get injected in the Bot instances.
+        it('Should NOT call getCommandAnswer on lines if commandstring is empty.', (): void => {
             // arange
 
             // act
@@ -110,7 +116,9 @@ describe('bot', (): void => {
             expect(lines.getCommandAnswer.callCount).toBe(0);
         });
 
-        it('Should call process.stdout.write on lines if result is succesfull.', (): void => {
+        // process get injected in the Bot instances.
+        // Should call stdout one time. Should NOT call stderr.
+        it('Should call botProcess.stdout.write if result is succesfull.', (): void => {
             // arange
             commandAnswer.succes = true;
             commandAnswer.value = 'test';
@@ -124,23 +132,27 @@ describe('bot', (): void => {
             expect(botProcess.stderr.write.callCount).toBe(0);
         });
 
-        it('Should call process.stderr.write on lines if commandName is NOT succesfull.', (): void => {
+        // botProcess get injected in the Bot instances.
+        // Should NOT call stdout. Should call stderr one time.
+        // Check if command.value is passes to write.
+        it('Should call botProcess.stderr.write if commandName is NOT succesfull.', (): void => {
             // arange
             commandAnswer.succes = false;
-            commandAnswer.value = 'test';
+            commandAnswer.value = 'Unable to execute command: doesnotexcist';
 
             // act
             bot.handleLine('doesnotexcist');
 
             // assert
-            expect(botProcess.stderr.write).toHaveBeenCalled();
+            expect(botProcess.stderr.write).toHaveBeenCalledWith(commandAnswer.value);
             expect(botProcess.stderr.write.callCount).toBe(1);
             expect(botProcess.stdout.write.callCount).toBe(0);
         });
     });
 
     describe('handleClose', (): void => {
-        it('Should call process.exit(0) if handleClose is called.', (): void => {
+        // Should call exit one time.
+        it('Should call botProcess.exit.', (): void => {
             // act
             bot.handleClose();
 
