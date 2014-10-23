@@ -102,7 +102,7 @@ describe('goCommand', (): void => {
     }
 
     describe('getCommandAnswer', (): void => {
-        it('Should call right option if commandPlaceArmiesData.option matches.', (): void => {
+        it('Should call right option method on goCommand if ICommandData.option matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
@@ -115,7 +115,8 @@ describe('goCommand', (): void => {
             expect(goCommand.place_armies.callCount).toBe(1);
         });
 
-        it('Should return succes = false and a error string when commandPlaceArmiesData.option not matches.', (): void => {
+        // error string should be filled too.
+        it('Should return CommandAnswer.succes = false in CommandAnswer.value if ICommandData.option not matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             commandPlaceArmiesData.option = OptionEnum.neighbors;
@@ -129,7 +130,8 @@ describe('goCommand', (): void => {
             expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
         });
 
-        it('Should return succes = false and a error string when commandPlaceArmiesData.option is undefined.', (): void => {
+        // error string should be filled too.
+        it('Should return CommandAnswer.succes = false in CommandAnswer.value if ICommandData.option is undefined.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             commandPlaceArmiesData.option = undefined;
@@ -145,6 +147,7 @@ describe('goCommand', (): void => {
     });
 
     describe('place_armies', (): void => {
+        // Should call it only once and with PossibleOwnersEnum.PLAYER.
         it('Should call getOwnedRegions on warMap', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
@@ -157,7 +160,8 @@ describe('goCommand', (): void => {
             expect(warMap.getOwnedRegions.callCount).toBe(1);
         });
 
-        it('Should call Math.random for the amount of armies it has to place', (): void => {
+        // settings gets injected and holds OptionEnum.starting_armies.
+        it('Should call Math.random for the amount of armies it has to place OptionEnum.starting_armies', (): void => {
             // arange
             settings[OptionEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
@@ -169,20 +173,22 @@ describe('goCommand', (): void => {
             expect((<jasmine.Spy>Math.random).callCount).toBe(3);
         });
 
-        it('Should add +1 on troopCount for each armie on region found by index of Math.random.', (): void => {
+        // regions are part of the warmap which gets injected in the goCommand instance.
+        it('Should add +1 on troopCount the region found by index of Math.random.', (): void => {
             // arange
+            var index = 0;
             settings[OptionEnum.starting_armies] = '3';
-            spyOn(Math, 'random').andReturn(0);
+            spyOn(Math, 'random').andReturn(index);
 
             // act
             goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
-            expect(regions[0].troopCount).toBe(1 + 3);
+            expect(regions[index].troopCount).toBe(1 + 3);
         });
 
         // Example player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1
-        // We place 3 armies all on the same Region 1 by 1 (we have only 1 region and our spy on Math.random returns 0 every time).
+        // We place 3 armies all on the region found by index of Math.random. Each armie will be placed induvidualy.
         it('Should return a placement for every army.', (): void => {
             // arange
             settings[OptionEnum.starting_armies] = '3';
@@ -199,7 +205,9 @@ describe('goCommand', (): void => {
     });
 
     describe('attacktransfer', (): void => {
-        it('Should call getRegionsToAttackTransfer on this twice', (): void => {
+        // Should call it once with own false and MINIMUM_TROOPS_FOR_ATTACK and
+        // once with own true and MINIMUM_TROOPS_FOR_TRANSFER.
+        it('Should call getRegionsToAttackTransfer on goCommand twice', (): void => {
             // arange
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
@@ -225,9 +233,13 @@ describe('goCommand', (): void => {
             expect(goCommand.getRegionsToAttackTransfer.callCount).toBe(2);
         });
 
-        it('Should set troopsCount to 1 on regionFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
+        // We always move all troops but 1.
+        // The troopCount on the region we test on should be atleast Consts.MINIMUM_TROOPS_FOR_TRANSFER.
+        // Create a spyOn for getRegionsToAttackTransfer on goCommand to control returned IMoveData and only return an arry for own=false
+        // regionFrom is part of the IMove instance returned by getRegionsToAttackTransfer.
+        it('Should set troopsCount to 1 on regionFrom result from getRegionsToAttackTransfer with argument own=false', (): void => {
             // arange
-            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1;
+            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
@@ -247,9 +259,13 @@ describe('goCommand', (): void => {
             expect(regions[0].troopCount).toBe(1);
         });
 
-        it('Should set troopsCount to 1 on regionFrom in each IMoveData result from getRegionsToAttackTransfer', (): void => {
+        // We always move all troops but 1.
+        // The troopCount on the region we test on should be atleast Consts.MINIMUM_TROOPS_FOR_ATTACK.
+        // Create a spyOn for getRegionsToAttackTransfer on goCommand to control returned IMoveData and only return an arry for own=true
+        // regionFrom is part of the IMove instance returned by getRegionsToAttackTransfer.
+        it('Should set troopsCount to 1 on regionFrom from getRegionsToAttackTransfer result for an attack', (): void => {
             // arange
-            regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
+            regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
@@ -270,6 +286,8 @@ describe('goCommand', (): void => {
         });
 
         // Example player1 attack/transfer 1 3 5, player1 attack/transfer 2 1 2
+        // Create a spyOn for getRegionsToAttackTransfer on goCommand and return 
+        // both a region for an attack and a region for a transfer.
         it('Should return a move for every IMoveData.', (): void => {
             // arange
             regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
@@ -306,13 +324,32 @@ describe('goCommand', (): void => {
             // assert
             expect(result.value).toBe([resultAttackRegion, resultTransferRegion].join(', '));
         });
+
+        // Should return an empty string. 
+        // Create a spyOn for getRegionsToAttackTransfer on goCommand and return not one region.
+        it('should not return moves if no regions are returned by getRegionsToAttackTransfer', (): void => {
+            spyOn(goCommand, 'getRegionsToAttackTransfer')
+                .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
+                    if (own) {
+                        return [];
+                    } else {
+                        return [];
+                    }
+                });
+
+            // act
+            var result: ICommandAnswer = goCommand.attacktransfer(commandAttackTransferData);
+
+            // assert
+            expect(result.value).toBe('');
+        });
     });
 
     describe('getRegionsToAttackTransfer', (): void => {
-        // Neigbors which are NOT owned.
-        // For regions with a troopcount > 6
+        // Neigbors which are NOT owned (own paramter is false)..
+        // For regions with a troopcount >= Consts.MINIMUM_TROOPS_FOR_ATTACK.
         // regions[index] in which index is determind with Math.random.
-        it('Should return correct regions from ownRegions.', (): void => {
+        it('Should return correct regions for attack.', (): void => {
             // arange
             regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             spyOn(Math, 'random').andReturn(0);
@@ -322,6 +359,22 @@ describe('goCommand', (): void => {
 
             // assert
             expect(result[0].regionTo).toBe(regions[2]);
+            expect(result[0].regionFrom).toBe(regions[0]);
+        });
+
+        // Neigbors which are owned (own paramter is true).
+        // For regions with a troopcount >= Consts.MINIMUM_TROOPS_FOR_TRANSFER.
+        // regions[index] in which index is determind with Math.random.
+        it('Should return correct regions for transfer.', (): void => {
+            // arange
+            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
+            spyOn(Math, 'random').andReturn(0);
+
+            // act
+            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
+
+            // assert
+            expect(result[0].regionTo).toBe(regions[1]);
             expect(result[0].regionFrom).toBe(regions[0]);
         });
     });
