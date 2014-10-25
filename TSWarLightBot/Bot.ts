@@ -55,7 +55,7 @@ class Bot implements IBot {
             return;
         }
 
-        var result: ICommandAnswer = this.lines.getCommandAnswer(data);
+        var result: ICommandAnswer = this.lines.getAnswer(data);
         if (result.succes) {
             this.botProcess.stdout.write(result.value);
         } else {

@@ -26,7 +26,7 @@ class OpponentMovesCommand implements ICommand {
      * Isn't used in the starter bot. 
      * TODO: Find out what the data looks like.
      * Example: 
-     * getCommandAnswer({
+     * getAnswer({
      *     line: 'opponent_moves',
      *     command: CommandEnum.opponent_moves,
      *     option: undefined,
@@ -39,7 +39,7 @@ class OpponentMovesCommand implements ICommand {
      *     value: ''
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

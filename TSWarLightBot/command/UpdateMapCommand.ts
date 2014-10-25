@@ -25,7 +25,7 @@ class UpdateMapCommand implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({
+     * getAnswer({
      *     line: 'update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5',
      *     command: CommandEnum.update_map,
      *     option: undefined,
@@ -38,7 +38,7 @@ class UpdateMapCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

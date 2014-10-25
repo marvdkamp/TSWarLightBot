@@ -21,9 +21,9 @@ interface ILines {
     /**
      * Gets the answer from the bot by passing a command to the right command class.
      * @param line {string} - string containing the command information.
-     * Example : getCommandAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
+     * Example : getAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
      */
-    getCommandAnswer(line: string): ICommandAnswer;
+    getAnswer(line: string): ICommandAnswer;
 
     /**
      * Gets a ICommandData instance by converting a string containing the information.

@@ -30,9 +30,9 @@ class Lines implements ILines {
      * Gets the answer from the bot by passing a command to the right command class.
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command answer.
-     * Example : getCommandAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
+     * Example : getAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
      */
-    public getCommandAnswer(line: string): ICommandAnswer {
+    public getAnswer(line: string): ICommandAnswer {
         var commandData: ICommandData = this.getCommandData(line);
         var commandMethod: (data: ICommandData) => ICommandAnswer = this.commandMethodList[commandData.command];
 

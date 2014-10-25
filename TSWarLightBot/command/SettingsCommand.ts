@@ -42,7 +42,7 @@ class SettingsCommand implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({
+     * getAnswer({
      *     line: 'settings your_bot player1',
      *     command: CommandEnum.settings,
      *     option: OptionEnum.your_bot,
@@ -55,7 +55,7 @@ class SettingsCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 

@@ -101,14 +101,14 @@ describe('goCommand', (): void => {
         return result;
     }
 
-    describe('getCommandAnswer', (): void => {
+    describe('getAnswer', (): void => {
         it('Should call right option method on goCommand if ICommandData.option matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
 
             // act
-            goCommand.getCommandAnswer(commandPlaceArmiesData);
+            goCommand.getAnswer(commandPlaceArmiesData);
 
             // assert
             expect(goCommand.place_armies).toHaveBeenCalledWith(commandPlaceArmiesData);
@@ -123,7 +123,7 @@ describe('goCommand', (): void => {
             commandPlaceArmiesData.line = 'go neighbors 2000';
 
             // act
-            var result: ICommandAnswer = goCommand.getCommandAnswer(commandPlaceArmiesData);
+            var result: ICommandAnswer = goCommand.getAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -138,7 +138,7 @@ describe('goCommand', (): void => {
             commandPlaceArmiesData.line = 'go 2000';
 
             // act
-            var result: ICommandAnswer = goCommand.getCommandAnswer(commandPlaceArmiesData);
+            var result: ICommandAnswer = goCommand.getAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();

@@ -35,7 +35,7 @@ describe('lines', (): void => {
         lines = new Lines(commandMethodList);
     });
 
-    describe('getCommandAnswer', (): void => {
+    describe('getAnswer', (): void => {
         // Mock the commandData and create a SpyOn for getCommandData.
         // Check ik commandData is passed to the command.
         // command should be called once.
@@ -45,7 +45,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            lines.getCommandAnswer(commandString);
+            lines.getAnswer(commandString);
 
             // assert
             expect(settingMethod).toHaveBeenCalledWith(commandData);
@@ -61,7 +61,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+            var result: ICommandAnswer = lines.getAnswer(commandString);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -76,7 +76,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+            var result: ICommandAnswer = lines.getAnswer(commandString);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -91,7 +91,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: ICommandAnswer = lines.getCommandAnswer(commandString);
+            var result: ICommandAnswer = lines.getAnswer(commandString);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -105,7 +105,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            lines.getCommandAnswer(commandString);
+            lines.getAnswer(commandString);
 
             // assert
             expect(lines.getCommandData).toHaveBeenCalledWith(commandString);

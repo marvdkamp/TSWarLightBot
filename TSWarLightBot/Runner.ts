@@ -38,12 +38,12 @@ var setupMapCommand = new SetupMapCommand();
 var updateMapCommand = new UpdateMapCommand();
 
 var commandMethods: ICommandMethod = {};
-commandMethods[CommandEnum.go] = goCommand.getCommandAnswer;
-commandMethods[CommandEnum.opponent_moves] = opponentMovesCommand.getCommandAnswer;
-commandMethods[CommandEnum.pick_starting_regions] = pickStartingRegionsCommand.getCommandAnswer;
-commandMethods[CommandEnum.settings] = settingsCommand.getCommandAnswer;
-commandMethods[CommandEnum.setup_map] = setupMapCommand.getCommandAnswer;
-commandMethods[CommandEnum.update_map] = updateMapCommand.getCommandAnswer;
+commandMethods[CommandEnum.go] = goCommand.getAnswer;
+commandMethods[CommandEnum.opponent_moves] = opponentMovesCommand.getAnswer;
+commandMethods[CommandEnum.pick_starting_regions] = pickStartingRegionsCommand.getAnswer;
+commandMethods[CommandEnum.settings] = settingsCommand.getAnswer;
+commandMethods[CommandEnum.setup_map] = setupMapCommand.getAnswer;
+commandMethods[CommandEnum.update_map] = updateMapCommand.getAnswer;
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,

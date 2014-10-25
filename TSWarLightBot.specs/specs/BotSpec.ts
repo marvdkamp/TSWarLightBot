@@ -35,9 +35,9 @@ describe('bot', (): void => {
         }
     });
 
-    var lines: any = jasmine.createSpyObj('lines', ['getCommandAnswer']);
+    var lines: any = jasmine.createSpyObj('lines', ['getAnswer']);
     var commandAnswer: any = jasmine.createSpy('commandAnswer');
-    lines.getCommandAnswer.andReturn(commandAnswer);
+    lines.getAnswer.andReturn(commandAnswer);
 
     var botProcess: any = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
@@ -52,7 +52,7 @@ describe('bot', (): void => {
     });
 
     afterEach((): void => {
-        lines.getCommandAnswer.reset();
+        lines.getAnswer.reset();
         io.on.reset();
         botProcess.stdout.write.reset();
         botProcess.stderr.write.reset();
@@ -94,26 +94,26 @@ describe('bot', (): void => {
     describe('handleLine', (): void => {
         // lines get injected in the Bot instances.
         // should only be called once. 
-        it('Should call getCommandAnswer on lines if called with commandstring.', (): void => {
+        it('Should call getAnswer on lines if called with commandstring.', (): void => {
             // arange
 
             // act
             bot.handleLine(commandString);
 
             // assert
-            expect(lines.getCommandAnswer.callCount).toBe(1);
+            expect(lines.getAnswer.callCount).toBe(1);
         });
 
         // lines get injected in the Bot instances.
-        it('Should NOT call getCommandAnswer on lines if commandstring is empty.', (): void => {
+        it('Should NOT call getAnswer on lines if commandstring is empty.', (): void => {
             // arange
 
             // act
             bot.handleLine('');
 
             // assert
-            expect(lines.getCommandAnswer).not.toHaveBeenCalled();
-            expect(lines.getCommandAnswer.callCount).toBe(0);
+            expect(lines.getAnswer).not.toHaveBeenCalled();
+            expect(lines.getAnswer.callCount).toBe(0);
         });
 
         // process get injected in the Bot instances.

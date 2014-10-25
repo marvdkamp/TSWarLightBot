@@ -14,7 +14,7 @@ import ICommandAnswer = require('./../../interface/ICommandAnswer');
 import ICommandData = require('./../../interface/ICommandData');
 
 interface ICommand {
-    getCommandAnswer(commandData: ICommandData): ICommandAnswer;
+    getAnswer(commandData: ICommandData): ICommandAnswer;
 }
 
 export = ICommand;

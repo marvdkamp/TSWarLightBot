@@ -24,7 +24,7 @@ class PickStartingRegionsCommand implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({
+     * getAnswer({
      *     line: 'pick_starting_regions 2000', 
      *     command: CommandEnum.pick_starting_regions,
      *     option: undefined,
@@ -37,7 +37,7 @@ class PickStartingRegionsCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 }

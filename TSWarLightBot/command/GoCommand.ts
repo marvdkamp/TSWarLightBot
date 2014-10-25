@@ -51,7 +51,7 @@ class Go implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({ 
+     * getAnswer({ 
      *     line: 'go place_armies 2000'
      *     command: CommandEnum.go,
      *     option: OptionEnum.place_armies,
@@ -64,7 +64,7 @@ class Go implements ICommand {
      *     value: 'player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1'
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         var optionMethod: (data: ICommandData) => ICommandAnswer = this.optionMethodList[commandData.option];
 
         if (optionMethod) {
@@ -81,7 +81,7 @@ class Go implements ICommand {
      * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
-     * Example: getCommandAnswer({ 
+     * Example: getAnswer({ 
      *             line: 'go place_armies 2000'
      *             command: CommandEnum.go,
      *             option: OptionEnum.place_armies,
@@ -116,7 +116,7 @@ class Go implements ICommand {
      * Gets the answer from the bot for the go command with the place_armies option.
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
-     * Example: getCommandAnswer({ 
+     * Example: getAnswer({ 
      *             line: 'go attack/transfer 2000'
      *             command: CommandEnum.go,
      *             option: OptionEnum.attacktransfer,

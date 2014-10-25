@@ -46,7 +46,7 @@ class SetupMapCommand implements ICommand {
      * @param data {ICommandData} - Information about the command.
      * @returns {ICommandData} - The command answer.
      * Example: 
-     * getCommandAnswer({
+     * getAnswer({
      *     line: 'setup_map super_regions 1 2 2 5',
      *     command: CommandEnum.setup_map,
      *     option: OptionEnum.super_regions,
@@ -60,7 +60,7 @@ class SetupMapCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getCommandAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): ICommandAnswer {
         return null;
     }
 
