@@ -76,10 +76,10 @@ DOEL: Uitzoeken hoe we de app opknippen in testbare delen.
 DOEL: Schrijven van alle testen
 - Wannneer je in een class een instanties van een andere class wilt kunnen maken, maar deze ook wilt kunnen mocken heb je een factory nodig.
 - Dit is een truc voor het injecteren van een factory in typescript:
-private commandAnswerFactory: (succes: boolean, value: string) => ICommandAnswer
+private AnswerFactory: (succes: boolean, value: string) => IAnswer
 - Ik heb ontdekt dat je geen andReturn op een property van een spy kunt schrijven maar gewoon de properties kunt aanmaken op de spy:
-var commandAnswer: any = jasmine.createSpy('commandAnswer');
-commandAnswer.succes = true;
+var Answer: any = jasmine.createSpy('Answer');
+Answer.succes = true;
 - Wanneer je een class wilt mocken waarbinnen weer een instantie van een class zit waarop je dan een methode wilt aanroepen botProcess.stdout.write:
 var botProcess: any = {
     stdout: jasmine.createSpyObj('stdout', ['write']),

@@ -13,7 +13,7 @@
 import ICommand = require('./interface/ICommand');
 import IOptionSetting = require('./interface/IOptionSetting');
 import ICommandMethod = require('./../interface/ICommandMethod');
-import ICommandAnswer = require('./../interface/ICommandAnswer');
+import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/interface/IMoveData');
 import OptionEnum = require('../enum/OptionEnum');
@@ -37,11 +37,11 @@ class Go implements ICommand {
      * @param warMap {IWarMap} - Information about the map on which the game is played.
      */
     constructor(private settings: IOptionSetting, private warMap: IWarMap) {
-        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData): IAnswer => {
             return this.place_armies(commandData);
         };
 
-        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData): IAnswer => {
             return this.attacktransfer(commandData);
         };
     }
@@ -64,8 +64,8 @@ class Go implements ICommand {
      *     value: 'player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1'
      * }
      */
-    public getAnswer(commandData: ICommandData): ICommandAnswer {
-        var optionMethod: (data: ICommandData) => ICommandAnswer = this.optionMethodList[commandData.option];
+    public getAnswer(commandData: ICommandData): IAnswer {
+        var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];
 
         if (optionMethod) {
             return optionMethod(commandData);
@@ -94,7 +94,7 @@ class Go implements ICommand {
      *     value: 'player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1'
      * }
      */
-    public place_armies(commandData: ICommandData): ICommandAnswer {
+    public place_armies(commandData: ICommandData): IAnswer {
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
         var troopsRemaining: number = parseInt(this.settings[OptionEnum.starting_armies], 10);
         var placements: string[] = [];
@@ -129,7 +129,7 @@ class Go implements ICommand {
      *     value: 'player1 attack/transfer 1 3 5, player1 attack/transfer 2 1 2'
      * }
      */
-    public attacktransfer(commandData: ICommandData): ICommandAnswer {
+    public attacktransfer(commandData: ICommandData): IAnswer {
         var moves: string[] = [];
         var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
         var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);

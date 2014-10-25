@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ICommandAnswer = require('ICommandAnswer');
+import IAnswer = require('IAnswer');
 import ICommandData = require('ICommandData');
 
 /**
@@ -23,7 +23,7 @@ interface ILines {
      * @param line {string} - string containing the command information.
      * Example : getAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
      */
-    getAnswer(line: string): ICommandAnswer;
+    getAnswer(line: string): IAnswer;
 
     /**
      * Gets a ICommandData instance by converting a string containing the information.

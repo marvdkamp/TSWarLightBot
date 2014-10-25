@@ -12,7 +12,7 @@
 
 import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
-import ICommandAnswer = require('./../interface/ICommandAnswer');
+import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import OptionEnum = require('../enum/OptionEnum');
 
@@ -28,15 +28,15 @@ class SetupMapCommand implements ICommand {
      * @constructor
      */
     constructor() {
-        this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData): IAnswer => {
             return this.super_regions(commandData);
         };
 
-        this.optionMethodList[OptionEnum.regions] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.regions] = (commandData: ICommandData): IAnswer => {
             return this.regions(commandData);
         };
 
-        this.optionMethodList[OptionEnum.neighbors] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.neighbors] = (commandData: ICommandData): IAnswer => {
             return this.neighbors(commandData);
         };
     }
@@ -60,19 +60,19 @@ class SetupMapCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): IAnswer {
         return null;
     }
 
-    public super_regions(commandData: ICommandData): ICommandAnswer {
+    public super_regions(commandData: ICommandData): IAnswer {
         return null;
     }
 
-    public regions(commandData: ICommandData): ICommandAnswer {
+    public regions(commandData: ICommandData): IAnswer {
         return null;
     }
 
-    public neighbors(commandData: ICommandData): ICommandAnswer {
+    public neighbors(commandData: ICommandData): IAnswer {
         return null;
     }
 }

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -10,20 +10,21 @@
  */
 'use strict';
 
-/**
+import IAnswer = require('./interface/IAnswer');
+
+/*
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
  */
-interface ICommandAnswer {
+class Answer implements IAnswer {
 
-    /**
-     * Could the command succesfully be handled by the bot. 
+    /*
+     * Create an instance of the Answer class.
+     * @constructor
+     * @param succes {boolean} - Could the command succesfully be handled by the bot.
+     * @param answer {string} - The answer from the bot to the command.
      */
-    succes: boolean;
+    constructor(public succes: boolean, public value: string) {
+    }
+};
 
-    /**
-     * The answer from the bot to the command.
-     */
-    value: string;
-}
-
-export = ICommandAnswer;
+export = Answer;

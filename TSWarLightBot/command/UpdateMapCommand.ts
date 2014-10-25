@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./interface/ICommand');
-import ICommandAnswer = require('./../interface/ICommandAnswer');
+import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
 /*
@@ -38,7 +38,7 @@ class UpdateMapCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): IAnswer {
         return null;
     }
 }

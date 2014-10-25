@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./interface/ICommand');
-import ICommandAnswer = require('./../interface/ICommandAnswer');
+import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 
 /*
@@ -39,7 +39,7 @@ class OpponentMovesCommand implements ICommand {
      *     value: ''
      * }
      */
-    public getAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): IAnswer {
         return null;
     }
 }

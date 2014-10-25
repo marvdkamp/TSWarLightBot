@@ -17,7 +17,7 @@ import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
 import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
-import ICommandAnswer = require('../../../TSWarLightBot/interface/ICommandAnswer');
+import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
 import IMoveData = require('../../../TSWarLightBot/command/interface/IMoveData');
 import Consts = require('../../../TSWarLightBot/Consts');
 import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
@@ -116,14 +116,14 @@ describe('goCommand', (): void => {
         });
 
         // error string should be filled too.
-        it('Should return CommandAnswer.succes = false in CommandAnswer.value if ICommandData.option not matches.', (): void => {
+        it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             commandPlaceArmiesData.option = OptionEnum.neighbors;
             commandPlaceArmiesData.line = 'go neighbors 2000';
 
             // act
-            var result: ICommandAnswer = goCommand.getAnswer(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.getAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -131,14 +131,14 @@ describe('goCommand', (): void => {
         });
 
         // error string should be filled too.
-        it('Should return CommandAnswer.succes = false in CommandAnswer.value if ICommandData.option is undefined.', (): void => {
+        it('Should return Answer.succes = false in Answer.value if ICommandData.option is undefined.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             commandPlaceArmiesData.option = undefined;
             commandPlaceArmiesData.line = 'go 2000';
 
             // act
-            var result: ICommandAnswer = goCommand.getAnswer(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.getAnswer(commandPlaceArmiesData);
 
             // assert
             expect(result.succes).toBeFalsy();
@@ -197,7 +197,7 @@ describe('goCommand', (): void => {
             var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
 
             // act
-            var result: ICommandAnswer = goCommand.place_armies(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.place_armies(commandPlaceArmiesData);
 
             // assert
             expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
@@ -319,7 +319,7 @@ describe('goCommand', (): void => {
                 (Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1).toString()].join(' ');
 
             // act
-            var result: ICommandAnswer = goCommand.attacktransfer(commandAttackTransferData);
+            var result: IAnswer = goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
             expect(result.value).toBe([resultAttackRegion, resultTransferRegion].join(', '));
@@ -338,7 +338,7 @@ describe('goCommand', (): void => {
                 });
 
             // act
-            var result: ICommandAnswer = goCommand.attacktransfer(commandAttackTransferData);
+            var result: IAnswer = goCommand.attacktransfer(commandAttackTransferData);
 
             // assert
             expect(result.value).toBe('');

@@ -12,7 +12,7 @@
 
 import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
-import ICommandAnswer = require('./../interface/ICommandAnswer');
+import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import OptionEnum = require('../enum/OptionEnum');
 
@@ -28,11 +28,11 @@ class SettingsCommand implements ICommand {
      * @constructor
      */
     constructor() {
-        this.optionMethodList[OptionEnum.your_bot] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.your_bot] = (commandData: ICommandData): IAnswer => {
             return this.your_bot(commandData);
         };
 
-        this.optionMethodList[OptionEnum.opponent_bot] = (commandData: ICommandData): ICommandAnswer => {
+        this.optionMethodList[OptionEnum.opponent_bot] = (commandData: ICommandData): IAnswer => {
             return this.opponent_bot(commandData);
         };
     }
@@ -55,15 +55,15 @@ class SettingsCommand implements ICommand {
      *     value: '1 7 24 25 41 42'
      * }
      */
-    public getAnswer(commandData: ICommandData): ICommandAnswer {
+    public getAnswer(commandData: ICommandData): IAnswer {
         return null;
     }
 
-    public your_bot(commandData: ICommandData): ICommandAnswer {
+    public your_bot(commandData: ICommandData): IAnswer {
         return null;
     }
 
-    public opponent_bot(commandData: ICommandData): ICommandAnswer {
+    public opponent_bot(commandData: ICommandData): IAnswer {
         return null;
     }
 }

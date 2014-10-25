@@ -11,7 +11,7 @@
 'use strict';
 
 import ILines = require('./interface/ILines');
-import ICommandAnswer = require('./interface/ICommandAnswer');
+import IAnswer = require('./interface/IAnswer');
 import ICommandData = require('./interface/ICommandData');
 import ICommandMethod = require('./interface/ICommandMethod');
 import Consts = require('./Consts');
@@ -32,9 +32,9 @@ class Lines implements ILines {
      * @returns {ICommandData} - The command answer.
      * Example : getAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
      */
-    public getAnswer(line: string): ICommandAnswer {
+    public getAnswer(line: string): IAnswer {
         var commandData: ICommandData = this.getCommandData(line);
-        var commandMethod: (data: ICommandData) => ICommandAnswer = this.commandMethodList[commandData.command];
+        var commandMethod: (data: ICommandData) => IAnswer = this.commandMethodList[commandData.command];
 
         if (commandMethod) {
             return commandMethod(commandData);

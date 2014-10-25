@@ -10,7 +10,7 @@
  */
 'use strict';
 
-import ICommandAnswer = require('./ICommandAnswer');
+import IAnswer = require('./IAnswer');
 import CommandEnum = require('./../enum/CommandEnum');
 import ICommandData = require('./ICommandData'); 
 
@@ -22,7 +22,7 @@ interface ICommandMethod {
     /**
      * The given command fromm the game engine and the method to handle it.
      */
-    [command: number]: (data: ICommandData) => ICommandAnswer;
+    [command: number]: (data: ICommandData) => IAnswer;
 }
 
 export = ICommandMethod;

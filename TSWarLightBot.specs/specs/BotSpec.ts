@@ -36,8 +36,8 @@ describe('bot', (): void => {
     });
 
     var lines: any = jasmine.createSpyObj('lines', ['getAnswer']);
-    var commandAnswer: any = jasmine.createSpy('commandAnswer');
-    lines.getAnswer.andReturn(commandAnswer);
+    var answer: any = jasmine.createSpy('answer');
+    lines.getAnswer.andReturn(answer);
 
     var botProcess: any = {
         stdout: jasmine.createSpyObj('stdout', ['write']),
@@ -120,8 +120,8 @@ describe('bot', (): void => {
         // Should call stdout one time. Should NOT call stderr.
         it('Should call botProcess.stdout.write if result is succesfull.', (): void => {
             // arange
-            commandAnswer.succes = true;
-            commandAnswer.value = 'test';
+            answer.succes = true;
+            answer.value = 'test';
 
             // act
             bot.handleLine(commandString);
@@ -137,14 +137,14 @@ describe('bot', (): void => {
         // Check if command.value is passes to write.
         it('Should call botProcess.stderr.write if commandName is NOT succesfull.', (): void => {
             // arange
-            commandAnswer.succes = false;
-            commandAnswer.value = 'Unable to execute command: doesnotexcist';
+            answer.succes = false;
+            answer.value = 'Unable to execute command: doesnotexcist';
 
             // act
             bot.handleLine('doesnotexcist');
 
             // assert
-            expect(botProcess.stderr.write).toHaveBeenCalledWith(commandAnswer.value);
+            expect(botProcess.stderr.write).toHaveBeenCalledWith(answer.value);
             expect(botProcess.stderr.write.callCount).toBe(1);
             expect(botProcess.stdout.write.callCount).toBe(0);
         });

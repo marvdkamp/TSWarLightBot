@@ -38,7 +38,7 @@
     <TypeScriptCompile Include="Bot.ts" />
     <TypeScriptCompile Include="command\PickStartingRegionsCommand.ts" />
     <TypeScriptCompile Include="enum\CommandEnum.ts" />
-    <TypeScriptCompile Include="CommandAnswer.ts" />
+    <TypeScriptCompile Include="Answer.ts" />
     <TypeScriptCompile Include="command\GoCommand.ts" />
     <TypeScriptCompile Include="command\interface\ICommand.ts" />
     <TypeScriptCompile Include="command\interface\IMoveData.ts" />
@@ -51,7 +51,7 @@
     <TypeScriptCompile Include="interface\IBot.ts" />
     <TypeScriptCompile Include="interface\ICommandData.ts" />
     <TypeScriptCompile Include="interface\ICommandMethod.ts" />
-    <TypeScriptCompile Include="interface\ICommandAnswer.ts" />
+    <TypeScriptCompile Include="interface\IAnswer.ts" />
     <TypeScriptCompile Include="interface\ILines.ts" />
     <TypeScriptCompile Include="Lines.ts" />
     <TypeScriptCompile Include="map\interface\IRegion.ts" />

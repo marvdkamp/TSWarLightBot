@@ -3,7 +3,7 @@ TODO
 - Name all tests correct and provide all information.
 - Sort imports.
 - Check if runner injects the right instances in each contructor.
-- Rename enum. Rename commandAnswer.
+- Rename enum. Rename Answer.
 - Write tests for all wrong input paramaters and all other tests we need for the classes we have this far.
 
 - Find out if we can use alias for Paths in NodeJS.
@@ -24,7 +24,7 @@ DONE
 - Change command string to command enums.
 - Place an example string in each command class.
 - Place a discription above each class and method.
-- Rename CommandResult to CommandAnswer and value to answer and introduce extra errormessage.
+- Rename CommandResult to Answer and value to answer and introduce extra errormessage.
 - Renamed ICommandNameMethod to CommandMethod.
 - Renamed subCommand to subCommand.
 - add use strict everywhere.
