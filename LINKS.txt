@@ -60,6 +60,9 @@ https://typescript.codeplex.com/discussions/398359
 Extend javascript array
 http://stackoverflow.com/questions/14000645/how-to-extend-native-javascipt-array-in-typescript
 
+Shuffle javascript array
+http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+
 Grunt 
 http://gruntjs.com/
 

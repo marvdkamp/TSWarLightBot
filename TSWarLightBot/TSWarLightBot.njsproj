@@ -36,6 +36,8 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="Bot.ts" />
+    <TypeScriptCompile Include="command\helper\DummyArray.ts" />
+    <TypeScriptCompile Include="command\helper\ShuffleArray.ts" />
     <TypeScriptCompile Include="command\PickStartingRegionsCommand.ts" />
     <TypeScriptCompile Include="enum\CommandEnum.ts" />
     <TypeScriptCompile Include="Answer.ts" />
@@ -67,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="command\interface\" />
+    <Folder Include="command\helper\" />
     <Folder Include="map\" />
     <Folder Include="map\interface\" />
     <Folder Include="command\" />

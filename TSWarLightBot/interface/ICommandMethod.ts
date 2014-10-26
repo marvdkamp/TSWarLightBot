@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -11,18 +11,18 @@
 'use strict';
 
 import IAnswer = require('./IAnswer');
-import CommandEnum = require('./../enum/CommandEnum');
-import ICommandData = require('./ICommandData'); 
+import ICommandData = require('./ICommandData');
 
-/**
+/*
  * Couples a command to a method which will handle the command.
  */
 interface ICommandMethod {
 
-    /**
+    /*
      * The given command fromm the game engine and the method to handle it.
+     * We can't us an enum as indexer. So we use number but you hould read CommandEnum.
      */
-    [command: number]: (data: ICommandData) => IAnswer;
+    [command: number /*CommandEnum*/ ]: (data: ICommandData) => IAnswer;
 }
 
 export = ICommandMethod;

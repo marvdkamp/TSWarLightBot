@@ -20,6 +20,7 @@ class Consts {
     public static get NO_MOVES(): string { return 'No moves'; }
     public static get MINIMUM_TROOPS_FOR_ATTACK(): number { return 7; }
     public static get MINIMUM_TROOPS_FOR_TRANSFER(): number { return 2; }
+    public static get NUMBER_OF_REGIONS_TO_PICK(): number { return 6; }
 }
 
 export = Consts;

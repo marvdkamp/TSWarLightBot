@@ -28,7 +28,7 @@ class PickStartingRegionsCommand implements ICommand {
      *     line: 'pick_starting_regions 2000', 
      *     command: CommandEnum.pick_starting_regions,
      *     option: undefined,
-     *     data: ['2000']
+     *     data: ['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']
      * });
      * 
      * Example return:

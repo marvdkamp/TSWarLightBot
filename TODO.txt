@@ -1,12 +1,10 @@
 TODO
 ====
-- Name all tests correct and provide all information.
+- Check if we have a test for filling the original line in CommandData.
 - Sort imports.
 - Check if runner injects the right instances in each contructor.
-- Rename enum. Rename Answer.
+- Rename enum.
 - Write tests for all wrong input paramaters and all other tests we need for the classes we have this far.
-
-- Find out if we can use alias for Paths in NodeJS.
 
 DONE
 ====

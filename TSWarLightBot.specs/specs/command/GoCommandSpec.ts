@@ -26,8 +26,9 @@ import RegionsMock = require('./RegionsMock');
 import util = require('util');
 
 describe('goCommand', (): void => {
-    var GoCommand: any = require('../../../TSWarLightBot/command/GoCommand'); //Class for unit under test.
-    var goCommand: any; // Unit under test.
+    // Class for unit under test and variable for instance of unit under test.
+    var GoCommand: any = require('../../../TSWarLightBot/command/GoCommand');
+    var goCommand: any;
 
     // Mocks and spies.
     var commandDataMock: ICommandData;
@@ -39,7 +40,7 @@ describe('goCommand', (): void => {
 
     beforeEach((): void => {
        // Creeer de settings mock die we voor de meeste tests nodig hebben. 
-       // Zonodig kan deze in een it overschreven worden voor de aanroep van getAnswer, place_armies of attacktransfer.
+       // Zonodig kan deze in een it overschreven worden. Doe dit voor de aanroep van getAnswer, place_armies of attacktransfer.
         settingsMock = {};
         yourBotNameMock = 'player1';
         settingsMock[OptionEnum.starting_armies] = '3';
@@ -58,6 +59,10 @@ describe('goCommand', (): void => {
         goCommand = new GoCommand(settingsMock, warMapSpy);
     });
 
+    // getAnswer formuleert een antwoord op een commando van de game engine. Hij retourneerd daarvoor een IAnswer instantie. Die twee
+    // properties bevat:
+    // succes: Een boolean of de bot succesvol een antwoord heeft kunnen formuleren.
+    // value: De string waarde die terug gestuurd moet worden naar engine of een foutmelding als succes false is.
     describe('getAnswer', (): void => {
         beforeEach((): void => {
             commandDataMock = {
@@ -68,7 +73,7 @@ describe('goCommand', (): void => {
             };
         });
 
-        it('Should call right option method on goCommand if ICommandData.option matches.', (): void => {
+        it('Should call place_armies method on goCommand if ICommandData.option is place_armies.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
@@ -82,7 +87,7 @@ describe('goCommand', (): void => {
         });
 
         // error string should be filled too.
-        it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches.', (): void => {
+        it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             commandDataMock.option = OptionEnum.neighbors;
@@ -127,6 +132,8 @@ describe('goCommand', (): void => {
         });
     });
 
+    // Het go command kent verschillende opties waaronder deze place_armies. Met place_armies geeft de bot aan de engine door op welke
+    // regions de bot nieuwe troepen wil plaatsen. De bot ontvangt elke ronden een bepaalde hoeveelheid troepen.
     describe('place_armies', (): void => {
         beforeEach((): void => {
             commandDataMock = {
@@ -190,6 +197,8 @@ describe('goCommand', (): void => {
         });
     });
 
+    // Het go command kent verschillende opties waaronder deze attacktransfer. Met attacktransfer geeft de bot aan de engine door 
+    // welke troepen de bot wil verplaatsen van eigen regions en welke vijandelijk regions hij wil aanvallen en met hoeveel troepen.
     describe('attacktransfer', (): void => {
         beforeEach((): void => {
             commandDataMock = {
@@ -200,7 +209,7 @@ describe('goCommand', (): void => {
             };
         });
 
-        // Should call it once with own false and MINIMUM_TROOPS_FOR_ATTACK and
+        // Should call getRegionsToAttackTransfer once with own false and MINIMUM_TROOPS_FOR_ATTACK and
         // once with own true and MINIMUM_TROOPS_FOR_TRANSFER.
         it('Should call getRegionsToAttackTransfer on goCommand twice', (): void => {
             // arange
