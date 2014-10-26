@@ -21,9 +21,11 @@ import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('lines', (): void => {
-    var Lines: any = require('../../TSWarLightBot/Lines');
-    var lines: ILines;
-    var commandString: string;
+    var Lines: any = require('../../TSWarLightBot/Lines'); //Class for unit under test.
+    var lines: ILines; // Unit under test.
+    
+    // Mocks and spies.
+    var commandStringMock: string;
 
     describe('getCommandData', (): void => {
         beforeEach((): void => {
@@ -33,7 +35,7 @@ describe('lines', (): void => {
 
         it('Should return ICommandData.command is undefined when string contains', (): void => {
             // arange
-            commandString = null;
+            commandStringMock = null;
 
             // act
             var result: ICommandData = lines.getCommandData(' ');
@@ -44,10 +46,10 @@ describe('lines', (): void => {
 
         it('Should return ICommandData.command is undefined when commandString contains only spaces', (): void => {
             // arange
-            commandString = ' ';
+            commandStringMock = ' ';
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.command).toBe(undefined);
@@ -55,7 +57,7 @@ describe('lines', (): void => {
 
         it('Should return ICommandData.command is undefined when commandString contains an invalid command', (): void => {
             // arange
-            commandString = 'doesnotexcist';
+            commandStringMock = 'doesnotexcist';
 
             // act
             var result: ICommandData = lines.getCommandData('doesnotexcist');
@@ -66,10 +68,10 @@ describe('lines', (): void => {
 
         it('Should return ICommandData.command as CommandEnum.settings if commandString contains settings', (): void => {
             // arange
-            commandString = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
+            commandStringMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.command).toBe(CommandEnum.settings);
@@ -77,10 +79,10 @@ describe('lines', (): void => {
 
         it('Should return ICommandData.option as OptionEnum.your_bot if commandString contains your_bot', (): void => {
             // arange
-            commandString = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
+            commandStringMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.option).toBe(OptionEnum.your_bot);
@@ -89,10 +91,10 @@ describe('lines', (): void => {
         // a string with a slash is not a valid enum value so we remove the slash.
         it('Should return ICommandData.option is OptionEnum.attacktransfer if commandString contains a attack/transfer', (): void => {
             // arange
-            commandString = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
+            commandStringMock = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.option).toBe(OptionEnum.attacktransfer);
@@ -101,10 +103,10 @@ describe('lines', (): void => {
         // Check if it does not crash on an missing option part in the commandstring.
         it('Should return ICommandData.option undefined if commandString contains only 1 linepart', (): void => {
             // arange
-            commandString = CommandEnum[CommandEnum.settings];
+            commandStringMock = CommandEnum[CommandEnum.settings];
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.option).toBe(undefined);
@@ -113,10 +115,10 @@ describe('lines', (): void => {
         // update_map 1 player1 2 2 player1 4 3 neutral 2 4 player2 5.
         it('Should return ICommandData.option undefined for the update_map command which has no options', (): void => {
             // arange
-            commandString = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
+            commandStringMock = [CommandEnum[CommandEnum.update_map], '1 player1 2 2 player1 4 3 neutral 2 4 player2 5'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.option).toBe(undefined);
@@ -126,10 +128,10 @@ describe('lines', (): void => {
         // Resultaat zou ['1', '2', '2', '5'] moeten zijn.
         it('Should return the right data for the CommandEnum.setup_map command with OptionEnum.super_regions.', (): void => {
             // arange
-            commandString = [CommandEnum[CommandEnum.setup_map], OptionEnum[OptionEnum.super_regions], '1 2 2 5'].join(' ');
+            commandStringMock = [CommandEnum[CommandEnum.setup_map], OptionEnum[OptionEnum.super_regions], '1 2 2 5'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.data).toEqual(['1', '2', '2', '5']);
@@ -139,10 +141,10 @@ describe('lines', (): void => {
         // resultaat zou ['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'] moeten zijn.
         it('Should return the right data for the CommandEnum.pick_starting_regions which has no options', (): void => {
             // arange
-            commandString = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
+            commandStringMock = [CommandEnum[CommandEnum.pick_starting_regions], '2000 1 7 12 13 18 15 24 25 29 37 42 41'].join(' ');
 
             // act
-            var result: ICommandData = lines.getCommandData(commandString);
+            var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
             expect(result.data).toEqual(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']);
@@ -160,8 +162,8 @@ describe('lines', (): void => {
             settingMethod = jasmine.createSpy('settingMethod');
             commandMethodList = {};
             commandMethodList[CommandEnum.settings] = settingMethod;
-            commandString = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
-            commandData = { line: commandString, command: CommandEnum.settings, data: ['player1'] };
+            commandStringMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
+            commandData = { line: commandStringMock, command: CommandEnum.settings, data: ['player1'] };
 
             lines = new Lines(commandMethodList);
         });
@@ -175,10 +177,10 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            lines.getAnswer(commandString);
+            lines.getAnswer(commandStringMock);
 
             // assert
-            expect(lines.getCommandData).toHaveBeenCalledWith(commandString);
+            expect(lines.getCommandData).toHaveBeenCalledWith(commandStringMock);
             expect((<jasmine.Spy>lines.getCommandData).calls.length).toEqual(1);
         });
 
@@ -195,7 +197,7 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            lines.getAnswer(commandString);
+            lines.getAnswer(commandStringMock);
 
             // assert
             expect(settingMethod).toHaveBeenCalledWith(commandData);
@@ -205,16 +207,16 @@ describe('lines', (): void => {
         // Controleer ook of de IAnswer.value Consts.UNABLE_TO_EXECUTE is.
         it('Should return IAnswer.succes = false when commandData.command is undefined.', (): void => {
             // arange
-            commandString = 'doesnotexcist';
-            commandData = { line: commandString, command: undefined, data: [] };
+            commandStringMock = 'doesnotexcist';
+            commandData = { line: commandStringMock, command: undefined, data: [] };
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: IAnswer = lines.getAnswer(commandString);
+            var result: IAnswer = lines.getAnswer(commandStringMock);
 
             // assert
             expect(result.succes).toBeFalsy();
-            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandStringMock));
         });
 
         it('Should return IAnswer.succes = false when the commandMethodList method is null.', (): void => {
@@ -223,11 +225,11 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: IAnswer = lines.getAnswer(commandString);
+            var result: IAnswer = lines.getAnswer(commandStringMock);
 
             // assert
             expect(result.succes).toBeFalsy();
-            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandStringMock));
         });
 
         it('Should return IAnswer.succes = false when the commandMethodList method is undefined.', (): void => {
@@ -236,11 +238,11 @@ describe('lines', (): void => {
             spyOn(lines, 'getCommandData').andReturn(commandData);
 
             // act
-            var result: IAnswer = lines.getAnswer(commandString);
+            var result: IAnswer = lines.getAnswer(commandStringMock);
 
             // assert
             expect(result.succes).toBeFalsy();
-            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandString));
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandStringMock));
         });
     });
 });

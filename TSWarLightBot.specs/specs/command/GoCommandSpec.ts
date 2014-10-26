@@ -22,96 +22,62 @@ import IMoveData = require('../../../TSWarLightBot/command/interface/IMoveData')
 import Consts = require('../../../TSWarLightBot/Consts');
 import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
+import RegionsMock = require('./RegionsMock');
 import util = require('util');
 
 describe('goCommand', (): void => {
-    var GoCommand: any = require('../../../TSWarLightBot/command/GoCommand');
-    var goCommand: any;
-    var commandPlaceArmiesData: ICommandData = {
-        line: 'go place_armies 2000',
-        command: CommandEnum.go,
-        option: OptionEnum.place_armies,
-        data: ['2000']
-    };
+    var GoCommand: any = require('../../../TSWarLightBot/command/GoCommand'); //Class for unit under test.
+    var goCommand: any; // Unit under test.
 
-    var commandAttackTransferData: ICommandData = {
-        line: 'go attack/transfer 2000',
-        command: CommandEnum.go,
-        option: OptionEnum.attacktransfer,
-        data: ['2000']
-    };
-
-    var settings: IOptionSetting = {};
-    var regions: IRegion[];
-    var ownedRegions: IRegion[];
-    var warMap: any = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
-    var yourBotName: string = 'player1';
+    // Mocks and spies.
+    var commandDataMock: ICommandData;
+    var settingsMock: IOptionSetting;
+    var regionsMock: IRegion[];
+    var ownedRegionsMock: IRegion[];
+    var yourBotNameMock: string;
+    var warMapSpy: any;
 
     beforeEach((): void => {
-        regions = createMockRegions();
-        ownedRegions = [];
-        ownedRegions.push(regions[0]);
-        ownedRegions.push(regions[1]);
-        warMap.getOwnedRegions.andReturn(ownedRegions);
-        goCommand = new GoCommand(settings, warMap);
+       // Creeer de settings mock die we voor de meeste tests nodig hebben. 
+       // Zonodig kan deze in een it overschreven worden voor de aanroep van getAnswer, place_armies of attacktransfer.
+        settingsMock = {};
+        yourBotNameMock = 'player1';
+        settingsMock[OptionEnum.starting_armies] = '3';
+        settingsMock[OptionEnum.your_bot] = yourBotNameMock;
+
+        // Creeer de warmap spy die we voor de meeste test nodig hebben en bijbehorende regions zodat we een call naar
+        // getOwnedRegions ook een return waarde kunnen geven met mock data.
+        regionsMock = RegionsMock.getMock();
+        ownedRegionsMock = [];
+        ownedRegionsMock.push(regionsMock[0]);
+        ownedRegionsMock.push(regionsMock[1]);
+        warMapSpy = jasmine.createSpyObj('warMap', ['getOwnedRegions']);
+        warMapSpy.getOwnedRegions.andReturn(ownedRegionsMock);
+
+        // Creeer de unit under test en injecteer de mock en spy.
+        goCommand = new GoCommand(settingsMock, warMapSpy);
     });
 
-    function createMockRegions(): IRegion[] {
-        var result: IRegion[] = [{
-            id: 1,
-            superRegion: null,
-            owner: PossibleOwnersEnum.PLAYER,
-            neighbors: [],
-            troopCount: 1,
-            isOnEmpireBorder: false,
-            isOnSuperRegionBorder: false
-        }, {
-            id: 2,
-            superRegion: null,
-            owner: PossibleOwnersEnum.PLAYER,
-            neighbors: [],
-            troopCount: 1,
-            isOnEmpireBorder: false,
-            isOnSuperRegionBorder: false
-        }, {
-            id: 3,
-            superRegion: null,
-            owner: PossibleOwnersEnum.OPPONENT,
-            neighbors: [],
-            troopCount: 1,
-            isOnEmpireBorder: false,
-            isOnSuperRegionBorder: false
-        }, {
-            id: 4,
-            superRegion: null,
-            owner: PossibleOwnersEnum.NEUTRAL,
-            neighbors: [],
-            troopCount: 1,
-            isOnEmpireBorder: false,
-            isOnSuperRegionBorder: false
-        }];
-
-        result[0].neighbors.push(result[1]);
-        result[0].neighbors.push(result[2]);
-        result[0].neighbors.push(result[3]);
-
-        // We don't need this => Connectivity is only given in one way: 'region id' < 'neighbour id'.
-        // result[1].neighbors.push(result[0]);
-
-        return result;
-    }
-
     describe('getAnswer', (): void => {
+        beforeEach((): void => {
+            commandDataMock = {
+                line: 'go place_armies 2000',
+                command: CommandEnum.go,
+                option: OptionEnum.place_armies,
+                data: ['2000']
+            };
+        });
+
         it('Should call right option method on goCommand if ICommandData.option matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
 
             // act
-            goCommand.getAnswer(commandPlaceArmiesData);
+            goCommand.getAnswer(commandDataMock);
 
             // assert
-            expect(goCommand.place_armies).toHaveBeenCalledWith(commandPlaceArmiesData);
+            expect(goCommand.place_armies).toHaveBeenCalledWith(commandDataMock);
             expect(goCommand.place_armies.callCount).toBe(1);
         });
 
@@ -119,55 +85,78 @@ describe('goCommand', (): void => {
         it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
-            commandPlaceArmiesData.option = OptionEnum.neighbors;
-            commandPlaceArmiesData.line = 'go neighbors 2000';
+            commandDataMock.option = OptionEnum.neighbors;
+            commandDataMock.line = 'go neighbors 2000';
 
             // act
-            var result: IAnswer = goCommand.getAnswer(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.getAnswer(commandDataMock);
 
             // assert
             expect(result.succes).toBeFalsy();
-            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandDataMock.line));
         });
 
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option is undefined.', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
-            commandPlaceArmiesData.option = undefined;
-            commandPlaceArmiesData.line = 'go 2000';
+            commandDataMock.option = undefined;
+            commandDataMock.line = 'go 2000';
 
             // act
-            var result: IAnswer = goCommand.getAnswer(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.getAnswer(commandDataMock);
 
             // assert
             expect(result.succes).toBeFalsy();
-            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandPlaceArmiesData.line));
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandDataMock.line));
+        });
+
+        // error string should be filled too.
+        it('Should return Answer.succes = false in Answer.value if ICommandData.option is null.', (): void => {
+            // arange
+            spyOn(Math, 'random').andReturn(0);
+            commandDataMock.option = null;
+            commandDataMock.line = 'go 2000';
+
+            // act
+            var result: IAnswer = goCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeFalsy();
+            expect(result.value).toBe(util.format(Consts.UNABLE_TO_EXECUTE, commandDataMock.line));
         });
     });
 
     describe('place_armies', (): void => {
+        beforeEach((): void => {
+            commandDataMock = {
+                line: 'go place_armies 2000',
+                command: CommandEnum.go,
+                option: OptionEnum.place_armies,
+                data: ['2000']
+            };
+        });
+
         // Should call it only once and with PossibleOwnersEnum.PLAYER.
         it('Should call getOwnedRegions on warMap', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            goCommand.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandDataMock);
 
             // assert
-            expect(warMap.getOwnedRegions).toHaveBeenCalledWith(PossibleOwnersEnum.PLAYER);
-            expect(warMap.getOwnedRegions.callCount).toBe(1);
+            expect(warMapSpy.getOwnedRegions).toHaveBeenCalledWith(PossibleOwnersEnum.PLAYER);
+            expect(warMapSpy.getOwnedRegions.callCount).toBe(1);
         });
 
         // settings gets injected and holds OptionEnum.starting_armies.
         it('Should call Math.random for the amount of armies it has to place OptionEnum.starting_armies', (): void => {
             // arange
-            settings[OptionEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            goCommand.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandDataMock);
 
             // assert
             expect((<jasmine.Spy>Math.random).callCount).toBe(3);
@@ -177,27 +166,24 @@ describe('goCommand', (): void => {
         it('Should add +1 on troopCount the region found by index of Math.random.', (): void => {
             // arange
             var index = 0;
-            settings[OptionEnum.starting_armies] = '3';
             spyOn(Math, 'random').andReturn(index);
 
             // act
-            goCommand.place_armies(commandPlaceArmiesData);
+            goCommand.place_armies(commandDataMock);
 
             // assert
-            expect(regions[index].troopCount).toBe(1 + 3);
+            expect(regionsMock[index].troopCount).toBe(1 + 3);
         });
 
         // Example player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1
         // We place 3 armies all on the region found by index of Math.random. Each armie will be placed induvidualy.
         it('Should return a placement for every army.', (): void => {
             // arange
-            settings[OptionEnum.starting_armies] = '3';
-            settings[OptionEnum.your_bot] = yourBotName;
             spyOn(Math, 'random').andReturn(0);
-            var resultOneArmie: string = [yourBotName, Consts.PLACE_ARMIES, '1 1'].join(' ');
+            var resultOneArmie: string = [yourBotNameMock, Consts.PLACE_ARMIES, '1 1'].join(' ');
 
             // act
-            var result: IAnswer = goCommand.place_armies(commandPlaceArmiesData);
+            var result: IAnswer = goCommand.place_armies(commandDataMock);
 
             // assert
             expect(result.value).toBe([resultOneArmie, resultOneArmie, resultOneArmie].join(', '));
@@ -205,6 +191,15 @@ describe('goCommand', (): void => {
     });
 
     describe('attacktransfer', (): void => {
+        beforeEach((): void => {
+            commandDataMock = {
+                line: 'go attack/transfer 2000',
+                command: CommandEnum.go,
+                option: OptionEnum.attacktransfer,
+                data: ['2000']
+            };
+        });
+
         // Should call it once with own false and MINIMUM_TROOPS_FOR_ATTACK and
         // once with own true and MINIMUM_TROOPS_FOR_TRANSFER.
         it('Should call getRegionsToAttackTransfer on goCommand twice', (): void => {
@@ -213,23 +208,23 @@ describe('goCommand', (): void => {
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            regionFrom: regions[1],
-                            regionTo: regions[0]
+                            regionFrom: regionsMock[1],
+                            regionTo: regionsMock[0]
                         }];
                     } else {
                         return [{
-                            regionFrom: regions[0],
-                            regionTo: regions[2]
+                            regionFrom: regionsMock[0],
+                            regionTo: regionsMock[2]
                         }];
                     }
                 });
 
             // act
-            goCommand.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandDataMock);
 
             // assert
-            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
-            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegionsMock, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            expect(goCommand.getRegionsToAttackTransfer).toHaveBeenCalledWith(ownedRegionsMock, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
             expect(goCommand.getRegionsToAttackTransfer.callCount).toBe(2);
         });
 
@@ -239,24 +234,24 @@ describe('goCommand', (): void => {
         // regionFrom is part of the IMove instance returned by getRegionsToAttackTransfer.
         it('Should set troopsCount to 1 on regionFrom result from getRegionsToAttackTransfer with argument own=false', (): void => {
             // arange
-            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
+            regionsMock[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [];
                     } else {
                         return [{
-                            regionFrom: regions[0],
-                            regionTo: regions[2]
+                            regionFrom: regionsMock[0],
+                            regionTo: regionsMock[2]
                         }];
                     }
                 });
 
             // act
-            goCommand.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandDataMock);
 
             // assert
-            expect(regions[0].troopCount).toBe(1);
+            expect(regionsMock[0].troopCount).toBe(1);
         });
 
         // We always move all troops but 1.
@@ -265,13 +260,13 @@ describe('goCommand', (): void => {
         // regionFrom is part of the IMove instance returned by getRegionsToAttackTransfer.
         it('Should set troopsCount to 1 on regionFrom from getRegionsToAttackTransfer result for an attack', (): void => {
             // arange
-            regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
+            regionsMock[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            regionFrom: regions[1],
-                            regionTo: regions[0]
+                            regionFrom: regionsMock[1],
+                            regionTo: regionsMock[0]
                         }];
                     } else {
                         return [];
@@ -279,10 +274,10 @@ describe('goCommand', (): void => {
                 });
 
             // act
-            goCommand.attacktransfer(commandAttackTransferData);
+            goCommand.attacktransfer(commandDataMock);
 
             // assert
-            expect(regions[1].troopCount).toBe(1);
+            expect(regionsMock[1].troopCount).toBe(1);
         });
 
         // Example player1 attack/transfer 1 3 5, player1 attack/transfer 2 1 2
@@ -290,36 +285,36 @@ describe('goCommand', (): void => {
         // both a region for an attack and a region for a transfer.
         it('Should return a move for every IMoveData.', (): void => {
             // arange
-            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
-            regions[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
+            regionsMock[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
+            regionsMock[1].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
             spyOn(goCommand, 'getRegionsToAttackTransfer')
                 .andCallFake((ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]=> {
                     if (own) {
                         return [{
-                            regionFrom: regions[1],
-                            regionTo: regions[0]
+                            regionFrom: regionsMock[1],
+                            regionTo: regionsMock[0]
                         }];
                     } else {
                         return [{
-                            regionFrom: regions[0],
-                            regionTo: regions[2]
+                            regionFrom: regionsMock[0],
+                            regionTo: regionsMock[2]
                         }];
                     }
                 });
 
-            var resultAttackRegion: string = [yourBotName,
+            var resultAttackRegion: string = [yourBotNameMock,
                 Consts.ATTACK_TRANSFER,
-                regions[0].id.toString(),
-                regions[2].id.toString(),
+                regionsMock[0].id.toString(),
+                regionsMock[2].id.toString(),
                 (Consts.MINIMUM_TROOPS_FOR_ATTACK - 1).toString()].join(' ');
-            var resultTransferRegion: string = [yourBotName,
+            var resultTransferRegion: string = [yourBotNameMock,
                 Consts.ATTACK_TRANSFER,
-                regions[1].id.toString(),
-                regions[0].id.toString(),
+                regionsMock[1].id.toString(),
+                regionsMock[0].id.toString(),
                 (Consts.MINIMUM_TROOPS_FOR_TRANSFER - 1).toString()].join(' ');
 
             // act
-            var result: IAnswer = goCommand.attacktransfer(commandAttackTransferData);
+            var result: IAnswer = goCommand.attacktransfer(commandDataMock);
 
             // assert
             expect(result.value).toBe([resultAttackRegion, resultTransferRegion].join(', '));
@@ -338,7 +333,7 @@ describe('goCommand', (): void => {
                 });
 
             // act
-            var result: IAnswer = goCommand.attacktransfer(commandAttackTransferData);
+            var result: IAnswer = goCommand.attacktransfer(commandDataMock);
 
             // assert
             expect(result.value).toBe('');
@@ -351,15 +346,15 @@ describe('goCommand', (): void => {
         // regions[index] in which index is determind with Math.random.
         it('Should return correct regions for attack.', (): void => {
             // arange
-            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
+            regionsMock[0].troopCount = Consts.MINIMUM_TROOPS_FOR_ATTACK;
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
+            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegionsMock, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
 
             // assert
-            expect(result[0].regionTo).toBe(regions[2]);
-            expect(result[0].regionFrom).toBe(regions[0]);
+            expect(result[0].regionTo).toBe(regionsMock[2]);
+            expect(result[0].regionFrom).toBe(regionsMock[0]);
         });
 
         // Neigbors which are owned (own paramter is true).
@@ -367,15 +362,15 @@ describe('goCommand', (): void => {
         // regions[index] in which index is determind with Math.random.
         it('Should return correct regions for transfer.', (): void => {
             // arange
-            regions[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
+            regionsMock[0].troopCount = Consts.MINIMUM_TROOPS_FOR_TRANSFER;
             spyOn(Math, 'random').andReturn(0);
 
             // act
-            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
+            var result: IMoveData[] = goCommand.getRegionsToAttackTransfer(ownedRegionsMock, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER);
 
             // assert
-            expect(result[0].regionTo).toBe(regions[1]);
-            expect(result[0].regionFrom).toBe(regions[0]);
+            expect(result[0].regionTo).toBe(regionsMock[1]);
+            expect(result[0].regionFrom).toBe(regionsMock[0]);
         });
     });
 });

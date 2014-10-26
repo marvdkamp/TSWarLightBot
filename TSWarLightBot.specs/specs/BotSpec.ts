@@ -20,8 +20,8 @@ import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('bot', (): void => {
-    var Bot: any = require('../../TSWarLightBot/Bot');
-    var bot: IBot;
+    var Bot: any = require('../../TSWarLightBot/Bot'); //Class for unit under test.
+    var bot: IBot; // Unit under test.
     var io: any = jasmine.createSpyObj('io', ['on']);
     var lineListener: (data: string) => void;
     var closeListener: () => void;
