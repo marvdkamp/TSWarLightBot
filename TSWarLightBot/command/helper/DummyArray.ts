@@ -36,6 +36,10 @@ class DummyArray<T> {
         return null;
     }
 
+    slice(begin: number, end: number): any {
+        return null;
+    }
+
     length: number;
 }
 

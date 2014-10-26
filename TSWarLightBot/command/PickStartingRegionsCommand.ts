@@ -13,6 +13,7 @@
 import ICommand = require('./interface/ICommand');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
+import Consts = require('./../Consts');
 
 /*
  * Handles pick_starting_regions command from the game engine. Request for the bot to return his place armies moves and 
@@ -38,8 +39,12 @@ class PickStartingRegionsCommand implements ICommand {
      * }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
+        var allotedTime: string = commandData.data.shift();
         commandData.data.shuffle();
-        return null;
+        return {
+            succes: true,
+            value: commandData.data.slice(0, Consts.NUMBER_OF_REGIONS_TO_PICK).join(' ')
+        }
     }
 }
 

@@ -13,6 +13,7 @@
 
 import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
+import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
 import Consts = require('../../../TSWarLightBot/Consts');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 
@@ -36,18 +37,44 @@ describe('pickStartingRegionsCommand', (): void => {
                 option: null,
                 data: new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'])
             };
-            spyOn(commandDataMock.data, 'shuffle');
             pickStartingRegionsCommand = new PickStartingRegionsCommand();
         });
 
-        it('Should call shuffle on commandData.data for the amount of regions it must pick.', (): void => {
+        // Should get the first item from the data because thats te alloted time.
+        it('Should call shift on commandData.data.', (): void => {
             // arange
+            spyOn(commandDataMock.data, 'shift');
 
             // act
             pickStartingRegionsCommand.getAnswer(commandDataMock);
 
             // assert
-            expect((<jasmine.Spy>commandDataMock.data.shuffle).callCount).toBe(1);
+            expect((<jasmine.Spy>commandDataMock.data.shift).callCount).toBe(1);
+        });
+
+        it('Should call shuffle on commandData.data but not before first item is removed', (): void => {
+            // arange
+            spyOn(commandDataMock.data, 'shuffle').andCallFake(() => {
+                // assert
+                expect(commandDataMock.data[0]).not.toBe('2000'); 
+            });
+
+            // act
+            pickStartingRegionsCommand.getAnswer(commandDataMock);
+        });
+
+        // Test ook dat succes is true op het resultaat.
+        it('Should return the first NUMBER_OF_REGIONS_TO_PICK from the Regions returned from shuffle', (): void => {
+            // arange 
+            // We simply don't really shuffle :). Shuffeling will be tested elsewhere.
+            spyOn(commandDataMock.data, 'shuffle').andReturn(commandDataMock.data);
+
+            // act
+            var result: IAnswer = pickStartingRegionsCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(result.value).toBe('1 7 12 13 18 15');
+            expect(result.succes).toBe(true);
         });
     });
 });
