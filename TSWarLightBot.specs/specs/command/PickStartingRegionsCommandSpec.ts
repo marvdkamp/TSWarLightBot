@@ -14,6 +14,7 @@
 import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import Consts = require('../../../TSWarLightBot/Consts');
+import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 
 describe('pickStartingRegionsCommand', (): void => {
     // Class for unit under test and variable for instance of unit under test.
@@ -29,11 +30,16 @@ describe('pickStartingRegionsCommand', (): void => {
     // value: De string waarde die terug gestuurd moet worden naar engine of een foutmelding als succes false is.
     describe('getAnswer', (): void => {
         beforeEach((): void => {
+            var data: ShuffleArray<string> = new ShuffleArray<string>();
+            ['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'].forEach((value: string) => {
+                data.push(value);
+            });
+
             commandDataMock = {
                 line: 'pick_starting_regions place_armies 2000 1 7 12 13 18 15 24 25 29 37 42 41',
                 command: CommandEnum.pick_starting_regions,
                 option: null,
-                data: ['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']
+                data: data
             };
             pickStartingRegionsCommand = new PickStartingRegionsCommand();
         });

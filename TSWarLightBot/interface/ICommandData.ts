@@ -12,6 +12,7 @@
 
 import CommandEnum = require('./../enum/CommandEnum');
 import OptionEnum = require('./../enum/OptionEnum');
+import ShuffleArray = require('../command/helper/ShuffleArray');
 
 /*
  * Information about the command from the game engine.
@@ -36,7 +37,7 @@ interface ICommandData {
     /*
      * Arguments given by the command.
      */
-    data: string[];
+    data: ShuffleArray<string>;
 }
 
 export = ICommandData;

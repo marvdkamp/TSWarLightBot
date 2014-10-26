@@ -12,10 +12,10 @@
 // Based on http://stackoverflow.com/questions/14000645/how-to-extend-native-javascipt-array-in-typescript
 
 // A dummy class to inherite array.
-class DummyArray {
+class DummyArray<T> {
     constructor() {
-        Array.apply(this, arguments);
-        return new Array();
+        Array.apply(this);
+        return new Array<T>();
     }
 
     // We need this, or TS will show an error,
@@ -26,6 +26,14 @@ class DummyArray {
 
     push(val: any): number {
         return 0;
+    }
+
+    shift(): any {
+        return null;
+    }
+
+    unshift(value: any): any {
+        return null;
     }
 
     length: number;

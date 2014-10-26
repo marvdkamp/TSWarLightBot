@@ -19,6 +19,7 @@ import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
+import ShuffleArray = require('../../TSWarLightBot/command/helper/ShuffleArray');
 
 describe('lines', (): void => {
     // Class for unit under test.
@@ -141,7 +142,10 @@ describe('lines', (): void => {
             var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
-            expect(result.data).toEqual(['1', '2', '2', '5']);
+            expect(result.data[0]).toEqual('1');
+            expect(result.data[1]).toEqual('2');
+            expect(result.data[2]).toEqual('2');
+            expect(result.data[3]).toEqual('5');
         });
 
         // pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41.
@@ -154,7 +158,19 @@ describe('lines', (): void => {
             var result: ICommandData = lines.getCommandData(commandStringMock);
 
             // assert
-            expect(result.data).toEqual(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41']);
+            expect(result.data[0]).toBe('2000');
+            expect(result.data[1]).toBe('1');
+            expect(result.data[2]).toBe('7');
+            expect(result.data[3]).toBe('12');
+            expect(result.data[4]).toBe('13');
+            expect(result.data[5]).toBe('18');
+            expect(result.data[6]).toBe('15');
+            expect(result.data[7]).toBe('24');
+            expect(result.data[8]).toBe('25');
+            expect(result.data[9]).toBe('29');
+            expect(result.data[10]).toBe('37');
+            expect(result.data[11]).toBe('42');
+            expect(result.data[12]).toBe('41');
         });
     });
 
@@ -181,7 +197,9 @@ describe('lines', (): void => {
 
             // Creer de commandData mock die we voor de meeste tests nodig hebben.
             // Zonodig kan deze in een it overschreven worden voor de aanroep van getAnswer.
-            commandDataMock = { line: commandStringMock, command: CommandEnum.settings, data: ['player1'] };
+            var data: ShuffleArray<string> = new ShuffleArray<string>();
+            data.push('player1');
+            commandDataMock = { line: commandStringMock, command: CommandEnum.settings, data: data };
 
             lines = new Lines(commandMethodListMock);
         });
@@ -222,7 +240,7 @@ describe('lines', (): void => {
         it('Should return IAnswer.succes = false when commandData.command is undefined.', (): void => {
             // arange
             commandStringMock = 'doesnotexcist';
-            commandDataMock = { line: commandStringMock, command: undefined, data: [] };
+            commandDataMock = { line: commandStringMock, command: undefined, data: new ShuffleArray<string>() };
             spyOn(lines, 'getCommandData').andReturn(commandDataMock);
 
             // act

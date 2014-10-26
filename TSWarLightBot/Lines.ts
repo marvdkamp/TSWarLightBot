@@ -17,6 +17,7 @@ import ICommandMethod = require('./interface/ICommandMethod');
 import Consts = require('./Consts');
 import CommandEnum = require('./enum/CommandEnum');
 import OptionEnum = require('./enum/OptionEnum');
+import ShuffleArray = require('./command/helper/ShuffleArray');
 import util = require('util');
 
 /*
@@ -59,7 +60,10 @@ class Lines implements ILines {
      *           }
      */
     public getCommandData(line: string): ICommandData {
-        var lineParts: string[] = line.split(' ');
+        var lineParts: ShuffleArray<string> = new ShuffleArray<string>();
+        line.split(' ').forEach((value: string) => {
+            lineParts.push(value);
+        }); 
         var command: CommandEnum = this.getEnum(lineParts.shift(), CommandEnum);
         var part: string = lineParts.shift();
         var option: OptionEnum = this.getEnum(part, OptionEnum);
