@@ -38,6 +38,7 @@ class PickStartingRegionsCommand implements ICommand {
      * }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
+        commandData.data.shuffle();
         return null;
     }
 }

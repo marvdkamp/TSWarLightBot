@@ -30,28 +30,24 @@ describe('pickStartingRegionsCommand', (): void => {
     // value: De string waarde die terug gestuurd moet worden naar engine of een foutmelding als succes false is.
     describe('getAnswer', (): void => {
         beforeEach((): void => {
-            var data: ShuffleArray<string> = new ShuffleArray<string>();
-            ['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'].forEach((value: string) => {
-                data.push(value);
-            });
-
             commandDataMock = {
                 line: 'pick_starting_regions place_armies 2000 1 7 12 13 18 15 24 25 29 37 42 41',
                 command: CommandEnum.pick_starting_regions,
                 option: null,
-                data: data
+                data: new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'])
             };
+            spyOn(commandDataMock.data, 'shuffle');
             pickStartingRegionsCommand = new PickStartingRegionsCommand();
         });
 
-        it('Should call Math.random for the amount of regions it must pick.', (): void => {
+        it('Should call shuffle on commandData.data for the amount of regions it must pick.', (): void => {
             // arange
 
             // act
             pickStartingRegionsCommand.getAnswer(commandDataMock);
 
             // assert
-            expect((<jasmine.Spy>Math.random).callCount).toBe(Consts.NUMBER_OF_REGIONS_TO_PICK);
+            expect((<jasmine.Spy>commandDataMock.data.shuffle).callCount).toBe(1);
         });
     });
 });

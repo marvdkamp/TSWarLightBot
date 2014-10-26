@@ -197,8 +197,7 @@ describe('lines', (): void => {
 
             // Creer de commandData mock die we voor de meeste tests nodig hebben.
             // Zonodig kan deze in een it overschreven worden voor de aanroep van getAnswer.
-            var data: ShuffleArray<string> = new ShuffleArray<string>();
-            data.push('player1');
+            var data: ShuffleArray<string> = new ShuffleArray<string>(['player1']);
             commandDataMock = { line: commandStringMock, command: CommandEnum.settings, data: data };
 
             lines = new Lines(commandMethodListMock);

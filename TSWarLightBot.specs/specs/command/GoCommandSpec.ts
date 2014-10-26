@@ -66,13 +66,11 @@ describe('goCommand', (): void => {
     // value: De string waarde die terug gestuurd moet worden naar engine of een foutmelding als succes false is.
     describe('getAnswer', (): void => {
         beforeEach((): void => {
-            var data: ShuffleArray<string> = new ShuffleArray<string>();
-            data.push('2000');
             commandDataMock = {
                 line: 'go place_armies 2000',
                 command: CommandEnum.go,
                 option: OptionEnum.place_armies,
-                data: data
+                data: new ShuffleArray<string>(['2000'])
             };
         });
 
@@ -139,13 +137,11 @@ describe('goCommand', (): void => {
     // regions de bot nieuwe troepen wil plaatsen. De bot ontvangt elke ronden een bepaalde hoeveelheid troepen.
     describe('place_armies', (): void => {
         beforeEach((): void => {
-            var data: ShuffleArray<string> = new ShuffleArray<string>();
-            data.push('2000');
             commandDataMock = {
                 line: 'go place_armies 2000',
                 command: CommandEnum.go,
                 option: OptionEnum.place_armies,
-                data: data
+                data: new ShuffleArray<string>(['2000'])
             };
         });
 
@@ -206,13 +202,11 @@ describe('goCommand', (): void => {
     // welke troepen de bot wil verplaatsen van eigen regions en welke vijandelijk regions hij wil aanvallen en met hoeveel troepen.
     describe('attacktransfer', (): void => {
         beforeEach((): void => {
-            var data: ShuffleArray<string> = new ShuffleArray<string>();
-            data.push('2000');
             commandDataMock = {
                 line: 'go attack/transfer 2000',
                 command: CommandEnum.go,
                 option: OptionEnum.attacktransfer,
-                data: data
+                data: new ShuffleArray<string>(['2000'])
             };
         });
 

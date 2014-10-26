@@ -14,8 +14,17 @@
 
 import DummyArray = require('./DummyArray');
 
-// Add a shuffle method to the array class.
+// Add a shuffle method to the array class and a array initializer.
 class ShuffleArray<T> extends DummyArray<T> {
+    constructor(values?: T[]) {
+        super();
+        if (values !== undefined) {
+            values.forEach((value: T): void => {
+                this.push(value);
+            });
+        }
+    }
+
     public shuffle(): ShuffleArray<T> {
         var currentIndex: number = this.length;
         var temporaryValue: number;
