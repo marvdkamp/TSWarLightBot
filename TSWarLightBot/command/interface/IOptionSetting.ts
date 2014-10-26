@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -10,7 +10,7 @@
  */
 'use strict';
 
-/**
+/*
  * Couples a option to a value of a Setting. The settings command wil have a option which is 
  * a specific setting with its value. Een array of instances of this interface captures these settings.
  */
