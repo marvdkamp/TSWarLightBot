@@ -14,6 +14,7 @@ import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
+import IWarMap = require('./../map/interface/IWarMap');
 import OptionEnum = require('../enum/OptionEnum');
 
 /*
@@ -27,7 +28,7 @@ class SetupMapCommand implements ICommand {
      * Create an instance of the Setup_map class.
      * @constructor
      */
-    constructor() {
+    constructor(private warMap: IWarMap) {
         this.optionMethodList[OptionEnum.super_regions] = (commandData: ICommandData): IAnswer => {
             return this.super_regions(commandData);
         };

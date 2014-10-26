@@ -76,7 +76,6 @@ describe('goCommand', (): void => {
 
         it('Should call place_armies method on goCommand if ICommandData.option is place_armies.', (): void => {
             // arange
-            spyOn(Math, 'random').andReturn(0);
             spyOn(goCommand, 'place_armies');
 
             // act
@@ -90,7 +89,6 @@ describe('goCommand', (): void => {
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
             // arange
-            spyOn(Math, 'random').andReturn(0);
             commandDataMock.option = OptionEnum.neighbors;
             commandDataMock.line = 'go neighbors 2000';
 
@@ -105,7 +103,6 @@ describe('goCommand', (): void => {
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option is undefined.', (): void => {
             // arange
-            spyOn(Math, 'random').andReturn(0);
             commandDataMock.option = undefined;
             commandDataMock.line = 'go 2000';
 
@@ -120,7 +117,6 @@ describe('goCommand', (): void => {
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option is null.', (): void => {
             // arange
-            spyOn(Math, 'random').andReturn(0);
             commandDataMock.option = null;
             commandDataMock.line = 'go 2000';
 
@@ -145,7 +141,7 @@ describe('goCommand', (): void => {
             };
         });
 
-        // Should call it only once and with PossibleOwnersEnum.PLAYER.
+        // Should call getOwnedRegions only once and with PossibleOwnersEnum.PLAYER.
         it('Should call getOwnedRegions on warMap', (): void => {
             // arange
             spyOn(Math, 'random').andReturn(0);
