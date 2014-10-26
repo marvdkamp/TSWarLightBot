@@ -30,11 +30,12 @@ import OptionEnum = require('./enum/OptionEnum');
 import WarMap = require('./map/WarMap');
 
 var settings: IOptionSetting = {};
-var goCommand = new GoCommand(settings, new WarMap());
+var warMap: WarMap = new WarMap();
+var goCommand = new GoCommand(settings, warMap);
 var opponentMovesCommand = new OpponentMovesCommand();
 var pickStartingRegionsCommand = new PickStartingRegionsCommand();
 var settingsCommand = new SettingsCommand();
-var setupMapCommand = new SetupMapCommand();
+var setupMapCommand = new SetupMapCommand(warMap);
 var updateMapCommand = new UpdateMapCommand();
 
 var commandMethods: ICommandMethod = {};

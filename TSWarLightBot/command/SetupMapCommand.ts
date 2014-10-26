@@ -16,6 +16,8 @@ import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IWarMap = require('./../map/interface/IWarMap');
 import OptionEnum = require('../enum/OptionEnum');
+import Consts = require('../Consts');
+import util = require('util');
 
 /*
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
@@ -62,7 +64,16 @@ class SetupMapCommand implements ICommand {
      * }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        return null;
+        var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];
+
+        if (optionMethod) {
+            return optionMethod(commandData);
+        } else {
+            return {
+                succes: false,
+                value: util.format(Consts.UNABLE_TO_EXECUTE, commandData.line)
+            };
+        }
     }
 
     public super_regions(commandData: ICommandData): IAnswer {
