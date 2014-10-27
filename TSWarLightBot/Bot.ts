@@ -1,4 +1,4 @@
-﻿/*
+﻿/* 
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -57,7 +57,9 @@ class Bot implements IBot {
 
         var result: IAnswer = this.lines.getAnswer(data);
         if (result.succes) {
-            this.botProcess.stdout.write(result.value);
+            if (result.value.length > 0) {
+                this.botProcess.stdout.write(result.value);
+            }
         } else {
             this.botProcess.stderr.write(result.value);
         }

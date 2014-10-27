@@ -41,7 +41,7 @@ describe('pickStartingRegionsCommand', (): void => {
             pickStartingRegionsCommand = new PickStartingRegionsCommand();
         });
 
-        // Should get the first item from the data because thats te alloted time.
+        // Should get the first item from the data because thats the alloted time.
         it('Should call shift on commandData.data.', (): void => {
             // arange
             spyOn(commandDataMock.data, 'shift');
@@ -55,9 +55,9 @@ describe('pickStartingRegionsCommand', (): void => {
 
         it('Should call shuffle on commandData.data but not before first item is removed', (): void => {
             // arange
-            spyOn(commandDataMock.data, 'shuffle').andCallFake(() => {
+            spyOn(commandDataMock.data, 'shuffle').andCallFake((): void => {
                 // assert
-                expect(commandDataMock.data[0]).not.toBe('2000'); 
+                expect(commandDataMock.data[0]).not.toBe('2000');
             });
 
             // act
@@ -82,7 +82,7 @@ describe('pickStartingRegionsCommand', (): void => {
         it('Should return result.succes is false if there is not enough data', (): void => {
             // arange 
             commandDataMock.line = 'pick_starting_regions 2000 1 7 12 13 18';
-            commandDataMock.data = new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18'])
+            commandDataMock.data = new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18']);
 
             // act
             var result: IAnswer = pickStartingRegionsCommand.getAnswer(commandDataMock);

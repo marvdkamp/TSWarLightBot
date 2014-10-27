@@ -19,15 +19,15 @@ import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('bot', (): void => {
     // Class for unit under test and variable for instance of unit under test.
-    var Bot: any = require('../../TSWarLightBot/Bot'); 
-    var bot: IBot; 
+    var Bot: any = require('../../TSWarLightBot/Bot');
+    var bot: IBot;
 
     // Mocks and spies.
     var ioSpy: any = jasmine.createSpyObj('io', ['on']);
     var linesSpy: any;
     var botProcessSpy: any;
     var answerMock: IAnswer;
-    var lineMock: string
+    var lineMock: string;
 
     // References to the methodes the bot couples to the events.
     var lineListener: (data: string) => void;
@@ -48,7 +48,7 @@ describe('bot', (): void => {
         answerMock = {
             succes: true,
             value: ''
-        }
+        };
         linesSpy = jasmine.createSpyObj('lines', ['getAnswer']);
         linesSpy.getAnswer.andReturn(answerMock);
 
@@ -117,12 +117,12 @@ describe('bot', (): void => {
             bot.handleLine('');
 
             // assert
-            expect(linesSpy.getAnswer).not.toHaveBeenCalled();
             expect(linesSpy.getAnswer.callCount).toBe(0);
         });
 
         // process get injected in the Bot instances.
         // Should call stdout one time. Should NOT call stderr.
+        // Should only call if value is not an empty string.
         it('Should call botProcess.stdout.write if result is succesfull.', (): void => {
             // arange
             answerMock.succes = true;
@@ -132,8 +132,20 @@ describe('bot', (): void => {
             bot.handleLine(lineMock);
 
             // assert
-            expect(botProcessSpy.stdout.write).toHaveBeenCalled();
             expect(botProcessSpy.stdout.write.callCount).toBe(1);
+            expect(botProcessSpy.stderr.write.callCount).toBe(0);
+        });
+
+        it('Should not call botProcess.stdout.write if result is succesfull but value is empty.', (): void => {
+            // arange
+            answerMock.succes = true;
+            answerMock.value = '';
+
+            // act
+            bot.handleLine(lineMock);
+
+            // assert
+            expect(botProcessSpy.stdout.write.callCount).toBe(0);
             expect(botProcessSpy.stderr.write.callCount).toBe(0);
         });
 

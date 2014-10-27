@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -10,17 +10,17 @@
  */
 'use strict';
 
-/**
+/*
  * Holds the answer from the bot and information if the command could be succesfully handled by the bot.
  */
 interface IAnswer {
 
-    /**
+    /*
      * Could the command succesfully be handled by the bot. 
      */
     succes: boolean;
 
-    /**
+    /*
      * The answer from the bot to the command.
      */
     value: string;

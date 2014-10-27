@@ -200,7 +200,8 @@ describe('setupMapCommand', (): void => {
         });
     });
 
-    // Het setup_map command kent verschillende opties waaronder deze neighbors. Met neighbors geeft de engine welke regions have which neigbors.
+    // Het setup_map command kent verschillende opties waaronder deze neighbors. Met neighbors geeft de engine welke regions have 
+    // which neigbors.
     describe('neighbors', (): void => {
         beforeEach((): void => {
             commandDataMock = {

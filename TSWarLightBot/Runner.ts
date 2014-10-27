@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * Warlight AI Game Bot
  *
  * Oktober 2014
@@ -26,7 +26,6 @@ import UpdateMapCommand = require('./command/UpdateMapCommand');
 import IOptionSetting = require('./command/interface/IOptionSetting');
 import ICommandMethod = require('./interface/ICommandMethod');
 import CommandEnum = require('./enum/CommandEnum');
-import OptionEnum = require('./enum/OptionEnum');
 import WarMap = require('./map/WarMap');
 
 var settings: IOptionSetting = {};

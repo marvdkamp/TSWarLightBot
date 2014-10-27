@@ -43,15 +43,15 @@ class PickStartingRegionsCommand implements ICommand {
             return {
                 succes: false,
                 value: util.format(Consts.NOT_ENOUGHT_REGIONS, commandData.line)
-            }
+            };
         }
 
-        var allotedTime: string = commandData.data.shift();
+        commandData.data.shift();
         commandData.data.shuffle();
         return {
             succes: true,
             value: commandData.data.slice(0, Consts.NUMBER_OF_REGIONS_TO_PICK).join(' ')
-        }
+        };
     }
 }
 
