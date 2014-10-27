@@ -42,6 +42,7 @@
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
     <TypeScriptCompile Include="specs\BotSpec.ts" />
     <TypeScriptCompile Include="specs\command\GoCommandSpec.ts" />
+    <TypeScriptCompile Include="specs\command\helper\ShuffleArraySpec.ts" />
     <TypeScriptCompile Include="specs\command\OpponentMovesCommandSpec.ts" />
     <TypeScriptCompile Include="specs\command\PickStartingRegionsCommandSpec.ts" />
     <TypeScriptCompile Include="specs\command\SettingsCommandSpec.ts" />
@@ -60,6 +61,7 @@
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />
+    <Folder Include="specs\command\helper\" />
     <Folder Include="specs\map\" />
     <Folder Include="specs\command\" />
   </ItemGroup>
