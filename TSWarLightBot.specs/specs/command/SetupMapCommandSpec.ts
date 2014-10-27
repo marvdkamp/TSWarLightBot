@@ -15,6 +15,7 @@ import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
+import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 import Consts = require('../../../TSWarLightBot/Consts');
 import util = require('util');
@@ -29,6 +30,8 @@ describe('setupMapCommand', (): void => {
     var warMapSpy: any;
 
     beforeEach((): void => {
+        warMapSpy = jasmine.createSpyObj('warMap', ['addRegion', 'getSuperRegionById']);
+
         // Creeer de unit under test en injecteer de mock en spy.
         setupMapCommand = new SetupMapCommand(warMapSpy);
     });
@@ -56,7 +59,7 @@ describe('setupMapCommand', (): void => {
         });
 
         // error string should be filled too.
-        it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in setupMapCommand.', (): void => {
+        it('Should return Answer.succes = false if ICommandData.option not matches any option in setupMapCommand.', (): void => {
             // arange
             commandDataMock.option = OptionEnum.place_armies;
             commandDataMock.line = 'setup_map place_armies 1 1 2 1 3 2 4 2 5 2';
@@ -110,7 +113,43 @@ describe('setupMapCommand', (): void => {
             };
         });
 
-        it('Should do something', (): void => {
+        // Every two numbers in data stand for one region and the superregion it is attached to in that order.
+        // It should call addRegion for the amount of numbers in data devided by two.
+        // It should call it with an IRegion instance with the right region id and superregion id.
+        it('Should call addRegion on warMap.', (): void => {
+            // arange
+            warMapSpy.getSuperRegionById.andCallFake((id: number) : any => {
+                return {
+                    id: id
+                };
+            });
+
+            var result: IRegion[] = [];
+
+            warMapSpy.addRegion.andCallFake((region: IRegion): void => {
+                result.push(region);
+            });
+
+            // act
+            setupMapCommand.regions(commandDataMock);
+
+            // assert
+            expect(result.length).toBe(5);
+            expect(result[0].id).toBe(1);
+            expect(result[0].superRegion.id).toBe(1);
+            expect(result[4].id).toBe(5);
+            expect(result[4].superRegion.id).toBe(2);
+        });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+            var result: IAnswer = setupMapCommand.regions(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeTruthy();
+            expect(result.value).toBe('');
         });
     });
 });

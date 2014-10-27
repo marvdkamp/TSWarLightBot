@@ -40,6 +40,10 @@ class DummyArray<T> {
         return null;
     }
 
+    forEach(callBack: (element: any, index?: number, array?: DummyArray<T>) => void): any {
+        return null;
+    }
+
     length: number;
 }
 

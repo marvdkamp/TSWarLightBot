@@ -20,7 +20,7 @@ interface IRegion {
     id: number;
     superRegion: ISuperRegion;
     owner: PossibleOwnersEnum;
-    neighbors: IRegion[];
+    neighbors?: IRegion[];
     troopCount: number;
     isOnEmpireBorder: boolean;
     isOnSuperRegionBorder: boolean;

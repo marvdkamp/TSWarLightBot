@@ -1,6 +1,8 @@
 TODO
 ====
 - Check if we have a test for filling the original line in CommandData.
+- Laatste TODO's wegwerken uit Lines.
+- Controleren wat er moet gebeuren met een lege antwoord.
 - Check if there aren't any TSLint messages.
 - Create tests for ShuffleArray.
 - Sort imports.
