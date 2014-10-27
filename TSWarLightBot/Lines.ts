@@ -30,8 +30,13 @@ class Lines implements ILines {
     /*
      * Gets the answer from the bot by passing a command to the right command class.
      * @param line {string} - string containing the command information.
-     * @returns {ICommandData} - The command answer.
+     * @returns {IAnswer} - The command answer.
      * Example : getAnswer('pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41');
+     * returns :
+     *         {
+     *             succes: true,
+     *             value: '1 7 12 13 18 15'
+     *         }
      */
     public getAnswer(line: string): IAnswer {
         var commandData: ICommandData = this.getCommandData(line);
@@ -52,6 +57,7 @@ class Lines implements ILines {
      * @param line {string} - string containing the command information.
      * @returns {ICommandData} - The command information.
      * Example : getCommandData('settings opponent_bot player2');
+     * returns :
      *           {
      *               line: 'settings opponent_bot player2',
      *               command: CommandEnum.settings,

@@ -29,18 +29,19 @@ describe('lines', (): void => {
     // Mocks and spies.
     var lineMock: string;
 
-    // getCommandData zet de string die vanaf de game engine komt om naar een object met properties voor:
+    // getCommandData zet de string die vanaf de game engine komt om naar een object met properties :
     // line (string). De orginele string van de engine.
-    // commando (CommandEnum). De engine kent 6 verschillende commando's. Het is het eerste woord in de string.
-    // option (OptionEnum). Sommige commando's kennen verschillende opties; Het is het tweede woord in de string of het ontbreekt.
-    // data (string[]). Sommige commando's krijgen extra data mee. Het is het derde woord en verder in de 
-    // string of het tweede als de optie ontbreekt.
+    // commando (CommandEnum). De engine kent 6 verschillende commando's. Het is het eerste woord in de line string.
+    // option (OptionEnum). Sommige commando's kennen verschillende opties; Het is het tweede woord in de line string of het ontbreekt.
+    // data (string[]). Sommige commando's krijgen extra data mee. Het is het derde woord en de resterende woorden in de line string  
+    // of het tweede woord en de resterende woorden als de optie ontbreekt of het ontbreekt in zijn geheel.
     describe('getCommandData', (): void => {
         beforeEach((): void => {
             // Create an instance and pass null because we don't need the injected commandMethodList for these tests.
             lines = new Lines(null);
         });
 
+        // Het resultaat van getCommandData is een ICommandData instantie en bevat een command property.
         it('Should return ICommandData.command is undefined when string contains null', (): void => {
             // arange
             lineMock = null;
@@ -85,6 +86,7 @@ describe('lines', (): void => {
             expect(result.command).toBe(CommandEnum.settings);
         });
 
+        // Het resultaat van getCommandData is een ICommandData instantie en bevat een option property.
         it('Should return ICommandData.option as OptionEnum.your_bot if the line contains your_bot', (): void => {
             // arange
             lineMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
@@ -96,7 +98,7 @@ describe('lines', (): void => {
             expect(result.option).toBe(OptionEnum.your_bot);
         });
 
-        // a string with a slash is not a valid enum value so we remove the slash.
+        // Een string met een / er in is niet een valide enum waarde dus hebben we de / verwijderd.
         it('Should return ICommandData.option is OptionEnum.attacktransfer if the line contains a attack/transfer', (): void => {
             // arange
             lineMock = [CommandEnum.go, 'attack/transfer', '2000'].join(' ');
@@ -108,7 +110,7 @@ describe('lines', (): void => {
             expect(result.option).toBe(OptionEnum.attacktransfer);
         });
 
-        // Check if it does not crash on an missing option part in the line.
+        // Controlleer of hij niet crashed op een missende option.
         it('Should return ICommandData.option undefined if the line contains only 1 linepart', (): void => {
             // arange
             lineMock = CommandEnum[CommandEnum.settings];
@@ -134,6 +136,7 @@ describe('lines', (): void => {
 
         // setup_map super_regions 1 2 2 5.
         // Resultaat zou ['1', '2', '2', '5'] moeten zijn.
+        // Het resultaat van getCommandData is een ICommandData instantie en bevat een data property.
         it('Should return the right data for the CommandEnum.setup_map command with OptionEnum.super_regions.', (): void => {
             // arange
             lineMock = [CommandEnum[CommandEnum.setup_map], OptionEnum[OptionEnum.super_regions], '1 2 2 5'].join(' ');
@@ -171,6 +174,17 @@ describe('lines', (): void => {
             expect(result.data[10]).toBe('37');
             expect(result.data[11]).toBe('42');
             expect(result.data[12]).toBe('41');
+        });
+
+        // Het resultaat van getCommandData is een ICommandData instantie en bevat een line property.
+        it('Should put origial line in line', (): void => {
+            // arange
+
+            // act
+            var result: ICommandData = lines.getCommandData(lineMock);
+
+            // assert
+            expect(result.line).toBe(lineMock);
         });
 
         // Controlleer ook of hij maar 1 keer wordt aangeroepen.
