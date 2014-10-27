@@ -37,13 +37,6 @@ class Go implements ICommand {
      * @param warMap {IWarMap} - Information about the map on which the game is played.
      */
     constructor(private settings: IOptionSetting, private warMap: IWarMap) {
-        this.optionMethodList[OptionEnum.place_armies] = (commandData: ICommandData): IAnswer => {
-            return this.place_armies(commandData);
-        };
-
-        this.optionMethodList[OptionEnum.attacktransfer] = (commandData: ICommandData): IAnswer => {
-            return this.attacktransfer(commandData);
-        };
     }
 
     /*
@@ -64,16 +57,7 @@ class Go implements ICommand {
      *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];
-
-        if (optionMethod) {
-            return optionMethod(commandData);
-        } else {
-            return {
-                succes: false,
-                value: util.format(Consts.UNABLE_TO_EXECUTE, commandData.line)
-            };
-        }
+        return null;
     }
 
     /*
@@ -94,21 +78,7 @@ class Go implements ICommand {
      * }
      */
     public place_armies(commandData: ICommandData): IAnswer {
-        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
-        var troopsRemaining: number = parseInt(this.settings[OptionEnum.starting_armies], 10);
-        var placements: string[] = [];
-
-        while (0 < troopsRemaining) {
-            var index: number = Math.random() * ownedRegions.length;
-            ownedRegions[index].troopCount += 1;
-            placements.push([this.settings[OptionEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
-            troopsRemaining -= 1;
-        }
-
-        return {
-            succes: true,
-            value: placements.join(', ').trim()
-        };
+        return null;
     }
 
     /*
@@ -129,23 +99,7 @@ class Go implements ICommand {
      * }
      */
     public attacktransfer(commandData: ICommandData): IAnswer {
-        var moves: string[] = [];
-        var ownedRegions: IRegion[] = this.warMap.getOwnedRegions(PossibleOwnersEnum.PLAYER);
-        var moveData: IMoveData[] = this.getRegionsToAttackTransfer(ownedRegions, false, Consts.MINIMUM_TROOPS_FOR_ATTACK);
-        moveData = moveData.concat(this.getRegionsToAttackTransfer(ownedRegions, true, Consts.MINIMUM_TROOPS_FOR_TRANSFER));
-        moveData.forEach((move: IMoveData): void => {
-            moves.push([this.settings[OptionEnum.your_bot],
-                Consts.ATTACK_TRANSFER,
-                move.regionFrom.id.toString(),
-                move.regionTo.id.toString(),
-                (move.regionFrom.troopCount - 1).toString()].join(' '));
-            move.regionFrom.troopCount = 1;
-        });
-
-        return {
-            succes: true,
-            value: moves.join(', ').trim()
-        };
+        return null;
     }
 
     /* tslint:disable:max-line-length */
@@ -174,17 +128,7 @@ class Go implements ICommand {
      */
     /* tslint:enable:max-line-length */
     public getRegionsToAttackTransfer(ownedRegions: IRegion[], own: boolean, numberOfTroops: number): IMoveData[]{
-        var result: IMoveData[] = [];
-        ownedRegions.forEach((region: IRegion): void => {
-            var possibleAttacks: IRegion[] = region.neighbors.filter((neighbor: IRegion): boolean => {
-                return ((neighbor.owner === PossibleOwnersEnum.PLAYER && own) || (neighbor.owner !== PossibleOwnersEnum.PLAYER && !own));
-            });
-            if (region.troopCount >= numberOfTroops && possibleAttacks.length > 0) {
-                result.push({ regionTo: possibleAttacks[0], regionFrom: region });
-            };
-        });
-
-        return result;
+        return null;
     }
 }
 

@@ -65,63 +65,18 @@ class SetupMapCommand implements ICommand {
      *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];
-
-        if (optionMethod) {
-            return optionMethod(commandData);
-        } else {
-            return {
-                succes: false,
-                value: util.format(Consts.UNABLE_TO_EXECUTE, commandData.line)
-            };
-        }
+        return null;
     }
 
     public super_regions(commandData: ICommandData): IAnswer {
-        var idSuperRegion: number;
-        commandData.data.forEach((value: string, index: number): void => {
-            if (index % 2 === 0) {
-                idSuperRegion = parseInt(value, 10);
-            } else {
-                this.warMap.addSuperRegion(new SuperRegion(idSuperRegion, parseInt(value, 10)));
-            }
-        });
-
-        return {
-            succes: true,
-            value: ''
-        };
+        return null;
     }
 
     public regions(commandData: ICommandData): IAnswer {
-        var idRegion: number;
-        commandData.data.forEach((value: string, index: number): void => {
-            if (index % 2 === 0) {
-                idRegion = parseInt(value, 10);
-            } else {
-                this.warMap.addRegion(new Region(idRegion, this.warMap.getSuperRegionById(parseInt(value, 10))));
-            }
-        });
-
-        return {
-            succes: true,
-            value: ''
-        };
+        return null;
     }
 
     public neighbors(commandData: ICommandData): IAnswer {
-        var region: IRegion;
-        commandData.data.forEach((value: string, index: number): void => {
-            if (index % 2 === 0) {
-                region = this.warMap.getRegionById(parseInt(value, 10));
-            } else {
-                var idRegions: string[] = value.split(',');
-                idRegions.forEach((idString: string): void => {
-                    this.warMap.getRegionById(parseInt(idString, 10));
-                });
-            }
-        });
-
         return null;
     }
 }

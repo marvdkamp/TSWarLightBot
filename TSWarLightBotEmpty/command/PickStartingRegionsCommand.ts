@@ -39,19 +39,7 @@ class PickStartingRegionsCommand implements ICommand {
      *     }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        if (commandData.data.length < Consts.NUMBER_OF_REGIONS_TO_PICK + 1) {
-            return {
-                succes: false,
-                value: util.format(Consts.NOT_ENOUGHT_REGIONS, commandData.line)
-            };
-        }
-
-        commandData.data.shift();
-        commandData.data.shuffle();
-        return {
-            succes: true,
-            value: commandData.data.slice(0, Consts.NUMBER_OF_REGIONS_TO_PICK).join(' ')
-        };
+        return null;
     }
 }
 

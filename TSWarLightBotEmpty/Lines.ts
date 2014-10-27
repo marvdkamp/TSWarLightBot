@@ -39,17 +39,7 @@ class Lines implements ILines {
      *         }
      */
     public getAnswer(line: string): IAnswer {
-        var commandData: ICommandData = this.getCommandData(line);
-        var commandMethod: (data: ICommandData) => IAnswer = this.commandMethodList[commandData.command];
-
-        if (commandMethod) {
-            return commandMethod(commandData);
-        } else {
-            return {
-                succes: false,
-                value: util.format(Consts.UNABLE_TO_EXECUTE, line)
-            };
-        }
+        return null;
     }
 
     /*
@@ -68,17 +58,12 @@ class Lines implements ILines {
     public getCommandData(line: string): ICommandData {
         var lineParts: ShuffleArray<string> = new ShuffleArray<string>(line.trim().split(' '));
         var command: CommandEnum = this.getEnum(lineParts.shift(), CommandEnum);
-        var part: string = lineParts.shift();
-        var option: OptionEnum = this.getEnum(part, OptionEnum);
-        if (option === undefined) {
-            lineParts.unshift(part);
-        }
 
         return {
-            line: line,
+            line: undefined,
             command: command,
-            option: option,
-            data: lineParts
+            option: undefined,
+            data: undefined
         };
     }
 
@@ -86,21 +71,6 @@ class Lines implements ILines {
         if (!value) {
             return undefined;
         }
-
-        // attack/transfer is not a valid enum value. We have to remove te slash.
-        value = value.replace('/', '');
-
-        // example
-        // enum OptionEnum {
-        //    super_regions
-        // }
-        // we want "0" to return undefined and not "super_regions"
-        // "super_regions" will return 0 and pass this test.
-        if (typeof enumType[value] === 'string') {
-            return undefined;
-        }
-
-        return enumType[value];
     }
 }
 
