@@ -57,12 +57,11 @@ class Go implements ICommand {
      *     option: OptionEnum.place_armies,
      *     data: ['2000']
      * });
-     * 
-     * Example return:
-     * {
-     *     succes: true,
-     *     value: 'player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1'
-     * }
+     * returns:
+     *      {
+     *          succes: true,
+     *          value: 'player1 place_armies 1 1, player1 place_armies 1 1, player1 place_armies 1 1'
+     *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
         var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];

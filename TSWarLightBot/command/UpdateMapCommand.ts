@@ -31,12 +31,11 @@ class UpdateMapCommand implements ICommand {
      *     option: undefined,
      *     data: ['1', 'player1', '2', '2', 'player1', '4', '3', 'neutral', '2', '4', 'player2' '5']
      * });
-     *
-     * Example return:
-     * {
-     *     succes: true,
-     *     value: '1 7 24 25 41 42'
-     * }
+     * returns:
+     *      {
+     *          succes: true,
+     *          value: '1 7 24 25 41 42'
+     *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
         return null;

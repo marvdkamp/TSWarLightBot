@@ -58,13 +58,11 @@ class SetupMapCommand implements ICommand {
      *     option: OptionEnum.super_regions,
      *     data: ['1', '2', '2', '5']
      * });
-     * 
-     *
-     * Example return:
-     * {
-     *     succes: true,
-     *     value: '1 7 24 25 41 42'
-     * }
+     * returns:
+     *      {
+     *         succes: true,
+     *         value: '1 7 24 25 41 42'
+     *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
         var optionMethod: (data: ICommandData) => IAnswer = this.optionMethodList[commandData.option];

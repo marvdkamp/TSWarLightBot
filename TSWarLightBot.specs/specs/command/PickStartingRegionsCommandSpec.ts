@@ -16,6 +16,7 @@ import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
 import Consts = require('../../../TSWarLightBot/Consts');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
+import util = require('util');
 
 describe('pickStartingRegionsCommand', (): void => {
     // Class for unit under test and variable for instance of unit under test.
@@ -32,7 +33,7 @@ describe('pickStartingRegionsCommand', (): void => {
     describe('getAnswer', (): void => {
         beforeEach((): void => {
             commandDataMock = {
-                line: 'pick_starting_regions place_armies 2000 1 7 12 13 18 15 24 25 29 37 42 41',
+                line: 'pick_starting_regions 2000 1 7 12 13 18 15 24 25 29 37 42 41',
                 command: CommandEnum.pick_starting_regions,
                 option: null,
                 data: new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18', '15', '24', '25', '29', '37', '42', '41'])
@@ -75,6 +76,20 @@ describe('pickStartingRegionsCommand', (): void => {
             // assert
             expect(result.value).toBe('1 7 12 13 18 15');
             expect(result.succes).toBe(true);
+        });
+
+        // Test ook dat value is NOT_ENOUGHT_REGIONS from Consts.
+        it('Should return result.succes is false if there is not enough data', (): void => {
+            // arange 
+            commandDataMock.line = 'pick_starting_regions 2000 1 7 12 13 18';
+            commandDataMock.data = new ShuffleArray<string>(['2000', '1', '7', '12', '13', '18'])
+
+            // act
+            var result: IAnswer = pickStartingRegionsCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(result.succes).toBe(false);
+            expect(result.value).toBe(util.format(Consts.NOT_ENOUGHT_REGIONS, commandDataMock.line));
         });
     });
 });

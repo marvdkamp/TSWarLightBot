@@ -15,6 +15,7 @@
  */
 class Consts {
     public static get UNABLE_TO_EXECUTE(): string { return 'Unable to execute command: %s\n'; }
+    public static get NOT_ENOUGHT_REGIONS(): string { return 'There are not enough regions in the command %s to pick from.\n'; } 
     public static get PLACE_ARMIES(): string { return 'place_armies'; }
     public static get ATTACK_TRANSFER(): string { return 'attack/transfer'; }
     public static get NO_MOVES(): string { return 'No moves'; }

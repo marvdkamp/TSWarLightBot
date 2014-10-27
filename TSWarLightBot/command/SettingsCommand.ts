@@ -48,12 +48,11 @@ class SettingsCommand implements ICommand {
      *     option: OptionEnum.your_bot,
      *     data: ['player1']
      * });
-     *
-     * Example return:
-     * {
-     *     succes: true,
-     *     value: '1 7 24 25 41 42'
-     * }
+     * returns:
+     *      {
+     *          succes: true,
+     *          value: '1 7 24 25 41 42'
+     *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
         return null;
