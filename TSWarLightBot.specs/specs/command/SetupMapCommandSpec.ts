@@ -16,6 +16,7 @@ import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
+import ISuperRegion = require('../../../TSWarLightBot/map/interface/ISuperRegion');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 import Consts = require('../../../TSWarLightBot/Consts');
 import util = require('util');
@@ -30,7 +31,7 @@ describe('setupMapCommand', (): void => {
     var warMapSpy: any;
 
     beforeEach((): void => {
-        warMapSpy = jasmine.createSpyObj('warMap', ['addRegion', 'getSuperRegionById']);
+        warMapSpy = jasmine.createSpyObj('warMap', ['addRegion', 'addSuperRegion', 'getSuperRegionById']);
 
         // Creeer de unit under test en injecteer de mock en spy.
         setupMapCommand = new SetupMapCommand(warMapSpy);
@@ -101,7 +102,7 @@ describe('setupMapCommand', (): void => {
         });
     });
 
-    // Het setup_map command kent verschillende opties waaronder deze regions. Met regions de engine welke regions
+    // Het setup_map command kent verschillende opties waaronder deze regions. Met regions geeft de engine welke regions
     // er allemaal bestaan op de warMap.
     describe('regions', (): void => {
         beforeEach((): void => {
@@ -146,6 +147,52 @@ describe('setupMapCommand', (): void => {
 
             // act
             var result: IAnswer = setupMapCommand.regions(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeTruthy();
+            expect(result.value).toBe('');
+        });
+    });
+
+    // Het setup_map command kent verschillende opties waaronder deze super_regions. Met super_regions geeft de engine welke super_regions
+    // er allemaal bestaan op de warMap.
+    describe('super_regions', (): void => {
+        beforeEach((): void => {
+            commandDataMock = {
+                line: 'setup_map super_regions 1 2 2 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.super_regions,
+                data: new ShuffleArray<string>(['1', '2', '2', '5'])
+            };
+        });
+
+        // Every two numbers in data stand for one super_region and the bonus the player receives every round for owning it.
+        // It should call addSuperRegion for the amount of numbers in data devided by two.
+        // It should call it with an ISuperRegion instance with the right superregion id and bonus.
+        it('Should call addSuperRegion on warMap.', (): void => {
+            // arange
+            var result: ISuperRegion[] = [];
+
+            warMapSpy.addSuperRegion.andCallFake((superRegion: ISuperRegion): void => {
+                result.push(superRegion);
+            });
+
+            // act
+            setupMapCommand.super_regions(commandDataMock);
+
+            // assert
+            expect(result.length).toBe(2);
+            expect(result[0].id).toBe(1);
+            expect(result[0].bonus).toBe(2);
+            expect(result[1].id).toBe(2);
+            expect(result[1].bonus).toBe(5);
+        });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+            var result: IAnswer = setupMapCommand.super_regions(commandDataMock);
 
             // assert
             expect(result.succes).toBeTruthy();

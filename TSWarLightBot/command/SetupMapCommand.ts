@@ -19,6 +19,7 @@ import OptionEnum = require('../enum/OptionEnum');
 import Consts = require('../Consts');
 import util = require('util');
 import Region = require('../map/Region');
+import SuperRegion = require('../map/SuperRegion');
 
 /*
  * Handles setup_map command from the game engine. The regions are given, The superregions are given and the connectivity 
@@ -78,7 +79,19 @@ class SetupMapCommand implements ICommand {
     }
 
     public super_regions(commandData: ICommandData): IAnswer {
-        return null;
+        var idSuperRegion: number;
+        commandData.data.forEach((value: string, index: number): void => {
+            if (index % 2 === 0) {
+                idSuperRegion = parseInt(value, 10);
+            } else {
+                this.warMap.addSuperRegion(new SuperRegion(idSuperRegion, parseInt(value, 10)));
+            }
+        });
+
+        return {
+            succes: true,
+            value: ''
+        };
     }
 
     public regions(commandData: ICommandData): IAnswer {
