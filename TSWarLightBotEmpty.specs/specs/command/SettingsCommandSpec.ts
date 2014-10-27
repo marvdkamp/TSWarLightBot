@@ -11,6 +11,56 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
+import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
+import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
+import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
+import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
+import SettingsCommand = require('../../../TSWarLightBot/command/SettingsCommand');
+import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
+import Consts = require('../../../TSWarLightBot/Consts');
+import util = require('util');
+
 describe('settingsCommand', (): void => {
-    var SettingsCommand: any = require('../../../TSWarLightBotEmpty/command/SettingsCommand');
+    var settingsCommand: SettingsCommand;
+    var settings: IOptionSetting;
+
+
+    beforeEach((): void => {
+        settings = {};
+
+        settingsCommand = new SettingsCommand(settings);
+    });
+
+    // error string should be filled too.
+    it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches an option in settingsCommand.', (): void => {
+        // arange
+
+        // act
+
+        // assert
+    });
+
+    it('should save the player name to the your_bot setting when the your_bot command is called', (): void => {
+        // arrange
+
+        // act
+
+        // assert
+    });
+
+    it('should save the opponents name to the settings when the opponent_name command is called', (): void => {
+        // arrange
+
+        // act
+
+        // assert
+    });
+
+    it('should save the starting armies to the settings when the starting_armies command is called', (): void => {
+        // arrange
+
+        // act
+
+        // assert
+    });
 });
