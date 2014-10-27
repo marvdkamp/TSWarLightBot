@@ -1,0 +1,10 @@
+{
+  "name": "TSWarLightBotEmpty",
+  "version": "0.0.0",
+  "description": "TSWarLightBotEmpty",
+  "main": "runner.js",
+  "author": {
+    "name": "Marcel van de Kamp and Taeke van der Veen",
+    "email": ""
+  }
+}

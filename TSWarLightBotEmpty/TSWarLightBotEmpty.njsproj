@@ -3,17 +3,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>TSWarLightBot.specs</Name>
-    <RootNamespace>TSWarLightBot.specs</RootNamespace>
-    <ScriptArguments>specs/ --verbose</ScriptArguments>
+    <Name>TSWarLightBotEmpty</Name>
+    <RootNamespace>TSWarLightBotEmpty</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>00fd4eb6-fb59-4bdd-9798-9a6ed5d328b9</ProjectGuid>
+    <ProjectGuid>ff2d2d80-f8c8-47a2-88cf-fd22639b5bba</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>node_modules\jasmine-node\lib\jasmine-node\cli.js</StartupFile>
+    <StartupFile>app.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -25,7 +24,7 @@
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>False</StartWebBrowser>
+    <StartWebBrowser>false</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,39 +33,52 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <TypeScriptCompile Include="Scripts\typings\jasmine\legacy\jasmine-1.3-tests.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jasmine\legacy\jasmine-1.3.d.ts" />
+    <TypeScriptCompile Include="Bot.ts" />
+    <TypeScriptCompile Include="command\GoCommand.ts" />
+    <TypeScriptCompile Include="command\helper\DummyArray.ts" />
+    <TypeScriptCompile Include="command\helper\ShuffleArray.ts" />
+    <TypeScriptCompile Include="command\interface\ICommand.ts" />
+    <TypeScriptCompile Include="command\interface\IMoveData.ts" />
+    <TypeScriptCompile Include="command\interface\IOptionSetting.ts" />
+    <TypeScriptCompile Include="command\OpponentMovesCommand.ts" />
+    <TypeScriptCompile Include="command\PickStartingRegionsCommand.ts" />
+    <TypeScriptCompile Include="command\SettingsCommand.ts" />
+    <TypeScriptCompile Include="command\SetupMapCommand.ts" />
+    <TypeScriptCompile Include="command\UpdateMapCommand.ts" />
+    <TypeScriptCompile Include="Consts.ts" />
+    <TypeScriptCompile Include="enum\CommandEnum.ts" />
+    <TypeScriptCompile Include="enum\OptionEnum.ts" />
+    <TypeScriptCompile Include="interface\IAnswer.ts" />
+    <TypeScriptCompile Include="interface\IBot.ts" />
+    <TypeScriptCompile Include="interface\ICommandData.ts" />
+    <TypeScriptCompile Include="interface\ICommandMethod.ts" />
+    <TypeScriptCompile Include="interface\ILines.ts" />
+    <TypeScriptCompile Include="Lines.ts" />
+    <TypeScriptCompile Include="map\enum\PossibleOwnersEnum.ts" />
+    <TypeScriptCompile Include="map\interface\IRegion.ts" />
+    <TypeScriptCompile Include="map\interface\ISuperRegion.ts" />
+    <TypeScriptCompile Include="map\interface\IWarMap.ts" />
+    <TypeScriptCompile Include="map\Region.ts" />
+    <TypeScriptCompile Include="map\SuperRegion.ts" />
+    <TypeScriptCompile Include="map\WarMap.ts" />
+    <TypeScriptCompile Include="Runner.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
-    <TypeScriptCompile Include="specs\BotSpec.ts" />
-    <TypeScriptCompile Include="specs\command\GoCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\helper\ShuffleArraySpec.ts" />
-    <TypeScriptCompile Include="specs\command\OpponentMovesCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\PickStartingRegionsCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\SettingsCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\SetupMapCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\UpdateMapCommandSpec.ts" />
-    <TypeScriptCompile Include="specs\command\RegionsMock.ts" />
-    <TypeScriptCompile Include="specs\LinesSpec.ts" />
-    <TypeScriptCompile Include="specs\map\WarMapSpec.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="coverage\" />
-    <Folder Include="Scripts\typings\jasmine\" />
-    <Folder Include="Scripts\typings\jasmine\legacy\" />
-    <Folder Include="Scripts\typings\underscore\" />
-    <Folder Include="specs\" />
+    <Folder Include="command\" />
+    <Folder Include="command\helper\" />
+    <Folder Include="command\interface\" />
+    <Folder Include="enum\" />
+    <Folder Include="interface\" />
+    <Folder Include="map\" />
+    <Folder Include="map\enum\" />
+    <Folder Include="map\interface\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\node\" />
-    <Folder Include="specs\command\helper\" />
-    <Folder Include="specs\map\" />
-    <Folder Include="specs\command\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Gruntfile.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

@@ -1,0 +1,18 @@
+{
+    "name": "TSWarLightBotEmpty.specs",
+    "version": "0.0.0",
+    "description": "TSWarLightBotEmpty.specs",
+    "main": "node_modules/jasmine-node/lib/jasmine-node/cli.js",
+    "author": {
+        "name": "Marcel van de Kamp and Taeke van der Veen",
+        "email": ""
+    },
+    "dependencies": {
+        "jasmine-node": "^1.14.5"
+    },
+    "devDependencies": {
+      "grunt": "^0.4.5",
+      "grunt-contrib-copy": "^0.6.0",
+      "grunt-jasmine-node-coverage": "^0.1.11"
+    }
+}

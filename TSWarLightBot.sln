@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBot.specs", "TSWarLightBot.specs\TSWarLightBot.specs.njsproj", "{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBotEmpty", "TSWarLightBotEmpty\TSWarLightBotEmpty.njsproj", "{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBotEmpty.specs", "TSWarLightBotEmpty.specs\TSWarLightBotEmpty.specs.njsproj", "{EB935147-9B43-4F3D-9F78-C3913E79ED48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
