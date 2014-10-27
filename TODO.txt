@@ -1,14 +1,11 @@
 TODO
 ====
-- Check if we have a test for filling the original line in CommandData.
-- Laatste TODO's wegwerken uit Lines.
-- Controleren wat er moet gebeuren met een lege antwoord.
-- Check if there aren't any TSLint messages.
-- Create tests for ShuffleArray.
-- Sort imports.
+- Opponent Moves should return a IAnwser. 
+- no moves for Go command.
+- Write tests and code for UpdateMap.
+- Write tests and code for ShuffleArray.
+- Check for wrong inputs and missing regions and so on.
 - Check if runner injects the right instances in each contructor.
-- Rename enum.
-- Write tests for all wrong input paramaters and all other tests we need for the classes we have this far.
 
 DONE
 ====

@@ -60,7 +60,7 @@ class Lines implements ILines {
      *           }
      */
     public getCommandData(line: string): ICommandData {
-        var lineParts: ShuffleArray<string> = new ShuffleArray<string>(line.split(' '));
+        var lineParts: ShuffleArray<string> = new ShuffleArray<string>(line.trim().split(' '));
         var command: CommandEnum = this.getEnum(lineParts.shift(), CommandEnum);
         var part: string = lineParts.shift();
         var option: OptionEnum = this.getEnum(part, OptionEnum);

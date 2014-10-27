@@ -15,6 +15,7 @@ import ICommandMethod = require('./../interface/ICommandMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IWarMap = require('./../map/interface/IWarMap');
+import IRegion = require('./../map/interface/IRegion');
 import OptionEnum = require('../enum/OptionEnum');
 import Consts = require('../Consts');
 import util = require('util');
@@ -111,6 +112,18 @@ class SetupMapCommand implements ICommand {
     }
 
     public neighbors(commandData: ICommandData): IAnswer {
+        var region: IRegion;
+        commandData.data.forEach((value: string, index: number): void => {
+            if (index % 2 === 0) {
+                region = this.warMap.getRegionById(parseInt(value, 10));
+            } else {
+                var idRegions: string[] = value.split(',');
+                idRegions.forEach((idString: string): void => {
+                    this.warMap.getRegionById(parseInt(idString, 10));
+                });
+            }
+        });
+
         return null;
     }
 }

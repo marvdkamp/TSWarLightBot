@@ -31,7 +31,7 @@ describe('setupMapCommand', (): void => {
     var warMapSpy: any;
 
     beforeEach((): void => {
-        warMapSpy = jasmine.createSpyObj('warMap', ['addRegion', 'addSuperRegion', 'getSuperRegionById']);
+        warMapSpy = jasmine.createSpyObj('warMap', ['addRegion', 'addSuperRegion', 'getSuperRegionById', 'getRegionById']);
 
         // Creeer de unit under test en injecteer de mock en spy.
         setupMapCommand = new SetupMapCommand(warMapSpy);
@@ -197,6 +197,29 @@ describe('setupMapCommand', (): void => {
             // assert
             expect(result.succes).toBeTruthy();
             expect(result.value).toBe('');
+        });
+    });
+
+    // Het setup_map command kent verschillende opties waaronder deze neighbors. Met neighbors geeft de engine welke regions have which neigbors.
+    describe('neighbors', (): void => {
+        beforeEach((): void => {
+            commandDataMock = {
+                line: 'setup_map neighbors 1 2,3,4 2 3 4 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.neighbors,
+                data: new ShuffleArray<string>(['1', '2,3,4', '2', '3', '4', '5'])
+            };
+        });
+
+        // Hij moet dus 8 keer getRegionById aanroepen met deze commandDataMock.
+        it('Should call getRegionById for every region in the list.', (): void => {
+            // arrange
+
+            // act
+            setupMapCommand.neighbors(commandDataMock);
+
+            // assert
+            expect(warMapSpy.getRegionById.callCount).toBe(8);
         });
     });
 });

@@ -11,51 +11,56 @@
 /// <reference path="../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-// TODO: Split lines!!!!
-// TODO: Trim lines!!!!
-
 require('readline');
 import IBot = require('../../TSWarLightBot/interface/IBot');
+import IAnswer = require('../../TSWarLightBot/interface/IAnswer');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
 import OptionEnum = require('../../TSWarLightBot/enum/OptionEnum');
 
 describe('bot', (): void => {
-    var Bot: any = require('../../TSWarLightBot/Bot'); //Class for unit under test.
-    var bot: IBot; // Unit under test.
-    var io: any = jasmine.createSpyObj('io', ['on']);
+    // Class for unit under test and variable for instance of unit under test.
+    var Bot: any = require('../../TSWarLightBot/Bot'); 
+    var bot: IBot; 
+
+    // Mocks and spies.
+    var ioSpy: any = jasmine.createSpyObj('io', ['on']);
+    var linesSpy: any;
+    var botProcessSpy: any;
+    var answerMock: IAnswer;
+    var lineMock: string
+
+    // References to the methodes the bot couples to the events.
     var lineListener: (data: string) => void;
     var closeListener: () => void;
-    io.on.andCallFake(function (event: string, listener: (data?: string) => void): void {
-        if (event === 'line') {
-            lineListener = listener;
-        };
-
-        if (event === 'close') {
-            closeListener = listener;
-        }
-    });
-
-    var lines: any = jasmine.createSpyObj('lines', ['getAnswer']);
-    var answer: any = jasmine.createSpy('answer');
-    lines.getAnswer.andReturn(answer);
-
-    var botProcess: any = {
-        stdout: jasmine.createSpyObj('stdout', ['write']),
-        stderr: jasmine.createSpyObj('stderr', ['write']),
-        exit: jasmine.createSpy('exit')
-    };
-
-    var commandString: string = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
     beforeEach((): void => {
-        bot = new Bot(io, lines, botProcess);
-    });
+        ioSpy = jasmine.createSpyObj('io', ['on']);
+        ioSpy.on.andCallFake(function (event: string, listener: (data?: string) => void): void {
+            if (event === 'line') {
+                lineListener = listener;
+            };
 
-    afterEach((): void => {
-        lines.getAnswer.reset();
-        io.on.reset();
-        botProcess.stdout.write.reset();
-        botProcess.stderr.write.reset();
+            if (event === 'close') {
+                closeListener = listener;
+            }
+        });
+
+        answerMock = {
+            succes: true,
+            value: ''
+        }
+        linesSpy = jasmine.createSpyObj('lines', ['getAnswer']);
+        linesSpy.getAnswer.andReturn(answerMock);
+
+        botProcessSpy = {
+            stdout: jasmine.createSpyObj('stdout', ['write']),
+            stderr: jasmine.createSpyObj('stderr', ['write']),
+            exit: jasmine.createSpy('exit')
+        };
+
+        lineMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
+
+        bot = new Bot(ioSpy, linesSpy, botProcessSpy);
     });
 
     describe('run', (): void => {
@@ -68,12 +73,12 @@ describe('bot', (): void => {
             bot.run();
 
             // assert
-            expect(io.on).toHaveBeenCalledWith('line', jasmine.any(Function));
-            expect(io.on).toHaveBeenCalledWith('close', jasmine.any(Function));
-            expect(io.on.callCount).toBe(2);
+            expect(ioSpy.on).toHaveBeenCalledWith('line', jasmine.any(Function));
+            expect(ioSpy.on).toHaveBeenCalledWith('close', jasmine.any(Function));
+            expect(ioSpy.on.callCount).toBe(2);
         });
 
-        // Check if commandString is handed to the handLine method.
+        // Check if the line is handed to the handLine method.
         it('Should attach bot.handleLine and bot.handleClose to the io.on line and io.on close events.', (): void => {
             // arange
             spyOn(bot, 'handleLine');
@@ -81,11 +86,11 @@ describe('bot', (): void => {
 
             // act
             bot.run();
-            lineListener(commandString);
+            lineListener(lineMock);
             closeListener();
 
             // assert
-            expect(bot.handleLine).toHaveBeenCalledWith(commandString);
+            expect(bot.handleLine).toHaveBeenCalledWith(lineMock);
             expect((<jasmine.Spy>bot.handleLine).callCount).toBe(1);
             expect((<jasmine.Spy>bot.handleClose).callCount).toBe(1);
         });
@@ -94,42 +99,42 @@ describe('bot', (): void => {
     describe('handleLine', (): void => {
         // lines get injected in the Bot instances.
         // should only be called once. 
-        it('Should call getAnswer on lines if called with commandstring.', (): void => {
+        it('Should call getAnswer on lines if called with the line.', (): void => {
             // arange
 
             // act
-            bot.handleLine(commandString);
+            bot.handleLine(lineMock);
 
             // assert
-            expect(lines.getAnswer.callCount).toBe(1);
+            expect(linesSpy.getAnswer.callCount).toBe(1);
         });
 
         // lines get injected in the Bot instances.
-        it('Should NOT call getAnswer on lines if commandstring is empty.', (): void => {
+        it('Should NOT call getAnswer on lines if line is empty.', (): void => {
             // arange
 
             // act
             bot.handleLine('');
 
             // assert
-            expect(lines.getAnswer).not.toHaveBeenCalled();
-            expect(lines.getAnswer.callCount).toBe(0);
+            expect(linesSpy.getAnswer).not.toHaveBeenCalled();
+            expect(linesSpy.getAnswer.callCount).toBe(0);
         });
 
         // process get injected in the Bot instances.
         // Should call stdout one time. Should NOT call stderr.
         it('Should call botProcess.stdout.write if result is succesfull.', (): void => {
             // arange
-            answer.succes = true;
-            answer.value = 'test';
+            answerMock.succes = true;
+            answerMock.value = 'test';
 
             // act
-            bot.handleLine(commandString);
+            bot.handleLine(lineMock);
 
             // assert
-            expect(botProcess.stdout.write).toHaveBeenCalled();
-            expect(botProcess.stdout.write.callCount).toBe(1);
-            expect(botProcess.stderr.write.callCount).toBe(0);
+            expect(botProcessSpy.stdout.write).toHaveBeenCalled();
+            expect(botProcessSpy.stdout.write.callCount).toBe(1);
+            expect(botProcessSpy.stderr.write.callCount).toBe(0);
         });
 
         // botProcess get injected in the Bot instances.
@@ -137,16 +142,16 @@ describe('bot', (): void => {
         // Check if command.value is passes to write.
         it('Should call botProcess.stderr.write if commandName is NOT succesfull.', (): void => {
             // arange
-            answer.succes = false;
-            answer.value = 'Unable to execute command: doesnotexcist';
+            answerMock.succes = false;
+            answerMock.value = 'Unable to execute command: doesnotexcist';
 
             // act
             bot.handleLine('doesnotexcist');
 
             // assert
-            expect(botProcess.stderr.write).toHaveBeenCalledWith(answer.value);
-            expect(botProcess.stderr.write.callCount).toBe(1);
-            expect(botProcess.stdout.write.callCount).toBe(0);
+            expect(botProcessSpy.stderr.write).toHaveBeenCalledWith(answerMock.value);
+            expect(botProcessSpy.stderr.write.callCount).toBe(1);
+            expect(botProcessSpy.stdout.write.callCount).toBe(0);
         });
     });
 
@@ -157,8 +162,8 @@ describe('bot', (): void => {
             bot.handleClose();
 
             // assert
-            expect(botProcess.exit).toHaveBeenCalled();
-            expect(botProcess.exit.callCount).toBe(1);
+            expect(botProcessSpy.exit).toHaveBeenCalled();
+            expect(botProcessSpy.exit.callCount).toBe(1);
         });
     });
 });   
