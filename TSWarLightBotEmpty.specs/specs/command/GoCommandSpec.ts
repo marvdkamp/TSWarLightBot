@@ -165,7 +165,7 @@ describe('goCommand', (): void => {
             // assert
         });
 
-        // Should return an empty string. 
+        // Should return an No moves string. 
         // Create a spyOn for getRegionsToAttackTransfer on goCommand and return not one region.
         it('should not return moves if no regions are returned by getRegionsToAttackTransfer', (): void => {
             // arange

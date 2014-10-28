@@ -144,7 +144,7 @@ class Go implements ICommand {
 
         return {
             succes: true,
-            value: moves.join(', ').trim()
+            value: moves.length === 0 ? Consts.NO_MOVES :  moves.join(', ').trim()
         };
     }
 

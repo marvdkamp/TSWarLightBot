@@ -342,7 +342,7 @@ describe('goCommand', (): void => {
             var result: IAnswer = goCommand.attacktransfer(commandDataMock);
 
             // assert
-            expect(result.value).toBe('');
+            expect(result.value).toBe(Consts.NO_MOVES);
         });
     });
 
