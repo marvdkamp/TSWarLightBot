@@ -86,6 +86,24 @@ describe('goCommand', (): void => {
             expect(goCommand.place_armies.callCount).toBe(1);
         });
 
+        it('Should call attacktransfer method on goCommand if ICommandData.option is attacktransfer.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'go attack/transfer 2000',
+                command: CommandEnum.go,
+                option: OptionEnum.attacktransfer,
+                data: new ShuffleArray<string>(['2000'])
+            };
+            spyOn(goCommand, 'attacktransfer');
+
+            // act
+            goCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(goCommand.attacktransfer).toHaveBeenCalledWith(commandDataMock);
+            expect(goCommand.attacktransfer.callCount).toBe(1);
+        });
+
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
             // arange

@@ -35,6 +35,23 @@ describe('setupMapCommand', (): void => {
             // assert
         });
 
+        it('Should call super_regions method on setupMapCommand if ICommandData.option is super_regions.', (): void => {
+            // arange
+
+            // act
+
+            // assert
+        });
+
+        it('Should call neighbors method on setupMapCommand if ICommandData.option is neighbors.', (): void => {
+            // arange
+
+            // act
+
+            // assert
+        });
+
+
         // error string should be filled too.
         it('Should return Answer.succes = false if ICommandData.option not matches any option in setupMapCommand.', (): void => {
             // arange

@@ -46,6 +46,15 @@ describe('goCommand', (): void => {
             // assert
         });
 
+        it('Should call attacktransfer method on goCommand if ICommandData.option is attacktransfer.', (): void => {
+            // arange
+
+            // act
+
+            // assert
+        });
+
+
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
             // arange

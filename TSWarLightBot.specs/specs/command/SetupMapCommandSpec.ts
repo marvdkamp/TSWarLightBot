@@ -59,6 +59,42 @@ describe('setupMapCommand', (): void => {
             expect(setupMapCommand.regions.callCount).toBe(1);
         });
 
+        it('Should call super_regions method on setupMapCommand if ICommandData.option is super_regions.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'setup_map super_regions 1 2 2 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.super_regions,
+                data: new ShuffleArray<string>(['1', '2', '2', '5'])
+            };
+            spyOn(setupMapCommand, 'super_regions');
+
+            // act
+            setupMapCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(setupMapCommand.super_regions).toHaveBeenCalledWith(commandDataMock);
+            expect(setupMapCommand.super_regions.callCount).toBe(1);
+        });
+
+        it('Should call neighbors method on setupMapCommand if ICommandData.option is neighbors.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'setup_map neighbors 1 2,3,4 2 3 4 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.neighbors,
+                data: new ShuffleArray<string>(['1', '2,3,4', '2', '3', '4', '5'])
+            };
+            spyOn(setupMapCommand, 'neighbors');
+
+            // act
+            setupMapCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(setupMapCommand.neighbors).toHaveBeenCalledWith(commandDataMock);
+            expect(setupMapCommand.neighbors.callCount).toBe(1);
+        });
+
         // error string should be filled too.
         it('Should return Answer.succes = false if ICommandData.option not matches any option in setupMapCommand.', (): void => {
             // arange
