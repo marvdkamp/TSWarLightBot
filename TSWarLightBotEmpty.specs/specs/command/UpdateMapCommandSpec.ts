@@ -58,5 +58,13 @@ describe('updateMapCommand', (): void => {
 
             // assert
         });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+
+            // assert
+        });
     });
 });

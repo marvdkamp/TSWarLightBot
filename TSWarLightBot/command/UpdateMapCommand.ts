@@ -63,7 +63,10 @@ class UpdateMapCommand implements ICommand {
             }
         });
 
-        return null;
+        return {
+            succes: true,
+            value: ''
+        };
     }
 
     private getOwner(value: string): PossibleOwnersEnum {

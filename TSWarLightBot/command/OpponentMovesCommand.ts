@@ -40,7 +40,10 @@ class OpponentMovesCommand implements ICommand {
      * }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        return null;
+        return {
+            succes: true,
+            value: ''
+        };
     }
 }
 

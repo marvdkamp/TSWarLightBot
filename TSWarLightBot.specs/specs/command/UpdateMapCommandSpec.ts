@@ -16,6 +16,7 @@ import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
 import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
 import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
 import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
+import IAnswer = require('../../../TSWarLightBot/interface/IAnswer');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
 import RegionsMock = require('./RegionsMock');
@@ -89,6 +90,17 @@ describe('updateMapCommand', (): void => {
             expect(regionsMock[2].troopCount).toBe(2);
             expect(regionsMock[3].owner).toBe(PossibleOwnersEnum.OPPONENT);
             expect(regionsMock[3].troopCount).toBe(5);
+        });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+            var result: IAnswer = updateMapCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeTruthy();
+            expect(result.value).toBe('');
         });
     });
 });
