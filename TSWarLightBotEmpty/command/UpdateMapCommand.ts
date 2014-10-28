@@ -12,13 +12,20 @@
 
 import ICommand = require('./interface/ICommand');
 import IAnswer = require('./../interface/IAnswer');
+import IRegion = require('./../map/interface/IRegion');
+import IWarMap = require('./../map/interface/IWarMap');
 import ICommandData = require('./../interface/ICommandData');
+import IOptionSetting = require('./interface/IOptionSetting');
+import OptionEnum = require('../enum/OptionEnum');
+import PossibleOwnersEnum = require('../map/enum/PossibleOwnersEnum');
 
 /*
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
  * number of armies.
  */
 class UpdateMapCommand implements ICommand {
+    constructor(private settings: IOptionSetting, private warMap: IWarMap) {
+    }
 
     /*
      * Gets the answer from the bot for the update_map command.

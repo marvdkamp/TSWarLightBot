@@ -13,6 +13,7 @@
 import ICommand = require('./interface/ICommand');
 import ICommandMethod = require('./../interface/ICommandMethod');
 import IAnswer = require('./../interface/IAnswer');
+import IOptionSetting = require('./interface/IOptionSetting');
 import ICommandData = require('./../interface/ICommandData');
 import OptionEnum = require('../enum/OptionEnum');
 
@@ -27,14 +28,8 @@ class SettingsCommand implements ICommand {
      * Create an instance of the Settings class.
      * @constructor
      */
-    constructor() {
-        this.optionMethodList[OptionEnum.your_bot] = (commandData: ICommandData): IAnswer => {
-            return this.your_bot(commandData);
-        };
-
-        this.optionMethodList[OptionEnum.opponent_bot] = (commandData: ICommandData): IAnswer => {
-            return this.opponent_bot(commandData);
-        };
+    constructor(private settings: IOptionSetting) {
+        return null;
     }
 
     /*

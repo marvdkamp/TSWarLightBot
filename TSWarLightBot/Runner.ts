@@ -35,7 +35,7 @@ var opponentMovesCommand = new OpponentMovesCommand();
 var pickStartingRegionsCommand = new PickStartingRegionsCommand();
 var settingsCommand = new SettingsCommand(settings);
 var setupMapCommand = new SetupMapCommand(warMap);
-var updateMapCommand = new UpdateMapCommand();
+var updateMapCommand = new UpdateMapCommand(settings, warMap);
 
 var commandMethods: ICommandMethod = {};
 commandMethods[CommandEnum.go] = goCommand.getAnswer;

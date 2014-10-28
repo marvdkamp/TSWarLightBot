@@ -11,13 +11,13 @@
 /// <reference path="../../Scripts/typings/jasmine/legacy/jasmine-1.3.d.ts" />
 'use strict';
 
-import IOptionSetting = require('../../../TSWarLightBot/command/interface/IOptionSetting');
-import ICommandData = require('../../../TSWarLightBot/interface/ICommandData');
-import OptionEnum = require('../../../TSWarLightBot/enum/OptionEnum');
-import CommandEnum = require('../../../TSWarLightBot/enum/CommandEnum');
-import SettingsCommand = require('../../../TSWarLightBot/command/SettingsCommand');
-import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
-import Consts = require('../../../TSWarLightBot/Consts');
+import IOptionSetting = require('../../../TSWarLightBotEmpty/command/interface/IOptionSetting');
+import ICommandData = require('../../../TSWarLightBotEmpty/interface/ICommandData');
+import OptionEnum = require('../../../TSWarLightBotEmpty/enum/OptionEnum');
+import CommandEnum = require('../../../TSWarLightBotEmpty/enum/CommandEnum');
+import SettingsCommand = require('../../../TSWarLightBotEmpty/command/SettingsCommand');
+import ShuffleArray = require('../../../TSWarLightBotEmpty/command/helper/ShuffleArray');
+import Consts = require('../../../TSWarLightBotEmpty/Consts');
 import util = require('util');
 
 describe('settingsCommand', (): void => {
