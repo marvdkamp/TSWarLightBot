@@ -12,7 +12,7 @@
 
 import ICommand = require('./interface/ICommand');
 import IOptionSetting = require('./interface/IOptionSetting');
-import ICommandMethod = require('./../interface/ICommandMethod');
+import IOptionMethod = require('./../interface/IOptionMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/interface/IMoveData');
@@ -28,7 +28,7 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private optionMethodList: ICommandMethod = {};
+    private optionMethodList: IOptionMethod = {};
 
     /*
      * Create an instance of the Go class.

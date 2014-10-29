@@ -258,5 +258,16 @@ describe('setupMapCommand', (): void => {
             // assert
             expect(warMapSpy.getRegionById.callCount).toBe(8);
         });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+            var result: IAnswer = setupMapCommand.neighbors(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeTruthy();
+            expect(result.value).toBe('');
+        });
     });
 });

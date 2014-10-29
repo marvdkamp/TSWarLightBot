@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./interface/ICommand');
-import ICommandMethod = require('./../interface/ICommandMethod');
+import IOptionMethod = require('./../interface/IOptionMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IOptionSetting = require('./interface/IOptionSetting');
@@ -24,7 +24,7 @@ import util = require('util');
  * and the amount of armies your bot can place on the map at the start of this round
  */
 class SettingsCommand implements ICommand {
-    private optionMethodList: ICommandMethod = {};
+    private optionMethodList: IOptionMethod = {};
 
     /*
      * Create an instance of the Settings class.
