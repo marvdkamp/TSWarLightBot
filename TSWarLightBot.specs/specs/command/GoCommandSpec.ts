@@ -188,7 +188,7 @@ describe('goCommand', (): void => {
         it('Should add +1 on troopCount the region found by index of Math.random.', (): void => {
             // arange
             var index = 0;
-            spyOn(Math, 'random').andReturn(index);
+            spyOn(Math, 'random').andReturn(0.25488475849851966);
 
             // act
             goCommand.place_armies(commandDataMock);

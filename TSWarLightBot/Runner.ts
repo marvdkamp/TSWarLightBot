@@ -53,5 +53,9 @@ var readLineOptions: readline.ReadLineOptions = {
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
 var lines = new Lines(commandMethods);
 
+/*
+ * Initialize bot
+ * __main__
+ */
 var bot = new Bot(io, lines, process);
 bot.run();

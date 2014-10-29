@@ -19,6 +19,7 @@ import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import ISuperRegion = require('../../../TSWarLightBot/map/interface/ISuperRegion');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 import Consts = require('../../../TSWarLightBot/Consts');
+import RegionsMock = require('./RegionsMock');
 import util = require('util');
 
 describe('setupMapCommand', (): void => {
@@ -28,6 +29,7 @@ describe('setupMapCommand', (): void => {
 
     // Mocks and spies.
     var commandDataMock: ICommandData;
+    var regionsMock: IRegion[];
     var warMapSpy: any;
 
     beforeEach((): void => {
@@ -240,6 +242,11 @@ describe('setupMapCommand', (): void => {
     // which neigbors.
     describe('neighbors', (): void => {
         beforeEach((): void => {
+            regionsMock = RegionsMock.getMock();
+            warMapSpy.getRegionById.andCallFake((id: number): IRegion => {
+                return regionsMock[0];
+            });
+
             commandDataMock = {
                 line: 'setup_map neighbors 1 2,3,4 2 3 4 5',
                 command: CommandEnum.setup_map,
@@ -250,7 +257,7 @@ describe('setupMapCommand', (): void => {
 
         // Hij moet dus 8 keer getRegionById aanroepen met deze commandDataMock.
         it('Should call getRegionById for every region in the list.', (): void => {
-            // arrange
+            // arrang
 
             // act
             setupMapCommand.neighbors(commandDataMock);

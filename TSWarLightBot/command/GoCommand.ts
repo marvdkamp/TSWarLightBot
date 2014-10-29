@@ -99,7 +99,7 @@ class Go implements ICommand {
         var placements: string[] = [];
 
         while (0 < troopsRemaining) {
-            var index: number = Math.random() * ownedRegions.length;
+            var index: number = Math.floor(Math.random() * ownedRegions.length);
             ownedRegions[index].troopCount += 1;
             placements.push([this.settings[OptionEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;

@@ -117,7 +117,7 @@ class SetupMapCommand implements ICommand {
             } else {
                 var idRegions: string[] = value.split(',');
                 idRegions.forEach((idString: string): void => {
-                    this.warMap.getRegionById(parseInt(idString, 10));
+                    region.neighbors.push(this.warMap.getRegionById(parseInt(idString, 10)));
                 });
             }
         });
