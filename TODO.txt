@@ -1,11 +1,16 @@
 TODO
 ====
-- Opponent Moves should return a IAnwser. 
-- no moves for Go command.
-- Write tests and code for UpdateMap.
-- Write tests and code for ShuffleArray.
-- Check for wrong inputs and missing regions and so on.
-- Check if runner injects the right instances in each contructor.
+- Verwijderen van de original bot en de empty bot projecten.
+- Zorgen dat alles 100 % code coverage heeft.
+- Code die toegevoegd is voor de challenge verwijderen.
+- Verbeteren van testomschrijvingen aan de hand van wat we gezien hebben tijdens de challenge.
+- Verkeerde test met ' ' inplaats van null verbeteren.
+- Controlleren of overal goed getest wordt op verkeerde input.
+- Mail naar theaigames dat we de bot gemaakt hebben.
+
+- Java installeren voor de engine.
+- Engine testen.
+- Controleren wat de status van het WD project en kijken of ik het grafische deel hiervan kan gebruiken bij de java engine.
 
 DONE
 ====
@@ -40,3 +45,8 @@ DONE
 - Find out wat the problem is with TS-lint.
 - moveFrom and moveTo rename to regionFrom and regionTo.
 - own or owned make it the same everywhere.
+- Opponent Moves should return a IAnwser. 
+- no moves for Go command.
+- Write tests and code for UpdateMap.
+- Write tests and code for ShuffleArray.
+- Check if runner injects the right instances in each contructor.
