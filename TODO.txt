@@ -6,6 +6,7 @@ TODO
 - Verbeteren van testomschrijvingen aan de hand van wat we gezien hebben tijdens de challenge.
 - Verkeerde test met ' ' inplaats van null verbeteren.
 - Controlleren of overal goed getest wordt op verkeerde input.
+- Betere beschijving in Read me wat wat is in het project en hoe te bouwen.
 - Mail naar theaigames dat we de bot gemaakt hebben.
 
 - Java installeren voor de engine.
