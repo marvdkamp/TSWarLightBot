@@ -11,7 +11,7 @@
 'use strict';
 
 import ICommand = require('./interface/ICommand');
-import ICommandMethod = require('./../interface/ICommandMethod');
+import IOptionMethod = require('./../interface/IOptionMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IWarMap = require('./../map/interface/IWarMap');
@@ -27,7 +27,7 @@ import SuperRegion = require('../map/SuperRegion');
  * of the regions are given in different calls
  */
 class SetupMapCommand implements ICommand {
-    private optionMethodList: ICommandMethod = {};
+    private optionMethodList: IOptionMethod = {};
 
     /*
      * Create an instance of the Setup_map class.
@@ -117,12 +117,15 @@ class SetupMapCommand implements ICommand {
             } else {
                 var idRegions: string[] = value.split(',');
                 idRegions.forEach((idString: string): void => {
-                    this.warMap.getRegionById(parseInt(idString, 10));
+                    region.neighbors.push(this.warMap.getRegionById(parseInt(idString, 10)));
                 });
             }
         });
 
-        return null;
+        return {
+            succes: true,
+            value: ''
+        };
     }
 }
 

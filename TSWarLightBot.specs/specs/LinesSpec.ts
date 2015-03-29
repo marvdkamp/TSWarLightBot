@@ -14,7 +14,7 @@
 import ILines = require('../../TSWarLightBot/interface/ILines');
 import IAnswer = require('../../TSWarLightBot/interface/IAnswer');
 import ICommandData = require('../../TSWarLightBot/interface/ICommandData');
-import ICommandMethod = require('../../TSWarLightBot/interface/ICommandMethod');
+import ICommandClass = require('../../TSWarLightBot/interface/ICommandClass');
 import Consts = require('../../TSWarLightBot/Consts');
 import util = require('util');
 import CommandEnum = require('../../TSWarLightBot/enum/CommandEnum');
@@ -212,15 +212,17 @@ describe('lines', (): void => {
     describe('getAnswer', (): void => {
         // Mocks and spies.
         var settingMethodSpy: any;
-        var commandMethodListMock: ICommandMethod;
+        var commandClassListMock: ICommandClass;
         var commandDataMock: ICommandData;
 
         beforeEach((): void => {
             // Creeer de commandMethodList mock die we voor de meeste tests nodig hebben en een overeenkomstige line. 
             // Zonodig kunnen deze in een it overschreven worden. Doe dit voor de aanroep van getAnswer.
             settingMethodSpy = jasmine.createSpy('settingMethod');
-            commandMethodListMock = {};
-            commandMethodListMock[CommandEnum.settings] = settingMethodSpy;
+            commandClassListMock = {};
+            commandClassListMock[CommandEnum.settings] = {
+                getAnswer: settingMethodSpy
+            };
             lineMock = [CommandEnum[CommandEnum.settings], OptionEnum[OptionEnum.your_bot], 'player1'].join(' ');
 
             // Creer de commandData mock die we voor de meeste tests nodig hebben.
@@ -228,7 +230,7 @@ describe('lines', (): void => {
             var data: ShuffleArray<string> = new ShuffleArray<string>(['player1']);
             commandDataMock = { line: lineMock, command: CommandEnum.settings, data: data };
 
-            lines = new Lines(commandMethodListMock);
+            lines = new Lines(commandClassListMock);
         });
 
         // Er is een mock voor de commandData geschreven. Creeer een SpyOn voor getCommandData die deze data retourneerd. Op die manier hou 
@@ -280,7 +282,7 @@ describe('lines', (): void => {
 
         it('Should return IAnswer.succes = false when the commandMethodList method is null.', (): void => {
             // arange
-            commandMethodListMock[CommandEnum.settings] = null;
+            commandClassListMock[CommandEnum.settings] = null;
             spyOn(lines, 'getCommandData').andReturn(commandDataMock);
 
             // act
@@ -293,7 +295,7 @@ describe('lines', (): void => {
 
         it('Should return IAnswer.succes = false when the commandMethodList method is undefined.', (): void => {
             // arange
-            commandMethodListMock[CommandEnum.settings] = undefined;
+            commandClassListMock[CommandEnum.settings] = undefined;
             spyOn(lines, 'getCommandData').andReturn(commandDataMock);
 
             // act

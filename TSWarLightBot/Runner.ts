@@ -24,7 +24,7 @@ import SettingsCommand = require('./command/SettingsCommand');
 import SetupMapCommand = require('./command/SetupMapCommand');
 import UpdateMapCommand = require('./command/UpdateMapCommand');
 import IOptionSetting = require('./command/interface/IOptionSetting');
-import ICommandMethod = require('./interface/ICommandMethod');
+import ICommandClass = require('./interface/ICommandClass');
 import CommandEnum = require('./enum/CommandEnum');
 import WarMap = require('./map/WarMap');
 
@@ -35,15 +35,15 @@ var opponentMovesCommand = new OpponentMovesCommand();
 var pickStartingRegionsCommand = new PickStartingRegionsCommand();
 var settingsCommand = new SettingsCommand(settings);
 var setupMapCommand = new SetupMapCommand(warMap);
-var updateMapCommand = new UpdateMapCommand();
+var updateMapCommand = new UpdateMapCommand(settings, warMap);
 
-var commandMethods: ICommandMethod = {};
-commandMethods[CommandEnum.go] = goCommand.getAnswer;
-commandMethods[CommandEnum.opponent_moves] = opponentMovesCommand.getAnswer;
-commandMethods[CommandEnum.pick_starting_regions] = pickStartingRegionsCommand.getAnswer;
-commandMethods[CommandEnum.settings] = settingsCommand.getAnswer;
-commandMethods[CommandEnum.setup_map] = setupMapCommand.getAnswer;
-commandMethods[CommandEnum.update_map] = updateMapCommand.getAnswer;
+var commandMethods: ICommandClass = {};
+commandMethods[CommandEnum.go] = goCommand;
+commandMethods[CommandEnum.opponent_moves] = opponentMovesCommand;
+commandMethods[CommandEnum.pick_starting_regions] = pickStartingRegionsCommand;
+commandMethods[CommandEnum.settings] = settingsCommand;
+commandMethods[CommandEnum.setup_map] = setupMapCommand;
+commandMethods[CommandEnum.update_map] = updateMapCommand;
 
 var readLineOptions: readline.ReadLineOptions = {
     input: process.stdin,
@@ -53,5 +53,9 @@ var readLineOptions: readline.ReadLineOptions = {
 var io: readline.ReadLine = readline.createInterface(readLineOptions);
 var lines = new Lines(commandMethods);
 
+/*
+ * Initialize bot
+ * __main__
+ */
 var bot = new Bot(io, lines, process);
 bot.run();

@@ -19,6 +19,7 @@ import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
 import ISuperRegion = require('../../../TSWarLightBot/map/interface/ISuperRegion');
 import ShuffleArray = require('../../../TSWarLightBot/command/helper/ShuffleArray');
 import Consts = require('../../../TSWarLightBot/Consts');
+import RegionsMock = require('./RegionsMock');
 import util = require('util');
 
 describe('setupMapCommand', (): void => {
@@ -28,6 +29,7 @@ describe('setupMapCommand', (): void => {
 
     // Mocks and spies.
     var commandDataMock: ICommandData;
+    var regionsMock: IRegion[];
     var warMapSpy: any;
 
     beforeEach((): void => {
@@ -57,6 +59,42 @@ describe('setupMapCommand', (): void => {
             // assert
             expect(setupMapCommand.regions).toHaveBeenCalledWith(commandDataMock);
             expect(setupMapCommand.regions.callCount).toBe(1);
+        });
+
+        it('Should call super_regions method on setupMapCommand if ICommandData.option is super_regions.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'setup_map super_regions 1 2 2 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.super_regions,
+                data: new ShuffleArray<string>(['1', '2', '2', '5'])
+            };
+            spyOn(setupMapCommand, 'super_regions');
+
+            // act
+            setupMapCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(setupMapCommand.super_regions).toHaveBeenCalledWith(commandDataMock);
+            expect(setupMapCommand.super_regions.callCount).toBe(1);
+        });
+
+        it('Should call neighbors method on setupMapCommand if ICommandData.option is neighbors.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'setup_map neighbors 1 2,3,4 2 3 4 5',
+                command: CommandEnum.setup_map,
+                option: OptionEnum.neighbors,
+                data: new ShuffleArray<string>(['1', '2,3,4', '2', '3', '4', '5'])
+            };
+            spyOn(setupMapCommand, 'neighbors');
+
+            // act
+            setupMapCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(setupMapCommand.neighbors).toHaveBeenCalledWith(commandDataMock);
+            expect(setupMapCommand.neighbors.callCount).toBe(1);
         });
 
         // error string should be filled too.
@@ -204,6 +242,11 @@ describe('setupMapCommand', (): void => {
     // which neigbors.
     describe('neighbors', (): void => {
         beforeEach((): void => {
+            regionsMock = RegionsMock.getMock();
+            warMapSpy.getRegionById.andCallFake((id: number): IRegion => {
+                return regionsMock[0];
+            });
+
             commandDataMock = {
                 line: 'setup_map neighbors 1 2,3,4 2 3 4 5',
                 command: CommandEnum.setup_map,
@@ -214,13 +257,24 @@ describe('setupMapCommand', (): void => {
 
         // Hij moet dus 8 keer getRegionById aanroepen met deze commandDataMock.
         it('Should call getRegionById for every region in the list.', (): void => {
-            // arrange
+            // arrang
 
             // act
             setupMapCommand.neighbors(commandDataMock);
 
             // assert
             expect(warMapSpy.getRegionById.callCount).toBe(8);
+        });
+
+        it('Should return IAnwser.succes is true and a empty value', (): void => {
+            // arrange
+
+            // act
+            var result: IAnswer = setupMapCommand.neighbors(commandDataMock);
+
+            // assert
+            expect(result.succes).toBeTruthy();
+            expect(result.value).toBe('');
         });
     });
 });

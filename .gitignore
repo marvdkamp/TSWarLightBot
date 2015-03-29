@@ -159,3 +159,7 @@ $RECYCLE.BIN/
 /TSWarLightBot.specs/.ntvs_analysis.dat
 /TSWarLightBot.specs/node_modules
 /TSWarLightBot.specs/coverage
+/TSWarLightBotEmpty.specs/coverage
+/TSWarLightBotEmpty/.ntvs_analysis.dat
+/TSWarLightBotEmpty.specs/.ntvs_analysis.dat
+/TSWarLightBotEmpty.specs/node_modules

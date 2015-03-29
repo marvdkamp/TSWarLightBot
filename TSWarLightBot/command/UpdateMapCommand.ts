@@ -12,13 +12,21 @@
 
 import ICommand = require('./interface/ICommand');
 import IAnswer = require('./../interface/IAnswer');
+import IRegion = require('./../map/interface/IRegion');
+import IWarMap = require('./../map/interface/IWarMap');
 import ICommandData = require('./../interface/ICommandData');
+import IOptionSetting = require('./interface/IOptionSetting');
+import OptionEnum = require('../enum/OptionEnum');
+import PossibleOwnersEnum = require('../map/enum/PossibleOwnersEnum');
 
 /*
  * Handles update_map command from the game engine. Visible map for the bot is given like this: region id; player owning region; 
  * number of armies.
  */
 class UpdateMapCommand implements ICommand {
+
+    constructor(private settings: IOptionSetting, private warMap: IWarMap) {
+    }
 
     /*
      * Gets the answer from the bot for the update_map command.
@@ -38,7 +46,39 @@ class UpdateMapCommand implements ICommand {
      *      }
      */
     public getAnswer(commandData: ICommandData): IAnswer {
-        return null;
+        var region: IRegion;
+        var botName: string;
+        commandData.data.forEach((value: string, index: number): void => {
+            switch ((index + 1) % 3) {
+                case 0:
+                    region.owner = this.getOwner(botName);
+                    region.troopCount = parseInt(value, 10);
+                    break;
+                case 1:
+                    region = this.warMap.getRegionById(parseInt(value, 10));
+                    break;
+                case 2:
+                    botName = value;
+                    break;
+            }
+        });
+
+        return {
+            succes: true,
+            value: ''
+        };
+    }
+
+    private getOwner(value: string): PossibleOwnersEnum {
+        if (this.settings[OptionEnum.your_bot] === value) {
+            return PossibleOwnersEnum.PLAYER;
+        }
+
+        if (this.settings[OptionEnum.opponent_bot] === value) {
+            return PossibleOwnersEnum.OPPONENT;
+        }
+
+        return PossibleOwnersEnum.NEUTRAL;
     }
 }
 

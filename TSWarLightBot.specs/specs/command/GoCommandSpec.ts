@@ -86,6 +86,24 @@ describe('goCommand', (): void => {
             expect(goCommand.place_armies.callCount).toBe(1);
         });
 
+        it('Should call attacktransfer method on goCommand if ICommandData.option is attacktransfer.', (): void => {
+            // arange
+            commandDataMock = {
+                line: 'go attack/transfer 2000',
+                command: CommandEnum.go,
+                option: OptionEnum.attacktransfer,
+                data: new ShuffleArray<string>(['2000'])
+            };
+            spyOn(goCommand, 'attacktransfer');
+
+            // act
+            goCommand.getAnswer(commandDataMock);
+
+            // assert
+            expect(goCommand.attacktransfer).toHaveBeenCalledWith(commandDataMock);
+            expect(goCommand.attacktransfer.callCount).toBe(1);
+        });
+
         // error string should be filled too.
         it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
             // arange
@@ -170,7 +188,7 @@ describe('goCommand', (): void => {
         it('Should add +1 on troopCount the region found by index of Math.random.', (): void => {
             // arange
             var index = 0;
-            spyOn(Math, 'random').andReturn(index);
+            spyOn(Math, 'random').andReturn(0.25488475849851966);
 
             // act
             goCommand.place_armies(commandDataMock);
@@ -342,7 +360,7 @@ describe('goCommand', (): void => {
             var result: IAnswer = goCommand.attacktransfer(commandDataMock);
 
             // assert
-            expect(result.value).toBe('');
+            expect(result.value).toBe(Consts.NO_MOVES);
         });
     });
 

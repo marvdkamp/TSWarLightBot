@@ -52,9 +52,10 @@
     <TypeScriptCompile Include="Consts.ts" />
     <TypeScriptCompile Include="interface\IBot.ts" />
     <TypeScriptCompile Include="interface\ICommandData.ts" />
-    <TypeScriptCompile Include="interface\ICommandMethod.ts" />
+    <TypeScriptCompile Include="interface\ICommandClass.ts" />
     <TypeScriptCompile Include="interface\IAnswer.ts" />
     <TypeScriptCompile Include="interface\ILines.ts" />
+    <TypeScriptCompile Include="interface\IOptionMethod.ts" />
     <TypeScriptCompile Include="Lines.ts" />
     <TypeScriptCompile Include="map\interface\IRegion.ts" />
     <TypeScriptCompile Include="map\interface\ISuperRegion.ts" />

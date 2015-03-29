@@ -32,7 +32,7 @@ describe('settingsCommand', (): void => {
     });
 
     // error string should be filled too.
-    it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches any option in goCommand.', (): void => {
+    it('Should return Answer.succes = false in Answer.value if ICommandData.option not matches an option in settingsCommand.', (): void => {
         // arange
         var commandData: ICommandData = {
             line: 'testline',
@@ -58,8 +58,10 @@ describe('settingsCommand', (): void => {
             option: OptionEnum.your_bot,
             command: CommandEnum.settings
         };
+
         // act
         settingsCommand.getAnswer(commandData);
+
         // assert
         expect(settings[OptionEnum.your_bot]).toEqual(playerName);
     });
@@ -73,8 +75,10 @@ describe('settingsCommand', (): void => {
             option: OptionEnum.opponent_bot,
             command: CommandEnum.settings
         };
+
         // act
         settingsCommand.getAnswer(commandData);
+
         // assert
         expect(settings[OptionEnum.opponent_bot]).toEqual(opponentName);
     });
@@ -88,8 +92,10 @@ describe('settingsCommand', (): void => {
             option: OptionEnum.starting_armies,
             command: CommandEnum.settings
         };
+
         // act
         settingsCommand.getAnswer(commandData);
+
         // assert
         expect(settings[OptionEnum.starting_armies]).toEqual(startingArmies);
     });

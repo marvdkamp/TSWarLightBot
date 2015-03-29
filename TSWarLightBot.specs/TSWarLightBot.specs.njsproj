@@ -49,6 +49,7 @@
     <TypeScriptCompile Include="specs\command\SetupMapCommandSpec.ts" />
     <TypeScriptCompile Include="specs\command\UpdateMapCommandSpec.ts" />
     <TypeScriptCompile Include="specs\command\RegionsMock.ts" />
+    <TypeScriptCompile Include="specs\ConstsSpec.ts" />
     <TypeScriptCompile Include="specs\LinesSpec.ts" />
     <TypeScriptCompile Include="specs\map\WarMapSpec.ts" />
   </ItemGroup>

@@ -10,19 +10,18 @@
  */
 'use strict';
 
-import IAnswer = require('./IAnswer');
-import ICommandData = require('./ICommandData');
+import ICommand = require('./../command/interface/ICommand');
 
 /*
  * Couples a command to a method which will handle the command.
  */
-interface ICommandMethod {
+interface ICommandClass {
 
     /*
      * The given command fromm the game engine and the method to handle it.
      * We can't us an enum as indexer. So we use number but you hould read CommandEnum.
      */
-    [command: number /*CommandEnum*/ ]: (data: ICommandData) => IAnswer;
+    [command: number /*CommandEnum*/ ]: ICommand;
 }
 
-export = ICommandMethod;
+export = ICommandClass;

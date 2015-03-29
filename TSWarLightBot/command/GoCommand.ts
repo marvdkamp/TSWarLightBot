@@ -12,7 +12,7 @@
 
 import ICommand = require('./interface/ICommand');
 import IOptionSetting = require('./interface/IOptionSetting');
-import ICommandMethod = require('./../interface/ICommandMethod');
+import IOptionMethod = require('./../interface/IOptionMethod');
 import IAnswer = require('./../interface/IAnswer');
 import ICommandData = require('./../interface/ICommandData');
 import IMoveData = require('./../command/interface/IMoveData');
@@ -28,7 +28,7 @@ import util = require('util');
  * to return his attack and/or transfer moves.
  */
 class Go implements ICommand {
-    private optionMethodList: ICommandMethod = {};
+    private optionMethodList: IOptionMethod = {};
 
     /*
      * Create an instance of the Go class.
@@ -99,7 +99,7 @@ class Go implements ICommand {
         var placements: string[] = [];
 
         while (0 < troopsRemaining) {
-            var index: number = Math.random() * ownedRegions.length;
+            var index: number = Math.floor(Math.random() * ownedRegions.length);
             ownedRegions[index].troopCount += 1;
             placements.push([this.settings[OptionEnum.your_bot], Consts.PLACE_ARMIES, ownedRegions[index].id, '1'].join(' '));
             troopsRemaining -= 1;
@@ -144,7 +144,7 @@ class Go implements ICommand {
 
         return {
             succes: true,
-            value: moves.join(', ').trim()
+            value: moves.length === 0 ? Consts.NO_MOVES :  moves.join(', ').trim()
         };
     }
 

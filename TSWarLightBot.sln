@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOC", "DOC", "{7CE26B10-CAC
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "OriginalJSWarLightBot", "OriginalJSWarLightBot\OriginalJSWarLightBot.njsproj", "{41FB8DF1-2FD6-4B1A-916A-8B7A811E8BA1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5BBAC82-700F-4480-A022-B8770AB16FE7}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -22,10 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBot.specs", "TSWarLightBot.specs\TSWarLightBot.specs.njsproj", "{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}"
-EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBotEmpty", "TSWarLightBotEmpty\TSWarLightBotEmpty.njsproj", "{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}"
-EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TSWarLightBotEmpty.specs", "TSWarLightBotEmpty.specs\TSWarLightBotEmpty.specs.njsproj", "{EB935147-9B43-4F3D-9F78-C3913E79ED48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,22 +31,10 @@ Global
 		{5319890E-90E7-4A4F-BB0A-76A90BDE8306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5319890E-90E7-4A4F-BB0A-76A90BDE8306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5319890E-90E7-4A4F-BB0A-76A90BDE8306}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41FB8DF1-2FD6-4B1A-916A-8B7A811E8BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41FB8DF1-2FD6-4B1A-916A-8B7A811E8BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41FB8DF1-2FD6-4B1A-916A-8B7A811E8BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41FB8DF1-2FD6-4B1A-916A-8B7A811E8BA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00FD4EB6-FB59-4BDD-9798-9A6ED5D328B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF2D2D80-F8C8-47A2-88CF-FD22639B5BBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB935147-9B43-4F3D-9F78-C3913E79ED48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

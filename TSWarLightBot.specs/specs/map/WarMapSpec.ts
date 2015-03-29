@@ -13,6 +13,8 @@
 
 import PossibleOwnersEnum = require('../../../TSWarLightBot/map/enum/PossibleOwnersEnum');
 import IWarMap = require('../../../TSWarLightBot/map/interface/IWarMap');
+import IRegion = require('../../../TSWarLightBot/map/interface/IRegion');
+import ISuperRegion = require('../../../TSWarLightBot/map/interface/ISuperRegion');
 
 import SuperRegion = require('../../../TSWarLightBot/map/SuperRegion');
 import Region = require('../../../TSWarLightBot/map/Region');
@@ -29,8 +31,50 @@ describe('WarMap', (): void => {
         warMap = new WarMap();
     });
 
-    // todo: alleen maar getters en setters in WarMap. zouden gehit moeten worden door andere tests,
-    // niet specifieke tests voor geschreven worden.
+    it('Should be abble to return an added Region', (): void => {
+        // arange
+        warMap.addRegion(new Region(1, new SuperRegion(1, 4)));
+
+        // act
+        var result: IRegion = warMap.getRegionById(1);
+
+        // assert
+        expect(result.id).toBe(1);
+    });
+
+    it('Should return null if an Region can NOT be found', (): void => {
+        // arange
+        warMap.addRegion(undefined);
+
+        // act
+        var result: IRegion = warMap.getRegionById(2);
+
+        // assert
+        expect(result).toBe(null);
+    });
+
+    it('Should be abble to return an added SuperRegion', (): void => {
+        // arange
+        warMap.addSuperRegion(new SuperRegion(1, 4));
+
+        // act
+        var result: ISuperRegion = warMap.getSuperRegionById(1);
+
+        // assert
+        expect(result.id).toBe(1);
+    });
+
+    it('Should return null if an SuperRegion can NOT be found', (): void => {
+        // arange
+        warMap.addSuperRegion(undefined);
+
+        // act
+        var result: ISuperRegion = warMap.getSuperRegionById(2);
+
+        // assert
+        expect(result).toBe(null);
+    });
+
     it('Should return every region owned by the player', (): void => {
         // arrange
         var superRegion = new SuperRegion(0, 1);

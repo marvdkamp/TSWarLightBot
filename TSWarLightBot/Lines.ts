@@ -13,7 +13,8 @@
 import ILines = require('./interface/ILines');
 import IAnswer = require('./interface/IAnswer');
 import ICommandData = require('./interface/ICommandData');
-import ICommandMethod = require('./interface/ICommandMethod');
+import ICommandClass = require('./interface/ICommandClass');
+import ICommand = require('./command/interface/ICommand');
 import Consts = require('./Consts');
 import CommandEnum = require('./enum/CommandEnum');
 import OptionEnum = require('./enum/OptionEnum');
@@ -24,7 +25,7 @@ import util = require('util');
  * Converts lines to command information and passes it to the right command class and returns the answer.
  */
 class Lines implements ILines {
-    constructor(private commandMethodList: ICommandMethod) {
+    constructor(private commandClassList: ICommandClass) {
     }
 
     /*
@@ -40,10 +41,10 @@ class Lines implements ILines {
      */
     public getAnswer(line: string): IAnswer {
         var commandData: ICommandData = this.getCommandData(line);
-        var commandMethod: (data: ICommandData) => IAnswer = this.commandMethodList[commandData.command];
+        var commandClass: ICommand = this.commandClassList[commandData.command];
 
-        if (commandMethod) {
-            return commandMethod(commandData);
+        if (commandClass) {
+            return commandClass.getAnswer(commandData);
         } else {
             return {
                 succes: false,
